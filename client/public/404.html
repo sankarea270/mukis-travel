@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Not Found — Redirecting</title>
+    <meta name="robots" content="noindex">
+    <script>
+      (function() {
+        var base = '/mukis-travel/';
+        var full = (location.pathname || '') + (location.search || '') + (location.hash || '');
+        // If already at base, do nothing
+        if (location.pathname === base || location.pathname === base.slice(0,-1)) return;
+        // Build redirect preserving path as hash
+        var path = full.replace(base, '');
+        location.replace(base + (path ? ('#' + path) : ''));
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirigiendo al sitio... <a href="/mukis-travel/">Ir a la página principal</a></p>
+  </body>
+</html>

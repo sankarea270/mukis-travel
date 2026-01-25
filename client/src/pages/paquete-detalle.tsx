@@ -5,7 +5,7 @@ import {
   Clock, MapPin, Users, ChevronRight, Star, Check, X, 
   Calendar, Mountain, Share2, Heart, Phone, Globe, 
   ChevronLeft, Play, MessageCircle, ThumbsUp,
-  Camera, Navigation, Compass, Flag
+  Camera, Navigation, Compass, Flag, Shield
 } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -123,7 +123,7 @@ export default function PaqueteDetalle() {
         <div className="container mx-auto px-4 pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
             {/* Main Image */}
-            <div className="lg:col-span-3 relative rounded-2xl overflow-hidden h-[400px] lg:h-[500px]">
+            <div className="lg:col-span-3 relative rounded-2xl overflow-hidden h-100 lg:h-125">
               <motion.img
                 key={selectedImage}
                 initial={{ opacity: 0 }}
@@ -181,7 +181,7 @@ export default function PaqueteDetalle() {
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`relative rounded-xl overflow-hidden h-[120px] transition-all ${
+                  className={`relative rounded-xl overflow-hidden h-30 transition-all ${
                     idx === selectedImage ? 'ring-3 ring-primary' : 'opacity-70 hover:opacity-100'
                   }`}
                 >
@@ -255,6 +255,36 @@ export default function PaqueteDetalle() {
                 </p>
               </motion.div>
 
+              {/* Preparación del viaje */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.12 }}
+                className="bg-white rounded-2xl p-8 shadow-sm"
+              >
+                <h2 className="font-heading font-bold text-2xl mb-4 text-gray-900 flex items-center gap-3">
+                  <Compass className="text-primary" />
+                  Preparación del viaje
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    "Ropa en capas y casaca cortaviento",
+                    "Protector solar, lentes de sol y gorra",
+                    "Calzado cómodo para caminatas",
+                    "Agua y snacks ligeros",
+                    "Documento de identidad y efectivo",
+                    "Medicamentos personales"
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
+                      <div className="bg-primary/10 rounded-full p-2">
+                        <Check className="text-primary w-5 h-5" />
+                      </div>
+                      <span className="text-gray-700 font-medium">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
               {/* Tour Map Placeholder */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -266,7 +296,7 @@ export default function PaqueteDetalle() {
                   <Flag className="text-primary" />
                   Mapa del Recorrido
                 </h2>
-                <div className="relative rounded-xl overflow-hidden bg-gray-100 h-[300px] flex items-center justify-center">
+                <div className="relative rounded-xl overflow-hidden bg-gray-100 h-75 flex items-center justify-center">
                   {tour.mapImage ? (
                     <img src={tour.mapImage} alt="Mapa del recorrido" className="w-full h-full object-cover" />
                   ) : (
@@ -285,7 +315,7 @@ export default function PaqueteDetalle() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8"
+                  className="bg-linear-to-br from-primary/5 to-primary/10 rounded-2xl p-8"
                 >
                   <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900">
                     ✨ Resumen del Tour
@@ -318,7 +348,7 @@ export default function PaqueteDetalle() {
                   <ul className="space-y-3">
                     {tour.included.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3 text-gray-600">
-                        <Check size={18} className="text-green-500 mt-0.5 flex-shrink-0" />
+                        <Check size={18} className="text-green-500 mt-0.5 shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -333,12 +363,28 @@ export default function PaqueteDetalle() {
                   <ul className="space-y-3">
                     {tour.notIncluded.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3 text-gray-600">
-                        <X size={18} className="text-red-500 mt-0.5 flex-shrink-0" />
+                        <X size={18} className="text-red-500 mt-0.5 shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
+              </motion.div>
+
+              {/* Política de cancelación */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.32 }}
+                className="bg-linear-to-br from-primary/5 to-primary/10 rounded-2xl p-8"
+              >
+                <h2 className="font-heading font-bold text-2xl mb-3 text-gray-900 flex items-center gap-3">
+                  <Shield className="text-primary" />
+                  Política de cancelación
+                </h2>
+                <p className="text-gray-700 leading-relaxed">
+                  Cancelaciones sin penalidad hasta 48 horas antes de la salida. Cambios de fecha sujetos a disponibilidad. Para grupos y paquetes especiales pueden aplicar condiciones particulares.
+                </p>
               </motion.div>
 
               {/* Itinerary */}
@@ -353,17 +399,17 @@ export default function PaqueteDetalle() {
                   Itinerario
                 </h2>
                 <div className="relative">
-                  <div className="absolute left-[39px] top-0 bottom-0 w-0.5 bg-primary/20" />
+                  <div className="absolute left-9.75 top-0 bottom-0 w-0.5 bg-primary/20" />
                   <div className="space-y-6">
                     {tour.itinerary.map((item, idx) => (
                       <div key={idx} className="flex gap-4 relative">
-                        <div className="flex-shrink-0 w-20 text-right">
+                        <div className="shrink-0 w-20 text-right">
                           <span className="text-primary font-bold text-sm">{item.time}</span>
                         </div>
                         <div className="relative">
                           <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-white shadow" />
                         </div>
-                        <div className="flex-grow pl-4 pb-2">
+                        <div className="grow pl-4 pb-2">
                           <h4 className="font-bold text-gray-900">{item.activity}</h4>
                           {item.description && (
                             <p className="text-gray-600 text-sm mt-1">{item.description}</p>
@@ -421,25 +467,55 @@ export default function PaqueteDetalle() {
                   <MapPin size={18} className="text-primary" />
                   <span>{tour.location}, Perú</span>
                 </div>
-                <div className="relative rounded-xl overflow-hidden bg-gray-100 h-[300px]">
-                  {/* Placeholder for Google Maps or static map */}
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
-                    <div className="text-center text-gray-500">
-                      <MapPin size={48} className="mx-auto mb-3 text-primary" />
-                      <p className="text-lg font-medium">{tour.location}</p>
-                      <p className="text-sm text-gray-400">Mapa de ubicación</p>
-                      {tour.locationCoords && (
-                        <a 
-                          href={`https://www.google.com/maps?q=${tour.locationCoords.lat},${tour.locationCoords.lng}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block mt-3 text-primary hover:underline text-sm"
-                        >
-                          Ver en Google Maps →
-                        </a>
-                      )}
+                <div className="relative rounded-xl overflow-hidden bg-gray-100 h-75">
+                  {tour.locationCoords ? (
+                    <iframe
+                      title={`Mapa de ${tour.title}`}
+                      className="w-full h-full"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      src={`https://www.google.com/maps?q=${tour.locationCoords.lat},${tour.locationCoords.lng}&z=16&output=embed`}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-blue-50 to-blue-100">
+                      <div className="text-center text-gray-500">
+                        <MapPin size={48} className="mx-auto mb-3 text-primary" />
+                        <p className="text-lg font-medium">{tour.location}</p>
+                        <p className="text-sm text-gray-400">Mapa de ubicación</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
+                </div>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                  {tour.locationCoords ? (
+                    <>
+                      <a
+                        href={`https://www.google.com/maps?q=${tour.locationCoords.lat},${tour.locationCoords.lng}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        Ver en Google Maps
+                      </a>
+                      <a
+                        href={`https://www.google.com/maps/@?api=1&map_action=map&center=${tour.locationCoords.lat},${tour.locationCoords.lng}&zoom=18&basemap=satellite&tilt=45`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        Ver vista 3D
+                      </a>
+                    </>
+                  ) : (
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${tour.location}, Perú`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-primary hover:bg-primary/10 transition-colors"
+                    >
+                      Buscar en Google Maps
+                    </a>
+                  )}
                 </div>
               </motion.div>
 
@@ -484,7 +560,7 @@ export default function PaqueteDetalle() {
                           <span className="text-sm text-gray-600 w-16">
                             {rating === 5 ? "Excelente" : rating === 4 ? "Muy bien" : rating === 3 ? "Promedio" : rating === 2 ? "Pobre" : "Terrible"}
                           </span>
-                          <div className="flex-grow bg-gray-200 rounded-full h-2">
+                          <div className="grow bg-gray-200 rounded-full h-2">
                             <div 
                               className="bg-yellow-500 h-2 rounded-full transition-all"
                               style={{ width: `${percentage}%` }}
@@ -508,7 +584,7 @@ export default function PaqueteDetalle() {
                             alt={review.name}
                             className="w-12 h-12 rounded-full object-cover"
                           />
-                          <div className="flex-grow">
+                          <div className="grow">
                             <div className="flex items-center justify-between mb-1">
                               <div>
                                 <h4 className="font-bold text-gray-900">{review.name}</h4>
@@ -783,11 +859,11 @@ export default function PaqueteDetalle() {
               href="https://www.instagram.com/mukis_travel_agency/"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl h-[400px] flex items-center justify-center overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
+              className="relative bg-linear-to-br from-purple-100 to-pink-100 rounded-2xl h-100 flex items-center justify-center overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
             >
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center opacity-30" />
               <div className="text-center relative z-10">
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                <div className="w-20 h-20 bg-linear-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
                   <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                   </svg>
@@ -795,7 +871,7 @@ export default function PaqueteDetalle() {
                 <p className="text-gray-800 font-bold text-lg">Ver en Instagram</p>
                 <p className="text-sm text-gray-600">@mukis_travel_agency</p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-white/80 to-transparent" />
             </a>
 
             {/* TikTok Video */}
@@ -803,7 +879,7 @@ export default function PaqueteDetalle() {
               href="https://www.tiktok.com/@mukistravel"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-[400px] flex items-center justify-center overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
+              className="relative bg-linear-to-br from-gray-100 to-gray-200 rounded-2xl h-100 flex items-center justify-center overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
             >
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center opacity-30" />
               <div className="text-center relative z-10">
@@ -815,7 +891,7 @@ export default function PaqueteDetalle() {
                 <p className="text-gray-800 font-bold text-lg">Ver en TikTok</p>
                 <p className="text-sm text-gray-600">@mukistravel</p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-white/80 to-transparent" />
             </a>
 
             {/* Facebook Video */}
@@ -823,7 +899,7 @@ export default function PaqueteDetalle() {
               href="https://web.facebook.com/MukisTravelAgency"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl h-[400px] flex items-center justify-center overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
+              className="relative bg-linear-to-br from-blue-100 to-blue-200 rounded-2xl h-100 flex items-center justify-center overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
             >
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center opacity-30" />
               <div className="text-center relative z-10">
@@ -835,7 +911,7 @@ export default function PaqueteDetalle() {
                 <p className="text-gray-800 font-bold text-lg">Ver en Facebook</p>
                 <p className="text-sm text-gray-600">Mukis Travel Agency</p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-white/80 to-transparent" />
             </a>
           </div>
 
@@ -847,7 +923,7 @@ export default function PaqueteDetalle() {
                 href="https://www.instagram.com/mukis_travel_agency/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all"
+                className="flex items-center gap-2 bg-linear-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -882,7 +958,7 @@ export default function PaqueteDetalle() {
       </section>
 
       {/* ============ GENERAL TESTIMONIALS ============ */}
-      <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
+      <section className="py-16 bg-linear-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
             Lo que Dicen Nuestros Viajeros

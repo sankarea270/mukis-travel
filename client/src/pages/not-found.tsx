@@ -14,6 +14,11 @@ export default function NotFound() {
           <p className="mt-4 text-sm text-gray-600">
             Did you forget to add the page to the router?
           </p>
+          <div className="mt-4 text-xs text-gray-500">
+            <p>location.pathname: <strong>{typeof window !== 'undefined' ? window.location.pathname : 'n/a'}</strong></p>
+            <p>location.hash: <strong>{typeof window !== 'undefined' ? window.location.hash : 'n/a'}</strong></p>
+            <p>BASE_URL: <strong>{import.meta.env.BASE_URL}</strong></p>
+          </div>
         </CardContent>
       </Card>
     </div>

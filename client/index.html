@@ -20,6 +20,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <script type="module">
+      // If the app is served from a subpath (GitHub Pages project site),
+      // normalize the location pathname so the client router matches routes.
+      const base = import.meta.env.BASE_URL || "/";
+      if (base !== "/" && location.pathname.startsWith(base)) {
+        const normalized = location.pathname.slice(base.replace(/\/$/, "").length) || "/";
+        history.replaceState(null, "", normalized + location.search + location.hash);
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

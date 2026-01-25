@@ -9,9 +9,16 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { FAQ } from "@/components/home/FAQ";
 import { Noticias } from "@/components/home/Noticias";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { tours } from "@/data/tours";
+import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { Clock, MapPin } from "lucide-react";
 
 export default function Home() {
+  const topExperiences = tours
+    .filter((tour) => tour.featured || tour.isOffer)
+    .slice(0, 3);
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
       <Navbar />
@@ -36,12 +43,12 @@ export default function Home() {
               <span className="text-2xl">✨</span>
               <p className="text-sm md:text-base font-medium">Especialistas en viajes a medida en todo el Perú</p>
             </div>
-            <div className="hidden md:block h-8 w-[1px] bg-white/30" />
+            <div className="hidden md:block h-8 w-px bg-white/30" />
             <div className="flex items-center gap-3">
               <span className="text-2xl">🇵🇪</span>
               <p className="text-sm md:text-base font-medium">Operador Local Autorizado por MINCETUR</p>
             </div>
-            <div className="hidden md:block h-8 w-[1px] bg-white/30" />
+            <div className="hidden md:block h-8 w-px bg-white/30" />
             <div className="flex items-center gap-3">
               <span className="text-2xl">⭐</span>
               <p className="text-sm md:text-base font-medium">+5000 viajeros felices</p>
@@ -51,6 +58,64 @@ export default function Home() {
 
         {/* Ofertas Section */}
         <Ofertas />
+
+        {/* Top Experiencias */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm bg-primary/10 px-4 py-2 rounded-full mb-4">
+                🌄 Experiencias Destacadas
+              </span>
+              <h2 className="font-heading font-bold text-3xl md:text-5xl text-gray-900">
+                Lo Mejor del Perú en 3 Experiencias
+              </h2>
+              <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
+                Seleccionamos las rutas más emblemáticas para que vivas una aventura inolvidable.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {topExperiences.map((tour) => (
+                <Link key={tour.id} href={`/paquetes/${tour.slug}`}>
+                  <motion.div
+                    whileHover={{ y: -6 }}
+                    className="group bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer h-full"
+                  >
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={tour.image}
+                        alt={tour.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-3 left-3 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs">
+                        <MapPin size={12} className="text-primary" />
+                        {tour.location}
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-heading font-bold text-lg text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {tour.title}
+                      </h3>
+                      <div className="flex items-center justify-between text-sm text-gray-600">
+                        <span className="flex items-center gap-1">
+                          <Clock size={14} /> {tour.duration}
+                        </span>
+                        <span className="font-bold text-primary">${tour.price}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Where to Go - Para quienes no saben a dónde viajar */}
         <WhereToGo />
@@ -71,7 +136,7 @@ export default function Home() {
         <Noticias />
 
         {/* Final CTA Section */}
-        <section className="py-24 bg-gradient-to-br from-primary via-emerald-600 to-teal-700 relative overflow-hidden">
+        <section className="py-24 bg-linear-to-br from-primary via-primary/80 to-accent/90 relative overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />

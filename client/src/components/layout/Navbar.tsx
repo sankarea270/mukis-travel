@@ -137,12 +137,11 @@ export function Navbar() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className={cn(
-                "w-11 h-11 rounded-full flex items-center justify-center text-xl font-bold transition-all duration-300 shadow-lg",
-                scrolled ? "bg-gradient-to-br from-primary to-emerald-600 text-white" : "bg-white/20 backdrop-blur-sm text-white border border-white/30"
-              )}>
-                🍀
-              </div>
+              <img
+                src="/images/categories/logom-removebg-preview.png"
+                alt="Mukis Travel Logo"
+                className="w-14 h-14 object-contain"
+              />
               <div className="flex flex-col">
                 <span className={cn(
                   "font-heading font-bold text-xl uppercase tracking-wider leading-none transition-colors",
@@ -209,7 +208,7 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-150 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
                   >
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
@@ -226,7 +225,7 @@ export function Navbar() {
                               whileTap={{ scale: 0.98 }}
                             >
                               <div className={cn(
-                                "relative rounded-xl p-4 bg-gradient-to-br transition-all duration-300 overflow-hidden",
+                                "relative rounded-xl p-4 bg-linear-to-br transition-all duration-300 overflow-hidden",
                                 region.color
                               )}>
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
@@ -281,7 +280,7 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[500px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-125 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
                   >
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
@@ -297,7 +296,7 @@ export function Navbar() {
                               whileHover={{ x: 4 }}
                             >
                               <div className={cn(
-                                "w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center",
+                                "w-12 h-12 rounded-xl bg-linear-to-br flex items-center justify-center",
                                 category.color
                               )}>
                                 <category.icon className="w-6 h-6 text-white" />
@@ -319,14 +318,14 @@ export function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* Blog */}
-            <Link href="/blog">
+            {/* Sobre Nosotros */}
+            <Link href="/sobre-nosotros">
               <span className={cn(
                 "font-medium text-sm transition-all px-4 py-2 rounded-full cursor-pointer",
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
-                location === "/blog" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
+                location === "/sobre-nosotros" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
               )}>
-                Blog
+                Nosotros
               </span>
             </Link>
 
@@ -347,7 +346,7 @@ export function Navbar() {
               href="https://wa.me/51917608749?text=Hola,%20me%20gustaría%20información%20sobre%20tours"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 flex items-center gap-2 bg-gradient-to-r from-primary to-emerald-600 text-white font-bold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all"
+              className="ml-2 flex items-center gap-2 bg-linear-to-r from-primary to-accent text-white font-bold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -400,7 +399,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden fixed inset-x-0 top-[68px] bg-white shadow-2xl border-t overflow-hidden"
+            className="lg:hidden fixed inset-x-0 top-17 bg-white shadow-2xl border-t overflow-hidden"
           >
             <div className="max-h-[calc(100vh-68px)] overflow-y-auto">
               <div className="flex flex-col p-4 gap-1">
@@ -461,7 +460,7 @@ export function Navbar() {
                             <Link key={region.id} href={region.href}>
                               <motion.div 
                                 className={cn(
-                                  "flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r",
+                                  "flex items-center gap-3 p-3 rounded-xl bg-linear-to-r",
                                   region.color
                                 )}
                                 whileTap={{ scale: 0.98 }}
@@ -514,7 +513,7 @@ export function Navbar() {
                                 whileTap={{ scale: 0.98 }}
                               >
                                 <div className={cn(
-                                  "w-10 h-10 rounded-lg bg-gradient-to-br flex items-center justify-center",
+                                  "w-10 h-10 rounded-lg bg-linear-to-br flex items-center justify-center",
                                   category.color
                                 )}>
                                   <category.icon className="w-5 h-5 text-white" />
@@ -532,16 +531,16 @@ export function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* Blog */}
-                <Link href="/blog">
+                {/* Sobre Nosotros */}
+                <Link href="/sobre-nosotros">
                   <motion.span 
                     className={cn(
                       "block font-medium text-gray-800 py-3 px-4 rounded-xl transition-colors cursor-pointer",
-                      location === "/blog" ? "bg-primary/10 text-primary" : "hover:bg-gray-50"
+                      location === "/sobre-nosotros" ? "bg-primary/10 text-primary" : "hover:bg-gray-50"
                     )}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Blog
+                    Nosotros
                   </motion.span>
                 </Link>
 
@@ -564,7 +563,7 @@ export function Navbar() {
                     href="https://wa.me/51917608749"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-emerald-600 text-white font-bold py-3.5 rounded-full shadow-lg"
+                    className="flex items-center justify-center gap-2 bg-linear-to-r from-primary to-accent text-white font-bold py-3.5 rounded-full shadow-lg"
                     whileTap={{ scale: 0.98 }}
                   >
                     <Phone size={18} />

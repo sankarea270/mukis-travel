@@ -25,7 +25,7 @@ export default function Tours() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary to-primary/80 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-linear-to-br from-primary to-primary/80 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full translate-x-1/2 translate-y-1/2" />
@@ -77,7 +77,7 @@ export default function Tours() {
               return (
                 <motion.div key={category.slug} variants={itemVariants}>
                   <Link href={`/paquetes?categoria=${category.slug}`}>
-                    <div className={`group relative h-80 rounded-3xl overflow-hidden cursor-pointer bg-gradient-to-br ${bgColors[idx % bgColors.length]} shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}>
+                    <div className={`group relative h-80 rounded-3xl overflow-hidden cursor-pointer bg-linear-to-br ${bgColors[idx % bgColors.length]} shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}>
                       {/* Background Pattern */}
                       <div className="absolute inset-0 opacity-20">
                         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -185,7 +185,7 @@ export default function Tours() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-primary to-emerald-600">
+      <section className="py-20 bg-linear-to-r from-primary to-accent">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -219,3 +219,4 @@ export default function Tours() {
     </div>
   );
 }
+

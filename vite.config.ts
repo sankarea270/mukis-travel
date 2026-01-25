@@ -4,7 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
+  // set base for GitHub Pages project site
+  base: command === "build" ? "/mukis-travel/" : "/",
   plugins: [
     react(),
     tailwindcss(),
@@ -35,4 +37,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

@@ -27,14 +27,14 @@ export default function ToursSelva() {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-125 overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=1920"
             alt="Selva Peruana"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-green-900/60 via-emerald-900/40 to-black/70" />
+          <div className="absolute inset-0 bg-linear-to-b from-green-900/60 via-emerald-900/40 to-black/70" />
         </div>
 
         <div className="relative h-full container mx-auto px-4 flex flex-col justify-center">
@@ -45,7 +45,7 @@ export default function ToursSelva() {
             className="max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-700 flex items-center justify-center shadow-xl">
+              <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-green-500 to-emerald-700 flex items-center justify-center shadow-xl">
                 <TreePine className="w-7 h-7 text-white" />
               </div>
               <span className="text-green-300 font-bold text-lg tracking-wide uppercase">Región Selva</span>
@@ -106,10 +106,10 @@ export default function ToursSelva() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer"
+              className="group relative aspect-4/5 rounded-2xl overflow-hidden cursor-pointer"
             >
               <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <h3 className="font-heading font-bold text-white text-xl">{dest.name}</h3>
               </div>
@@ -119,7 +119,7 @@ export default function ToursSelva() {
       </section>
 
       {/* Tours Grid */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 bg-linear-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -149,7 +149,7 @@ export default function ToursSelva() {
                           alt={tour.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                       
                       <div className="p-6">
@@ -195,7 +195,7 @@ export default function ToursSelva() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-700 relative overflow-hidden">
+      <section className="py-20 bg-linear-to-r from-green-600 to-emerald-700 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
         </div>

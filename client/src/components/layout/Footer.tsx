@@ -10,9 +10,11 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-2xl">
-                🍀
-              </div>
+              <img
+                src="/images/categories/logom-removebg-preview.png"
+                alt="Mukis Travel Logo"
+                className="w-14 h-14 object-contain"
+              />
               <div>
                 <span className="font-heading font-bold text-2xl text-white uppercase block leading-none">
                   Mukis Travel
@@ -76,10 +78,7 @@ export function Footer() {
                 <Link href="/tours" className="hover:text-primary transition-colors">Categorías de Tours</Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-primary transition-colors">Blog de Viajes</Link>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">Sobre Nosotros</a>
+                <Link href="/sobre-nosotros" className="hover:text-primary transition-colors">Sobre Nosotros</Link>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">Preguntas Frecuentes</a>

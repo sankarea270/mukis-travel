@@ -136,9 +136,9 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.8700, lng: -71.3033 },
     region: "sierra",
     category: "aventura",
-    image: "/images/categories/montana-de-colores.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
     gallery: [
-      "/images/categories/montana-de-colores.jpg",
+      `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
       "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
       "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600"
     ],
@@ -204,10 +204,11 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.4747, lng: -72.5753 },
     region: "sierra",
     category: "naturaleza",
-    image: "https://images.unsplash.com/photo-1594905247689-a3b60b5bc0e9?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
     gallery: [
-      "https://images.unsplash.com/photo-1594905247689-a3b60b5bc0e9?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/laguna2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/laguna3.jpeg`
     ],
     featured: true,
     difficulty: "moderado",
@@ -267,9 +268,11 @@ export const tours: Tour[] = [
     locationCoords: { lat: -14.3819, lng: -71.4906 },
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1548820579-0fad72e0e7fc?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/puente1.jpeg`,
     gallery: [
-      "https://images.unsplash.com/photo-1548820579-0fad72e0e7fc?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/puente1.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/puente2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/puente3.jpeg`
     ],
     featured: true,
     difficulty: "fácil",
@@ -327,9 +330,10 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.3295, lng: -72.1990 },
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1580968014526-b1f0e8a49bae?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/maras.jpg`,
     gallery: [
-      "https://images.unsplash.com/photo-1580968014526-b1f0e8a49bae?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/maras.jpg`,
+      `${import.meta.env.BASE_URL}images/categories/moray1.jpg`
     ],
     difficulty: "fácil",
     maxGroup: 20,
@@ -381,9 +385,11 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.5160, lng: -71.9785 },
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/citytour1.jpeg`,
     gallery: [
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/citytour1.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/citytour2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/citytour3.jpg`
     ],
     difficulty: "fácil",
     maxGroup: 25,
@@ -494,9 +500,9 @@ export const tours: Tour[] = [
     locationCoords: { lat: -14.0875, lng: -75.7747 },
     region: "costa",
     category: "naturaleza",
-    image: "/images/categories/ica-paracas.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/ica-paracas.jpg`,
     gallery: [
-      "/images/categories/ica-paracas.jpg"
+      `${import.meta.env.BASE_URL}images/categories/ica-paracas.jpg`
     ],
     isOffer: true,
     originalPrice: 150,
@@ -540,6 +546,64 @@ export const tours: Tour[] = [
     reviews: [
       { id: "r11", name: "Roberto Silva", avatar: "https://randomuser.me/api/portraits/men/36.jpg", rating: 5, comment: "Un día increíble. Las Islas Ballestas son espectaculares y los tubulares en Huacachina son súper emocionantes.", date: "2025-12-18", country: "Brasil" }
     ]
+  },
+  {
+    id: "9",
+    slug: "fortaleza-waqrapukara",
+    title: "Fortaleza Waqrapukara",
+    shortDescription: "Vive la experiencia de la impresionante fortaleza de WaqraPukara y sus paisajes espectaculares.",
+    description: "Vive una aventura inolvidable con el tour a Waqrapukara. La impresionante fortaleza de WaqraPukara te sorprenderá con su paisaje, ofreciéndole vistas espectaculares de los Andes, cañones profundos y ríos serpenteantes.",
+    aboutTour: "Vive una aventura inolvidable con el tour a Waqrapukara. La impresionante fortaleza de WaqraPukara te sorprenderá con su paisaje, ofreciéndole vistas espectaculares de los Andes, cañones profundos y ríos serpenteantes. Este recorrido le permitirá explorar recintos ceremoniales, terrazas agrícolas y torres defensivas, todo mientras disfruta de un trekking desafiante pero gratificante. La experiencia comienza temprano, a las 4:30 am, con un recojo en su hotel en Cusco. Después de un viaje de dos horas hacia el sur, llegaremos al pintoresco pueblo de Cusipata, donde disfrutará de un delicioso desayuno buffet antes de continuar nuestro trayecto hacia WaqraPukara.\\n\\nA medida que avanzamos en el Tour Waqrapukara, caminaremos por un sendero llano con pequeñas subidas y bajadas, pasando por impresionantes paisajes de lagunas alto andinas. Al llegar al Mirador WaqraPukara, tendrá la oportunidad de capturar las primeras fotos del impresionante Complejo Arqueológico. El descenso hacia el centro ceremonial le permitirá admirar las gigantescas formaciones pétreas que enmarcan el Valle del Río Apurímac. Durante aproximadamente una hora y media, exploraremos el centro ceremonial antes de iniciar el camino de retorno. Tras un breve descanso en el Mirador, continuaremos nuestra subida hasta llegar a las lagunas (Cochas) y finalmente, nuestro transporte nos llevará de regreso a Cusco, llegando entre las 18:00 y 19:00 horas.",
+    price: 150,
+    duration: "1 Día",
+    tourType: "Tour diario",
+    languages: ["Español", "Inglés"],
+    location: "Cusco",
+    locationCoords: { lat: -13.987, lng: -71.696 },
+    region: "sierra",
+    category: "aventura",
+    image: `${import.meta.env.BASE_URL}images/categories/waqrapukara1.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/waqrapukara1.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/waqrapukara2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/waqrapukara3.jpeg`
+    ],
+    maxGroup: 18,
+    startTime: "4:30 AM",
+    highlights: [
+      "Vistas espectaculares de los Andes, cañones profundos, y ríos serpenteantes",
+      "Exploración recintos ceremoniales, terrazas agrícolas, y torres defensivas",
+      "Trekking a la fortaleza de Waqrapukara"
+    ],
+    included: [
+      "Desayuno",
+      "Almuerzo",
+      "Guía español / inglés",
+      "Recojo en el hotel",
+      "Movilidad",
+      "Asistencia permanente"
+    ],
+    notIncluded: [
+      "Ingreso al Atractivo Extranjeros s/20.00 por persona, Nacional s/10.00 por persona",
+      "Otros gastos no detallados"
+    ],
+    itinerary: [
+      { time: "4:30 AM", activity: "Recojo del hotel", description: "Recojo en su hotel temprano para dirigirnos desde Cusco hacia el sur." },
+      { time: "6:30 AM", activity: "Desayuno en Cusipata", description: "Nos trasladaremos por alrededor de 2 horas hasta el pueblo de Cusipata donde tomaremos nuestro desayuno buffet." },
+      { time: "8:30 AM", activity: "Caminata al Mirador", description: "Caminaremos por un camino llano ligeramente tendido con pequeñas subidas y bajas por las 2 primeras horas, pasando por hermosos paisajes y lagunas alto andinas (Cochas)." },
+      { time: "10:30 AM", activity: "Mirador WaqraPukara", description: "Llegada al Mirador para sacar las primeras fotos del Complejo Arqueológico. Luego descenso de 40 minutos al centro ceremonial." },
+      { time: "11:10 AM", activity: "Exploración del Centro Ceremonial", description: "Recorremos el centro ceremonial de WaqraPukara por aproximado de una hora y media." },
+      { time: "12:40 PM", activity: "Inicio del Retorno", description: "Camino de retorno por una hora de subida rumbo al Mirador." },
+      { time: "1:40 PM", activity: "Descanso y Caminata", description: "Descanso de 10 minutos y subida de 30 minutos hasta (Cochas)." },
+      { time: "2:20 PM", activity: "Regreso al Transporte", description: "Camino tendido de 2 horas hasta llegar a punta carretera." },
+      { time: "6:00 PM", activity: "Retorno a Cusco", description: "Nuestro transporte nos traerá de regreso a la Ciudad de Cusco, llegando entre 18:00 y 19:00 horas." }
+    ],
+    faqs: [
+      {
+        question: "¿Qué época del año es mejor para visitar Waqrapukara?",
+        answer: "La mejor época para visitar es durante la estación seca, entre mayo y septiembre, cuando hay menos probabilidades de lluvia y los caminos están en mejores condiciones. Durante la temporada de lluvias (de noviembre a marzo), los senderos pueden volverse resbaladizos y difíciles de transitar."
+      }
+    ]
   }
 ];
 
@@ -559,19 +623,19 @@ export const destinations = [
   { 
     name: "Arequipa", 
     slug: "arequipa",
-    image: "/images/categories/arequipa.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/arequipa.jpg`,
     description: "La Ciudad Blanca, patrimonio de la humanidad."
   },
   { 
     name: "Puno", 
     slug: "puno",
-    image: "/images/categories/puno.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/puno.jpg`,
     description: "Capital del folklore peruano y hogar del Lago Titicaca."
   },
   { 
     name: "Ica", 
     slug: "ica",
-    image: "/images/categories/ica.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/ica.jpg`,
     description: "Desiertos, oasis y la mejor experiencia de aventura."
   }
 ];

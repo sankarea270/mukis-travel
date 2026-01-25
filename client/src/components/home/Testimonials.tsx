@@ -3,8 +3,10 @@ import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useCallback, useState } from "react";
 import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 export function Testimonials() {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -33,21 +35,36 @@ export function Testimonials() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-24 bg-gradient-to-br from-primary via-emerald-600 to-teal-700 text-white overflow-hidden relative">
+    <section ref={elementRef} className="py-24 bg-linear-to-br from-primary via-primary/80 to-accent/90 text-white overflow-hidden relative">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 opacity-10 transform translate-x-1/3 -translate-y-1/3">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0 }}
+          animate={isVisible ? { opacity: 0.1, scale: 1 } : { opacity: 0, scale: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3"
+        >
           <Quote size={400} />
-        </div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-        <div className="absolute top-1/2 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl translate-x-1/2" />
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" 
+        />
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="absolute top-1/2 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl translate-x-1/2" 
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: [0.6, 0.01, 0.05, 0.95] }}
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
@@ -86,7 +103,7 @@ export function Testimonials() {
                     </p>
                     
                     <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center font-bold text-white text-lg shadow-md">
+                      <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-accent flex items-center justify-center font-bold text-white text-lg shadow-md">
                         {testimonial.name[0]}
                       </div>
                       <div>

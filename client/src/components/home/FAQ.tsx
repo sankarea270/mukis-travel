@@ -51,7 +51,7 @@ export function FAQ() {
                 <motion.div
                   animate={{ rotate: openIndex === idx ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="flex-shrink-0"
+                  className="shrink-0"
                 >
                   <ChevronDown size={24} />
                 </motion.div>
@@ -83,7 +83,7 @@ export function FAQ() {
         >
           <p className="text-gray-600 mb-4">¿No encuentras lo que buscas?</p>
           <a
-            href="https://wa.me/51917608749?text=Hola,%20tengo%20una%20consulta"
+            href="https://wa.me/51930476116?text=Hola,%20tengo%20una%20consulta"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-4 rounded-full hover:shadow-lg hover:scale-105 transition-all"

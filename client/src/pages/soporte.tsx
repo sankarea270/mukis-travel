@@ -14,8 +14,8 @@ const contactMethods = [
     icon: Phone,
     title: "Llámanos",
     description: "Atención telefónica inmediata",
-    value: "+51 917 608 749",
-    action: "tel:+51917608749",
+    value: "+51 960 470 892",
+    action: "tel:+51960470892",
     color: "from-green-400 to-emerald-600"
   },
   {
@@ -23,15 +23,15 @@ const contactMethods = [
     title: "WhatsApp",
     description: "Respuesta en minutos",
     value: "Chatea ahora",
-    action: "https://wa.me/51917608749?text=Hola,%20necesito%20ayuda",
+    action: "https://wa.me/51930476116?text=Hola,%20necesito%20ayuda",
     color: "from-green-500 to-teal-600"
   },
   {
     icon: Mail,
     title: "Email",
     description: "Respuesta en 24 horas",
-    value: "contacto@mukistravel.com",
-    action: "mailto:contacto@mukistravel.com",
+    value: "reservasmukistravel@gmail.com",
+    action: "mailto:reservasmukistravel@gmail.com",
     color: "from-blue-400 to-indigo-600"
   }
 ];
@@ -39,7 +39,7 @@ const contactMethods = [
 const faqSupport = [
   {
     question: "¿Cómo puedo reservar un tour?",
-    answer: "Puedes reservar directamente a través de WhatsApp, llamarnos al +51 917 608 749, o enviarnos un email. También puedes llenar el formulario de contacto en esta página."
+    answer: "Puedes reservar directamente a través de WhatsApp, llamarnos al +51 930 476 116, o enviarnos un email. También puedes llenar el formulario de contacto en esta página."
   },
   {
     question: "¿Cuáles son las formas de pago?",
@@ -62,7 +62,7 @@ const faqSupport = [
 const socialLinks = [
   { icon: Facebook, href: "https://facebook.com/mukistravel", label: "Facebook" },
   { icon: Instagram, href: "https://instagram.com/mukistravel", label: "Instagram" },
-  { icon: Youtube, href: "https://youtube.com/mukistravel", label: "YouTube" }
+  { icon: Youtube, href: "https://www.youtube.com/@mukistravelagency", label: "YouTube" }
 ];
 
 export default function Soporte() {
@@ -78,7 +78,7 @@ export default function Soporte() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const whatsappMessage = `Hola, soy ${formData.name}.%0A%0AAsunto: ${formData.subject}%0A%0A${formData.message}%0A%0AEmail: ${formData.email}%0ATel: ${formData.phone}`;
-    window.open(`https://wa.me/51917608749?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/51930476116?text=${whatsappMessage}`, '_blank');
   };
 
   return (
@@ -313,7 +313,7 @@ export default function Soporte() {
               <div className="space-y-3 text-gray-600">
                 <p className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-gray-400 mt-1 shrink-0" />
-                  <span>Av. El Sol 123, Cusco, Perú</span>
+                  <span>centro comercial San Andres n° 318, Cusco, Perú</span>
                 </p>
                 <p className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-gray-400 shrink-0" />
@@ -321,7 +321,7 @@ export default function Soporte() {
                 </p>
                 <p className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-gray-400 shrink-0" />
-                  <span>+51 917 608 749</span>
+                  <span>+51 960 470 892</span>
                 </p>
               </div>
 

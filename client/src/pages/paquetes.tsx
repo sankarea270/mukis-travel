@@ -1,31 +1,99 @@
-import { Link } from "wouter";
-import { motion } from "framer-motion";
-import { Clock, MapPin, Users, ChevronRight, Star, Percent } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { Link, useSearch } from "wouter";
+import { motion, AnimatePresence } from "framer-motion";
+import { Clock, MapPin, Users, ChevronRight, Star, Percent, Filter, ArrowUpDown } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { tours, categories } from "@/data/tours";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: { staggerChildren: 0.05 }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } }
 };
 
 export default function Paquetes() {
+  const search = useSearch();
+  const [activeCategory, setActiveCategory] = useState("todos");
+  const [sortBy, setSortBy] = useState("recommended");
+
+  // Efecto para sincronizar con URL params al cargar
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const categoryParam = params.get("categoria");
+    if (categoryParam) {
+      setActiveCategory(categoryParam);
+    }
+  }, [search]);
+
+  const filteredAndSortedTours = useMemo(() => {
+    let result = [...tours];
+
+    // Filtrar por categoría
+    if (activeCategory !== "todos") {
+      result = result.filter(t => t.category === activeCategory);
+    }
+
+    // Ordenar
+    switch (sortBy) {
+      case "price_asc":
+        result.sort((a, b) => a.price - b.price);
+        break;
+      case "price_desc":
+        result.sort((a, b) => b.price - a.price);
+        break;
+      case "duration":
+        result.sort((a, b) => {
+          const getDurationValue = (d: string) => {
+            const lower = d.toLowerCase();
+            if (lower.includes("hora")) return 0.5;
+            if (lower.includes("día") || lower.includes("dia")) {
+              const match = lower.match(/(\d+)/);
+              return match ? parseInt(match[0]) : 1;
+            }
+            return 999;
+          };
+          return getDurationValue(a.duration) - getDurationValue(b.duration);
+        });
+        break;
+      case "recommended":
+      default:
+        // Priorizar ofertas y destacados
+        result.sort((a, b) => {
+          if (a.isOffer && !b.isOffer) return -1;
+          if (!a.isOffer && b.isOffer) return 1;
+          if (a.featured && !b.featured) return -1;
+          if (!a.featured && b.featured) return 1;
+          return 0;
+        });
+        break;
+    }
+
+    return result;
+  }, [activeCategory, sortBy]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary to-primary/80 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-linear-to-br from-primary to-primary/80 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full translate-x-1/2 translate-y-1/2" />
@@ -54,126 +122,192 @@ export default function Paquetes() {
         </div>
       </section>
 
-      {/* Categories Filter */}
-      <section className="py-8 bg-white border-b sticky top-16 z-30 shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-            <button className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium whitespace-nowrap transition-all hover:shadow-lg">
-              Todos
-            </button>
-            {categories.map((cat) => (
+      {/* Filter & Sort Bar */}
+      <section className="sticky top-16 z-30 bg-white/90 backdrop-blur-md border-b shadow-sm transition-all">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+            
+            {/* Categories Buttons */}
+            <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide mask-linear-fade">
               <button 
-                key={cat.slug}
-                className="flex items-center gap-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-full font-medium whitespace-nowrap hover:bg-primary hover:text-white transition-all"
+                onClick={() => setActiveCategory("todos")}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
+                  activeCategory === "todos" 
+                    ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105" 
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
               >
-                <span>{cat.icon}</span>
-                <span>{cat.name}</span>
-                <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">{cat.count}</span>
+                Todos
               </button>
-            ))}
+              {categories.map((cat) => (
+                <button 
+                  key={cat.slug}
+                  onClick={() => setActiveCategory(cat.slug)}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
+                    activeCategory === cat.slug
+                      ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-3 w-full md:w-auto min-w-50">
+              <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                <ArrowUpDown size={16} />
+                <span className="hidden sm:inline">Ordenar por:</span>
+              </div>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-full md:w-45 bg-white border-gray-200 rounded-xl focus:ring-primary/20">
+                  <SelectValue placeholder="Ordenar por" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="recommended">Recomendados</SelectItem>
+                  <SelectItem value="price_asc">Precio: Menor a Mayor</SelectItem>
+                  <SelectItem value="price_desc">Precio: Mayor a Menor</SelectItem>
+                  <SelectItem value="duration">Duración</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Tours Grid */}
-      <section className="py-16">
+      <section className="py-12 min-h-150">
         <div className="container mx-auto px-4">
+          <div className="mb-6 text-gray-500 text-sm">
+            Mostrando {filteredAndSortedTours.length} tour{filteredAndSortedTours.length !== 1 && 's'}
+          </div>
+
           <motion.div
+            layout
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {tours.map((tour) => (
-              <motion.div key={tour.id} variants={itemVariants}>
-                <Link href={`/paquetes/${tour.slug}`}>
-                  <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-gray-100">
-                    {/* Image */}
-                    <div className="relative h-64 overflow-hidden">
-                      <img 
-                        src={tour.image} 
-                        alt={tour.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      
-                      {/* Badges */}
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        {tour.isOffer && (
-                          <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                            <Percent size={12} /> OFERTA
-                          </span>
-                        )}
-                        {tour.featured && !tour.isOffer && (
-                          <span className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                            <Star size={12} /> DESTACADO
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Location Badge */}
-                      <div className="absolute bottom-4 left-4">
-                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 text-sm font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                          <MapPin size={14} className="text-primary" />
-                          {tour.location}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                        {tour.title}
-                      </h3>
-                      
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                        {tour.shortDescription}
-                      </p>
-
-                      {/* Meta Info */}
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                        <span className="flex items-center gap-1.5">
-                          <Clock size={16} className="text-primary" />
-                          {tour.duration}
-                        </span>
-                        {tour.maxGroup && (
-                          <span className="flex items-center gap-1.5">
-                            <Users size={16} className="text-primary" />
-                            Máx. {tour.maxGroup}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Price */}
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <div>
-                          <span className="text-xs text-gray-500">Desde</span>
-                          <div className="flex items-baseline gap-2">
-                            <span className="font-heading font-bold text-2xl text-primary">
-                              ${tour.price}
+            <AnimatePresence mode="popLayout">
+              {filteredAndSortedTours.map((tour) => (
+                <motion.div 
+                  key={tour.id} 
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Link href={`/paquetes/${tour.slug}`}>
+                    <div className="group h-full flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-gray-100 hover:border-primary/20 hover:-translate-y-1">
+                      {/* Image */}
+                      <div className="relative h-64 overflow-hidden">
+                        <img 
+                          src={tour.image} 
+                          alt={tour.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                        
+                        {/* Badges */}
+                        <div className="absolute top-4 left-4 flex flex-col gap-2 items-start">
+                          {tour.isOffer && (
+                            <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                              <Percent size={12} /> OFERTA
                             </span>
-                            {tour.originalPrice && (
-                              <span className="text-sm text-gray-400 line-through">
-                                ${tour.originalPrice}
+                          )}
+                          {tour.featured && !tour.isOffer && (
+                            <span className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                              <Star size={12} /> DESTACADO
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Location Badge */}
+                        <div className="absolute bottom-4 left-4">
+                          <span className="bg-white/95 backdrop-blur-sm text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-sm">
+                            <MapPin size={12} className="text-primary" />
+                            {tour.location}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-6 flex flex-col grow">
+                        <div className="mb-auto">
+                          <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            {tour.title}
+                          </h3>
+                          
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                            {tour.shortDescription}
+                          </p>
+
+                          {/* Meta Info */}
+                          <div className="flex items-center gap-4 text-sm text-gray-500 mb-4 bg-gray-50 p-3 rounded-xl">
+                            <span className="flex items-center gap-1.5 font-medium">
+                              <Clock size={16} className="text-primary" />
+                              {tour.duration}
+                            </span>
+                            {tour.maxGroup && (
+                              <span className="flex items-center gap-1.5 border-l border-gray-200 pl-4">
+                                <Users size={16} className="text-primary" />
+                                Max. {tour.maxGroup}
                               </span>
                             )}
                           </div>
                         </div>
-                        <span className="bg-primary/10 text-primary font-bold px-4 py-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
-                          Ver Más
-                        </span>
+
+                        {/* Price */}
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-2">
+                          <div>
+                            <span className="text-xs text-gray-500 block">Desde</span>
+                            <div className="flex items-baseline gap-2">
+                              <span className="font-heading font-bold text-2xl text-primary">
+                                ${tour.price}
+                              </span>
+                              {tour.originalPrice && (
+                                <span className="text-sm text-gray-400 line-through">
+                                  ${tour.originalPrice}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <span className="bg-primary/10 text-primary font-bold px-4 py-2 rounded-xl text-sm group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                            Ver Detalles
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </motion.div>
+          
+          {filteredAndSortedTours.length === 0 && (
+            <div className="text-center py-20">
+              <div className="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Filter size={32} className="text-gray-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">No se encontraron tours</h3>
+              <p className="text-gray-500">Intenta cambiar los filtros de búsqueda.</p>
+              <button 
+                onClick={() => { setActiveCategory("todos"); setSortBy("recommended"); }}
+                className="mt-4 text-primary font-medium hover:underline"
+              >
+                Limpiar filtros
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-emerald-600 relative overflow-hidden">
+      <section className="py-20 bg-linear-to-r from-primary to-emerald-600 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grid)" />
@@ -195,7 +329,7 @@ export default function Paquetes() {
               ¡Cuéntanos tu viaje soñado!
             </p>
             <a 
-              href="https://wa.me/51917608749?text=Hola,%20me%20gustaría%20un%20paquete%20personalizado"
+              href="https://wa.me/51930476116?text=Hola,%20me%20gustaría%20un%20paquete%20personalizado"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-primary font-bold px-8 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"

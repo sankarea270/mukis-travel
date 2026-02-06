@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --spacing-9999: 9999px;
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
@@ -24,8 +25,9 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   
-  --font-sans: "Open Sans", system-ui, sans-serif;
-  --font-heading: "Montserrat", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Outfit", system-ui, sans-serif;
+  --font-accent: "Cinzel", serif;
   
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -103,9 +105,20 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  ::selection {
+    @apply bg-primary/30 text-primary;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold;
+  }
+  @media (min-width: 768px) {
+    body, a, button, [role="button"] {
+      cursor: none !important;
+    }
   }
 }
 

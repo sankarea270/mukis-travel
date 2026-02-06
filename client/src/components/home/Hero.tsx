@@ -1,363 +1,275 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
-import { ChevronDown, Play, MapPin, Sparkles } from "lucide-react";
+import { ChevronDown, Play, MapPin, Sparkles, ArrowRight, ArrowLeft } from "lucide-react";
 
 const slides = [
   {
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
-    name: "Machu Picchu",
-    subtitle: "La Maravilla del Mundo",
-    location: "Cusco",
+    name: "MACHU PICCHU",
+    subtitle: "LA MARAVILLA DEL MUNDO",
+    location: "CUSCO",
     link: "/paquetes/machu-picchu-full-day"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
-    name: "Montaña de Colores",
-    subtitle: "Vinicunca, la Montaña Arcoíris",
-    location: "Cusco",
+    name: "MONTAÑA ARCOIRIS",
+    subtitle: "VINICUNCA, EL ALMA DE LOS ANDES",
+    location: "CUSCO",
     link: "/paquetes/montana-de-colores"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/laguna-humantay.jpeg`,
-    name: "Laguna Humantay",
-    subtitle: "Aguas Turquesas en los Andes",
-    location: "Cusco",
+    name: "LAGUNA HUMANTAY",
+    subtitle: "ESPEJO TURQUESA SAGRADO",
+    location: "CUSCO",
     link: "/paquetes/laguna-humantay"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/lago-titicaca.jpg`,
-    name: "Lago Titicaca",
-    subtitle: "El Lago Navegable más Alto del Mundo",
-    location: "Puno",
+    name: "LAGO TITICACA",
+    subtitle: "EL LAGO MÁS ALTO DEL MUNDO",
+    location: "PUNO",
     link: "/paquetes"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/huacachina.jpg`,
-    name: "Huacachina",
-    subtitle: "El Oasis del Desierto",
-    location: "Ica",
+    name: "HUACACHINA",
+    subtitle: "EL OASIS DEL DESIERTO",
+    location: "ICA",
     link: "/paquetes/ica-paracas-full-day"
   }
 ];
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [direction, setDirection] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-based animations
-  const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, [0, 700], [0, 200]);
-  const textY = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0.2]); // No desaparece del todo, solo se desvanece
+  const scale = useTransform(scrollYProgress, [0, 0.4], [1, 0.9]);
 
   useEffect(() => {
     setIsLoaded(true);
-  }, []);
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          paginate(1);
+          return 0;
+        }
+        return prev + 0.25;
+      });
+    }, 30);
+    return () => clearInterval(interval);
+  }, [current]);
 
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [isAutoPlaying]);
-
-  const goToSlide = (idx: number) => {
-    setCurrent(idx);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setCurrent((prev) => (prev + newDirection + slides.length) % slides.length);
+    setProgress(0);
   };
 
-  return (
-    <div ref={heroRef} className="relative h-screen min-h-200 w-full overflow-hidden bg-black">
-      {/* Background with Parallax Effect */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y: backgroundY, scale }}
-      >
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] }}
-            className="absolute inset-0"
-          >
-            <motion.div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
-              style={{ 
-                backgroundImage: `url(${slides[current].image})`
-              }}
-            />
-            {/* Enhanced Gradient Overlay */}
-            <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/20 to-black/80" />
-            <div className="absolute inset-0 bg-linear-to-r from-black/40 via-transparent to-black/40" />
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
+  const slideVariants = {
+    enter: (direction: number) => ({
+      opacity: 0,
+      scale: 1.1,
+      filter: "brightness(0.5) blur(20px)"
+    }),
+    center: {
+      opacity: 1,
+      scale: 1,
+      filter: "brightness(0.7) blur(10px)",
+      transition: { duration: 1.5, ease: [0.19, 1, 0.22, 1] }
+    },
+    exit: {
+      opacity: 0,
+      filter: "brightness(0) blur(40px)",
+      transition: { duration: 1 }
+    }
+  };
 
-      {/* Animated Geometric Shapes */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Floating orbs with glow */}
+  const imageFrameVariants = {
+    enter: (direction: number) => ({
+      clipPath: direction > 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)",
+      scale: 1.2,
+    }),
+    center: {
+      clipPath: "inset(0 0% 0 0)",
+      scale: 1,
+      transition: { 
+        clipPath: { duration: 1.4, ease: [0.77, 0, 0.175, 1], delay: 0.2 },
+        scale: { duration: 2, ease: "easeOut" }
+      }
+    },
+    exit: (direction: number) => ({
+      clipPath: direction > 0 ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)",
+      transition: { duration: 0.8, ease: "easeInOut" }
+    })
+  };
+
+  const textVariants = {
+    initial: { x: -100, opacity: 0 },
+    animate: { 
+      x: 0, 
+      opacity: 1,
+      transition: { duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.6 }
+    },
+    exit: { 
+      x: 50, 
+      opacity: 0,
+      transition: { duration: 0.4 }
+    }
+  };
+
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const handleMouse = (e: MouseEvent) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20
+      });
+    };
+    window.addEventListener("mousemove", handleMouse);
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, []);
+
+  return (
+    <div ref={heroRef} className="relative h-screen min-h-187.5 w-full overflow-hidden bg-[#050505]">
+      {/* Background Layers (The Blurred Atmosphere) */}
+      <AnimatePresence initial={false} custom={direction}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ 
-            opacity: [0.2, 0.5, 0.2],
-            y: [0, -30, 0],
-            x: [0, 10, 0]
-          }}
-          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-          className="absolute top-1/4 left-[15%] w-4 h-4 bg-primary/60 rounded-full shadow-[0_0_40px_10px_hsl(var(--primary)/0.3)]"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ 
-            opacity: [0.3, 0.6, 0.3],
-            y: [0, 25, 0],
-            x: [0, -15, 0]
-          }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-          className="absolute top-1/3 right-[20%] w-6 h-6 bg-white/30 rounded-full shadow-[0_0_30px_8px_rgba(255,255,255,0.2)]"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ 
-            opacity: [0.2, 0.4, 0.2],
-            y: [0, -20, 0]
-          }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-1/3 left-[25%] w-3 h-3 bg-primary/40 rounded-full shadow-[0_0_25px_5px_hsl(var(--primary)/0.2)]"
-        />
-        
-        {/* Decorative lines */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 0.2 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="absolute top-[30%] left-0 w-1/4 h-px bg-linear-to-r from-transparent via-white to-transparent"
-        />
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 0.2 }}
-          transition={{ duration: 1.5, delay: 0.7 }}
-          className="absolute top-[70%] right-0 w-1/3 h-px bg-linear-to-r from-transparent via-primary to-transparent"
-        />
+          key={`bg-${current}`}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          className="absolute inset-0 z-0"
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
+            style={{ backgroundImage: `url(${slides[current].image})` }}
+          />
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-xs" />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="relative z-20 h-full container-fluid px-6 md:px-12 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-24">
+        <div className="flex-1 text-center md:text-left z-30 pointer-events-none">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`text-${current}`}
+              variants={textVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="max-w-2xl mx-auto md:mx-0"
+            >
+              <div className="flex items-center justify-center md:justify-start gap-4 mb-4 md:mb-6">
+                <span className="w-8 md:w-12 h-px bg-primary" />
+                <span className="text-primary font-bold tracking-[0.3em] md:tracking-[0.4em] text-[10px] md:text-xs uppercase">
+                  {slides[current].location} • PERÚ
+                </span>
+              </div>
+              
+              <h1 className="text-4xl sm:text-6xl lg:text-[clamp(3.5rem,7vw,7.5rem)] font-heading font-black text-white leading-[0.9] md:leading-[0.85] mb-4 md:mb-6 drop-shadow-2xl uppercase tracking-tighter">
+                {slides[current].name.split(' ').map((word, i) => (
+                  <span key={i} className="block last:text-primary transition-colors duration-500">
+                    {word}
+                  </span>
+                ))}
+              </h1>
+              
+              <p className="text-white/80 text-sm md:text-base lg:text-lg font-bold tracking-[0.15em] md:tracking-[0.2em] max-w-lg border-l-2 md:border-l-4 border-primary pl-4 md:pl-8 mb-8 md:mb-10 uppercase mx-auto md:mx-0">
+                {slides[current].subtitle}
+              </p>
+
+              <div className="flex items-center justify-center md:justify-start gap-6 md:gap-10 pointer-events-auto">
+                <Link href={slides[current].link}>
+                  <button className="group relative px-6 md:px-10 py-3 md:py-5 bg-white text-black font-black rounded-none overflow-hidden transition-all hover:bg-primary hover:text-white">
+                    <span className="relative z-10 uppercase tracking-tighter text-xs md:text-sm">RESERVAR EXPERIENCIA</span>
+                  </button>
+                </Link>
+                
+                <div className="hidden lg:flex flex-col gap-1">
+                  <div className="flex text-primary">
+                    {[1,2,3,4,5].map(i => <Sparkles key={i} size={10} fill="currentColor" />)}
+                  </div>
+                  <span className="text-[10px] text-white/40 tracking-widest uppercase font-bold">Experiencia Premium</span>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Right Side: The Floating Cinematic Frame */}
+        <div className="flex-[1.5] relative aspect-video w-full perspective-2000">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={`frame-${current}`}
+              custom={direction}
+              variants={imageFrameVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              style={{
+                x: mousePos.x * 2.5,
+                y: mousePos.y * 2.5,
+                rotateY: mousePos.x * 0.08,
+                rotateX: -mousePos.y * 0.08,
+              }}
+              className="w-full h-full relative z-20 shadow-[0_80px_120px_-30px_rgba(0,0,0,0.9)] border border-white/10 group overflow-hidden"
+            >
+              <motion.div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
+                style={{ backgroundImage: `url(${slides[current].image})` }}
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
+              
+              {/* Corner Accents - More prominent */}
+              <div className="absolute top-10 left-10 w-16 h-16 border-t-4 border-l-4 border-primary" />
+              <div className="absolute bottom-10 right-10 w-16 h-16 border-b-4 border-r-4 border-primary" />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Abstract Geometry Decor */}
+          <div className="absolute -top-20 -right-20 w-80 h-80 border-2 border-primary/20 rounded-full z-10 animate-pulse" />
+          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/20 blur-[120px] rounded-full z-10" />
+        </div>
       </div>
 
-      {/* Main Content with Scroll Animation */}
-      <motion.div 
-        className="relative h-full container mx-auto px-4 flex flex-col justify-center items-center text-center text-white pt-16"
-        style={{ y: textY, opacity }}
-      >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? 1 : 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="z-10 max-w-5xl"
-        >
-          {/* Animated Pre-title */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6 flex items-center justify-center gap-3"
+      {/* Navigation & Controls */}
+      <div className="absolute bottom-16 left-6 md:left-12 right-6 md:right-12 z-50 flex flex-row justify-center items-end">
+        <div className="flex gap-4">
+          <button 
+            onClick={() => paginate(-1)}
+            className="w-16 h-16 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black hover:border-white transition-all rounded-full group"
           >
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="text-primary"
-            >
-              <Sparkles size={20} />
-            </motion.div>
-            <span className="text-sm md:text-base uppercase tracking-[0.3em] text-white/70 font-light">
-              Descubre el Perú Auténtico
-            </span>
-            <motion.div 
-              animate={{ rotate: -360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="text-primary"
-            >
-              <Sparkles size={20} />
-            </motion.div>
-          </motion.div>
-
-          {/* Location Badge with Animation */}
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={`location-${current}`}
-              initial={{ opacity: 0, y: -20, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.9 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 py-2.5 px-7 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-sm font-medium tracking-wider mb-8 shadow-2xl"
-            >
-              <MapPin size={16} className="text-primary" />
-              <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-              {slides[current].location}, Perú
-            </motion.div>
-          </AnimatePresence>
-          
-          {/* Main Title with Split Animation */}
-          <div className="overflow-hidden mb-6">
-            <AnimatePresence mode="wait">
-              <motion.h1 
-                key={`title-${current}`}
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: [0.6, 0.01, 0.05, 0.95]
-                }}
-                className="font-heading font-black text-5xl md:text-7xl lg:text-[6rem] leading-[0.95] tracking-tight"
-                style={{ 
-                  textShadow: "0 4px 60px rgba(0,0,0,0.5), 0 0 120px hsl(var(--primary) / 0.2)"
-                }}
-              >
-                <span className="block">{slides[current].name}</span>
-              </motion.h1>
-            </AnimatePresence>
-          </div>
-          
-          {/* Animated Divider */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="w-24 h-1 bg-linear-to-r from-transparent via-primary to-transparent mx-auto mb-6"
-          />
-          
-          {/* Subtitle */}
-          <AnimatePresence mode="wait">
-            <motion.p 
-              key={`subtitle-${current}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="font-sans text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto mb-12 text-gray-200/90 font-light leading-relaxed"
-            >
-              {slides[current].subtitle}
-            </motion.p>
-          </AnimatePresence>
-
-          {/* CTA Buttons with Enhanced Styling */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-5 justify-center items-center"
+            <ArrowLeft className="transition-transform group-hover:-translate-x-1" size={24} />
+          </button>
+          <button 
+            onClick={() => paginate(1)}
+            className="w-16 h-16 bg-primary flex items-center justify-center text-white hover:bg-white hover:text-black transition-all rounded-full group shadow-2xl"
           >
-            <Link href={slides[current].link}>
-              <motion.span
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 25px 50px hsl(var(--primary) / 0.4)"
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative inline-flex items-center gap-3 h-16 px-12 bg-linear-to-r from-primary to-accent text-white font-bold rounded-full transition-all uppercase tracking-wider shadow-xl cursor-pointer overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-linear-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <Play size={22} fill="currentColor" className="relative z-10" />
-                <span className="relative z-10">Explorar Tour</span>
-              </motion.span>
-            </Link>
-            <Link href="/paquetes">
-              <motion.span
-                whileHover={{ 
-                  scale: 1.05,
-                  backgroundColor: "rgba(255,255,255,0.2)"
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-3 h-16 px-12 bg-white/10 backdrop-blur-xl border-2 border-white/30 hover:border-white/50 text-white font-bold rounded-full transition-all uppercase tracking-wider cursor-pointer"
-              >
-                Ver Todos los Paquetes
-              </motion.span>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Slide Navigation - Side (Desktop) */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 z-20">
-          {slides.map((slide, idx) => (
-            <motion.button
-              key={idx}
-              onClick={() => goToSlide(idx)}
-              whileHover={{ x: -5 }}
-              className={`group flex items-center gap-4 transition-all duration-500 ${
-                current === idx ? "opacity-100" : "opacity-40 hover:opacity-80"
-              }`}
-            >
-              <span className={`text-xs font-semibold text-white text-right transition-all duration-300 ${
-                current === idx 
-                  ? "opacity-100 translate-x-0" 
-                  : "opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
-              }`}>
-                {slide.name}
-              </span>
-              <span className={`relative w-14 h-1.5 rounded-full transition-all duration-500 overflow-hidden ${
-                current === idx ? "bg-primary" : "bg-white/30"
-              }`}>
-                {current === idx && (
-                  <motion.span
-                    initial={{ x: "-100%" }}
-                    animate={{ x: "0%" }}
-                    transition={{ duration: 6, ease: "linear" }}
-                    className="absolute inset-0 bg-linear-to-r from-primary to-accent"
-                  />
-                )}
-              </span>
-            </motion.button>
-          ))}
+            <ArrowRight className="transition-transform group-hover:translate-x-1" size={24} />
+          </button>
         </div>
+      </div>
 
-        {/* Slide Indicators - Bottom (Mobile) */}
-        <div className="absolute bottom-28 left-1/2 -translate-x-1/2 flex gap-3 lg:hidden">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => goToSlide(idx)}
-              className={`h-2.5 transition-all duration-500 rounded-full ${
-                current === idx 
-                  ? "w-12 bg-linear-to-r from-primary to-accent" 
-                  : "w-2.5 bg-white/40 hover:bg-white/60"
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-          style={{ opacity }}
-        >
-          <span className="text-xs uppercase tracking-[0.2em] text-white/50 font-light">
-            Desliza para explorar
-          </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
-          >
-            <motion.div 
-              animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              className="w-1 h-2 bg-primary rounded-full"
-            />
-          </motion.div>
-        </motion.div>
-      </motion.div>
-
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-background to-transparent pointer-events-none" />
+      {/* Grid Decor */}
+      <div className="absolute inset-0 z-10 pointer-events-none opacity-[0.03] overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-px h-full bg-white" />
+        <div className="absolute top-0 left-2/4 w-px h-full bg-white" />
+        <div className="absolute top-0 left-3/4 w-px h-full bg-white" />
+      </div>
     </div>
   );
 }

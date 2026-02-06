@@ -200,7 +200,7 @@ export default function Tours() {
               Nuestros expertos en viajes están listos para asesorarte y crear la experiencia perfecta para ti.
             </p>
             <a 
-              href="https://wa.me/51917608749?text=Hola,%20necesito%20ayuda%20para%20elegir%20un%20tour"
+              href="https://wa.me/51930476116?text=Hola,%20necesito%20ayuda%20para%20elegir%20un%20tour"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-primary font-bold px-8 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"

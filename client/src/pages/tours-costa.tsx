@@ -1,10 +1,18 @@
+import { useState, useMemo } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
-import { tours } from "@/data/tours";
-import { motion } from "framer-motion";
+import { tours, categories } from "@/data/tours";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { Clock, MapPin, Users, Star, ChevronRight, Sun, Waves, Camera } from "lucide-react";
+import { Clock, MapPin, Users, Star, ChevronRight, Sun, Waves, Camera, Filter, ArrowUpDown } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const costaHighlights = [
   { icon: Sun, title: "Clima Cálido", description: "Sol durante todo el año" },
@@ -20,7 +28,53 @@ const costaDestinations = [
 ];
 
 export default function ToursCosta() {
-  const costaTours = tours.filter((tour) => tour.region === "costa");
+  const [activeCategory, setActiveCategory] = useState("todos");
+  const [sortBy, setSortBy] = useState("recommended");
+
+  const filteredAndSortedTours = useMemo(() => {
+    let result = tours.filter((tour) => tour.region === "costa");
+
+    // Filtrar por categoría
+    if (activeCategory !== "todos") {
+      result = result.filter(t => t.category === activeCategory);
+    }
+
+    // Ordenar
+    switch (sortBy) {
+      case "price_asc":
+        result.sort((a, b) => a.price - b.price);
+        break;
+      case "price_desc":
+        result.sort((a, b) => b.price - a.price);
+        break;
+      case "duration":
+        result.sort((a, b) => {
+          const getDurationValue = (d: string) => {
+            const lower = d.toLowerCase();
+            if (lower.includes("hora")) return 0.5;
+            if (lower.includes("día") || lower.includes("dia")) {
+              const match = lower.match(/(\d+)/);
+              return match ? parseInt(match[0]) : 1;
+            }
+            return 999;
+          };
+          return getDurationValue(a.duration) - getDurationValue(b.duration);
+        });
+        break;
+      case "recommended":
+      default:
+        result.sort((a, b) => {
+          if (a.isOffer && !b.isOffer) return -1;
+          if (!a.isOffer && b.isOffer) return 1;
+          if (a.featured && !b.featured) return -1;
+          if (!a.featured && b.featured) return 1;
+          return 0;
+        });
+        break;
+    }
+
+    return result;
+  }, [activeCategory, sortBy]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -118,8 +172,63 @@ export default function ToursCosta() {
         </div>
       </section>
 
+      {/* Filter & Sort Bar */}
+      <section className="sticky top-16 z-30 bg-white/90 backdrop-blur-md border-b shadow-sm transition-all mb-8">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+            
+            {/* Categories Buttons */}
+            <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide mask-linear-fade">
+              <button 
+                onClick={() => setActiveCategory("todos")}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
+                  activeCategory === "todos" 
+                    ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30 scale-105" 
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+              >
+                Todos
+              </button>
+              {categories.map((cat) => (
+                <button 
+                  key={cat.slug}
+                  onClick={() => setActiveCategory(cat.slug)}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
+                    activeCategory === cat.slug
+                      ? "bg-amber-500 text-white shadow-lg shadow-amber-500/30 scale-105"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-3 w-full md:w-auto min-w-50">
+              <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                <ArrowUpDown size={16} />
+                <span className="hidden sm:inline">Ordenar por:</span>
+              </div>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-full md:w-45 bg-white border-gray-200 rounded-xl focus:ring-amber-500/20">
+                  <SelectValue placeholder="Ordenar por" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="recommended">Recomendados</SelectItem>
+                  <SelectItem value="price_asc">Precio: Menor a Mayor</SelectItem>
+                  <SelectItem value="price_desc">Precio: Mayor a Menor</SelectItem>
+                  <SelectItem value="duration">Duración</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Tours Grid */}
-      <section className="py-16 bg-linear-to-b from-gray-50 to-white">
+      <section className="py-8 min-h-150 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -128,77 +237,84 @@ export default function ToursCosta() {
             className="text-center mb-12"
           >
             <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">Tours en la Costa</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Paquetes diseñados para descubrir lo mejor del litoral</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">Paquetes diseñados para descubrir lo mejor del litoral. Mostrando {filteredAndSortedTours.length} tour{filteredAndSortedTours.length !== 1 && 's'}</p>
           </motion.div>
 
-          {costaTours.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {costaTours.map((tour, idx) => (
-                <motion.div
-                  key={tour.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <Link href={`/paquetes/${tour.slug}`}>
-                    <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer h-full">
-                      <div className="relative h-56 overflow-hidden">
-                        <img 
-                          src={tour.image} 
-                          alt={tour.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        {tour.isOffer && (
-                          <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            OFERTA
-                          </div>
-                        )}
-                      </div>
-                      
-                      <div className="p-6">
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                          <MapPin size={14} />
-                          <span>{tour.location}</span>
-                          <span className="mx-1">•</span>
-                          <Clock size={14} />
-                          <span>{tour.duration}</span>
+          {filteredAndSortedTours.length > 0 ? (
+            <motion.div
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredAndSortedTours.map((tour) => (
+                  <motion.div
+                    key={tour.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Link href={`/paquetes/${tour.slug}`}>
+                      <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer h-full">
+                        <div className="relative h-56 overflow-hidden">
+                          <img 
+                            src={tour.image} 
+                            alt={tour.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                          {tour.isOffer && (
+                            <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                              OFERTA
+                            </div>
+                          )}
                         </div>
                         
-                        <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors">
-                          {tour.title}
-                        </h3>
-                        
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{tour.shortDescription}</p>
-                        
-                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                          <div>
-                            {tour.originalPrice && (
-                              <span className="text-sm text-gray-400 line-through">USD ${tour.originalPrice}</span>
-                            )}
-                            <span className="text-2xl font-bold text-primary ml-2">USD ${tour.price}</span>
+                        <div className="p-6">
+                          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                            <MapPin size={14} />
+                            <span>{tour.location}</span>
+                            <span className="mx-1">•</span>
+                            <Clock size={14} />
+                            <span>{tour.duration}</span>
                           </div>
-                          <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                            Ver más <ChevronRight size={16} />
-                          </span>
+                          
+                          <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                            {tour.title}
+                          </h3>
+                          
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">{tour.shortDescription}</p>
+                          
+                          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <div>
+                              {tour.originalPrice && (
+                                <span className="text-sm text-gray-400 line-through">USD ${tour.originalPrice}</span>
+                              )}
+                              <span className="text-2xl font-bold text-primary ml-2">USD ${tour.price}</span>
+                            </div>
+                            <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                              Ver más <ChevronRight size={16} />
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           ) : (
             <div className="text-center py-16 bg-amber-50 rounded-3xl">
               <Sun className="w-16 h-16 text-amber-400 mx-auto mb-4" />
-              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">Tours de Costa Próximamente</h3>
-              <p className="text-gray-600 mb-6">Estamos preparando experiencias increíbles en la costa peruana</p>
-              <Link href="/paquetes">
-                <span className="inline-block bg-primary text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer">
-                  Ver todos los paquetes
-                </span>
-              </Link>
+              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">No se encontraron tours</h3>
+              <p className="text-gray-600 mb-6">Prueba con otros filtros o categorías</p>
+              <button 
+                onClick={() => setActiveCategory("todos")}
+                className="inline-block bg-primary text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer"
+              >
+                Ver todos los tours de Costa
+              </button>
             </div>
           )}
         </div>
@@ -222,7 +338,7 @@ export default function ToursCosta() {
               Contáctanos y te ayudamos a planificar tu aventura costera perfecta
             </p>
             <a 
-              href="https://wa.me/51917608749?text=Hola,%20me%20interesan%20los%20tours%20de%20la%20Costa%20peruana"
+              href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20de%20la%20Costa%20peruana"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-amber-600 font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"

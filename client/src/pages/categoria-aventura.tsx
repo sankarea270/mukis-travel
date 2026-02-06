@@ -199,7 +199,7 @@ export default function CategoriaAventura() {
               Nuestros guías expertos te llevarán a los lugares más increíbles
             </p>
             <a 
-              href="https://wa.me/51917608749?text=Hola,%20me%20interesan%20los%20tours%20de%20aventura"
+              href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20de%20aventura"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-red-600 font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"

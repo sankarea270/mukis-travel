@@ -196,7 +196,7 @@ export default function CategoriaNaturaleza() {
               Déjanos llevarte a los rincones más bellos del Perú
             </p>
             <a 
-              href="https://wa.me/51917608749?text=Hola,%20me%20interesan%20los%20tours%20de%20naturaleza"
+              href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20de%20naturaleza"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-teal-600 font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"

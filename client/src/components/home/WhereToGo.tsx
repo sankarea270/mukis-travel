@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Compass, MapPin, Calendar, HelpCircle } from "lucide-react";
+import { Compass, MapPin, Calendar, HelpCircle, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const suggestions = [
   {
@@ -7,109 +8,162 @@ const suggestions = [
     title: "¿Primera vez en Perú?",
     description: "Te recomendamos empezar por Cusco y Machu Picchu, la experiencia más icónica del país.",
     link: "/paquetes/machu-picchu-full-day",
-    color: "from-emerald-500 to-teal-600"
+    color: "from-teal-800 to-teal-950 border-teal-500/20",
+    accent: "text-teal-400"
   },
   {
     icon: MapPin,
     title: "¿Buscas aventura?",
     description: "La Montaña de Colores y la Laguna Humantay son perfectas para los amantes del trekking.",
     link: "/paquetes/montana-de-colores",
-    color: "from-orange-500 to-red-600"
+    color: "from-orange-800 to-orange-950 border-orange-500/20",
+    accent: "text-orange-400"
   },
   {
     icon: Calendar,
     title: "¿Poco tiempo?",
     description: "Tenemos tours de medio día y full day para que aproveches al máximo tu visita.",
     link: "/paquetes",
-    color: "from-blue-500 to-indigo-600"
+    color: "from-indigo-800 to-indigo-950 border-indigo-500/20",
+    accent: "text-indigo-400"
   },
   {
     icon: HelpCircle,
     title: "¿No sabes por dónde empezar?",
     description: "Nuestros asesores pueden ayudarte a armar el itinerario perfecto según tus gustos.",
-    link: "https://wa.me/51917608749",
-    color: "from-purple-500 to-pink-600"
+    link: "https://wa.me/51930476116",
+    color: "from-amber-800 to-amber-950 border-amber-500/20",
+    accent: "text-amber-400"
   }
 ];
 
 export function WhereToGo() {
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-gray-50 relative overflow-hidden">
+      {/* Patrón de fondo sutil */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div 
+          className="w-full h-full"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50 L50 0 L100 50 L50 100 Z' fill='none' stroke='black' stroke-width='0.5'/%3E%3C/svg%3E")`,
+            backgroundSize: "120px 120px"
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center max-w-3xl mx-auto mb-20"
         >
-          <span className="text-primary font-bold tracking-wider uppercase text-sm">
-            Te ayudamos a decidir
-          </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl mt-2 text-gray-900">
-            ¿No sabes a dónde viajar?
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="inline-block bg-primary/10 text-primary font-bold tracking-[0.3em] uppercase text-xs px-6 py-2 rounded-full mb-6 border border-primary/20"
+          >
+            Tu Viaje Perfecto
+          </motion.span>
+          <h2 className="font-heading font-black text-4xl md:text-5xl text-gray-900 uppercase tracking-tight mb-6">
+            ¿Aún <span className="text-primary italic font-accent lowercase">indeciso</span> sobre tu destino?
           </h2>
-          <p className="mt-4 text-gray-600">
-            Perú tiene infinitas experiencias para ofrecer. Aquí te damos algunas ideas según tu perfil de viajero.
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Perú ofrece infinitas posibilidades. Hemos seleccionado estas ideas basadas en tu perfil de viajero para facilitarte la elección.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {suggestions.map((item, idx) => (
-            <motion.a
+            <motion.div
               key={idx}
-              href={item.link}
-              target={item.link.startsWith("http") ? "_blank" : undefined}
-              rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className={`block group relative bg-gradient-to-br ${item.color} rounded-3xl p-8 text-white overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-shadow`}
+              transition={{ duration: 0.6, delay: idx * 0.15 }}
             >
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <defs>
-                    <pattern id={`grid-${idx}`} x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                      <circle cx="5" cy="5" r="1" fill="white" />
-                    </pattern>
-                  </defs>
-                  <rect width="100" height="100" fill={`url(#grid-${idx})`} />
-                </svg>
-              </div>
-
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <item.icon size={32} />
-                </div>
-                
-                <h3 className="font-heading font-bold text-xl mb-3">
-                  {item.title}
-                </h3>
-                
-                <p className="text-white/90 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-
-              {/* Hover Arrow */}
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                whileHover={{ opacity: 1, x: 0 }}
-                className="absolute bottom-6 right-6"
+              <motion.a
+                href={item.link}
+                target={item.link.startsWith("http") ? "_blank" : undefined}
+                rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                whileHover={{ y: -15 }}
+                className="group relative block h-full"
               >
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                {/* Borde Animado Dorado */}
+                <svg className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] pointer-events-none z-20 overflow-visible">
+                  <motion.rect
+                    x="0" y="0" width="100%" height="100%"
+                    rx="32"
+                    fill="none"
+                    stroke="#D4AF37"
+                    strokeWidth="3"
+                    strokeDasharray="80 300"
+                    animate={{ 
+                      strokeDashoffset: [0, -380],
+                    }}
+                    transition={{ 
+                      duration: 5, 
+                      repeat: Infinity, 
+                      ease: "linear" 
+                    }}
+                    className="opacity-0 group-hover:opacity-100"
+                  />
+                </svg>
+
+                {/* Card Container */}
+                <div className={cn(
+                  "relative h-full bg-linear-to-br rounded-4xl p-10 text-white overflow-hidden border-2 transition-all duration-700 z-10",
+                  item.color,
+                  "group-hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] shadow-2xl"
+                )}>
+                  {/* Pattern Overlay */}
+                  <div className="absolute inset-0 opacity-[0.05] group-hover:opacity-[0.1] transition-opacity duration-700">
+                    <div 
+                      className="w-full h-full"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L20 0 M20 40 L40 20' stroke='white' stroke-width='1'/%3E%3C/svg%3E")`,
+                        backgroundSize: "30px 30px"
+                      }}
+                    />
+                  </div>
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Icon with Glowing Backdrop */}
+                    <div className="mb-8 relative shrink-0">
+                      <div className="w-16 h-16 bg-white/10 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/20 group-hover:scale-110 group-hover:bg-primary group-hover:border-primary transition-all duration-500 shadow-xl">
+                        <item.icon size={32} className="group-hover:text-white transition-colors" />
+                      </div>
+                      <div className="absolute -inset-4 bg-white/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    
+                    <h3 className="font-heading font-black text-2xl mb-4 leading-tight uppercase tracking-wide group-hover:text-white transition-colors">
+                      {item.title}
+                    </h3>
+                    
+                    <p className="text-white/70 text-sm leading-relaxed mb-8 grow group-hover:text-white/90 transition-colors">
+                      {item.description}
+                    </p>
+
+                    {/* Action Link */}
+                    <div className="flex items-center gap-3 text-sm font-black uppercase tracking-widest text-[#D4AF37] group-hover:translate-x-2 transition-transform duration-500">
+                      Ver Propuesta
+                      <ArrowRight size={18} />
+                    </div>
+                  </div>
+
+                  {/* Glass Shine effect */}
+                  <motion.div 
+                    className="absolute inset-0 w-full h-full bg-linear-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                  />
                 </div>
-              </motion.div>
-            </motion.a>
+              </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
 }
+

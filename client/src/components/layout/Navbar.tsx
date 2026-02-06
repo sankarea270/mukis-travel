@@ -51,7 +51,7 @@ const categorySubmenu = [
     name: "Tours de Aventura",
     icon: Compass,
     description: "Adrenalina y deportes extremos",
-    color: "from-red-400 to-rose-600",
+    color: "from-orange-400 to-amber-600",
     href: "/categorias/aventura",
     examples: ["Montaña de Colores", "Trekking", "Rafting"]
   },
@@ -112,13 +112,13 @@ export function Navbar() {
           "flex justify-end items-center text-xs gap-6 transition-colors",
           scrolled ? "text-gray-600" : "text-white/90"
         )}>
-          <a href="mailto:contacto@mukistravel.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+          <a href="mailto:reservasmukistravel@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
             <Mail className="w-3 h-3" />
-            <span>contacto@mukistravel.com</span>
+            <span>reservasmukistravel@gmail.com</span>
           </a>
-          <a href="tel:+51917608749" className="flex items-center gap-2 hover:text-primary transition-colors">
+          <a href="tel:+51960470892" className="flex items-center gap-2 hover:text-primary transition-colors">
             <Phone className="w-3 h-3" />
-            <span>+51 917 608 749</span>
+            <span>+51 960 470 892</span>
           </a>
           <div className="flex items-center gap-1 cursor-pointer hover:text-primary">
             <Globe className="w-3 h-3" />
@@ -340,10 +340,21 @@ export function Navbar() {
                 Soporte
               </span>
             </Link>
+
+            {/* Contacto */}
+            <Link href="/contacto">
+              <span className={cn(
+                "font-medium text-sm transition-all px-4 py-2 rounded-full cursor-pointer",
+                scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
+                location === "/contacto" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
+              )}>
+                Contacto
+              </span>
+            </Link>
             
             {/* CTA Button */}
             <motion.a 
-              href="https://wa.me/51917608749?text=Hola,%20me%20gustaría%20información%20sobre%20tours"
+              href="https://wa.me/51960470892?text=Hola,%20me%20gustaría%20información%20sobre%20tours"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-2 flex items-center gap-2 bg-linear-to-r from-primary to-accent text-white font-bold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all"
@@ -557,10 +568,23 @@ export function Navbar() {
                     Soporte
                   </motion.span>
                 </Link>
+
+                {/* Contacto */}
+                <Link href="/contacto">
+                  <motion.span 
+                    className={cn(
+                      "block font-medium text-gray-800 py-3 px-4 rounded-xl transition-colors cursor-pointer",
+                      location === "/contacto" ? "bg-primary/10 text-primary" : "hover:bg-gray-50"
+                    )}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Contacto
+                  </motion.span>
+                </Link>
                 
                 <div className="pt-4 mt-2 border-t border-gray-100 space-y-3">
                   <motion.a 
-                    href="https://wa.me/51917608749"
+                    href="https://wa.me/51960470892"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 bg-linear-to-r from-primary to-accent text-white font-bold py-3.5 rounded-full shadow-lg"
@@ -571,11 +595,11 @@ export function Navbar() {
                   </motion.a>
 
                   <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
-                    <a href="tel:+51917608749" className="flex items-center gap-1">
+                    <a href="tel:+51960470892" className="flex items-center gap-1">
                       <Phone size={14} />
-                      +51 917 608 749
+                      +51 960 470 892
                     </a>
-                    <a href="mailto:contacto@mukistravel.com" className="flex items-center gap-1">
+                    <a href="mailto:reservasmukistravel@gmail.com" className="flex items-center gap-1">
                       <Mail size={14} />
                       Email
                     </a>

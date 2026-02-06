@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import { SocialFloat, SocialFloatMobile } from "@/components/ui/SocialFloat";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
@@ -18,6 +19,11 @@ import CategoriaCultural from "@/pages/categoria-cultural";
 import CategoriaAventura from "@/pages/categoria-aventura";
 import CategoriaNaturaleza from "@/pages/categoria-naturaleza";
 import Soporte from "@/pages/soporte";
+import TerminosCondiciones from "@/pages/terminos-condiciones";
+import PoliticaPrivacidad from "@/pages/politica-privacidad";
+import TrabajaConNosotros from "@/pages/trabaja-con-nosotros";
+import Contacto from "@/pages/contacto";
+import GuiaPeru from "@/pages/guia-peru";
 
 function Router() {
   // Ensure base does not end with a trailing slash for wouter
@@ -80,6 +86,11 @@ function Router() {
       <Route path="/categorias/naturaleza" component={CategoriaNaturaleza} />
       <Route path="/sobre-nosotros" component={SobreNosotros} />
       <Route path="/soporte" component={Soporte} />
+      <Route path="/terminos-condiciones" component={TerminosCondiciones} />
+      <Route path="/politica-privacidad" component={PoliticaPrivacidad} />
+      <Route path="/trabaja-con-nosotros" component={TrabajaConNosotros} />
+      <Route path="/contacto" component={Contacto} />
+      <Route path="/guia-peru" component={GuiaPeru} />
         <Route component={NotFound} />
       </Switch>
     </WouterRouter>
@@ -90,6 +101,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <CustomCursor />
         <Toaster />
         <SocialFloat />
         <SocialFloatMobile />

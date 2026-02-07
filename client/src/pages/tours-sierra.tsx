@@ -13,11 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useLanguage } from "@/i18n";
 
 const sierraHighlights = [
-  { icon: Mountain, title: "Montañas Épicas", description: "Los Andes más imponentes" },
-  { icon: Snowflake, title: "Glaciares", description: "Lagunas de aguas turquesas" },
-  { icon: Landmark, title: "Historia Inca", description: "Patrimonio de la humanidad" },
+  { icon: Mountain },
+  { icon: Snowflake },
+  { icon: Landmark },
 ];
 
 const sierraDestinations = [
@@ -28,6 +29,7 @@ const sierraDestinations = [
 ];
 
 export default function ToursSierra() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("todos");
   const [sortBy, setSortBy] = useState("recommended");
 
@@ -36,7 +38,7 @@ export default function ToursSierra() {
 
     // Filtrar por categoría
     if (activeCategory !== "todos") {
-      result = result.filter(t => t.category === activeCategory);
+      result = result.filter(tour => tour.category === activeCategory);
     }
 
     // Ordenar
@@ -106,13 +108,12 @@ export default function ToursSierra() {
             </div>
             
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
-              Descubre los <br />
-              <span className="text-emerald-300">Andes Mágicos</span>
+              {t.regionPage.sierra.title.split(' ').slice(0, -1).join(' ')} <br />
+              <span className="text-emerald-300">{t.regionPage.sierra.title.split(' ').slice(-1)}</span>
             </h1>
             
             <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
-              Hogar de Machu Picchu, culturas ancestrales y paisajes que te dejarán sin aliento. 
-              Explora montañas de colores, lagunas cristalinas y ciudades imperiales.
+              {t.regionPage.sierra.subtitle}
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -125,7 +126,7 @@ export default function ToursSierra() {
                   className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20"
                 >
                   <item.icon className="w-5 h-5 text-emerald-300" />
-                  <span className="text-white font-medium">{item.title}</span>
+                  <span className="text-white font-medium">{(t.regionPage.sierra.highlights as unknown as string[])[idx]}</span>
                 </motion.div>
               ))}
             </div>
@@ -148,7 +149,7 @@ export default function ToursSierra() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">Destinos de la Sierra</h2>
+          <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">{t.regionPage.sierra.destinations}</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Los lugares más impresionantes de los Andes peruanos</p>
         </motion.div>
 
@@ -236,7 +237,7 @@ export default function ToursSierra() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">Tours en la Sierra</h2>
+            <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">{t.regionPage.sierra.tours}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Aventuras en las montañas más espectaculares del mundo. Mostrando {filteredAndSortedTours.length} tour{filteredAndSortedTours.length !== 1 && 's'}</p>
           </motion.div>
 
@@ -299,7 +300,7 @@ export default function ToursSierra() {
                               <span className="text-2xl font-bold text-primary ml-2">USD ${tour.price}</span>
                             </div>
                             <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                              Ver más <ChevronRight size={16} />
+                              {t.common.viewDetails} <ChevronRight size={16} />
                             </span>
                           </div>
                         </div>
@@ -312,13 +313,13 @@ export default function ToursSierra() {
           ) : (
             <div className="text-center py-16 bg-emerald-50 rounded-3xl">
               <Mountain className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">No se encontraron tours</h3>
+              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{t.regionPage.noTours}</h3>
               <p className="text-gray-600 mb-6">Prueba con otros filtros o categorías</p>
               <button 
                 onClick={() => setActiveCategory("todos")}
                 className="inline-block bg-emerald-600 text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer"
               >
-                Ver todos los tours de Sierra
+                {t.regionPage.viewTours}
               </button>
             </div>
           )}
@@ -337,7 +338,7 @@ export default function ToursSierra() {
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6">
-              ¿Listo para conquistar los Andes?
+              {t.regionPage.sierra.cta}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
               Nuestros expertos te ayudarán a crear la aventura andina de tus sueños

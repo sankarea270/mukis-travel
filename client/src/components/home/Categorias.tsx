@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { categories } from "@/data/tours";
 import { Landmark, Compass, TreePine, Sparkles, Users, Mountain } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/i18n";
 
 // Iconos más visuales para cada categoría
 const categoryIcons: Record<string, any> = {
@@ -23,16 +24,8 @@ const categoryColors: Record<string, string> = {
   trekking: "from-teal-800 to-teal-950 border-teal-500/30"
 };
 
-const categoryDescriptions: Record<string, string> = {
-  cultural: "Historia y tradiciones ancestrales",
-  aventura: "Adrenalina y deportes extremos",
-  naturaleza: "Paisajes y vida silvestre",
-  mistico: "Espiritualidad y ceremonias",
-  vivencial: "Convivencia con comunidades",
-  trekking: "Caminatas y expediciones"
-};
-
 export function Categorias() {
+  const { t } = useLanguage();
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* Elementos decorativos de fondo */}
@@ -55,10 +48,10 @@ export function Categorias() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <span className="inline-block bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-xs px-4 py-1.5 rounded-full mb-4">
-            Categorías de Viaje
+            {t.categorias.label}
           </span>
           <h2 className="font-heading font-black text-4xl md:text-5xl text-gray-900 uppercase tracking-tight">
-            Explora Tu Propia <span className="text-primary font-accent lowercase">Aventura</span>
+            {t.categorias.title}
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full" />
         </motion.div>
@@ -132,12 +125,12 @@ export function Categorias() {
 
                       {/* Description */}
                       <p className="relative z-10 text-white/70 text-xs font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                        {categoryDescriptions[category.slug]}
+                        {t.categorias.descriptions[category.slug as keyof typeof t.categorias.descriptions]}
                       </p>
 
                       {/* Count Badge */}
                       <div className="absolute top-4 right-4 bg-black/30 backdrop-blur-md border border-white/10 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider group-hover:bg-primary transition-colors">
-                        {category.count} Destinos
+                        {category.count} {t.categorias.destinations}
                       </div>
 
                       {/* Glass Shine Effect */}

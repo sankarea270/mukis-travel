@@ -2,15 +2,18 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Clock, MapPin, Star, ArrowRight, Mountain, Sparkles } from "lucide-react";
 import { tours } from "@/data/tours";
+import { useLanguage } from "@/i18n";
 
 export function ToursMachuPicchu() {
+  const { t } = useLanguage();
+
   // Filtrar tours relacionados con Machu Picchu o Cusco
   const machuPicchuTours = tours
-    .filter((t) => 
-      t.title.toLowerCase().includes("machu picchu") || 
-      t.title.toLowerCase().includes("cusco") ||
-      t.slug.includes("machu-picchu") ||
-      (t.location === "Cusco" && t.category === "cultural")
+    .filter((tour) => 
+      tour.title.toLowerCase().includes("machu picchu") || 
+      tour.title.toLowerCase().includes("cusco") ||
+      tour.slug.includes("machu-picchu") ||
+      (tour.location === "Cusco" && tour.category === "cultural")
     )
     .slice(0, 4);
 
@@ -36,14 +39,13 @@ export function ToursMachuPicchu() {
         >
           <span className="inline-flex items-center gap-2 bg-primary/20 text-primary font-bold tracking-wider uppercase text-sm px-4 py-2 rounded-full mb-4 backdrop-blur-sm">
             <Mountain size={16} />
-            Experiencia Única
+            {t.machuPicchu.badge}
           </span>
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-white mb-4">
-            Tours <span className="text-primary">Machu Picchu</span>
+            {t.machuPicchu.title}
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Descubre la maravilla del mundo de diferentes maneras. Tenemos la experiencia 
-            perfecta para cada tipo de viajero.
+            {t.machuPicchu.subtitle}
           </p>
         </motion.div>
 
@@ -75,7 +77,7 @@ export function ToursMachuPicchu() {
                       className="bg-linear-to-r from-amber-400 to-amber-600 text-gray-900 text-sm font-bold px-4 py-2 rounded-full flex items-center gap-2 shadow-lg"
                     >
                       <Sparkles size={14} />
-                      Tour VIP Destacado
+                      {t.machuPicchu.vipBadge}
                     </motion.div>
                   </div>
 
@@ -107,7 +109,7 @@ export function ToursMachuPicchu() {
                         </span>
                       </div>
                       <div className="text-right">
-                        <span className="text-gray-400 text-sm">desde</span>
+                        <span className="text-gray-400 text-sm">{t.common.from}</span>
                         <p className="font-heading font-bold text-3xl text-white">
                           ${machuPicchuTours[0].price}
                         </p>
@@ -182,7 +184,7 @@ export function ToursMachuPicchu() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Explorar todos los tours de Cusco
+              {t.machuPicchu.exploreAll}
               <ArrowRight size={20} />
             </motion.span>
           </Link>

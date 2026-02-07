@@ -1,38 +1,41 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Heart, Users, Leaf, ArrowRight } from "lucide-react";
-
-const programas = [
-  {
-    id: 1,
-    title: "Convivencia con Comunidades Andinas",
-    description: "Vive con familias locales, aprende sus tradiciones ancestrales, participa en la siembra y cosecha, y comparte momentos únicos.",
-    image: "https://images.unsplash.com/photo-1591878506615-16b46d1d00b1?auto=format&fit=crop&q=80&w=800",
-    duration: "2-3 Días",
-    location: "Valle Sagrado",
-    highlights: ["Cocina tradicional", "Tejido andino", "Agricultura ancestral"]
-  },
-  {
-    id: 2,
-    title: "Turismo Rural en el Lago Titicaca",
-    description: "Descubre la vida en las islas flotantes de los Uros y convive con familias de Taquile o Amantaní.",
-    image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=800",
-    duration: "2 Días / 1 Noche",
-    location: "Puno",
-    highlights: ["Islas Flotantes Uros", "Noche en Amantaní", "Kayak en el lago"]
-  },
-  {
-    id: 3,
-    title: "Experiencia Pachamama",
-    description: "Conecta con la Madre Tierra a través de ceremonias ancestrales, pagos a la tierra y rituales de sanación con chamanes locales.",
-    image: "https://images.unsplash.com/photo-1548820579-0fad72e0e7fc?auto=format&fit=crop&q=80&w=800",
-    duration: "1 Día",
-    location: "Cusco",
-    highlights: ["Ceremonia de coca", "Pago a la tierra", "Limpia espiritual"]
-  }
-];
+import { useLanguage } from "@/i18n";
 
 export function ProgramasVivenciales() {
+  const { t } = useLanguage();
+
+  const programas = [
+    {
+      id: 1,
+      title: t.vivencial.program1Title,
+      description: t.vivencial.program1Desc,
+      image: "https://images.unsplash.com/photo-1591878506615-16b46d1d00b1?auto=format&fit=crop&q=80&w=800",
+      duration: t.vivencial.program1Duration,
+      location: t.vivencial.program1Location,
+      highlights: [t.vivencial.program1H1, t.vivencial.program1H2, t.vivencial.program1H3]
+    },
+    {
+      id: 2,
+      title: t.vivencial.program2Title,
+      description: t.vivencial.program2Desc,
+      image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=800",
+      duration: t.vivencial.program2Duration,
+      location: t.vivencial.program2Location,
+      highlights: [t.vivencial.program2H1, t.vivencial.program2H2, t.vivencial.program2H3]
+    },
+    {
+      id: 3,
+      title: t.vivencial.program3Title,
+      description: t.vivencial.program3Desc,
+      image: "https://images.unsplash.com/photo-1548820579-0fad72e0e7fc?auto=format&fit=crop&q=80&w=800",
+      duration: t.vivencial.program3Duration,
+      location: t.vivencial.program3Location,
+      highlights: [t.vivencial.program3H1, t.vivencial.program3H2, t.vivencial.program3H3]
+    }
+  ];
+
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background Image with Overlay */}
@@ -67,18 +70,16 @@ export function ProgramasVivenciales() {
               </div>
               <div>
                 <span className="text-primary font-bold text-lg">PACHA</span>
-                <p className="text-white/70 text-xs">Turismo Vivencial</p>
+                <p className="text-white/70 text-xs">{t.vivencial.badge}</p>
               </div>
             </motion.div>
 
             <h2 className="font-heading font-bold text-3xl md:text-5xl text-white mb-6">
-              Programas <span className="text-primary">Vivenciales</span>
+              {t.vivencial.title} <span className="text-primary">{t.vivencial.titleHighlight}</span>
             </h2>
             
             <p className="text-gray-300 text-lg leading-relaxed mb-8">
-              Más que turismo, ofrecemos conexiones humanas auténticas. Vive experiencias 
-              inmersivas con comunidades locales, aprende tradiciones milenarias y contribuye 
-              al desarrollo sostenible de las comunidades andinas.
+              {t.vivencial.description}
             </p>
 
             {/* Features */}
@@ -88,8 +89,8 @@ export function ProgramasVivenciales() {
                   <Users size={24} className="text-primary" />
                 </div>
                 <div>
-                  <p className="text-white font-bold">Comunidades</p>
-                  <p className="text-gray-400 text-sm">Reales</p>
+                  <p className="text-white font-bold">{t.vivencial.communities}</p>
+                  <p className="text-gray-400 text-sm">{t.vivencial.communitiesSub}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -97,8 +98,8 @@ export function ProgramasVivenciales() {
                   <Heart size={24} className="text-primary" />
                 </div>
                 <div>
-                  <p className="text-white font-bold">Experiencias</p>
-                  <p className="text-gray-400 text-sm">Auténticas</p>
+                  <p className="text-white font-bold">{t.vivencial.experiences}</p>
+                  <p className="text-gray-400 text-sm">{t.vivencial.experiencesSub}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -106,8 +107,8 @@ export function ProgramasVivenciales() {
                   <Leaf size={24} className="text-primary" />
                 </div>
                 <div>
-                  <p className="text-white font-bold">Turismo</p>
-                  <p className="text-gray-400 text-sm">Responsable</p>
+                  <p className="text-white font-bold">{t.vivencial.tourism}</p>
+                  <p className="text-gray-400 text-sm">{t.vivencial.tourismSub}</p>
                 </div>
               </div>
             </div>
@@ -118,7 +119,7 @@ export function ProgramasVivenciales() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Explorar Programas
+                {t.vivencial.explore}
                 <ArrowRight size={20} />
               </motion.span>
             </Link>

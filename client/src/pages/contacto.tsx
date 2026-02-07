@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n";
 import { 
   ChevronRight, Phone, Mail, MapPin, Clock, Send, 
   MessageCircle, Globe, CheckCircle, Facebook, Instagram, 
@@ -98,6 +99,7 @@ const faqs = [
 ];
 
 export default function Contacto() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -167,9 +169,9 @@ export default function Contacto() {
             className="text-center text-white"
           >
             <nav className="flex justify-center items-center gap-2 text-sm mb-6 text-white/80">
-              <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+              <Link href="/" className="hover:text-white transition-colors">{t.nav.home}</Link>
               <ChevronRight size={14} />
-              <span className="text-white font-medium">Contacto</span>
+              <span className="text-white font-medium">{t.nav.contact}</span>
             </nav>
             
             <motion.div
@@ -182,10 +184,10 @@ export default function Contacto() {
             </motion.div>
             
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-              Contáctanos
+              {t.contactPage.title}
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Estamos aquí para ayudarte a planificar tu aventura perfecta en Perú. ¡Escríbenos!
+              {t.contactPage.subtitle}
             </p>
             
             {/* Quick Stats */}
@@ -196,9 +198,9 @@ export default function Contacto() {
               className="flex flex-wrap justify-center gap-6 mt-10"
             >
               {[
-                { icon: Clock, text: "Respuesta < 2h" },
-                { icon: Globe, text: "Atención en Español e Inglés" },
-                { icon: Users, text: "+10,000 Clientes Satisfechos" }
+                { icon: Clock, text: t.contactPage.responseTime },
+                { icon: Globe, text: t.contactPage.bilingualSupport },
+                { icon: Users, text: t.contactPage.happyClients }
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
                   <item.icon size={16} />
@@ -269,10 +271,10 @@ export default function Contacto() {
               className="bg-gray-50 rounded-3xl p-8"
             >
               <h2 className="font-heading font-bold text-2xl md:text-3xl text-gray-900 mb-2">
-                Envíanos un mensaje
+                {t.contactPage.form.send}
               </h2>
               <p className="text-gray-600 mb-8">
-                Completa el formulario y te responderemos lo antes posible
+                {t.contactPage.subtitle}
               </p>
               
               {isSubmitted ? (
@@ -301,7 +303,7 @@ export default function Contacto() {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Nombre completo *
+                        {t.contactPage.form.name} *
                       </label>
                       <input
                         type="text"
@@ -315,7 +317,7 @@ export default function Contacto() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Correo electrónico *
+                        {t.contactPage.form.email} *
                       </label>
                       <input
                         type="email"
@@ -332,7 +334,7 @@ export default function Contacto() {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Teléfono / WhatsApp
+                        {t.contactPage.form.phone} / WhatsApp
                       </label>
                       <input
                         type="tel"
@@ -345,7 +347,7 @@ export default function Contacto() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        ¿Te interesa algún tour?
+                        {t.contactPage.form.subjectOptions.tourInfo}
                       </label>
                       <select
                         name="tourInterest"
@@ -366,7 +368,7 @@ export default function Contacto() {
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Asunto *
+                      {t.contactPage.form.subject} *
                     </label>
                     <input
                       type="text"
@@ -381,7 +383,7 @@ export default function Contacto() {
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Mensaje *
+                      {t.contactPage.form.message} *
                     </label>
                     <textarea
                       name="message"
@@ -413,7 +415,7 @@ export default function Contacto() {
                     ) : (
                       <>
                         <Send size={20} />
-                        Enviar Mensaje
+                        {t.contactPage.form.send}
                       </>
                     )}
                   </motion.button>
@@ -431,7 +433,7 @@ export default function Contacto() {
               >
                 <h2 className="font-heading font-bold text-2xl text-gray-900 mb-6 flex items-center gap-3">
                   <Building2 className="text-primary" />
-                  Nuestras Oficinas
+                  {t.contactPage.offices}
                 </h2>
                 
                 <div className="space-y-4">
@@ -490,7 +492,7 @@ export default function Contacto() {
                 viewport={{ once: true }}
                 className="bg-linear-to-br from-gray-900 to-gray-800 rounded-2xl p-6 text-white"
               >
-                <h3 className="font-heading font-bold text-xl mb-4">Síguenos en Redes</h3>
+                <h3 className="font-heading font-bold text-xl mb-4">{t.contactPage.followUs}</h3>
                 <p className="text-white/70 text-sm mb-6">
                   Mantente al día con nuestras ofertas y descubre Perú a través de nuestras redes sociales
                 </p>
@@ -521,7 +523,7 @@ export default function Contacto() {
                 viewport={{ once: true }}
               >
                 <h3 className="font-heading font-bold text-xl text-gray-900 mb-4">
-                  Preguntas Frecuentes
+                  {t.contactPage.faq}
                 </h3>
                 <div className="space-y-3">
                   {faqs.map((faq, idx) => (
@@ -553,7 +555,7 @@ export default function Contacto() {
             className="text-center mb-8"
           >
             <h2 className="font-heading font-bold text-2xl text-gray-900 mb-2">
-              Encuéntranos
+              {t.contactPage.findUs}
             </h2>
             <p className="text-gray-600">
               Visítanos en nuestra oficina principal en el corazón de Cusco

@@ -2,11 +2,13 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Clock, MapPin, Star, ArrowRight, Award, Users } from "lucide-react";
 import { tours } from "@/data/tours";
+import { useLanguage } from "@/i18n";
 
 export function ToursMasSolicitados() {
+  const { t } = useLanguage();
   // Obtener tours más populares (featured o con reviews)
   const popularTours = tours
-    .filter((t) => t.featured || (t.reviews && t.reviews.length > 0))
+    .filter((tour) => tour.featured || (tour.reviews && tour.reviews.length > 0))
     .slice(0, 6);
 
   return (
@@ -25,14 +27,13 @@ export function ToursMasSolicitados() {
         >
           <span className="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm bg-primary/10 px-4 py-2 rounded-full mb-4">
             <Award size={16} />
-            Los Favoritos
+            {t.topTours.badge}
           </span>
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-gray-900">
-            Tours Más Solicitados
+            {t.topTours.title}
           </h2>
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Descubre las experiencias preferidas por nuestros viajeros. Rutas probadas y 
-            recomendadas por miles de aventureros.
+            {t.topTours.subtitle}
           </p>
         </motion.div>
 
@@ -65,7 +66,7 @@ export function ToursMasSolicitados() {
                           className="bg-linear-to-r from-amber-400 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg"
                         >
                           <Award size={12} />
-                          MEJOR ELECCIÓN
+                          {t.topTours.bestChoice}
                         </motion.div>
                       )}
                       {tour.category && (
@@ -102,7 +103,7 @@ export function ToursMasSolicitados() {
                         ))}
                       </div>
                       <span className="text-sm text-gray-600">
-                        5.0 ({tour.reviews?.length || 8} reseñas)
+                        5.0 ({tour.reviews?.length || 8} {t.topTours.reviews})
                       </span>
                     </div>
 
@@ -120,7 +121,7 @@ export function ToursMasSolicitados() {
                       {tour.maxGroup && (
                         <span className="flex items-center gap-1.5">
                           <Users size={14} className="text-primary" />
-                          Máx. {tour.maxGroup} personas
+                          {t.topTours.maxGroup.replace('{n}', String(tour.maxGroup))}
                         </span>
                       )}
                     </div>
@@ -128,7 +129,7 @@ export function ToursMasSolicitados() {
                     {/* Price & CTA */}
                     <div className="flex items-center justify-between mt-auto">
                       <div>
-                        <span className="text-xs text-gray-500">desde</span>
+                        <span className="text-xs text-gray-500">{t.common.from}</span>
                         <div className="flex items-baseline gap-1">
                           <span className="font-heading font-bold text-2xl text-primary">
                             ${tour.price}
@@ -137,7 +138,7 @@ export function ToursMasSolicitados() {
                         </div>
                       </div>
                       <span className="bg-primary text-white font-bold px-5 py-2.5 rounded-xl group-hover:bg-primary/90 transition-colors flex items-center gap-2 text-sm">
-                        Ver detalles
+                        {t.topTours.viewDetails}
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>
@@ -162,7 +163,7 @@ export function ToursMasSolicitados() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Ver todos los tours
+              {t.topTours.viewAll}
               <ArrowRight size={20} />
             </motion.span>
           </Link>

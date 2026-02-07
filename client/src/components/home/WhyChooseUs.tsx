@@ -1,38 +1,25 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Heart, Clock, Users, Award, Leaf } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useLanguage } from "@/i18n";
 
-const reasons = [
-  {
-    icon: ShieldCheck,
-    title: "Seguridad Garantizada",
-    description: "Operamos con los más altos estándares de seguridad. Vehículos modernos y seguros de viaje incluidos."
-  },
-  {
-    icon: Heart,
-    title: "Pasión por el Servicio",
-    description: "Cada viaje es una obra de arte que diseñamos con amor y atención a cada detalle."
-  },
- 
-  {
-    icon: Users,
-    title: "Guías Expertos",
-    description: "Profesionales locales certificados, bilingües y apasionados por compartir nuestra cultura."
-  },
-  {
-    icon: Award,
-    title: "Agencia Autorizada",
-    description: "Registrados en MINCETUR con todos los permisos legales para operar tours en Perú."
-  },
-  {
-    icon: Leaf,
-    title: "Turismo Responsable",
-    description: "Comprometidos con las comunidades locales y la preservación del medio ambiente."
-  }
-];
+const reasonKeys = [
+  { icon: ShieldCheck, key: "security" },
+  { icon: Heart, key: "passion" },
+  { icon: Users, key: "guides" },
+  { icon: Award, key: "authorized" },
+  { icon: Leaf, key: "responsible" },
+] as const;
 
 export function WhyChooseUs() {
+  const { t } = useLanguage();
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+
+  const reasons = reasonKeys.map(({ icon, key }) => ({
+    icon,
+    title: t.whyChooseUs.reasons[key].title,
+    description: t.whyChooseUs.reasons[key].desc,
+  }));
   
   return (
     <section ref={elementRef} className="py-20 bg-linear-to-br from-primary/5 to-emerald-50">
@@ -50,7 +37,7 @@ export function WhyChooseUs() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-primary font-bold tracking-wider uppercase text-sm"
             >
-              ¿Por qué elegirnos?
+              {t.whyChooseUs.label}
             </motion.span>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -58,7 +45,7 @@ export function WhyChooseUs() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="font-heading font-bold text-3xl md:text-4xl mt-2 mb-6 text-gray-900"
             >
-              La Experiencia <span className="text-primary">Mukis Travel</span>
+              {t.whyChooseUs.title}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -66,9 +53,7 @@ export function WhyChooseUs() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-gray-600 text-lg leading-relaxed mb-8"
             >
-              Somos más que una agencia de viajes. Somos guardianes de los tesoros del Perú, 
-              comprometidos en crear experiencias auténticas e inolvidables para cada viajero 
-              que confía en nosotros.
+              {t.whyChooseUs.description}
             </motion.p>
 
             <motion.div 
@@ -138,7 +123,7 @@ export function WhyChooseUs() {
             >
               <div className="text-center">
                 <span className="font-heading font-bold text-4xl text-primary">10+</span>
-                <p className="text-gray-600 text-sm mt-1">Años de experiencia</p>
+                <p className="text-gray-600 text-sm mt-1">{t.whyChooseUs.stats.years}</p>
               </div>
             </motion.div>
 
@@ -151,7 +136,7 @@ export function WhyChooseUs() {
             >
               <div className="text-center">
                 <span className="font-heading font-bold text-4xl">5000+</span>
-                <p className="text-white/90 text-sm mt-1">Viajeros felices</p>
+                <p className="text-white/90 text-sm mt-1">{t.whyChooseUs.stats.travelers}</p>
               </div>
             </motion.div>
 
@@ -176,7 +161,7 @@ export function WhyChooseUs() {
               </div>
               <div>
                 <span className="font-bold text-gray-900">4.9/5</span>
-                <p className="text-xs text-gray-500">en TripAdvisor</p>
+                <p className="text-xs text-gray-500">{t.whyChooseUs.stats.tripadvisor}</p>
               </div>
             </motion.div>
           </motion.div>

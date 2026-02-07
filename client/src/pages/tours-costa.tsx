@@ -13,11 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useLanguage } from "@/i18n";
 
 const costaHighlights = [
-  { icon: Sun, title: "Clima Cálido", description: "Sol durante todo el año" },
-  { icon: Waves, title: "Playas Únicas", description: "Desde desierto hasta mar" },
-  { icon: Camera, title: "Vida Silvestre", description: "Lobos marinos, pingüinos y más" },
+  { icon: Sun },
+  { icon: Waves },
+  { icon: Camera },
 ];
 
 const costaDestinations = [
@@ -28,6 +29,7 @@ const costaDestinations = [
 ];
 
 export default function ToursCosta() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("todos");
   const [sortBy, setSortBy] = useState("recommended");
 
@@ -36,7 +38,7 @@ export default function ToursCosta() {
 
     // Filtrar por categoría
     if (activeCategory !== "todos") {
-      result = result.filter(t => t.category === activeCategory);
+      result = result.filter(tour => tour.category === activeCategory);
     }
 
     // Ordenar
@@ -106,13 +108,12 @@ export default function ToursCosta() {
             </div>
             
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
-              Explora la Costa <br />
-              <span className="text-amber-300">Peruana</span>
+              {t.regionPage.costa.title.split(' ').slice(0, -1).join(' ')} <br />
+              <span className="text-amber-300">{t.regionPage.costa.title.split(' ').slice(-1)}</span>
             </h1>
             
             <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
-              Desde el misterioso desierto de Nazca hasta las paradisíacas playas del norte. 
-              Descubre oasis, islas llenas de vida silvestre y una gastronomía de clase mundial.
+              {t.regionPage.costa.subtitle}
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -125,7 +126,7 @@ export default function ToursCosta() {
                   className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20"
                 >
                   <item.icon className="w-5 h-5 text-amber-300" />
-                  <span className="text-white font-medium">{item.title}</span>
+                  <span className="text-white font-medium">{(t.regionPage.costa.highlights as unknown as string[])[idx]}</span>
                 </motion.div>
               ))}
             </div>
@@ -148,7 +149,7 @@ export default function ToursCosta() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">Destinos de la Costa</h2>
+          <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">{t.regionPage.costa.destinations}</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Los lugares más espectaculares del litoral peruano</p>
         </motion.div>
 
@@ -236,7 +237,7 @@ export default function ToursCosta() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">Tours en la Costa</h2>
+            <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">{t.regionPage.costa.tours}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Paquetes diseñados para descubrir lo mejor del litoral. Mostrando {filteredAndSortedTours.length} tour{filteredAndSortedTours.length !== 1 && 's'}</p>
           </motion.div>
 
@@ -294,7 +295,7 @@ export default function ToursCosta() {
                               <span className="text-2xl font-bold text-primary ml-2">USD ${tour.price}</span>
                             </div>
                             <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                              Ver más <ChevronRight size={16} />
+                              {t.common.viewDetails} <ChevronRight size={16} />
                             </span>
                           </div>
                         </div>
@@ -307,13 +308,13 @@ export default function ToursCosta() {
           ) : (
             <div className="text-center py-16 bg-amber-50 rounded-3xl">
               <Sun className="w-16 h-16 text-amber-400 mx-auto mb-4" />
-              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">No se encontraron tours</h3>
+              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{t.regionPage.noTours}</h3>
               <p className="text-gray-600 mb-6">Prueba con otros filtros o categorías</p>
               <button 
                 onClick={() => setActiveCategory("todos")}
                 className="inline-block bg-primary text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer"
               >
-                Ver todos los tours de Costa
+                {t.regionPage.viewTours}
               </button>
             </div>
           )}
@@ -332,7 +333,7 @@ export default function ToursCosta() {
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6">
-              ¿Listo para sentir el sol de la costa?
+              {t.regionPage.costa.cta}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
               Contáctanos y te ayudamos a planificar tu aventura costera perfecta

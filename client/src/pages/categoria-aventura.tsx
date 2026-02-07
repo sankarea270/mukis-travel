@@ -1,27 +1,29 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { useLanguage } from "@/i18n";
 import { tours } from "@/data/tours";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Clock, MapPin, ChevronRight, Compass, Mountain, Zap } from "lucide-react";
 
-const categoryInfo = {
-  title: "Tours de Aventura",
-  subtitle: "Adrenalina y Emociones Extremas",
-  description: "Para los espíritus intrépidos. Trekking en montañas, descensos épicos y desafíos que pondrán a prueba tus límites.",
-  icon: Compass,
-  color: "from-red-500 to-rose-600",
-  bgImage: "https://images.unsplash.com/photo-1580968014526-b1f0e8a49bae?auto=format&fit=crop&q=80&w=1920",
-  highlights: [
-    { icon: Mountain, title: "Alta Montaña", description: "Cumbres sobre 5,000m" },
-    { icon: Zap, title: "Adrenalina Pura", description: "Experiencias extremas" },
-    { icon: Compass, title: "Rutas Únicas", description: "Caminos menos transitados" },
-  ]
-};
-
 export default function CategoriaAventura() {
+  const { t } = useLanguage();
   const aventuraTours = tours.filter((tour) => tour.category === "aventura" || tour.category === "trekking");
+
+  const categoryInfo = {
+    title: t.categoryPage.aventura.title,
+    subtitle: t.categoryPage.aventura.heroSubtitle,
+    description: t.categoryPage.aventura.subtitle,
+    icon: Compass,
+    color: "from-red-500 to-rose-600",
+    bgImage: "https://images.unsplash.com/photo-1580968014526-b1f0e8a49bae?auto=format&fit=crop&q=80&w=1920",
+    highlights: [
+      { icon: Mountain, title: t.categoryPage.aventura.highlight1Title, description: t.categoryPage.aventura.highlight1Desc },
+      { icon: Zap, title: t.categoryPage.aventura.highlight2Title, description: t.categoryPage.aventura.highlight2Desc },
+      { icon: Compass, title: t.categoryPage.aventura.highlight3Title, description: t.categoryPage.aventura.highlight3Desc },
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,7 +51,7 @@ export default function CategoriaAventura() {
               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${categoryInfo.color} flex items-center justify-center shadow-xl`}>
                 <categoryInfo.icon className="w-7 h-7 text-white" />
               </div>
-              <span className="text-red-300 font-bold text-lg tracking-wide uppercase">Categoría</span>
+              <span className="text-red-300 font-bold text-lg tracking-wide uppercase">{t.categoryPage.categoryLabel}</span>
             </div>
             
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-4 leading-tight">
@@ -95,10 +97,10 @@ export default function CategoriaAventura() {
             className="text-center mb-12"
           >
             <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">
-              {aventuraTours.length} Tours de Aventura Disponibles
+              {aventuraTours.length} {t.categoryPage.aventura.title} {t.categoryPage.available}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Desafía tus límites con nuestras experiencias de aventura
+              {t.categoryPage.aventura.gridSubtitle}
             </p>
           </motion.div>
 
@@ -122,14 +124,15 @@ export default function CategoriaAventura() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                          AVENTURA
+                          {t.categoryPage.aventura.badge}
                         </div>
                         {tour.difficulty && (
                           <div className={`absolute top-4 right-4 text-white text-xs font-bold px-3 py-1 rounded-full ${
                             tour.difficulty === 'difícil' ? 'bg-orange-500' : 
                             tour.difficulty === 'moderado' ? 'bg-yellow-500' : 'bg-green-500'
                           }`}>
-                            {tour.difficulty.toUpperCase()}
+                            {(tour.difficulty === 'difícil' ? t.common.hard : 
+                              tour.difficulty === 'moderado' ? t.common.moderate : t.common.easy).toUpperCase()}
                           </div>
                         )}
                       </div>
@@ -157,7 +160,7 @@ export default function CategoriaAventura() {
                             <span className="text-2xl font-bold text-primary ml-2">USD ${tour.price}</span>
                           </div>
                           <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                            Ver más <ChevronRight size={16} />
+                            {t.common.viewMore} <ChevronRight size={16} />
                           </span>
                         </div>
                       </div>
@@ -169,11 +172,11 @@ export default function CategoriaAventura() {
           ) : (
             <div className="text-center py-16 bg-red-50 rounded-3xl">
               <Compass className="w-16 h-16 text-red-400 mx-auto mb-4" />
-              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">Tours de Aventura Próximamente</h3>
-              <p className="text-gray-600 mb-6">Estamos preparando experiencias extremas para ti</p>
+              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{t.categoryPage.aventura.emptyTitle}</h3>
+              <p className="text-gray-600 mb-6">{t.categoryPage.aventura.emptySubtitle}</p>
               <Link href="/paquetes">
                 <span className="inline-block bg-primary text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer">
-                  Ver todos los paquetes
+                  {t.categoryPage.viewAllPackages}
                 </span>
               </Link>
             </div>
@@ -193,10 +196,10 @@ export default function CategoriaAventura() {
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6">
-              ¿Listo para la aventura de tu vida?
+              {t.categoryPage.aventura.ctaTitle}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Nuestros guías expertos te llevarán a los lugares más increíbles
+              {t.categoryPage.aventura.ctaSubtitle}
             </p>
             <a 
               href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20de%20aventura"
@@ -204,7 +207,7 @@ export default function CategoriaAventura() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-red-600 font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"
             >
-              Consultar Ahora
+              {t.categoryPage.consultNow}
             </a>
           </motion.div>
         </div>

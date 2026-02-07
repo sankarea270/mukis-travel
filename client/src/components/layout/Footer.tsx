@@ -1,41 +1,43 @@
 import { Link } from "wouter";
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Clock, CreditCard, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
-
-const companyLinks = [
-  { name: "Nosotros", href: "/sobre-nosotros" },
-  { name: "Trabaja con Nosotros", href: "/trabaja-con-nosotros" },
-  { name: "Formas de Pago", href: "/soporte" },
-  { name: "Conoce el Perú", href: "/guia-peru" },
-];
-
-const categoryLinks = [
-  { name: "Cultural", href: "/categorias/cultural" },
-  { name: "Aventura", href: "/categorias/aventura" },
-  { name: "Místico", href: "/categorias/mistico" },
-  { name: "Vivencial", href: "/categorias/vivencial" },
-  { name: "Naturaleza", href: "/categorias/naturaleza" },
-  { name: "Trekking", href: "/categorias/trekking" },
-];
-
-const cityLinks = [
-  { name: "Lima", href: "/tours/costa" },
-  { name: "Ica", href: "/tours/costa" },
-  { name: "Arequipa", href: "/tours/sierra" },
-  { name: "Cusco", href: "/tours/sierra" },
-  { name: "Puno", href: "/tours/sierra" },
-  { name: "Puerto Maldonado", href: "/tours/selva" },
-];
-
-const supportLinks = [
-  { name: "Preguntas Frecuentes", href: "/soporte" },
-  { name: "Contacto", href: "/contacto" },
-  { name: "Libro de Reclamaciones", href: "/soporte" },
-  { name: "Política de Privacidad", href: "/politica-privacidad" },
-  { name: "Términos y Condiciones", href: "/terminos-condiciones" },
-];
+import { useLanguage } from "@/i18n";
 
 export function Footer() {
+  const { t } = useLanguage();
+
+  const companyLinks = [
+    { name: t.footer.aboutUs, href: "/sobre-nosotros" },
+    { name: t.footer.workWithUs, href: "/trabaja-con-nosotros" },
+    { name: t.footer.paymentMethods, href: "/soporte" },
+    { name: t.footer.knowPeru, href: "/guia-peru" },
+  ];
+
+  const categoryLinks = [
+    { name: t.categorias.names.cultural, href: "/categorias/cultural" },
+    { name: t.categorias.names.aventura, href: "/categorias/aventura" },
+    { name: t.categorias.names.mistico, href: "/categorias/mistico" },
+    { name: t.categorias.names.vivencial, href: "/categorias/vivencial" },
+    { name: t.categorias.names.naturaleza, href: "/categorias/naturaleza" },
+    { name: t.categorias.names.trekking, href: "/categorias/trekking" },
+  ];
+
+  const cityLinks = [
+    { name: "Lima", href: "/tours/costa" },
+    { name: "Ica", href: "/tours/costa" },
+    { name: "Arequipa", href: "/tours/sierra" },
+    { name: "Cusco", href: "/tours/sierra" },
+    { name: "Puno", href: "/tours/sierra" },
+    { name: "Puerto Maldonado", href: "/tours/selva" },
+  ];
+
+  const supportLinks = [
+    { name: t.footer.faq, href: "/soporte" },
+    { name: t.footer.contact, href: "/contacto" },
+    { name: t.footer.claimsBook, href: "/soporte" },
+    { name: t.footer.privacy, href: "/politica-privacidad" },
+    { name: t.footer.terms, href: "/terminos-condiciones" },
+  ];
   return (
     <footer className="relative bg-gray-950 text-gray-300 overflow-hidden">
       {/* Franja con diseño incaico Dinámica */}
@@ -86,7 +88,7 @@ export function Footer() {
               <div className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] shadow-[0_0_12px_#D4AF37] animate-pulse" />
               <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-[#D4AF37] animate-ping opacity-40" />
             </div>
-            <span className="text-[#D4AF37] font-heading font-bold text-xs uppercase tracking-[0.3em]">Experiencias Auténticas</span>
+            <span className="text-[#D4AF37] font-heading font-bold text-xs uppercase tracking-[0.3em]">{t.footer.authenticExperiences}</span>
           </div>
           <div className="h-px bg-linear-to-r from-transparent via-[#D4AF37] to-transparent grow mx-4 hidden md:block opacity-30" />
         </div>
@@ -122,7 +124,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
-              Guardianes de los tesoros del Perú. Creamos experiencias de viaje auténticas e inolvidables.
+              {t.footer.tagline}
             </p>
             <div className="flex gap-3">
               <a 
@@ -166,7 +168,7 @@ export function Footer() {
           <div className="group">
             <h3 className="text-[#D4AF37] font-heading font-bold text-lg mb-6 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              Nuestra Empresa
+              {t.footer.company}
             </h3>
             <ul className="space-y-3 text-sm">
               {companyLinks.map((link) => (
@@ -183,7 +185,7 @@ export function Footer() {
           <div className="group">
             <h3 className="text-[#D4AF37] font-heading font-bold text-lg mb-6 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              Categorías de Tour
+              {t.footer.tourCategories}
             </h3>
             <ul className="space-y-3 text-sm">
               {categoryLinks.map((link) => (
@@ -200,7 +202,7 @@ export function Footer() {
           <div className="group">
             <h3 className="text-[#D4AF37] font-heading font-bold text-lg mb-6 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              Tours por Ciudad
+              {t.footer.toursByCity}
             </h3>
             <ul className="space-y-3 text-sm">
               {cityLinks.map((link) => (
@@ -217,7 +219,7 @@ export function Footer() {
           <div className="group">
             <h3 className="text-[#D4AF37] font-heading font-bold text-lg mb-6 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              Soporte
+              {t.footer.support}
             </h3>
             <ul className="space-y-3 text-sm">
               {supportLinks.map((link) => (
@@ -229,7 +231,7 @@ export function Footer() {
               ))}
               <li>
                 <a href="mailto:reservasmukistravel@gmail.com" className="hover:text-primary transition-colors">
-                  Trabaja con Nosotros
+                  {t.footer.workWithUs}
                 </a>
               </li>
             </ul>
@@ -261,8 +263,8 @@ export function Footer() {
               </svg>
             </div>
             <div>
-              <p className="text-white font-bold text-sm">¿Necesitas ayuda para planificar tu viaje?</p>
-              <p className="text-gray-400 text-xs">Escríbenos por WhatsApp, respondemos en minutos</p>
+              <p className="text-white font-bold text-sm">{t.footer.whatsappTitle}</p>
+              <p className="text-gray-400 text-xs">{t.footer.whatsappSub}</p>
             </div>
           </div>
           <a 
@@ -271,7 +273,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-2.5 rounded-full hover:shadow-lg hover:scale-105 transition-all text-sm"
           >
-            Escríbenos ahora
+            {t.footer.whatsappBtn}
           </a>
         </div>
 
@@ -288,7 +290,7 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-2 text-gray-400">
               <CreditCard size={16} className="text-primary" />
-              <span className="text-xs font-medium">Pagos Seguros</span>
+              <span className="text-xs font-medium">{t.footer.securePayments}</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-500">
               <span>Visa</span>
@@ -304,11 +306,11 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>© {new Date().getFullYear()} Mukis Travel Agency. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Mukis Travel Agency. {t.footer.allRights}</p>
           <div className="flex gap-6">
-            <Link href="/soporte" className="hover:text-primary transition-colors">Términos y Condiciones</Link>
-            <Link href="/soporte" className="hover:text-primary transition-colors">Política de Privacidad</Link>
-            <Link href="/soporte" className="hover:text-primary transition-colors">Libro de Reclamaciones</Link>
+            <Link href="/soporte" className="hover:text-primary transition-colors">{t.footer.terms}</Link>
+            <Link href="/soporte" className="hover:text-primary transition-colors">{t.footer.privacy}</Link>
+            <Link href="/soporte" className="hover:text-primary transition-colors">{t.footer.claimsBook}</Link>
           </div>
         </div>
       </div>

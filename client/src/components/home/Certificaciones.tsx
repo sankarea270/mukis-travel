@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n";
 
 // Certificaciones y logos oficiales
 const certifications = [
@@ -49,6 +50,8 @@ const isoLogos = [
 ];
 
 export function Certificaciones() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
@@ -60,10 +63,10 @@ export function Certificaciones() {
           className="text-center mb-12"
         >
           <span className="text-primary font-bold tracking-wider uppercase text-sm">
-            Respaldo y Confianza
+            {t.certifications.label}
           </span>
           <h2 className="font-heading font-bold text-2xl md:text-3xl mt-2 text-gray-900">
-            Certificaciones y Reconocimientos
+            {t.certifications.title}
           </h2>
         </motion.div>
 
@@ -173,7 +176,7 @@ export function Certificaciones() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-center text-gray-500 text-sm mt-8"
         >
-          Agencia de viajes registrada y autorizada. Todos nuestros tours cumplen con las normativas vigentes.
+          {t.certifications.footer}
         </motion.p>
       </div>
     </section>

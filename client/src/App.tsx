@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { SocialFloat, SocialFloatMobile } from "@/components/ui/SocialFloat";
+import { LanguageProvider } from "@/i18n";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Paquetes from "@/pages/paquetes";
@@ -100,13 +101,15 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <CustomCursor />
-        <Toaster />
-        <SocialFloat />
-        <SocialFloatMobile />
-        <Router />
-      </TooltipProvider>
+      <LanguageProvider>
+        <TooltipProvider>
+          <CustomCursor />
+          <Toaster />
+          <SocialFloat />
+          <SocialFloatMobile />
+          <Router />
+        </TooltipProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

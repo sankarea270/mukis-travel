@@ -1,27 +1,29 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { useLanguage } from "@/i18n";
 import { tours } from "@/data/tours";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Clock, MapPin, ChevronRight, Sparkles, Landmark, BookOpen } from "lucide-react";
 
-const categoryInfo = {
-  title: "Tours Culturales",
-  subtitle: "Historia y Tradiciones Ancestrales",
-  description: "Sumérgete en la rica historia del Perú. Desde las maravillas incas hasta las tradiciones vivas de las comunidades andinas.",
-  icon: Sparkles,
-  color: "from-purple-500 to-indigo-600",
-  bgImage: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1920",
-  highlights: [
-    { icon: Landmark, title: "Sitios Arqueológicos", description: "Patrimonio UNESCO" },
-    { icon: BookOpen, title: "Historia Viva", description: "Tradiciones ancestrales" },
-    { icon: Sparkles, title: "Experiencias Únicas", description: "Conexión cultural" },
-  ]
-};
-
 export default function CategoriaCultural() {
+  const { t } = useLanguage();
   const culturalTours = tours.filter((tour) => tour.category === "cultural");
+
+  const categoryInfo = {
+    title: t.categoryPage.cultural.title,
+    subtitle: t.categoryPage.cultural.heroSubtitle,
+    description: t.categoryPage.cultural.subtitle,
+    icon: Sparkles,
+    color: "from-purple-500 to-indigo-600",
+    bgImage: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1920",
+    highlights: [
+      { icon: Landmark, title: t.categoryPage.cultural.highlight1Title, description: t.categoryPage.cultural.highlight1Desc },
+      { icon: BookOpen, title: t.categoryPage.cultural.highlight2Title, description: t.categoryPage.cultural.highlight2Desc },
+      { icon: Sparkles, title: t.categoryPage.cultural.highlight3Title, description: t.categoryPage.cultural.highlight3Desc },
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,7 +51,7 @@ export default function CategoriaCultural() {
               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${categoryInfo.color} flex items-center justify-center shadow-xl`}>
                 <categoryInfo.icon className="w-7 h-7 text-white" />
               </div>
-              <span className="text-purple-300 font-bold text-lg tracking-wide uppercase">Categoría</span>
+              <span className="text-purple-300 font-bold text-lg tracking-wide uppercase">{t.categoryPage.categoryLabel}</span>
             </div>
             
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-4 leading-tight">
@@ -95,10 +97,10 @@ export default function CategoriaCultural() {
             className="text-center mb-12"
           >
             <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">
-              {culturalTours.length} Tours Culturales Disponibles
+              {culturalTours.length} {t.categoryPage.cultural.title} {t.categoryPage.available}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Descubre la historia y tradiciones del Perú con nuestros expertos locales
+              {t.categoryPage.cultural.gridSubtitle}
             </p>
           </motion.div>
 
@@ -121,11 +123,11 @@ export default function CategoriaCultural() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="absolute top-4 left-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                        CULTURAL
+                        {t.categoryPage.cultural.badge}
                       </div>
                       {tour.isOffer && (
                         <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                          OFERTA
+                          {t.packagesPage.offer}
                         </div>
                       )}
                     </div>
@@ -153,7 +155,7 @@ export default function CategoriaCultural() {
                           <span className="text-2xl font-bold text-primary ml-2">USD ${tour.price}</span>
                         </div>
                         <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                          Ver más <ChevronRight size={16} />
+                          {t.common.viewMore} <ChevronRight size={16} />
                         </span>
                       </div>
                     </div>
@@ -177,10 +179,10 @@ export default function CategoriaCultural() {
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6">
-              ¿Buscas una experiencia cultural personalizada?
+              {t.categoryPage.cultural.ctaTitle}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Creamos itinerarios a medida para sumergirte en la historia peruana
+              {t.categoryPage.cultural.ctaSubtitle}
             </p>
             <a 
               href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20culturales"
@@ -188,7 +190,7 @@ export default function CategoriaCultural() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-purple-600 font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"
             >
-              Consultar Ahora
+              {t.categoryPage.consultNow}
             </a>
           </motion.div>
         </div>

@@ -4,6 +4,7 @@ import { ChevronRight, Heart, Award, Shield, Target, Eye, Users, MapPin } from "
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { useLanguage } from "@/i18n";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -18,30 +19,31 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const valuesData = [
-  {
-    icon: Heart,
-    title: "Confianza",
-    description: "Valoramos la confianza depositada en nuestro equipo profesional y nos comprometemos a honrarla en cada servicio."
-  },
-  {
-    icon: Award,
-    title: "Calidad",
-    description: "Trabajamos con los más altos estándares de calidad, garantizando excelencia en cada detalle de su experiencia."
-  },
-  {
-    icon: Shield,
-    title: "Seguridad",
-    description: "Implementamos rigurosas medidas de protección y seguridad en todos nuestros servicios turísticos para su tranquilidad."
-  },
-  {
-    icon: Target,
-    title: "Compromiso",
-    description: "Nuestro compromiso es superar sus expectativas, brindando un servicio excepcional de principio a fin."
-  }
-];
-
 export default function SobreNosotros() {
+  const { t } = useLanguage();
+
+  const valuesData = [
+    {
+      icon: Heart,
+      title: t.aboutPage.values.trust.title,
+      description: t.aboutPage.values.trust.desc
+    },
+    {
+      icon: Award,
+      title: t.aboutPage.values.quality.title,
+      description: t.aboutPage.values.quality.desc
+    },
+    {
+      icon: Shield,
+      title: t.aboutPage.values.security.title,
+      description: t.aboutPage.values.security.desc
+    },
+    {
+      icon: Target,
+      title: t.aboutPage.values.commitment.title,
+      description: t.aboutPage.values.commitment.desc
+    }
+  ];
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -61,16 +63,16 @@ export default function SobreNosotros() {
             className="text-center text-white"
           >
             <nav className="flex justify-center items-center gap-2 text-sm mb-6 text-white/80">
-              <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+              <Link href="/" className="hover:text-white transition-colors">{t.nav.home}</Link>
               <ChevronRight size={14} />
-              <span className="text-white font-medium">Sobre Nosotros</span>
+              <span className="text-white font-medium">{t.nav.aboutUs}</span>
             </nav>
             
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-              Sobre Nosotros
+              {t.nav.aboutUs}
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Conoce nuestra historia, misión y el equipo detrás de experiencias inolvidables en Perú
+              {t.aboutPage.p1}
             </p>
           </motion.div>
         </div>
@@ -92,20 +94,20 @@ export default function SobreNosotros() {
                       <Users className="w-6 h-6 text-primary" />
                     </div>
                     <h2 className="font-heading font-bold text-3xl lg:text-4xl text-gray-900">
-                      ¿Quiénes Somos?
+                      {t.aboutPage.title}
                     </h2>
                   </div>
                   
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                    <strong className="text-primary">Mukis Travel</strong> es una agencia de viajes y operador turístico especializado en la creación de experiencias inolvidables en Perú. Con sede en la histórica <strong>Ciudad del Cusco</strong>, nos dedicamos al diseño y operación de paquetes turísticos personalizados que destacan por su excelencia y atención al detalle.
+                    {t.aboutPage.p1}
                   </p>
                   
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                    Contamos con un equipo de profesionales altamente capacitados y apasionados por el turismo, comprometidos en ofrecer servicios de calidad superior que superen las expectativas de nuestros clientes.
+                    {t.aboutPage.p2}
                   </p>
                   
                   <p className="text-gray-600 text-lg leading-relaxed">
-                    Nuestra filosofía se fundamenta en la combinación perfecta entre <strong>confort, confiabilidad y precios competitivos</strong>, garantizando experiencias auténticas en los principales destinos turísticos del país.
+                    {t.aboutPage.p3}
                   </p>
                 </div>
                 
@@ -144,12 +146,12 @@ export default function SobreNosotros() {
                     <Target className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="font-heading font-bold text-2xl lg:text-3xl">
-                    Nuestra Misión
+                    {t.aboutPage.mission}
                   </h3>
                 </div>
                 
                 <p className="text-white/95 text-lg leading-relaxed">
-                  Satisfacer y superar las expectativas de nuestros clientes mediante la creación de experiencias turísticas únicas y memorables. Nos comprometemos a ofrecer un servicio personalizado de excelencia, diseñando paquetes turísticos innovadores a precios accesibles, respaldados por un equipo profesional debidamente capacitado que garantiza atención de primer nivel en cada etapa del viaje.
+                  {t.aboutPage.missionText}
                 </p>
               </div>
             </motion.div>
@@ -162,12 +164,12 @@ export default function SobreNosotros() {
                     <Eye className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="font-heading font-bold text-2xl lg:text-3xl">
-                    Nuestra Visión
+                    {t.aboutPage.vision}
                   </h3>
                 </div>
                 
                 <p className="text-white/95 text-lg leading-relaxed">
-                  Consolidarnos como la agencia de viajes y operador turístico líder en la región de Cusco, reconocidos por nuestra excelencia operativa y compromiso con la satisfacción del cliente. Aspiramos a crecer continuamente como empresa turística referente, ofreciendo servicios y productos de los más altos estándares de calidad, manteniendo siempre la confiabilidad, profesionalismo y calidez humana que nos caracteriza, contribuyendo así al desarrollo sostenible del turismo en nuestra región.
+                  {t.aboutPage.visionText}
                 </p>
               </div>
             </motion.div>
@@ -237,11 +239,11 @@ export default function SobreNosotros() {
             </div>
             
             <h2 className="font-heading font-bold text-3xl md:text-4xl mb-8">
-              Objetivo General
+              {t.aboutPage.generalObjective}
             </h2>
             
             <p className="text-white/95 text-lg leading-relaxed">
-              Posicionar a Mukis Travel como una agencia de viajes líder a nivel nacional e internacional, reconocida por ofrecer las mejores alternativas turísticas con excelentes estándares de calidad y servicio. Nos proponemos consolidar nuestra identidad como la opción preferida para viajeros que buscan experiencias auténticas y personalizadas, perfeccionando continuamente cada uno de nuestros servicios sin comprometer la esencia y los valores que nos distinguen en el mercado, contribuyendo así al desarrollo y promoción del turismo sostenible en el Perú.
+              {t.aboutPage.generalObjectiveText}
             </p>
           </motion.div>
         </div>

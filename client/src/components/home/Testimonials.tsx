@@ -1,4 +1,5 @@
 import { testimonials } from "@/data/tours";
+import { useLanguage } from "@/i18n";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useCallback, useState } from "react";
@@ -6,6 +7,7 @@ import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 export function Testimonials() {
+  const { t } = useLanguage();
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -68,10 +70,10 @@ export function Testimonials() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
-            ⭐ +5000 Viajeros Satisfechos
+            {t.testimonials.badge}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">Lo que dicen nuestros viajeros</h2>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">Historias reales de aventuras inolvidables en el corazón del Perú</p>
+          <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">{t.testimonials.title}</h2>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">{t.testimonials.subtitle}</p>
         </motion.div>
 
         <div className="relative">

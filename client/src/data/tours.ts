@@ -428,62 +428,6 @@ export const tours: Tour[] = [
     ]
   },
   {
-    id: "7",
-    slug: "valle-sagrado-full-day",
-    title: "Valle Sagrado Full Day",
-    shortDescription: "Pisaq, Ollantaytambo y el corazón del Imperio Inca.",
-    description: "Explora el Valle Sagrado de los Incas visitando el mercado y sitio arqueológico de Pisaq, el pueblo de Urubamba y la imponente fortaleza de Ollantaytambo. Un viaje a través de la historia viva del Perú.",
-    aboutTour: "El Valle Sagrado de los Incas fue el centro agrícola más importante del Imperio. Este tour te llevará a conocer los lugares más emblemáticos de esta región privilegiada. Comenzamos en Pisaq, donde visitarás su colorido mercado artesanal y el impresionante sitio arqueológico con sus terrazas agrícolas y cementerio inca. Continuamos hacia Urubamba para disfrutar de un delicioso almuerzo buffet. Finalmente, llegamos a Ollantaytambo, una de las pocas ciudades incas que aún conserva su trazado original y su imponente fortaleza con el famoso Templo del Sol. Este es también el punto de partida del tren hacia Machu Picchu.",
-    price: 85,
-    duration: "1 Día",
-    tourType: "Tour cultural",
-    languages: ["Español", "Inglés"],
-    location: "Cusco",
-    locationCoords: { lat: -13.2631, lng: -72.2644 },
-    region: "sierra",
-    category: "cultural",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
-    gallery: [
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600"
-    ],
-    difficulty: "fácil",
-    maxGroup: 20,
-    startTime: "8:00 AM",
-    highlights: [
-      "Mercado artesanal de Pisaq",
-      "Sitio arqueológico de Pisaq",
-      "Almuerzo buffet en Urubamba",
-      "Fortaleza de Ollantaytambo",
-      "Ciudad inca viviente"
-    ],
-    included: [
-      "Transporte turístico",
-      "Almuerzo buffet en Urubamba",
-      "Guía profesional",
-      "Entradas a sitios arqueológicos"
-    ],
-    notIncluded: [
-      "Desayuno",
-      "Gastos personales"
-    ],
-    itinerary: [
-      { time: "8:00 AM", activity: "Recojo del hotel", description: "Salida desde tu hotel en Cusco." },
-      { time: "9:30 AM", activity: "Mercado artesanal de Pisaq", description: "Explora el colorido mercado y compra artesanías." },
-      { time: "10:30 AM", activity: "Sitio arqueológico de Pisaq", description: "Impresionantes terrazas y arquitectura inca." },
-      { time: "12:30 PM", activity: "Almuerzo buffet en Urubamba", description: "Delicioso almuerzo con variedad de platos." },
-      { time: "2:30 PM", activity: "Fortaleza de Ollantaytambo", description: "Una de las fortalezas incas mejor conservadas." },
-      { time: "5:00 PM", activity: "Retorno a Cusco", description: "Llegada aproximada a las 6:30 PM." }
-    ],
-    faqs: [
-      { question: "¿Es este tour apto para niños?", answer: "¡Sí! Es un tour familiar con caminatas moderadas y muchas paradas interesantes." },
-      { question: "¿Puedo quedarme en Ollantaytambo para ir a Machu Picchu?", answer: "Sí, coordinamos para que puedas quedarte y tomar el tren al día siguiente." },
-      { question: "¿El almuerzo tiene opciones vegetarianas?", answer: "Sí, el buffet incluye opciones vegetarianas y veganas." }
-    ],
-    reviews: [
-      { id: "r10", name: "Ana Lucía Torres", avatar: "https://randomuser.me/api/portraits/women/26.jpg", rating: 5, comment: "Desde el primer contacto fueron muy profesionales. El tour fue mágico, los paisajes impresionantes.", date: "2025-10-15", country: "Colombia" }
-    ]
-  },
-  {
     id: "8",
     slug: "ica-paracas-full-day",
     title: "Ica y Paracas Full Day",
@@ -653,46 +597,6 @@ export const tours: Tour[] = [
     ]
   },
   {
-    id: "14",
-    slug: "walking-tour-cusco",
-    title: "Walking Tour Cusco",
-    shortDescription: "Descubre Cusco en cada paso",
-    description: "Explora las calles de piedra, plazas y rincones históricos de Cusco a pie con un guía local.",
-    price: 12.00,
-    duration: "3 horas",
-    tourType: "Caminata",
-    languages: ["Español", "Inglés"],
-    location: "Cusco",
-    region: "sierra",
-    category: "cultural",
-    image: "https://images.unsplash.com/photo-1521245780562-b1e7c53828c2?auto=format&fit=crop&q=80&w=1600",
-    included: ["Guía"],
-    notIncluded: ["Ingresos"],
-    itinerary: [
-      { time: "AM/PM", activity: "Caminata", description: "Recorrido por San Blas, Plaza de Armas y calles históricas." }
-    ]
-  },
-  {
-    id: "15",
-    slug: "waqrapukara-tour-economico",
-    title: "Waqrapukara Tour",
-    shortDescription: "Complejo Arqueológico Waqrapukara",
-    description: "Una aventura económica hacia la impresionante fortaleza de Waqrapukara.",
-    price: 39.00,
-    duration: "1 Día",
-    tourType: "Aventura",
-    languages: ["Español"],
-    location: "Cusco",
-    region: "sierra",
-    category: "aventura",
-    image: "https://images.unsplash.com/photo-1627057088190-67258a506828?auto=format&fit=crop&q=80&w=1600",
-    included: ["Transporte", "Guía", "Alimentación"],
-    notIncluded: ["Ingresos", "Caballos"],
-    itinerary: [
-      { time: "Full Day", activity: "Waqrapukara", description: "Caminata y visita a la fortaleza." }
-    ]
-  },
-  {
     id: "17",
     slug: "montana-7-colores-cuatrimotos",
     title: "Montaña de Colores con Cuatrimotos",
@@ -730,52 +634,6 @@ export const tours: Tour[] = [
       { time: "11:30 AM", activity: "Retorno a la Base", description: "Regreso por la misma ruta en cuatrimotos hacia el punto central." },
       { time: "1:00 PM", activity: "Almuerzo Buffet", description: "Degustación de nuestro almuerzo buffet reconfortante." },
       { time: "5:00 PM", activity: "Llegada a Cusco", description: "Traslado final hacia la ciudad de Cusco (arribo entre las 5:00 y 5:30 PM)." }
-    ]
-  },
-  {
-    id: "18",
-    slug: "montana-7-colores-economico",
-    title: "Tour a la Montaña de 7 Colores en 1 Día",
-    shortDescription: "Cusco, Perú, Montaña de Colores",
-    description: "La opción clásica y económica para visitar la Montaña Vinicunca.",
-    price: 33.00,
-    duration: "1 Día",
-    tourType: "Aventura",
-    languages: ["Español"],
-    location: "Cusco",
-    region: "sierra",
-    category: "aventura",
-    image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
-    reviews: [
-      { id: "r_mc1", name: "Viajero", rating: 5, comment: "Excelente relación precio-calidad.", date: "2025-01-10", country: "Perú" }
-    ],
-    included: ["Transporte", "Guía", "Desayuno", "Almuerzo"],
-    notIncluded: ["Ingresos"],
-    itinerary: [
-      { time: "Full Day", activity: "Caminata", description: "Ascenso a la montaña y retorno." }
-    ]
-  },
-  {
-    id: "19",
-    slug: "laguna-humantay-economico",
-    title: "Tour Laguna Humantay en 1 Dia",
-    shortDescription: "Laguna Humantay, Mollepata, Cusco, Peru",
-    description: "Visita la Laguna Humantay con un servicio estándar y económico.",
-    price: 30.00,
-    duration: "1 Día",
-    tourType: "Aventura",
-    languages: ["Español"],
-    location: "Cusco",
-    region: "sierra",
-    category: "naturaleza",
-    image: "https://images.unsplash.com/photo-1629819128038-f86a987fc5c3?auto=format&fit=crop&q=80&w=1600",
-    reviews: [
-      { id: "r_lh1", name: "Turista", rating: 5, comment: "Lugar mágico.", date: "2025-02-01", country: "Argentina" }
-    ],
-    included: ["Transporte", "Guía", "Alimentación"],
-    notIncluded: ["Ingresos"],
-    itinerary: [
-      { time: "Full Day", activity: "Trek", description: "Caminata a la laguna." }
     ]
   },
   {
@@ -1180,6 +1038,288 @@ export const tours: Tour[] = [
       { time: "3:00 PM", activity: "Laguna Sibinacocha", description: "Parada especial en la escénica Laguna Sibinacocha." },
       { time: "8:30 PM", activity: "Llegada a Cusco", description: "Arribo final cerca de la Plaza Regocijo." }
     ]
+  },
+  {
+    id: "34",
+    slug: "city-tour-mirabus",
+    title: "City Tour en Mirabus",
+    shortDescription: "Recorre Cusco en un bus panorámico con la mejor vista de la ciudad.",
+    description: "Disfruta de un recorrido panorámico por la ciudad del Cusco y sus alrededores en nuestro Mirabus. Una forma cómoda y divertida de ver los monumentos más importantes, con paradas estratégicas para fotos y vistas espectaculares.",
+    price: 15,
+    duration: "2-3 Horas",
+    tourType: "Tour panorámico",
+    languages: ["Español", "Inglés"],
+    location: "Cusco",
+    region: "sierra",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1544918877-460635b6d13e?auto=format&fit=crop&q=80&w=1600",
+    included: ["Transporte en Mirabus", "Guía", "Paradas fotográficas"],
+    notIncluded: ["Ingresos", "Snacks"],
+    itinerary: [
+      { time: "AM/PM", activity: "Recorrido", description: "Vistas de la Plaza de Armas, Sacsayhuamán y miradores." }
+    ]
+  },
+  {
+    id: "35",
+    slug: "valle-sur-humedal-huasao",
+    title: "Valle Sur + Humedal de Huasao",
+    shortDescription: "Tipón, Pikillacta, Andahuaylillas y el místico Humedal de Huasao.",
+    description: "Combina la historia del Valle Sur con la fantasía del Humedal de Huasao, famoso por sus esculturas de madera inspiradas en personajes de películas.",
+    price: 45,
+    duration: "1 Día",
+    tourType: "Tour cultural y naturaleza",
+    languages: ["Español"],
+    location: "Cusco",
+    region: "sierra",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    included: ["Transporte", "Guía", "Ingresos (algunos)"],
+    notIncluded: ["Almuerzo"],
+    itinerary: [
+      { time: "Full Day", activity: "Visita completa", description: "Recorrido por Tipón, Pikillacta y el Humedal de Huasao." }
+    ]
+  },
+  {
+    id: "36",
+    slug: "valle-sagrado-tradicional",
+    title: "Valle Sagrado Tradicional",
+    shortDescription: "Pisaq, Urubamba y Ollantaytambo.",
+    description: "El recorrido clásico por el Valle Sagrado de los Incas.",
+    price: 65,
+    duration: "1 Día",
+    tourType: "Tour cultural",
+    languages: ["Español", "Inglés"],
+    location: "Valle Sagrado",
+    region: "sierra",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    included: ["Transporte", "Guía", "Almuerzo Buffet"],
+    notIncluded: ["Boleto Turístico"],
+    itinerary: [
+      { time: "8:00 AM", activity: "Salida", description: "Visita a los principales sitios del Valle." }
+    ]
+  },
+  {
+    id: "37",
+    slug: "cuatrimotos-maras-moray-huaypo",
+    title: "Tour Cuatrimotos Maras, Moray y Laguna Huaypo",
+    shortDescription: "Aventura extrema por el Valle Sagrado visitando Maras, Moray y la hermosa Laguna Huaypo.",
+    description: "Siente la adrenalina recorriendo los paisajes del Valle Sagrado en cuatrimoto, visitando los laboratorios de Moray y la Laguna de Huaypo.",
+    price: 45,
+    duration: "5-6 Horas",
+    tourType: "Aventura ATV",
+    languages: ["Español", "Inglés"],
+    location: "Maras",
+    region: "sierra",
+    category: "aventura",
+    image: "https://images.unsplash.com/photo-1596706037004-97217596043d?auto=format&fit=crop&q=80&w=1600",
+    included: ["Cuatrimoto", "Guía", "Equipo de seguridad"],
+    notIncluded: ["Ingresos"],
+    itinerary: [
+      { time: "A acordar", activity: "Aventura ATV", description: "Ruta por Maras, Moray y Huaypo." }
+    ]
+  },
+  {
+    id: "38",
+    slug: "morada-de-los-dioses-tradicional",
+    title: "Morada de los Dioses",
+    shortDescription: "Apukunaq Tianan, impresionantes esculturas talladas en piedra.",
+    description: "Visita la Morada de los Dioses, un complesso de esculturas contemporáneas dedicadas a las deidades andinas.",
+    price: 25,
+    duration: "3-4 Horas",
+    tourType: "Tour cultural",
+    languages: ["Español"],
+    location: "Cusco",
+    region: "sierra",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1627582234551-34446c592965?auto=format&fit=crop&q=80&w=1600",
+    included: ["Transporte", "Guía"],
+    notIncluded: ["Ingreso"],
+    itinerary: [
+      { time: "AM/PM", activity: "Visita", description: "Recorrido por las esculturas gigantes." }
+    ]
+  },
+  {
+    id: "39",
+    slug: "machu-picchu-by-car-2d1n",
+    title: "Machu Picchu by Car 2 Días 1 Noche",
+    shortDescription: "La ruta más económica hacia Machu Picchu vía Santa Teresa.",
+    description: "Aventura por carretera y caminata por la selva alta para llegar a Machu Picchu de la forma más económica.",
+    price: 150,
+    duration: "2 Días 1 Noche",
+    tourType: "Aventura / Económico",
+    languages: ["Español", "Inglés"],
+    location: "Machu Picchu",
+    region: "selva",
+    category: "aventura",
+    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    included: ["Transporte Cusco-Hidroeléctrica-Cusco", "1 Noche Hostal", "Guía", "Entrada Machu Picchu"],
+    notIncluded: ["Alimentación no mencionada", "Tren Hidroeléctrica (opcional)"],
+    itinerary: [
+      { time: "Día 1", activity: "Viaje a Hidroeléctrica", description: "Viaje en bus y caminata de 3 horas a Aguas Calientes." },
+      { time: "Día 2", activity: "Machu Picchu", description: "Visita a la ciudadela y retorno a Cusco." }
+    ]
+  },
+  {
+    id: "40",
+    slug: "city-tour-cochahuasi",
+    title: "City Tour + Zoológico de Cochahuasi",
+    shortDescription: "Cultura y fauna andina en un solo recorrido.",
+    description: "Visita los centros arqueológicos de Cusco y conoce el santuario animal de Cochahuasi, donde podrás ver cóndores y fauna local en recuperación.",
+    price: 55,
+    duration: "Medio Día",
+    tourType: "Tour cultural y educativo",
+    languages: ["Español"],
+    location: "Cusco",
+    region: "sierra",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1544918877-460635b6d13e?auto=format&fit=crop&q=80&w=1600",
+    included: ["Transporte", "Guía", "Entrada a Cochahuasi"],
+    notIncluded: ["Boleto Turístico"],
+    itinerary: [
+      { time: "PM", activity: "Recorrido", description: "Centros arqueológicos y santuario animal." }
+    ]
+  },
+  {
+    id: "41",
+    slug: "rainbow-mountain-ausangate-2d1n",
+    title: "Rainbow Mountain + Ausangate 2D/1N",
+    shortDescription: "Caminata espectacular por la cordillera Vilcanota.",
+    description: "Una experiencia inmersiva recorriendo la Montaña de 7 Colores y los glaciares del Ausangate con campamento.",
+    price: 220,
+    duration: "2 Días / 1 Noche",
+    tourType: "Trekking",
+    languages: ["Español", "Inglés"],
+    location: "Ausangate",
+    region: "sierra",
+    category: "trekking",
+    image: "https://images.unsplash.com/photo-1549557404-0c2d3080e227?auto=format&fit=crop&q=80&w=1600",
+    included: ["Camping", "Guía", "Cocinero", "Arrieros"],
+    notIncluded: ["Saco de dormir"],
+    itinerary: [
+      { time: "Día 1", activity: "Trekking", description: "Caminata hacia el campamento Ausangate." },
+      { time: "Día 2", activity: "Montaña de Colores", description: "Visita a la montaña y retorno." }
+    ]
+  },
+  {
+    id: "42",
+    slug: "salkantay-trek-4d3n",
+    title: "Salkantay Trek 4 Días 3 Noches",
+    shortDescription: "El camino alternativo más famoso hacia Machu Picchu.",
+    description: "Aventura a través del nevado Salkantay y la selva alta hasta llegar a la ciudadela inca.",
+    price: 280,
+    duration: "4 Días 3 Noches",
+    tourType: "Trekking",
+    languages: ["Español", "Inglés"],
+    location: "Salkantay",
+    region: "sierra",
+    category: "trekking",
+    image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
+    included: ["Equipo de camping", "Cocinero", "Entradas", "Tren de retorno"],
+    notIncluded: ["Saco de dormir", "Primer desayuno"],
+    itinerary: [
+      { time: "Diario", activity: "Trekking", description: "Paso Salkantay, selva alta, Machu Picchu." }
+    ]
+  },
+  {
+    id: "43",
+    slug: "camino-inca-4d3n",
+    title: "Inca Trail to Machu Picchu 4 Días 3 Noches",
+    shortDescription: "La ruta clásica y más famosa del mundo.",
+    description: "Recorre el milenario camino de los incas hasta llegar por la Puerta del Sol a Machu Picchu.",
+    price: 650,
+    duration: "4 Días 3 Noches",
+    tourType: "Trekking",
+    languages: ["Español", "Inglés"],
+    location: "Machu Picchu",
+    region: "sierra",
+    category: "trekking",
+    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    included: ["Permisos", "Guía especializado", "Equipo completo", "Tren"],
+    notIncluded: ["Propinas"],
+    itinerary: [
+      { time: "Día 1-4", activity: "Trekking", description: "Caminata por sitios arqueológicos originales." }
+    ]
+  },
+  {
+    id: "44",
+    slug: "choquequirao-trek-4d3n",
+    title: "Choquequirao Trek 4 Días 3 Noches",
+    shortDescription: "Visita la 'hermana sagrada' de Machu Picchu.",
+    description: "Una de las rutas más desafiantes y hermosas hacia Choquequirao, la última resistencia inca.",
+    price: 350,
+    duration: "4 Días 3 Noches",
+    tourType: "Trekking / Desafío",
+    languages: ["Español", "Inglés"],
+    location: "Choquequirao",
+    region: "sierra",
+    category: "trekking",
+    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    included: ["Todo el equipo de camping", "Alimentación", "Guía"],
+    notIncluded: ["Gastos personales", "Primer desayuno"],
+    itinerary: [
+      { time: "Diario", activity: "Caminata extrema", description: "Descenso y ascenso al cañón del Apurímac." }
+    ]
+  },
+  {
+    id: "45",
+    slug: "inca-jungle-4d3n",
+    title: "Inca Jungle Trail 4 Días 3 Noches",
+    shortDescription: "Bicicleta, canotaje, caminata y adrenalina hacia Machu Picchu.",
+    description: "La opción más aventurera para jóvenes que buscan variedad de deportes antes de llegar a Machu Picchu.",
+    price: 250,
+    duration: "4 Días 3 Noches",
+    tourType: "Multiaventura",
+    languages: ["Español", "Inglés"],
+    location: "Santa Teresa",
+    region: "selva",
+    category: "aventura",
+    image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
+    included: ["Bicicletas", "Equipo de seguridad", "Alojamiento", "Entradas"],
+    notIncluded: ["Canotaje/Zipline (opcional)"],
+    itinerary: [
+      { time: "Día 1", activity: "Biking", description: "Descenso en bicicleta desde el Abra Málaga." }
+    ]
+  },
+  {
+    id: "46",
+    slug: "juegos-extremos",
+    title: "Juegos Extremos",
+    shortDescription: "Bungee jumping, Slingshot y adrenalina pura en Cusco.",
+    description: "Siente el vacío con los saltos más altos de Sudamérica en Action Valley.",
+    price: 60,
+    duration: "2-3 Horas",
+    tourType: "Aventura extrema",
+    languages: ["Español", "Inglés"],
+    location: "Cusco",
+    region: "sierra",
+    category: "aventura",
+    image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
+    included: ["Equipo certificado", "Instructores", "Transporte"],
+    notIncluded: ["Video (opcional)"],
+    itinerary: [
+      { time: "A acordar", activity: "Salto", description: "Experiencia de adrenalina en el parque de aventuras." }
+    ]
+  },
+  {
+    id: "47",
+    slug: "ruta-del-sol",
+    title: "Ruta del Sol",
+    shortDescription: "Viaje de lujo de Cusco a Puno con paradas culturales.",
+    description: "Conoce Andahuaylillas, Raqchi y Pucará en un viaje confortable hacia el Altiplano.",
+    price: 75,
+    duration: "10 Horas",
+    tourType: "Tour compartido de lujo",
+    languages: ["Español", "Inglés"],
+    location: "Cusco - Puno",
+    region: "sierra",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    included: ["Bus turístico", "Almuerzo buffet", "Guía profesional"],
+    notIncluded: ["Tickets de ingreso"],
+    itinerary: [
+      { time: "7:00 AM", activity: "Salida", description: "Viaje con paradas turísticas hasta Puno." }
+    ]
   }
 ];
 
@@ -1228,15 +1368,6 @@ export const testimonials = [
     text: "Service exceptionnel! Le pont Q'eswachaka était incroyable. Une expérience culturelle authentique que je n'oublierai jamais.",
     rating: 5,
     tour: "Puente Q'eswachaka"
-  },
-  {
-    id: "5",
-    name: "Ana Lucía Torres",
-    location: "Colombia",
-    avatar: "https://randomuser.me/api/portraits/women/26.jpg",
-    text: "Desde el primer contacto fueron muy profesionales. El tour al Valle Sagrado fue mágico, los paisajes impresionantes y la comida deliciosa.",
-    rating: 5,
-    tour: "Valle Sagrado Full Day"
   }
 ];
 

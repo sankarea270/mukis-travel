@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { useLanguage } from "@/i18n";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { tours, testimonials } from "@/data/tours";
 import { 
@@ -30,8 +31,9 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 
 export default function PaqueteDetalle() {
+  const { t } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
-  const tour = tours.find((t) => t.slug === slug);
+  const tour = tours.find((item) => item.slug === slug);
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [isLiked, setIsLiked] = useState(false);
@@ -62,10 +64,10 @@ export default function PaqueteDetalle() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="text-6xl mb-4">🏔️</div>
-          <h1 className="text-4xl font-bold mb-4 text-gray-800">Tour no encontrado</h1>
-          <p className="text-gray-600 mb-6">El tour que buscas no existe o ha sido removido.</p>
+          <h1 className="text-4xl font-bold mb-4 text-gray-800">{t.tourDetail.notFound}</h1>
+          <p className="text-gray-600 mb-6">{t.tourDetail.notFoundDesc}</p>
           <Link href="/paquetes" className="bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary/90 transition-all">
-            Ver todos los tours
+            {t.tourDetail.viewAllTours}
           </Link>
         </div>
       </div>
@@ -77,7 +79,7 @@ export default function PaqueteDetalle() {
   
   // Get related tours (same category or location)
   const relatedTours = tours
-    .filter((t) => t.id !== tour.id && (t.category === tour.category || t.location === tour.location))
+    .filter((item) => item.id !== tour.id && (item.category === tour.category || item.location === tour.location))
     .slice(0, 4);
 
   // Calculate average rating
@@ -95,9 +97,9 @@ export default function PaqueteDetalle() {
         <div className="bg-white border-b">
           <div className="container mx-auto px-4 py-3">
             <nav className="flex items-center gap-2 text-sm text-gray-600">
-              <Link href="/" className="hover:text-primary transition-colors">Inicio</Link>
+              <Link href="/" className="hover:text-primary transition-colors">{t.tourDetail.breadHome}</Link>
               <ChevronRight size={14} />
-              <Link href="/paquetes" className="hover:text-primary transition-colors">Tours</Link>
+              <Link href="/paquetes" className="hover:text-primary transition-colors">{t.tourDetail.breadTours}</Link>
               <ChevronRight size={14} />
               <span className="text-primary font-medium">{tour.title}</span>
             </nav>
@@ -116,7 +118,7 @@ export default function PaqueteDetalle() {
                   <div className="flex items-center gap-1 text-yellow-500">
                     <Star size={18} fill="currentColor" />
                     <span className="font-bold text-gray-900">{avgRating}</span>
-                    <span className="text-gray-500">({tour.reviews?.length || 0} Reseñas)</span>
+                    <span className="text-gray-500">({tour.reviews?.length || 0} {t.tourDetail.reviewCount})</span>
                   </div>
                   <div className="flex items-center gap-1 text-gray-600">
                     <MapPin size={16} className="text-primary" />
@@ -130,7 +132,7 @@ export default function PaqueteDetalle() {
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
                 >
                   <Share2 size={18} />
-                  <span className="hidden sm:inline">Compartir</span>
+                  <span className="hidden sm:inline">{t.tourDetail.share}</span>
                 </button>
                 <button 
                   onClick={() => setIsLiked(!isLiked)}
@@ -139,7 +141,7 @@ export default function PaqueteDetalle() {
                   }`}
                 >
                   <Heart size={18} fill={isLiked ? "currentColor" : "none"} />
-                  <span className="hidden sm:inline">Guardar</span>
+                  <span className="hidden sm:inline">{t.tourDetail.save}</span>
                 </button>
               </div>
             </div>
@@ -191,12 +193,12 @@ export default function PaqueteDetalle() {
               <div className="absolute top-4 left-4 flex gap-2">
                 {tour.isOffer && (
                   <span className="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
-                    OFERTA
+                    {t.tourDetail.offer}
                   </span>
                 )}
                 {tour.featured && (
                   <span className="bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">
-                    DESTACADO
+                    {t.tourDetail.featured}
                   </span>
                 )}
               </div>
@@ -246,23 +248,23 @@ export default function PaqueteDetalle() {
               >
                 <div className="text-center">
                   <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <span className="text-sm text-gray-500 block">Duración</span>
+                  <span className="text-sm text-gray-500 block">{t.tourDetail.duration}</span>
                   <span className="font-bold text-gray-900">{tour.duration}</span>
                 </div>
                 <div className="text-center">
                   <Compass className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <span className="text-sm text-gray-500 block">Tipo de tour</span>
-                  <span className="font-bold text-gray-900">{tour.tourType || "Tour diario"}</span>
+                  <span className="text-sm text-gray-500 block">{t.tourDetail.tourType}</span>
+                  <span className="font-bold text-gray-900">{tour.tourType || t.tourDetail.dailyTour}</span>
                 </div>
                 <div className="text-center">
                   <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <span className="text-sm text-gray-500 block">Tamaño grupo</span>
-                  <span className="font-bold text-gray-900">{tour.maxGroup || 15} personas</span>
+                  <span className="text-sm text-gray-500 block">{t.tourDetail.groupSize}</span>
+                  <span className="font-bold text-gray-900">{tour.maxGroup || 15} {t.tourDetail.persons}</span>
                 </div>
                 <div className="text-center">
                   <Globe className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <span className="text-sm text-gray-500 block">Idiomas</span>
-                  <span className="font-bold text-gray-900">{tour.languages?.join(", ") || "Español, Inglés"}</span>
+                  <span className="text-sm text-gray-500 block">{t.tourDetail.languages}</span>
+                  <span className="font-bold text-gray-900">{tour.languages?.join(", ") || t.tourDetail.defaultLanguages}</span>
                 </div>
               </motion.div>
 
@@ -275,7 +277,7 @@ export default function PaqueteDetalle() {
               >
                 <h2 className="font-heading font-bold text-2xl mb-4 text-gray-900 flex items-center gap-3">
                   <Navigation className="text-primary" />
-                  Acerca de este recorrido
+                  {t.tourDetail.about}
                 </h2>
                 <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
                   {tour.aboutTour || tour.description}
@@ -291,16 +293,16 @@ export default function PaqueteDetalle() {
               >
                 <h2 className="font-heading font-bold text-2xl mb-4 text-gray-900 flex items-center gap-3">
                   <Compass className="text-primary" />
-                  Preparación del viaje
+                  {t.tourDetail.preparation}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
-                    "Ropa en capas y casaca cortaviento",
-                    "Protector solar, lentes de sol y gorra",
-                    "Calzado cómodo para caminatas",
-                    "Agua y snacks ligeros",
-                    "Documento de identidad y efectivo",
-                    "Medicamentos personales"
+                    t.tourDetail.prepWarmClothes,
+                    t.tourDetail.prepSunscreen,
+                    t.tourDetail.prepComfortShoes,
+                    t.tourDetail.prepWater,
+                    t.tourDetail.prepDocs,
+                    t.tourDetail.prepCamera
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
                       <div className="bg-primary/10 rounded-full p-2">
@@ -321,7 +323,7 @@ export default function PaqueteDetalle() {
               >
                 <h2 className="font-heading font-bold text-2xl mb-4 text-gray-900 flex items-center gap-3">
                   <Flag className="text-primary" />
-                  Mapa del Recorrido
+                  {t.tourDetail.routeMap}
                 </h2>
                 <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 flex items-center justify-center">
                   {tour.mapImage ? (
@@ -330,22 +332,22 @@ export default function PaqueteDetalle() {
                         <div className="w-full h-80 md:h-96 bg-gray-50 cursor-zoom-in group relative overflow-hidden rounded-xl">
                           <img 
                             src={tour.mapImage} 
-                            alt="Mapa del recorrido" 
+                            alt={t.tourDetail.routeMap} 
                             className="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" 
                           />
                           <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <div className="bg-white/90 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
-                              Clic para ampliar
+                              {t.tourDetail.clickToEnlarge}
                             </div>
                           </div>
                         </div>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl w-full p-0 overflow-hidden bg-transparent border-none shadow-none">
-                        <DialogTitle className="sr-only">Mapa detallado del tour {tour.title}</DialogTitle>
+                        <DialogTitle className="sr-only">{t.tourDetail.detailedMap} {tour.title}</DialogTitle>
                          <div className="relative w-full h-[80vh] bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
                            <img 
                              src={tour.mapImage} 
-                             alt={`Mapa detallado de ${tour.title}`}
+                             alt={`${t.tourDetail.detailedMap} ${tour.title}`}
                              className="w-full h-full object-contain"
                            />
                          </div>
@@ -354,8 +356,8 @@ export default function PaqueteDetalle() {
                   ) : (
                     <div className="h-75 w-full flex flex-col items-center justify-center bg-gray-50">
                       <MapPin size={48} className="mx-auto mb-3 text-gray-400" />
-                      <p className="text-lg font-medium text-gray-500">Mapa no disponible</p>
-                      <p className="text-sm text-gray-400">Próximamente</p>
+                      <p className="text-lg font-medium text-gray-500">{t.tourDetail.mapUnavailable}</p>
+                      <p className="text-sm text-gray-400">{t.tourDetail.comingSoon}</p>
                     </div>
                   )}
                 </div>
@@ -370,7 +372,7 @@ export default function PaqueteDetalle() {
                   className="bg-linear-to-br from-primary/5 to-primary/10 rounded-2xl p-8"
                 >
                   <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900">
-                    ✨ Resumen del Tour
+                    ✨ {t.tourDetail.tourSummary}
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {tour.highlights.map((item, idx) => (
@@ -395,7 +397,7 @@ export default function PaqueteDetalle() {
                 {/* Included */}
                 <div className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-green-500">
                   <h3 className="font-heading font-bold text-xl mb-4 text-gray-900 flex items-center gap-2">
-                    <Check className="text-green-500" /> Incluye
+                    <Check className="text-green-500" /> {t.tourDetail.includes}
                   </h3>
                   <ul className="space-y-3">
                     {tour.included.map((item, idx) => (
@@ -410,7 +412,7 @@ export default function PaqueteDetalle() {
                 {/* Not Included */}
                 <div className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-red-500">
                   <h3 className="font-heading font-bold text-xl mb-4 text-gray-900 flex items-center gap-2">
-                    <X className="text-red-500" /> No Incluye
+                    <X className="text-red-500" /> {t.tourDetail.notIncludes}
                   </h3>
                   <ul className="space-y-3">
                     {tour.notIncluded.map((item, idx) => (
@@ -432,10 +434,10 @@ export default function PaqueteDetalle() {
               >
                 <h2 className="font-heading font-bold text-2xl mb-3 text-gray-900 flex items-center gap-3">
                   <Shield className="text-primary" />
-                  Política de cancelación
+                  {t.tourDetail.cancellation}
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
-                  Cancelaciones sin penalidad hasta 48 horas antes de la salida. Cambios de fecha sujetos a disponibilidad. Para grupos y paquetes especiales pueden aplicar condiciones particulares.
+                  {t.tourDetail.cancelPolicyFull}
                 </p>
               </motion.div>
 
@@ -448,7 +450,7 @@ export default function PaqueteDetalle() {
               >
                 <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900 flex items-center gap-3">
                   <Calendar className="text-primary" />
-                  Itinerario
+                  {t.tourDetail.itinerary}
                 </h2>
                 <div className="relative">
                   <div className="absolute left-9.75 top-0 bottom-0 w-0.5 bg-primary/20" />
@@ -483,7 +485,7 @@ export default function PaqueteDetalle() {
                 >
                   <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900 flex items-center gap-3">
                     <MessageCircle className="text-primary" />
-                    Preguntas Frecuentes
+                    {t.tourDetail.faq}
                   </h2>
                   <Accordion type="single" collapsible className="space-y-3">
                     {tour.faqs.map((faq, idx) => (
@@ -513,7 +515,7 @@ export default function PaqueteDetalle() {
               >
                 <h2 className="font-heading font-bold text-2xl mb-4 text-gray-900 flex items-center gap-3">
                   <MapPin className="text-primary" />
-                  Ubicación del Tour
+                  {t.tourDetail.tourLocation}
                 </h2>
                 <div className="flex items-center gap-2 text-gray-600 mb-4">
                   <MapPin size={18} className="text-primary" />
@@ -533,7 +535,7 @@ export default function PaqueteDetalle() {
                       <div className="text-center text-gray-500">
                         <MapPin size={48} className="mx-auto mb-3 text-primary" />
                         <p className="text-lg font-medium">{tour.location}</p>
-                        <p className="text-sm text-gray-400">Mapa de ubicación</p>
+                        <p className="text-sm text-gray-400">{t.tourDetail.locationMap}</p>
                       </div>
                     </div>
                   )}
@@ -547,7 +549,7 @@ export default function PaqueteDetalle() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-primary hover:bg-primary/10 transition-colors"
                       >
-                        Ver en Google Maps
+                        {t.tourDetail.viewOnGoogleMaps}
                       </a>
                       <a
                         href={`https://www.google.com/maps/@?api=1&map_action=map&center=${tour.locationCoords.lat},${tour.locationCoords.lng}&zoom=18&basemap=satellite&tilt=45`}
@@ -555,7 +557,7 @@ export default function PaqueteDetalle() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-primary hover:bg-primary/10 transition-colors"
                       >
-                        Ver vista 3D
+                        {t.tourDetail.view3D}
                       </a>
                     </>
                   ) : (
@@ -565,7 +567,7 @@ export default function PaqueteDetalle() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2 text-primary hover:bg-primary/10 transition-colors"
                     >
-                      Buscar en Google Maps
+                      {t.tourDetail.searchOnGoogleMaps}
                     </a>
                   )}
                 </div>
@@ -581,7 +583,7 @@ export default function PaqueteDetalle() {
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="font-heading font-bold text-2xl text-gray-900 flex items-center gap-3">
                     <Star className="text-yellow-500" fill="currentColor" />
-                    Reseñas
+                    {t.tourDetail.reviews}
                   </h2>
                   <div className="flex items-center gap-2">
                     <span className="text-3xl font-bold text-gray-900">{avgRating}</span>
@@ -596,7 +598,7 @@ export default function PaqueteDetalle() {
                           />
                         ))}
                       </div>
-                      <span className="text-sm text-gray-500">{tour.reviews?.length || 0} reseñas</span>
+                      <span className="text-sm text-gray-500">{tour.reviews?.length || 0} {t.tourDetail.reviewCount}</span>
                     </div>
                   </div>
                 </div>
@@ -610,7 +612,7 @@ export default function PaqueteDetalle() {
                       return (
                         <div key={rating} className="flex items-center gap-3">
                           <span className="text-sm text-gray-600 w-16">
-                            {rating === 5 ? "Excelente" : rating === 4 ? "Muy bien" : rating === 3 ? "Promedio" : rating === 2 ? "Pobre" : "Terrible"}
+                            {rating === 5 ? t.tourDetail.ratExcellent : rating === 4 ? t.tourDetail.ratVeryGood : rating === 3 ? t.tourDetail.ratAverage : rating === 2 ? t.tourDetail.ratPoor : t.tourDetail.ratTerrible}
                           </span>
                           <div className="grow bg-gray-200 rounded-full h-2">
                             <div 
@@ -663,8 +665,8 @@ export default function PaqueteDetalle() {
                 ) : (
                   <div className="text-center py-8 text-gray-500">
                     <MessageCircle size={48} className="mx-auto mb-3 text-gray-300" />
-                    <p>Aún no hay reseñas para este tour.</p>
-                    <p className="text-sm">¡Sé el primero en compartir tu experiencia!</p>
+                    <p>{ t.tourDetail.noReviewsYet}</p>
+                    <p className="text-sm">{t.tourDetail.beFirstReview}</p>
                   </div>
                 )}
 
@@ -677,7 +679,7 @@ export default function PaqueteDetalle() {
                     className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary/90 transition-all"
                   >
                     <ThumbsUp size={18} />
-                    Escribir una reseña
+                    {t.tourDetail.writeReview}
                   </a>
                 </div>
               </motion.div>
@@ -694,7 +696,7 @@ export default function PaqueteDetalle() {
               >
                 {/* Price */}
                 <div className="text-center pb-6 border-b border-gray-100">
-                  <span className="text-gray-500 text-sm">Precio por persona</span>
+                  <span className="text-gray-500 text-sm">{t.tourDetail.pricePerPerson}</span>
                   <div className="flex items-center justify-center gap-3 mt-2">
                     <span className="font-heading font-bold text-4xl text-primary">
                       ${tour.price}
@@ -707,7 +709,7 @@ export default function PaqueteDetalle() {
                   </div>
                   {tour.originalPrice && (
                     <span className="inline-block mt-2 bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded-full">
-                      Ahorras ${tour.originalPrice - tour.price}
+                      {t.tourDetail.youSave} ${tour.originalPrice - tour.price}
                     </span>
                   )}
                 </div>
@@ -715,7 +717,7 @@ export default function PaqueteDetalle() {
                 {/* Date Selector */}
                 <div className="py-6 border-b border-gray-100">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Selecciona tu fecha
+                    {t.tourDetail.selectDate}
                   </label>
                   <Popover>
                     <PopoverTrigger asChild>
@@ -727,7 +729,7 @@ export default function PaqueteDetalle() {
                         {selectedDate ? (
                           format(selectedDate, "PPP", { locale: es })
                         ) : (
-                          <span className="text-gray-500">Elige una fecha</span>
+                          <span className="text-gray-500">{t.tourDetail.chooseDate}</span>
                         )}
                       </Button>
                     </PopoverTrigger>
@@ -748,26 +750,26 @@ export default function PaqueteDetalle() {
                 <div className="py-6 space-y-4 border-b border-gray-100">
                   <div className="flex items-center justify-between">
                     <span className="text-gray-600 flex items-center gap-2">
-                      <Clock size={18} className="text-primary" /> Duración
+                      <Clock size={18} className="text-primary" /> {t.tourDetail.duration}
                     </span>
                     <span className="font-medium">{tour.duration}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-600 flex items-center gap-2">
-                      <Users size={18} className="text-primary" /> Grupo máx.
+                      <Users size={18} className="text-primary" /> {t.tourDetail.maxGroup}
                     </span>
-                    <span className="font-medium">{tour.maxGroup || 15} personas</span>
+                    <span className="font-medium">{tour.maxGroup || 15} {t.tourDetail.persons}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-600 flex items-center gap-2">
-                      <Mountain size={18} className="text-primary" /> Dificultad
+                      <Mountain size={18} className="text-primary" /> {t.tourDetail.difficulty}
                     </span>
-                    <span className="font-medium capitalize">{tour.difficulty || "Moderado"}</span>
+                    <span className="font-medium capitalize">{tour.difficulty || t.common.moderate}</span>
                   </div>
                   {tour.startTime && (
                     <div className="flex items-center justify-between">
                       <span className="text-gray-600 flex items-center gap-2">
-                        <Clock size={18} className="text-primary" /> Salida
+                        <Clock size={18} className="text-primary" /> {t.tourDetail.departure}
                       </span>
                       <span className="font-medium">{tour.startTime}</span>
                     </div>
@@ -785,7 +787,7 @@ export default function PaqueteDetalle() {
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                     </svg>
-                    Reservar Ahora
+                    {t.tourDetail.bookNow}
                   </a>
                   
                   <a
@@ -793,12 +795,12 @@ export default function PaqueteDetalle() {
                     className="w-full flex items-center justify-center gap-3 bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary/90 transition-all"
                   >
                     <Phone size={20} />
-                    Llamar Ahora
+                    {t.tourDetail.callNow}
                   </a>
                 </div>
 
                 <p className="text-center text-sm text-gray-500 mt-4">
-                  ✓ Respuesta inmediata · ✓ Sin compromiso
+                  ✓ {t.tourDetail.instantResponse}
                 </p>
 
                 {/* Trust Badges */}
@@ -806,19 +808,19 @@ export default function PaqueteDetalle() {
                   <div className="grid grid-cols-2 gap-3 text-xs text-center">
                     <div className="bg-gray-50 rounded-lg p-3">
                       <span className="block text-lg mb-1">🔒</span>
-                      <span className="text-gray-600">Pago Seguro</span>
+                      <span className="text-gray-600">{t.tourDetail.securePay}</span>
                     </div>
                     <div className="bg-gray-50 rounded-lg p-3">
                       <span className="block text-lg mb-1">✅</span>
-                      <span className="text-gray-600">Garantía 100%</span>
+                      <span className="text-gray-600">{t.tourDetail.guarantee}</span>
                     </div>
                     <div className="bg-gray-50 rounded-lg p-3">
                       <span className="block text-lg mb-1">🏆</span>
-                      <span className="text-gray-600">Mejor Precio</span>
+                      <span className="text-gray-600">{t.tourDetail.bestPrice}</span>
                     </div>
                     <div className="bg-gray-50 rounded-lg p-3">
                       <span className="block text-lg mb-1">💬</span>
-                      <span className="text-gray-600">Soporte 24/7</span>
+                      <span className="text-gray-600">{t.tourDetail.support247}</span>
                     </div>
                   </div>
                 </div>
@@ -833,10 +835,10 @@ export default function PaqueteDetalle() {
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-4">
-            Tours Relacionados
+            {t.tourDetail.relatedTours}
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Descubre otros tours similares que podrían interesarte
+            {t.tourDetail.relatedToursDesc}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedTours.map((relatedTour) => (
@@ -853,7 +855,7 @@ export default function PaqueteDetalle() {
                     />
                     {relatedTour.isOffer && (
                       <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                        OFERTA
+                        {t.tourDetail.offer}
                       </span>
                     )}
                     <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-sm">
@@ -874,7 +876,7 @@ export default function PaqueteDetalle() {
                     </h3>
                     <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                       <div>
-                        <span className="text-xs text-gray-500">Desde</span>
+                        <span className="text-xs text-gray-500">{t.common.from}</span>
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-xl text-primary">${relatedTour.price}</span>
                           {relatedTour.originalPrice && (
@@ -883,7 +885,7 @@ export default function PaqueteDetalle() {
                         </div>
                       </div>
                       <span className="text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
-                        Ver más →
+                        {t.tourDetail.viewMore} →
                       </span>
                     </div>
                   </div>
@@ -898,10 +900,10 @@ export default function PaqueteDetalle() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-4">
-            Testimonios de Nuestros Pasajeros
+            {t.tourDetail.testimonialTitle}
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Mira lo que dicen nuestros viajeros sobre sus experiencias
+            {t.tourDetail.testimonialDesc}
           </p>
           
           {/* Video Embeds from Social Media */}
@@ -939,7 +941,7 @@ export default function PaqueteDetalle() {
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 </div>
-                <p className="text-gray-800 font-bold text-lg">Ver en Facebook</p>
+                <p className="text-gray-800 font-bold text-lg">{t.tourDetail.viewOnFacebook}</p>
                 <p className="text-sm text-gray-600">Mukis Travel Agency</p>
               </div>
               <div className="absolute inset-0 bg-linear-to-t from-white/80 to-transparent" />
@@ -948,7 +950,7 @@ export default function PaqueteDetalle() {
 
           {/* Social Links */}
           <div className="text-center">
-            <p className="text-gray-600 mb-4">Síguenos para más contenido</p>
+            <p className="text-gray-600 mb-4">{t.tourDetail.followUs}</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <a 
                 href="https://www.instagram.com/mukis_travel_agency/" 
@@ -992,7 +994,7 @@ export default function PaqueteDetalle() {
       <section className="py-16 bg-linear-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-4">
           <h2 className="font-heading font-bold text-3xl text-center mb-12">
-            Lo que Dicen Nuestros Viajeros
+            {t.tourDetail.whatTravelersSay}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.slice(0, 3).map((testimonial) => (

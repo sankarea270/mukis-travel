@@ -4,6 +4,7 @@ import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Sun, CloudRain, Mountain, Wind, Thermometer, ShieldCheck, Map, Users, Info, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/i18n";
 
 const regions = [
   {
@@ -66,6 +67,7 @@ const regions = [
 ];
 
 export default function GuiaPeru() {
+  const { t } = useLanguage();
   const [selectedRegion, setSelectedRegion] = useState(regions[0]);
 
   return (
@@ -82,14 +84,13 @@ export default function GuiaPeru() {
               className="max-w-4xl mx-auto text-center"
             >
               <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">
-                Conoce el Perú
+                {t.guidePage.title}
               </span>
               <h1 className="font-heading font-black text-4xl md:text-6xl text-gray-900 mb-6 uppercase tracking-tighter">
-                Geografía y Climas del Perú
+                {t.guidePage.title}
               </h1>
               <p className="text-gray-600 text-lg leading-relaxed">
-                El Perú se divide tradicionalmente en tres regiones: Costa, Sierra y Selva. 
-                Aunque la realidad es bastante más rica y compleja: en el Perú la naturaleza parece adoptar características particulares que convierten a sus macizos montañosos, sus mesetas, sus selvas y sus valles, en hábitats únicos.
+                {t.guidePage.subtitle}
               </p>
             </motion.div>
           </div>
@@ -100,9 +101,9 @@ export default function GuiaPeru() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { icon: Map, title: "Extensión", value: "1,285,215 km²", detail: "3er país más grande de Sudamérica" },
-                { icon: Users, title: "Población", value: "33+ Millones", detail: "País de todas las sangres y culturas" },
-                { icon: Thermometer, title: "Variedad", value: "84 de 117", detail: "Microclimas existentes en el mundo" }
+                { icon: Map, title: t.guidePage.extension, value: "1,285,215 km²", detail: "3er país más grande de Sudamérica" },
+                { icon: Users, title: t.guidePage.population, value: "33+ Millones", detail: "País de todas las sangres y culturas" },
+                { icon: Thermometer, title: t.guidePage.variety, value: "84 de 117", detail: "Microclimas existentes en el mundo" }
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -191,11 +192,11 @@ export default function GuiaPeru() {
                         <div className="flex items-center gap-4 text-white/80 text-sm">
                           <span className="flex items-center gap-2">
                             <ShieldCheck size={16} className="text-primary" />
-                            Guía Oficial Mukis
+                            {t.guidePage.officialGuide}
                           </span>
                           <span className="flex items-center gap-2">
                             <Info size={16} className="text-primary" />
-                            Información Actualizada
+                            {t.guidePage.updatedInfo}
                           </span>
                         </div>
                       </div>

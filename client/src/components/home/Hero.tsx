@@ -2,40 +2,41 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ChevronDown, Play, MapPin, Sparkles, ArrowRight, ArrowLeft } from "lucide-react";
+import { useLanguage } from "@/i18n";
 
-const slides = [
+const slidesData = [
   {
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
     name: "MACHU PICCHU",
-    subtitle: "LA MARAVILLA DEL MUNDO",
+    subtitleKey: "machuPicchu" as const,
     location: "CUSCO",
     link: "/paquetes/machu-picchu-full-day"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
     name: "MONTAÑA ARCOIRIS",
-    subtitle: "VINICUNCA, EL ALMA DE LOS ANDES",
+    subtitleKey: "rainbow" as const,
     location: "CUSCO",
     link: "/paquetes/montana-de-colores"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/laguna-humantay.jpeg`,
     name: "LAGUNA HUMANTAY",
-    subtitle: "ESPEJO TURQUESA SAGRADO",
+    subtitleKey: "humantay" as const,
     location: "CUSCO",
     link: "/paquetes/laguna-humantay"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/lago-titicaca.jpg`,
     name: "LAGO TITICACA",
-    subtitle: "EL LAGO MÁS ALTO DEL MUNDO",
+    subtitleKey: "titicaca" as const,
     location: "PUNO",
     link: "/paquetes"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/huacachina.jpg`,
     name: "HUACACHINA",
-    subtitle: "EL OASIS DEL DESIERTO",
+    subtitleKey: "huacachina" as const,
     location: "ICA",
     link: "/paquetes/ica-paracas-full-day"
   }
@@ -47,6 +48,12 @@ export function Hero() {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
+
+  const slides = slidesData.map(s => ({
+    ...s,
+    subtitle: (t.hero.slides as any)[s.subtitleKey]?.subtitle || s.name,
+  }));
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -195,7 +202,7 @@ export function Hero() {
               <div className="flex items-center justify-center md:justify-start gap-6 md:gap-10 pointer-events-auto">
                 <Link href={slides[current].link}>
                   <button className="group relative px-6 md:px-10 py-3 md:py-5 bg-white text-black font-black rounded-none overflow-hidden transition-all hover:bg-primary hover:text-white">
-                    <span className="relative z-10 uppercase tracking-tighter text-xs md:text-sm">RESERVAR EXPERIENCIA</span>
+                    <span className="relative z-10 uppercase tracking-tighter text-xs md:text-sm">{t.hero.bookExperience}</span>
                   </button>
                 </Link>
                 
@@ -203,7 +210,7 @@ export function Hero() {
                   <div className="flex text-primary">
                     {[1,2,3,4,5].map(i => <Sparkles key={i} size={10} fill="currentColor" />)}
                   </div>
-                  <span className="text-[10px] text-white/40 tracking-widest uppercase font-bold">Experiencia Premium</span>
+                  <span className="text-[10px] text-white/40 tracking-widest uppercase font-bold">{t.hero.premiumExperience}</span>
                 </div>
               </div>
             </motion.div>

@@ -4,6 +4,7 @@ import { ChevronRight, Lock, Eye, Database, Share2, Cookie, Mail, Shield, UserCh
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { useLanguage } from "@/i18n";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -166,6 +167,8 @@ const sections = [
 ];
 
 export default function PoliticaPrivacidad() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -194,9 +197,9 @@ export default function PoliticaPrivacidad() {
             className="text-center text-white"
           >
             <nav className="flex justify-center items-center gap-2 text-sm mb-6 text-white/80">
-              <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+              <Link href="/" className="hover:text-white transition-colors">{t.nav.home}</Link>
               <ChevronRight size={14} />
-              <span className="text-white font-medium">Política de Privacidad</span>
+              <span className="text-white font-medium">{t.legalPage.privacyTitle}</span>
             </nav>
             
             <motion.div
@@ -209,7 +212,7 @@ export default function PoliticaPrivacidad() {
             </motion.div>
             
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-              Política de Privacidad
+              {t.legalPage.privacyTitle}
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Tu privacidad es importante para nosotros. Conoce cómo protegemos tu información personal.

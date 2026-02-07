@@ -13,11 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useLanguage } from "@/i18n";
 
 const selvaHighlights = [
-  { icon: TreePine, title: "Biodiversidad", description: "La mayor del planeta" },
-  { icon: Bird, title: "Fauna Exótica", description: "Miles de especies únicas" },
-  { icon: Droplets, title: "Ríos Legendarios", description: "El Amazonas y afluentes" },
+  { icon: TreePine },
+  { icon: Bird },
+  { icon: Droplets },
 ];
 
 const selvaDestinations = [
@@ -28,6 +29,7 @@ const selvaDestinations = [
 ];
 
 export default function ToursSelva() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("todos");
   const [sortBy, setSortBy] = useState("recommended");
 
@@ -36,7 +38,7 @@ export default function ToursSelva() {
 
     // Filtrar por categoría
     if (activeCategory !== "todos") {
-      result = result.filter(t => t.category === activeCategory);
+      result = result.filter(tour => tour.category === activeCategory);
     }
 
     // Ordenar
@@ -106,13 +108,12 @@ export default function ToursSelva() {
             </div>
             
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
-              Adéntrate en la <br />
-              <span className="text-green-300">Amazonía Peruana</span>
+              {t.regionPage.selva.title.split(' ').slice(0, -1).join(' ')} <br />
+              <span className="text-green-300">{t.regionPage.selva.title.split(' ').slice(-1)}</span>
             </h1>
             
             <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
-              El pulmón del mundo te espera con una biodiversidad única. 
-              Explora ríos serpenteantes, observa fauna silvestre y conecta con culturas ancestrales.
+              {t.regionPage.selva.subtitle}
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -125,7 +126,7 @@ export default function ToursSelva() {
                   className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20"
                 >
                   <item.icon className="w-5 h-5 text-green-300" />
-                  <span className="text-white font-medium">{item.title}</span>
+                  <span className="text-white font-medium">{(t.regionPage.selva.highlights as unknown as string[])[idx]}</span>
                 </motion.div>
               ))}
             </div>
@@ -148,7 +149,7 @@ export default function ToursSelva() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">Destinos de la Selva</h2>
+          <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">{t.regionPage.selva.destinations}</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Los santuarios naturales más impresionantes del Amazonas</p>
         </motion.div>
 
@@ -236,7 +237,7 @@ export default function ToursSelva() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">Tours en la Selva</h2>
+            <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">{t.regionPage.selva.tours}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Expediciones inolvidables en la Amazonía. Mostrando {filteredAndSortedTours.length} tour{filteredAndSortedTours.length !== 1 && 's'}</p>
           </motion.div>
 
@@ -284,7 +285,7 @@ export default function ToursSelva() {
                           <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                             <span className="text-2xl font-bold text-primary">USD ${tour.price}</span>
                             <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                              Ver más <ChevronRight size={16} />
+                              {t.common.viewDetails} <ChevronRight size={16} />
                             </span>
                           </div>
                         </div>
@@ -297,13 +298,13 @@ export default function ToursSelva() {
           ) : (
             <div className="text-center py-16 bg-green-50 rounded-3xl">
               <TreePine className="w-16 h-16 text-green-500 mx-auto mb-4" />
-              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">No se encontraron tours</h3>
+              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{t.regionPage.noTours}</h3>
               <p className="text-gray-600 mb-6">Prueba con otros filtros o categorías</p>
               <button 
                 onClick={() => setActiveCategory("todos")}
                 className="inline-block bg-green-600 text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer"
               >
-                Ver todos los tours de Selva
+                {t.regionPage.viewTours}
               </button>
             </div>
           )}
@@ -322,7 +323,7 @@ export default function ToursSelva() {
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6">
-              ¿Listo para explorar la Amazonía?
+              {t.regionPage.selva.cta}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
               Vive una experiencia única en el pulmón del mundo

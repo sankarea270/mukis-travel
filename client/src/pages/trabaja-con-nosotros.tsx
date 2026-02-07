@@ -9,6 +9,7 @@ import {
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { useLanguage } from "@/i18n";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -173,6 +174,7 @@ const values = [
 ];
 
 export default function TrabajaConNosotros() {
+  const { t } = useLanguage();
   const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
   const [filter, setFilter] = useState<string>("Todos");
 
@@ -218,9 +220,9 @@ export default function TrabajaConNosotros() {
             className="text-center text-white"
           >
             <nav className="flex justify-center items-center gap-2 text-sm mb-6 text-white/80">
-              <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+              <Link href="/" className="hover:text-white transition-colors">{t.nav.home}</Link>
               <ChevronRight size={14} />
-              <span className="text-white font-medium">Trabaja con Nosotros</span>
+              <span className="text-white font-medium">{t.workPage.title}</span>
             </nav>
             
             <motion.div
@@ -233,10 +235,10 @@ export default function TrabajaConNosotros() {
             </motion.div>
             
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6">
-              ¡Únete a Nuestro Equipo!
+              {t.workPage.title}
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-              Forma parte de la familia Mukis Travel y ayúdanos a crear experiencias inolvidables para viajeros de todo el mundo.
+              {t.workPage.subtitle}
             </p>
             
             <motion.div
@@ -279,7 +281,7 @@ export default function TrabajaConNosotros() {
             className="text-center mb-12"
           >
             <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">
-              Nuestros Valores
+              {t.workPage.values}
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
               Los principios que nos guían cada día en nuestra misión de mostrar lo mejor del Perú
@@ -316,10 +318,10 @@ export default function TrabajaConNosotros() {
             className="text-center mb-12"
           >
             <span className="inline-block bg-primary/10 text-primary font-bold px-4 py-2 rounded-full text-sm mb-4">
-              BENEFICIOS
+              {t.workPage.benefits}
             </span>
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-4">
-              ¿Por qué trabajar con nosotros?
+              {t.workPage.benefits}
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
               Ofrecemos un ambiente de trabajo único donde podrás crecer profesional y personalmente
@@ -365,7 +367,7 @@ export default function TrabajaConNosotros() {
             className="text-center mb-12"
           >
             <span className="inline-block bg-accent/20 text-accent font-bold px-4 py-2 rounded-full text-sm mb-4">
-              VACANTES DISPONIBLES
+              {t.workPage.openPositions}
             </span>
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-4">
               Posiciones Abiertas
@@ -416,7 +418,7 @@ export default function TrabajaConNosotros() {
                       </div>
                       {position.isUrgent && (
                         <span className="bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full animate-pulse">
-                          URGENTE
+                          {t.workPage.urgent}
                         </span>
                       )}
                     </div>
@@ -497,7 +499,7 @@ export default function TrabajaConNosotros() {
             className="text-center mb-12"
           >
             <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">
-              Proceso de Selección
+              {t.workPage.selectionProcess}
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
               Nuestro proceso es transparente y diseñado para encontrar el mejor talento
@@ -560,7 +562,7 @@ export default function TrabajaConNosotros() {
               className="inline-flex items-center gap-2 bg-white text-accent font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-all hover:scale-105"
             >
               <Send size={20} />
-              Enviar CV Espontáneo
+              {t.workPage.sendCV}
             </a>
           </motion.div>
         </div>

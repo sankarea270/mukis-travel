@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Clock, MapPin, Percent, ArrowRight } from "lucide-react";
 import { tours } from "@/data/tours";
+import { useLanguage } from "@/i18n";
 
 export function Ofertas() {
-  const offerTours = tours.filter((t) => t.isOffer);
+  const { t } = useLanguage();
+  const offerTours = tours.filter((tour) => tour.isOffer);
 
   return (
     <section className="py-20 bg-linear-to-br from-red-50 to-orange-50 relative overflow-hidden">
@@ -26,14 +28,14 @@ export function Ofertas() {
             className="inline-flex items-center gap-2 bg-red-500 text-white font-bold px-6 py-2 rounded-full mb-6"
           >
             <Percent size={20} />
-            OFERTAS ESPECIALES
+            {t.offers.badge}
           </motion.div>
           
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900">
-            ¡No te pierdas estas ofertas!
+            {t.offers.title}
           </h2>
           <p className="mt-4 text-gray-600">
-            Aprovecha nuestros descuentos exclusivos en los tours más populares. Ofertas por tiempo limitado.
+            {t.offers.subtitle}
           </p>
         </motion.div>
 
@@ -107,10 +109,10 @@ export function Ofertas() {
                             </span>
                           )}
                         </div>
-                        <span className="text-xs text-gray-500">por persona</span>
+                        <span className="text-xs text-gray-500">{t.common.from} / {t.common.person}</span>
                       </div>
                       <span className="bg-red-500 text-white font-bold px-4 py-2 rounded-xl group-hover:bg-red-600 transition-colors flex items-center gap-2">
-                        Reservar <ArrowRight size={16} />
+                        {t.offers.book} <ArrowRight size={16} />
                       </span>
                     </div>
                   </div>
@@ -129,7 +131,7 @@ export function Ofertas() {
         >
           <Link href="/paquetes">
             <span className="inline-flex items-center gap-2 text-primary font-bold text-lg hover:gap-4 transition-all cursor-pointer">
-              Ver todos los paquetes <ArrowRight size={20} />
+              {t.offers.viewAll} <ArrowRight size={20} />
             </span>
           </Link>
         </motion.div>

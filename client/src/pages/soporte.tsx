@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { useLanguage } from "@/i18n";
 import { motion } from "framer-motion";
 import { 
   Phone, Mail, MapPin, Clock, MessageCircle, HelpCircle, 
@@ -66,6 +67,7 @@ const socialLinks = [
 ];
 
 export default function Soporte() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -103,11 +105,10 @@ export default function Soporte() {
               <Headphones className="w-10 h-10 text-white" />
             </div>
             <h1 className="font-heading font-bold text-4xl md:text-5xl text-white mb-6">
-              Centro de Soporte
+              {t.supportPage.title}
             </h1>
             <p className="text-white/90 text-lg md:text-xl leading-relaxed">
-              Estamos aquí para ayudarte. Contáctanos por el canal que prefieras 
-              y te responderemos lo antes posible.
+              {t.supportPage.subtitle}
             </p>
           </motion.div>
         </div>
@@ -164,15 +165,15 @@ export default function Soporte() {
                   <Send className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h2 className="font-heading font-bold text-2xl text-gray-900">Envíanos un mensaje</h2>
-                  <p className="text-gray-500 text-sm">Te responderemos en menos de 24 horas</p>
+                  <h2 className="font-heading font-bold text-2xl text-gray-900">{t.contactPage.form.send}</h2>
+                  <p className="text-gray-500 text-sm">{t.supportPage.subtitle}</p>
                 </div>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Nombre completo *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.contactPage.form.name} *</label>
                     <input
                       type="text"
                       required
@@ -183,7 +184,7 @@ export default function Soporte() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.contactPage.form.email} *</label>
                     <input
                       type="email"
                       required
@@ -197,7 +198,7 @@ export default function Soporte() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.contactPage.form.phone}</label>
                     <input
                       type="tel"
                       value={formData.phone}
@@ -207,7 +208,7 @@ export default function Soporte() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Asunto *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.supportPage.form.category} *</label>
                     <select
                       required
                       value={formData.subject}
@@ -215,18 +216,18 @@ export default function Soporte() {
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     >
                       <option value="">Selecciona...</option>
-                      <option value="Consulta de tour">Consulta de tour</option>
-                      <option value="Reserva existente">Reserva existente</option>
-                      <option value="Modificar reserva">Modificar reserva</option>
-                      <option value="Cancelación">Cancelación</option>
-                      <option value="Queja o reclamo">Queja o reclamo</option>
-                      <option value="Otro">Otro</option>
+                      <option value="Consulta de tour">{t.supportPage.form.options.tourQuery}</option>
+                      <option value="Reserva existente">{t.supportPage.form.options.existingBooking}</option>
+                      <option value="Modificar reserva">{t.supportPage.form.options.modifyBooking}</option>
+                      <option value="Cancelación">{t.supportPage.form.options.cancellation}</option>
+                      <option value="Queja o reclamo">{t.supportPage.form.options.complaint}</option>
+                      <option value="Otro">{t.contactPage.form.subjectOptions.other}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Mensaje *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t.contactPage.form.message} *</label>
                   <textarea
                     required
                     rows={4}
@@ -244,7 +245,7 @@ export default function Soporte() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Send size={18} />
-                  Enviar Mensaje
+                  {t.contactPage.form.send}
                 </motion.button>
               </form>
             </div>
@@ -261,8 +262,8 @@ export default function Soporte() {
                 <HelpCircle className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h2 className="font-heading font-bold text-2xl text-gray-900">Preguntas Frecuentes</h2>
-                <p className="text-gray-500 text-sm">Respuestas rápidas a dudas comunes</p>
+                <h2 className="font-heading font-bold text-2xl text-gray-900">{t.supportPage.faq}</h2>
+                <p className="text-gray-500 text-sm">{t.supportPage.subtitle}</p>
               </div>
             </div>
 
@@ -308,7 +309,7 @@ export default function Soporte() {
             <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6">
               <h3 className="font-heading font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-primary" />
-                Nuestra Oficina
+                {t.contactPage.offices}
               </h3>
               <div className="space-y-3 text-gray-600">
                 <p className="flex items-start gap-3">
@@ -326,7 +327,7 @@ export default function Soporte() {
               </div>
 
               <div className="mt-6 pt-4 border-t border-gray-200">
-                <p className="text-sm text-gray-500 mb-3">Síguenos en redes sociales</p>
+                <p className="text-sm text-gray-500 mb-3">{t.contactPage.followUs}</p>
                 <div className="flex gap-3">
                   {socialLinks.map((social) => (
                     <a
@@ -353,21 +354,21 @@ export default function Soporte() {
             <div className="flex items-center gap-3 text-gray-600">
               <Shield className="w-8 h-8 text-primary" />
               <div>
-                <p className="font-semibold text-gray-900">Pago Seguro</p>
+                <p className="font-semibold text-gray-900">{t.supportPage.securePay}</p>
                 <p className="text-xs">Transacciones protegidas</p>
               </div>
             </div>
             <div className="flex items-center gap-3 text-gray-600">
               <FileText className="w-8 h-8 text-primary" />
               <div>
-                <p className="font-semibold text-gray-900">Autorizado MINCETUR</p>
+                <p className="font-semibold text-gray-900">{t.supportPage.authorized}</p>
                 <p className="text-xs">Operador turístico oficial</p>
               </div>
             </div>
             <div className="flex items-center gap-3 text-gray-600">
               <Headphones className="w-8 h-8 text-primary" />
               <div>
-                <p className="font-semibold text-gray-900">Soporte 24/7</p>
+                <p className="font-semibold text-gray-900">{t.supportPage.support247}</p>
                 <p className="text-xs">Siempre disponibles</p>
               </div>
             </div>

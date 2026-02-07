@@ -1,43 +1,48 @@
 import { motion } from "framer-motion";
 import { Compass, MapPin, Calendar, HelpCircle, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/i18n";
 
-const suggestions = [
-  {
-    icon: Compass,
-    title: "¿Primera vez en Perú?",
-    description: "Te recomendamos empezar por Cusco y Machu Picchu, la experiencia más icónica del país.",
-    link: "/paquetes/machu-picchu-full-day",
-    color: "from-teal-800 to-teal-950 border-teal-500/20",
-    accent: "text-teal-400"
-  },
-  {
-    icon: MapPin,
-    title: "¿Buscas aventura?",
-    description: "La Montaña de Colores y la Laguna Humantay son perfectas para los amantes del trekking.",
-    link: "/paquetes/montana-de-colores",
-    color: "from-orange-800 to-orange-950 border-orange-500/20",
-    accent: "text-orange-400"
-  },
-  {
-    icon: Calendar,
-    title: "¿Poco tiempo?",
-    description: "Tenemos tours de medio día y full day para que aproveches al máximo tu visita.",
-    link: "/paquetes",
-    color: "from-indigo-800 to-indigo-950 border-indigo-500/20",
-    accent: "text-indigo-400"
-  },
-  {
-    icon: HelpCircle,
-    title: "¿No sabes por dónde empezar?",
-    description: "Nuestros asesores pueden ayudarte a armar el itinerario perfecto según tus gustos.",
-    link: "https://wa.me/51930476116",
-    color: "from-amber-800 to-amber-950 border-amber-500/20",
-    accent: "text-amber-400"
-  }
-];
+
 
 export function WhereToGo() {
+  const { t } = useLanguage();
+
+  const suggestions = [
+    {
+      icon: Compass,
+      title: t.whereToGo.cards.firstTime.title,
+      description: t.whereToGo.cards.firstTime.desc,
+      link: "/paquetes/machu-picchu-full-day",
+      color: "from-teal-800 to-teal-950 border-teal-500/20",
+      accent: "text-teal-400"
+    },
+    {
+      icon: MapPin,
+      title: t.whereToGo.cards.adventure.title,
+      description: t.whereToGo.cards.adventure.desc,
+      link: "/paquetes/montana-de-colores",
+      color: "from-orange-800 to-orange-950 border-orange-500/20",
+      accent: "text-orange-400"
+    },
+    {
+      icon: Calendar,
+      title: t.whereToGo.cards.shortTime.title,
+      description: t.whereToGo.cards.shortTime.desc,
+      link: "/paquetes",
+      color: "from-indigo-800 to-indigo-950 border-indigo-500/20",
+      accent: "text-indigo-400"
+    },
+    {
+      icon: HelpCircle,
+      title: t.whereToGo.cards.dontKnow.title,
+      description: t.whereToGo.cards.dontKnow.desc,
+      link: "https://wa.me/51930476116",
+      color: "from-amber-800 to-amber-950 border-amber-500/20",
+      accent: "text-amber-400"
+    }
+  ];
+
   return (
     <section className="py-24 bg-gray-50 relative overflow-hidden">
       {/* Patrón de fondo sutil */}
@@ -65,13 +70,13 @@ export function WhereToGo() {
             transition={{ delay: 0.2 }}
             className="inline-block bg-primary/10 text-primary font-bold tracking-[0.3em] uppercase text-xs px-6 py-2 rounded-full mb-6 border border-primary/20"
           >
-            Tu Viaje Perfecto
+            {t.whereToGo.badge}
           </motion.span>
           <h2 className="font-heading font-black text-4xl md:text-5xl text-gray-900 uppercase tracking-tight mb-6">
-            ¿Aún <span className="text-primary italic font-accent lowercase">indeciso</span> sobre tu destino?
+            {t.whereToGo.title}
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Perú ofrece infinitas posibilidades. Hemos seleccionado estas ideas basadas en tu perfil de viajero para facilitarte la elección.
+            {t.whereToGo.subtitle}
           </p>
         </motion.div>
 
@@ -148,7 +153,7 @@ export function WhereToGo() {
 
                     {/* Action Link */}
                     <div className="flex items-center gap-3 text-sm font-black uppercase tracking-widest text-[#D4AF37] group-hover:translate-x-2 transition-transform duration-500">
-                      Ver Propuesta
+                      {t.whereToGo.viewProposal}
                       <ArrowRight size={18} />
                     </div>
                   </div>

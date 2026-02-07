@@ -2,9 +2,12 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Calendar, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/tours";
+import { useLanguage } from "@/i18n";
 
 export function Noticias() {
+  const { t, language } = useLanguage();
   const recentPosts = blogPosts.slice(0, 4);
+  const dateLocale = language === "en" ? "en-US" : language === "pt" ? "pt-BR" : "es-PE";
 
   return (
     <section className="py-20 bg-gray-50">
@@ -18,18 +21,18 @@ export function Noticias() {
         >
           <div>
             <span className="text-primary font-bold tracking-wider uppercase text-sm">
-              Blog de Viajes
+              {t.news.label}
             </span>
             <h2 className="font-heading font-bold text-3xl md:text-4xl mt-2 text-gray-900">
-              Noticias y Artículos
+              {t.news.title}
             </h2>
             <p className="mt-2 text-gray-600 max-w-lg">
-              Tips, guías y consejos para tu próxima aventura en Perú.
+              {t.news.subtitle}
             </p>
           </div>
           <Link href="/blog">
             <span className="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all cursor-pointer">
-              Ver todos los artículos <ArrowRight size={18} />
+              {t.news.viewAll} <ArrowRight size={18} />
             </span>
           </Link>
         </motion.div>
@@ -64,7 +67,7 @@ export function Noticias() {
                   <div className="p-5 flex-grow flex flex-col">
                     <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
                       <Calendar size={14} className="text-primary" />
-                      {new Date(post.date).toLocaleDateString("es-PE", {
+                      {new Date(post.date).toLocaleDateString(dateLocale, {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
@@ -76,7 +79,7 @@ export function Noticias() {
                     </h3>
 
                     <span className="inline-flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all mt-auto">
-                      Leer más <ArrowRight size={14} />
+                      {t.news.readMore} <ArrowRight size={14} />
                     </span>
                   </div>
                 </article>

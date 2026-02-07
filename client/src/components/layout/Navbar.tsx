@@ -3,66 +3,50 @@ import { Phone, Mail, Menu, X, Globe, ChevronDown, Mountain, Sun, TreePine, Comp
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/i18n";
+import { LanguageSelector } from "@/components/ui/LanguageSelector";
 
-// Submenú de Tours por Región
-const regionSubmenu = [
+// Submenú de Tours por Región - structure only, labels come from translations
+const regionSubmenuData = [
   {
     id: "costa",
-    name: "Costa",
     icon: Sun,
-    description: "Playas, desiertos y oasis",
     color: "from-amber-400 to-orange-500",
     href: "/tours/costa",
-    tours: ["Paracas & Islas Ballestas", "Huacachina", "Líneas de Nazca", "Playas del Norte"]
   },
   {
     id: "sierra",
-    name: "Sierra",
     icon: Mountain,
-    description: "Andes, montañas y culturas milenarias",
     color: "from-emerald-400 to-teal-600",
     href: "/tours/sierra",
-    tours: ["Machu Picchu", "Montaña de Colores", "Cusco", "Valle Sagrado"]
   },
   {
     id: "selva",
-    name: "Selva",
     icon: TreePine,
-    description: "Amazonía y biodiversidad única",
     color: "from-green-500 to-emerald-700",
     href: "/tours/selva",
-    tours: ["Iquitos", "Puerto Maldonado", "Manu", "Tambopata"]
   }
 ];
 
-// Submenú de Categorías Temáticas
-const categorySubmenu = [
+// Submenú de Categorías Temáticas - structure only
+const categorySubmenuData = [
   {
     id: "cultural",
-    name: "Tours Culturales",
     icon: Sparkles,
-    description: "Historia y tradiciones ancestrales",
     color: "from-purple-400 to-indigo-600",
     href: "/categorias/cultural",
-    examples: ["Machu Picchu", "City Tour Cusco", "Valle Sagrado"]
   },
   {
     id: "aventura",
-    name: "Tours de Aventura",
     icon: Compass,
-    description: "Adrenalina y deportes extremos",
     color: "from-orange-400 to-amber-600",
     href: "/categorias/aventura",
-    examples: ["Montaña de Colores", "Trekking", "Rafting"]
   },
   {
     id: "naturaleza",
-    name: "Tours de Naturaleza",
     icon: Heart,
-    description: "Paisajes y vida silvestre",
     color: "from-teal-400 to-cyan-600",
     href: "/categorias/naturaleza",
-    examples: ["Laguna Humantay", "Tambopata", "Paracas"]
   }
 ];
 
@@ -73,6 +57,20 @@ export function Navbar() {
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const [location] = useLocation();
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
+  const { t } = useLanguage();
+
+  // Build translated submenus
+  const regionSubmenu = regionSubmenuData.map((r) => ({
+    ...r,
+    name: (t.regions as any)[r.id]?.name ?? r.id,
+    description: (t.regions as any)[r.id]?.description ?? "",
+  }));
+
+  const categorySubmenu = categorySubmenuData.map((c) => ({
+    ...c,
+    name: (t.categoryTypes as any)[c.id]?.name ?? c.id,
+    description: (t.categoryTypes as any)[c.id]?.description ?? "",
+  }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,9 +119,7 @@ export function Navbar() {
             <span>+51 960 470 892</span>
           </a>
           <div className="flex items-center gap-1 cursor-pointer hover:text-primary">
-            <Globe className="w-3 h-3" />
-            <span>ES</span>
-            <ChevronDown className="w-3 h-3" />
+            <LanguageSelector scrolled={scrolled} />
           </div>
         </div>
       </div>
@@ -153,7 +149,7 @@ export function Navbar() {
                   "text-[10px] uppercase tracking-[0.2em] transition-colors",
                   scrolled ? "text-gray-500" : "text-white/70"
                 )}>
-                  Agencia de Viajes
+                  {t.nav.agencyLabel}
                 </span>
               </div>
             </motion.div>
@@ -168,7 +164,7 @@ export function Navbar() {
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
                 location === "/" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
               )}>
-                Inicio
+                {t.nav.home}
               </span>
             </Link>
 
@@ -179,7 +175,7 @@ export function Navbar() {
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
                 location === "/paquetes" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
               )}>
-                Paquetes
+                {t.nav.packages}
               </span>
             </Link>
 
@@ -194,7 +190,7 @@ export function Navbar() {
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
                 activeDropdown === 'tours' && (scrolled ? "bg-gray-100" : "bg-white/10")
               )}>
-                Tours
+                {t.nav.tours}
                 <ChevronDown className={cn(
                   "w-4 h-4 transition-transform duration-300",
                   activeDropdown === 'tours' && "rotate-180"
@@ -213,7 +209,7 @@ export function Navbar() {
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
                         <MapPin className="w-5 h-5 text-primary" />
-                        <h3 className="font-heading font-bold text-gray-900">Tours por Región</h3>
+                        <h3 className="font-heading font-bold text-gray-900">{t.nav.toursByRegion}</h3>
                       </div>
                       
                       <div className="grid grid-cols-3 gap-4">
@@ -233,11 +229,6 @@ export function Navbar() {
                                 <h4 className="font-bold text-white text-lg relative z-10">{region.name}</h4>
                                 <p className="text-white/80 text-xs mt-1 relative z-10">{region.description}</p>
                               </div>
-                              <div className="mt-2 space-y-1">
-                                {region.tours.slice(0, 3).map((tour, idx) => (
-                                  <p key={idx} className="text-xs text-gray-500 truncate">• {tour}</p>
-                                ))}
-                              </div>
                             </motion.div>
                           </Link>
                         ))}
@@ -245,7 +236,7 @@ export function Navbar() {
 
                       <Link href="/tours">
                         <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-center gap-2 text-primary font-medium hover:underline cursor-pointer">
-                          Ver todos los tours
+                          {t.nav.viewAllTours}
                           <ChevronDown className="w-4 h-4 -rotate-90" />
                         </div>
                       </Link>
@@ -266,7 +257,7 @@ export function Navbar() {
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
                 activeDropdown === 'categorias' && (scrolled ? "bg-gray-100" : "bg-white/10")
               )}>
-                Categorías
+                {t.nav.categories}
                 <ChevronDown className={cn(
                   "w-4 h-4 transition-transform duration-300",
                   activeDropdown === 'categorias' && "rotate-180"
@@ -285,7 +276,7 @@ export function Navbar() {
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
                         <Compass className="w-5 h-5 text-primary" />
-                        <h3 className="font-heading font-bold text-gray-900">Tipos de Tours</h3>
+                        <h3 className="font-heading font-bold text-gray-900">{t.nav.tourTypes}</h3>
                       </div>
                       
                       <div className="space-y-3">
@@ -325,7 +316,7 @@ export function Navbar() {
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
                 location === "/sobre-nosotros" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
               )}>
-                Nosotros
+                {t.nav.aboutUs}
               </span>
             </Link>
 
@@ -337,7 +328,7 @@ export function Navbar() {
                 location === "/soporte" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
               )}>
                 <Headphones className="w-4 h-4" />
-                Soporte
+                {t.nav.support}
               </span>
             </Link>
 
@@ -348,7 +339,7 @@ export function Navbar() {
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
                 location === "/contacto" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
               )}>
-                Contacto
+                {t.nav.contact}
               </span>
             </Link>
             
@@ -362,7 +353,7 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <Phone size={16} />
-              Cotizar
+              {t.nav.quote}
             </motion.a>
           </nav>
 
@@ -423,7 +414,7 @@ export function Navbar() {
                     )}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Inicio
+                    {t.nav.home}
                   </motion.span>
                 </Link>
 
@@ -436,7 +427,7 @@ export function Navbar() {
                     )}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Paquetes
+                    {t.nav.packages}
                   </motion.span>
                 </Link>
 
@@ -449,7 +440,7 @@ export function Navbar() {
                   >
                     <span className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
-                      Tours por Región
+                      {t.nav.toursByRegion}
                     </span>
                     <ChevronDown className={cn(
                       "w-5 h-5 transition-transform duration-300",
@@ -499,7 +490,7 @@ export function Navbar() {
                   >
                     <span className="flex items-center gap-2">
                       <Compass className="w-4 h-4" />
-                      Categorías
+                      {t.nav.categories}
                     </span>
                     <ChevronDown className={cn(
                       "w-5 h-5 transition-transform duration-300",
@@ -551,7 +542,7 @@ export function Navbar() {
                     )}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Nosotros
+                    {t.nav.aboutUs}
                   </motion.span>
                 </Link>
 
@@ -565,7 +556,7 @@ export function Navbar() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Headphones className="w-4 h-4" />
-                    Soporte
+                    {t.nav.support}
                   </motion.span>
                 </Link>
 
@@ -578,11 +569,14 @@ export function Navbar() {
                     )}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Contacto
+                    {t.nav.contact}
                   </motion.span>
                 </Link>
                 
                 <div className="pt-4 mt-2 border-t border-gray-100 space-y-3">
+                  {/* Mobile Language Selector */}
+                  <LanguageSelector variant="mobile" />
+
                   <motion.a 
                     href="https://wa.me/51960470892"
                     target="_blank"
@@ -591,7 +585,7 @@ export function Navbar() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Phone size={18} />
-                    Cotizar Tour
+                    {t.nav.quote}
                   </motion.a>
 
                   <div className="flex items-center justify-center gap-4 text-sm text-gray-500">

@@ -1,27 +1,29 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { useLanguage } from "@/i18n";
 import { tours } from "@/data/tours";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Clock, MapPin, ChevronRight, Heart, Leaf, Bird } from "lucide-react";
 
-const categoryInfo = {
-  title: "Tours de Naturaleza",
-  subtitle: "Paisajes y Vida Silvestre",
-  description: "Conecta con la naturaleza en su estado más puro. Lagunas cristalinas, bosques infinitos y la fauna más diversa del planeta.",
-  icon: Heart,
-  color: "from-teal-500 to-cyan-600",
-  bgImage: "https://images.unsplash.com/photo-1594905247689-a3b60b5bc0e9?auto=format&fit=crop&q=80&w=1920",
-  highlights: [
-    { icon: Leaf, title: "Ecosistemas Únicos", description: "Biodiversidad extrema" },
-    { icon: Bird, title: "Fauna Silvestre", description: "Especies endémicas" },
-    { icon: Heart, title: "Conexión Natural", description: "Experiencias inmersivas" },
-  ]
-};
-
 export default function CategoriaNaturaleza() {
+  const { t } = useLanguage();
   const naturaTours = tours.filter((tour) => tour.category === "naturaleza");
+
+  const categoryInfo = {
+    title: t.categoryPage.naturaleza.title,
+    subtitle: t.categoryPage.naturaleza.heroSubtitle,
+    description: t.categoryPage.naturaleza.subtitle,
+    icon: Heart,
+    color: "from-teal-500 to-cyan-600",
+    bgImage: "https://images.unsplash.com/photo-1594905247689-a3b60b5bc0e9?auto=format&fit=crop&q=80&w=1920",
+    highlights: [
+      { icon: Leaf, title: t.categoryPage.naturaleza.highlight1Title, description: t.categoryPage.naturaleza.highlight1Desc },
+      { icon: Bird, title: t.categoryPage.naturaleza.highlight2Title, description: t.categoryPage.naturaleza.highlight2Desc },
+      { icon: Heart, title: t.categoryPage.naturaleza.highlight3Title, description: t.categoryPage.naturaleza.highlight3Desc },
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,7 +51,7 @@ export default function CategoriaNaturaleza() {
               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${categoryInfo.color} flex items-center justify-center shadow-xl`}>
                 <categoryInfo.icon className="w-7 h-7 text-white" />
               </div>
-              <span className="text-teal-300 font-bold text-lg tracking-wide uppercase">Categoría</span>
+              <span className="text-teal-300 font-bold text-lg tracking-wide uppercase">{t.categoryPage.categoryLabel}</span>
             </div>
             
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-4 leading-tight">
@@ -95,10 +97,10 @@ export default function CategoriaNaturaleza() {
             className="text-center mb-12"
           >
             <h2 className="font-heading font-bold text-3xl text-gray-900 mb-4">
-              {naturaTours.length} Tours de Naturaleza Disponibles
+              {naturaTours.length} {t.categoryPage.naturaleza.title} {t.categoryPage.available}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Descubre los paisajes más impresionantes del Perú
+              {t.categoryPage.naturaleza.gridSubtitle}
             </p>
           </motion.div>
 
@@ -122,11 +124,11 @@ export default function CategoriaNaturaleza() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="absolute top-4 left-4 bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                          NATURALEZA
+                          {t.categoryPage.naturaleza.badge}
                         </div>
                         {tour.isOffer && (
                           <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            OFERTA
+                            {t.packagesPage.offer}
                           </div>
                         )}
                       </div>
@@ -154,7 +156,7 @@ export default function CategoriaNaturaleza() {
                             <span className="text-2xl font-bold text-primary ml-2">USD ${tour.price}</span>
                           </div>
                           <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                            Ver más <ChevronRight size={16} />
+                            {t.common.viewMore} <ChevronRight size={16} />
                           </span>
                         </div>
                       </div>
@@ -166,11 +168,11 @@ export default function CategoriaNaturaleza() {
           ) : (
             <div className="text-center py-16 bg-teal-50 rounded-3xl">
               <Heart className="w-16 h-16 text-teal-400 mx-auto mb-4" />
-              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">Tours de Naturaleza Próximamente</h3>
-              <p className="text-gray-600 mb-6">Estamos preparando experiencias naturales increíbles</p>
+              <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{t.categoryPage.naturaleza.emptyTitle}</h3>
+              <p className="text-gray-600 mb-6">{t.categoryPage.naturaleza.emptySubtitle}</p>
               <Link href="/paquetes">
                 <span className="inline-block bg-primary text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer">
-                  Ver todos los paquetes
+                  {t.categoryPage.viewAllPackages}
                 </span>
               </Link>
             </div>
@@ -190,10 +192,10 @@ export default function CategoriaNaturaleza() {
             viewport={{ once: true }}
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-white mb-6">
-              ¿Listo para conectar con la naturaleza?
+              {t.categoryPage.naturaleza.ctaTitle}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Déjanos llevarte a los rincones más bellos del Perú
+              {t.categoryPage.naturaleza.ctaSubtitle}
             </p>
             <a 
               href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20de%20naturaleza"
@@ -201,7 +203,7 @@ export default function CategoriaNaturaleza() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-teal-600 font-bold px-10 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"
             >
-              Consultar Ahora
+              {t.categoryPage.consultNow}
             </a>
           </motion.div>
         </div>

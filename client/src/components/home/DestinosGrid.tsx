@@ -1,46 +1,47 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { MapPin, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/i18n";
 
-const destinosPopulares = [
+const destinosBase = [
   {
+    key: "cusco" as const,
     name: "Cusco",
-    description: "Capital del Imperio Inca",
     image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=800",
     tours: 25,
     href: "/tours/sierra"
   },
   {
+    key: "lima" as const,
     name: "Lima",
-    description: "Capital Gastronómica",
     image: "https://images.unsplash.com/photo-1531968455001-5c5272a41129?auto=format&fit=crop&q=80&w=800",
     tours: 12,
     href: "/tours/costa"
   },
   {
+    key: "arequipa" as const,
     name: "Arequipa",
-    description: "La Ciudad Blanca",
     image: "/images/categories/arequipa.jpg",
     tours: 10,
     href: "/tours/sierra"
   },
   {
+    key: "ica" as const,
     name: "Ica",
-    description: "Desiertos y Oasis",
     image: "/images/categories/ica.jpg",
     tours: 8,
     href: "/tours/costa"
   },
   {
+    key: "puno" as const,
     name: "Puno",
-    description: "Lago Titicaca",
     image: "/images/categories/lago-titicaca.jpg",
     tours: 10,
     href: "/tours/sierra"
   },
   {
+    key: "puertoMaldonado" as const,
     name: "Puerto Maldonado",
-    description: "Puerta al Amazonas",
     image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=800",
     tours: 6,
     href: "/tours/selva"
@@ -48,6 +49,13 @@ const destinosPopulares = [
 ];
 
 export function DestinosGrid() {
+  const { t } = useLanguage();
+
+  const destinosPopulares = destinosBase.map((d) => ({
+    ...d,
+    description: (t.destinations.descriptions as Record<string, string>)[d.key] || d.name,
+  }));
+
   return (
     <section className="py-20 bg-gray-50 relative overflow-hidden">
       {/* Decorative SVG Pattern */}
@@ -72,13 +80,13 @@ export function DestinosGrid() {
         >
           <span className="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm bg-primary/10 px-4 py-2 rounded-full mb-4">
             <MapPin size={14} />
-            Explora el Perú
+            {t.destinations.badge}
           </span>
           <h2 className="font-heading font-bold text-3xl md:text-5xl text-gray-900">
-            ¿A Dónde Quieres Viajar?
+            {t.destinations.title}
           </h2>
           <p className="mt-4 text-gray-600">
-            Desde la costa del Pacífico hasta la selva amazónica, descubre los destinos más increíbles del Perú.
+            {t.destinations.subtitle}
           </p>
         </motion.div>
 
@@ -112,7 +120,7 @@ export function DestinosGrid() {
                   {/* Tours Badge */}
                   <div className="absolute top-4 right-4">
                     <span className="bg-primary/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                      {destino.tours}+ Tours
+                      {destino.tours}+ {t.destinations.tours}
                     </span>
                   </div>
 
@@ -124,7 +132,7 @@ export function DestinosGrid() {
                     <p className="text-white/80 text-sm mb-3">{destino.description}</p>
                     
                     <span className="inline-flex items-center gap-2 text-white/80 text-sm group-hover:text-primary transition-colors">
-                      Explorar destino
+                      {t.destinations.explore}
                       <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
@@ -151,7 +159,7 @@ export function DestinosGrid() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Ver todos los destinos
+              {t.destinations.viewAll}
               <ArrowRight size={20} />
             </motion.span>
           </Link>

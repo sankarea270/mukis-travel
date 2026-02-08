@@ -19,12 +19,16 @@ import ToursSelva from "@/pages/tours-selva";
 import CategoriaCultural from "@/pages/categoria-cultural";
 import CategoriaAventura from "@/pages/categoria-aventura";
 import CategoriaNaturaleza from "@/pages/categoria-naturaleza";
+import CategoriaTrekking from "@/pages/categoria-trekking";
+import CategoriaVivencial from "@/pages/categoria-vivencial";
+import CategoriaMistico from "@/pages/categoria-mistico";
 import Soporte from "@/pages/soporte";
 import TerminosCondiciones from "@/pages/terminos-condiciones";
 import PoliticaPrivacidad from "@/pages/politica-privacidad";
 import TrabajaConNosotros from "@/pages/trabaja-con-nosotros";
 import Contacto from "@/pages/contacto";
 import GuiaPeru from "@/pages/guia-peru";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function Router() {
   // Ensure base does not end with a trailing slash for wouter
@@ -74,6 +78,7 @@ function Router() {
 
   return (
     <WouterRouter hook={shouldUseHash ? useHashLocation : usePathnameLocation}>
+      <ScrollToTop />
       <Switch>
       <Route path="/" component={Home} />
       <Route path="/paquetes" component={Paquetes} />
@@ -85,6 +90,9 @@ function Router() {
       <Route path="/categorias/cultural" component={CategoriaCultural} />
       <Route path="/categorias/aventura" component={CategoriaAventura} />
       <Route path="/categorias/naturaleza" component={CategoriaNaturaleza} />
+      <Route path="/categorias/trekking" component={CategoriaTrekking} />
+      <Route path="/categorias/vivencial" component={CategoriaVivencial} />
+      <Route path="/categorias/mistico" component={CategoriaMistico} />
       <Route path="/sobre-nosotros" component={SobreNosotros} />
       <Route path="/soporte" component={Soporte} />
       <Route path="/terminos-condiciones" component={TerminosCondiciones} />

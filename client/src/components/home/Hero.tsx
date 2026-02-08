@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
-import { ChevronDown, Play, MapPin, Sparkles, ArrowRight, ArrowLeft } from "lucide-react";
+import { ChevronDown, Play, MapPin, Sparkles, Star, ArrowRight, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/i18n";
 
 const slidesData = [
@@ -206,12 +206,55 @@ export function Hero() {
                   </button>
                 </Link>
                 
-                <div className="hidden lg:flex flex-col gap-1">
-                  <div className="flex text-primary">
-                    {[1,2,3,4,5].map(i => <Sparkles key={i} size={10} fill="currentColor" />)}
+                <motion.div 
+                  className="hidden lg:flex flex-col items-center justify-center p-4 bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 hover:border-primary/50 transition-all duration-500 group/stars"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <div className="flex gap-1.5 mb-2">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ 
+                          delay: 1 + (i * 0.1),
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 20
+                        }}
+                        whileHover={{ 
+                          y: -5,
+                          scale: 1.2,
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        <Star 
+                          size={16} 
+                          className="text-[#FFD700] fill-[#FFD700] drop-shadow-[0_0_12px_rgba(255,215,0,0.8)] transition-colors"
+                        />
+                      </motion.div>
+                    ))}
                   </div>
-                  <span className="text-[10px] text-white/40 tracking-widest uppercase font-bold">{t.hero.premiumExperience}</span>
-                </div>
+                  <div className="relative overflow-hidden">
+                    <span className="text-[10px] text-white/60 tracking-[0.25em] uppercase font-bold group-hover/stars:text-white transition-colors duration-300 block">
+                      {t.hero.premiumExperience}
+                    </span>
+                    <motion.div 
+                      className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-primary to-transparent"
+                      initial={{ x: "-100%" }}
+                      whileInView={{ x: "100%" }}
+                      transition={{ 
+                        repeat: Infinity, 
+                        duration: 2, 
+                        delay: 2,
+                        ease: "linear",
+                        repeatDelay: 1
+                      }}
+                    />
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </AnimatePresence>

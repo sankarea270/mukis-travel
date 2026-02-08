@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Phone, Mail, Menu, X, Globe, ChevronDown, Mountain, Sun, TreePine, Compass, Heart, Sparkles, Headphones, MapPin } from "lucide-react";
+import { Phone, Mail, Menu, X, Globe, ChevronDown, Mountain, Sun, TreePine, Compass, Heart, Sparkles, Headphones, MapPin, Footprints, Users, Moon } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -33,20 +33,38 @@ const categorySubmenuData = [
   {
     id: "cultural",
     icon: Sparkles,
-    color: "from-purple-400 to-indigo-600",
+    color: "from-emerald-400 to-teal-500", 
     href: "/categorias/cultural",
   },
   {
     id: "aventura",
     icon: Compass,
-    color: "from-orange-400 to-amber-600",
+    color: "from-teal-500 to-emerald-600",
     href: "/categorias/aventura",
   },
   {
     id: "naturaleza",
     icon: Heart,
-    color: "from-teal-400 to-cyan-600",
+    color: "from-green-400 to-teal-500",
     href: "/categorias/naturaleza",
+  },
+  {
+    id: "trekking",
+    icon: Footprints,
+    color: "from-emerald-500 to-green-600",
+    href: "/categorias/trekking",
+  },
+  {
+    id: "vivencial",
+    icon: Users,
+    color: "from-teal-400 to-emerald-500",
+    href: "/categorias/vivencial",
+  },
+  {
+    id: "mistico",
+    icon: Moon,
+    color: "from-emerald-600 to-teal-700",
+    href: "/categorias/mistico",
   }
 ];
 
@@ -283,22 +301,26 @@ export function Navbar() {
                         {categorySubmenu.map((category) => (
                           <Link key={category.id} href={category.href}>
                             <motion.div 
-                              className="group flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors"
-                              whileHover={{ x: 4 }}
+                              className="group flex items-center gap-4 p-3 rounded-xl hover:bg-emerald-50/50 cursor-pointer transition-all duration-300 border border-transparent hover:border-emerald-100"
+                              whileHover={{ x: 4, scale: 1.02 }}
                             >
-                              <div className={cn(
-                                "w-12 h-12 rounded-xl bg-linear-to-br flex items-center justify-center",
-                                category.color
-                              )}>
+                              <motion.div 
+                                className={cn(
+                                  "w-12 h-12 rounded-xl bg-linear-to-br flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300",
+                                  category.color
+                                )}
+                                whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                                transition={{ duration: 0.4 }}
+                              >
                                 <category.icon className="w-6 h-6 text-white" />
-                              </div>
+                              </motion.div>
                               <div className="grow">
                                 <h4 className="font-semibold text-gray-900 group-hover:text-primary transition-colors">
                                   {category.name}
                                 </h4>
-                                <p className="text-xs text-gray-500">{category.description}</p>
+                                <p className="text-xs text-gray-500 line-clamp-1">{category.description}</p>
                               </div>
-                              <ChevronDown className="w-4 h-4 text-gray-400 -rotate-90 group-hover:translate-x-1 transition-transform" />
+                              <ChevronDown className="w-4 h-4 text-gray-300 -rotate-90 group-hover:translate-x-1 group-hover:text-primary transition-all duration-300" />
                             </motion.div>
                           </Link>
                         ))}

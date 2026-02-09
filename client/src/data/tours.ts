@@ -391,7 +391,7 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/citytour2.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/citytour3.jpg`
     ],
-    mapImage: `${import.meta.env.BASE_URL}images/categories/mapacity.png`,
+    mapImage: `${import.meta.env.BASE_URL}images/categories/citytour0.jpeg`,
     difficulty: "fácil",
     maxGroup: 25,
     startTime: "1:00 PM",
@@ -833,11 +833,11 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "naturaleza",
-    image: `${import.meta.env.BASE_URL}images/categories/palccoyo1.jpeg`,
+    image: `${import.meta.env.BASE_URL}images / categories / palccoyo1.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/palccoyo1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/palccoyo2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/palccoyo3.jpeg`
+      `${import.meta.env.BASE_URL}images / categories / palccoyo1.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / palccoyo2.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / palccoyo3.jpeg`
     ],
     featured: true,
     difficulty: "fácil",
@@ -887,12 +887,12 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "naturaleza",
-    image: `${import.meta.env.BASE_URL}images/categories/7lagunas1.jpeg`,
-    mapImage: `${import.meta.env.BASE_URL}images/categories/mapa7lagunas.jpeg`,
+    image: `${import.meta.env.BASE_URL}images / categories / 7lagunas1.jpeg`,
+    mapImage: `${import.meta.env.BASE_URL}images / categories / mapa7lagunas.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/7lagunas1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/7lagunas2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/7lagunas3.jpeg`
+      `${import.meta.env.BASE_URL}images / categories / 7lagunas1.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / 7lagunas2.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / 7lagunas3.jpeg`
     ],
     featured: true,
     difficulty: "moderado",
@@ -946,12 +946,12 @@ export const tours: Tour[] = [
     locationCoords: { lat: -14.4167, lng: -71.1833 },
     region: "sierra",
     category: "aventura",
-    image: `${import.meta.env.BASE_URL}images/categories/pallay1.jpeg`,
-    mapImage: `${import.meta.env.BASE_URL}images/categories/mapapallay.jpeg`,
+    image: `${import.meta.env.BASE_URL}images / categories / pallay1.jpeg`,
+    mapImage: `${import.meta.env.BASE_URL}images / categories / mapapallay.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/pallay1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/pallay2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/pallay3.jpeg`
+      `${import.meta.env.BASE_URL}images / categories / pallay1.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / pallay2.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / pallay3.jpeg`
     ],
     featured: true,
     difficulty: "moderado",
@@ -1003,12 +1003,12 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.9333, lng: -70.8167 },
     region: "sierra",
     category: "naturaleza",
-    image: `${import.meta.env.BASE_URL}images/categories/hielo1.jpeg`,
-    mapImage: `${import.meta.env.BASE_URL}images/categories/mapaglaciar.jpeg`,
+    image: `${import.meta.env.BASE_URL}images / categories / hielo1.jpeg`,
+    mapImage: `${import.meta.env.BASE_URL}images / categories / mapaglaciar.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/hielo1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/hielo2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/hielo3.jpeg`
+      `${import.meta.env.BASE_URL}images / categories / hielo1.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / hielo2.jpeg`,
+      `${import.meta.env.BASE_URL}images / categories / hielo3.jpeg`
     ],
     featured: true,
     difficulty: "fácil",

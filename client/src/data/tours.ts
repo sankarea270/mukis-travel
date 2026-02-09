@@ -27,12 +27,12 @@ export interface Tour {
   maxGroup?: number;
   startTime?: string;
   faqs?: { question: string; answer: string }[]; // Preguntas frecuentes específicas del tour
-  reviews?: { 
+  reviews?: {
     id: string;
-    name: string; 
+    name: string;
     avatar?: string;
-    rating: number; 
-    comment: string; 
+    rating: number;
+    comment: string;
     date: string;
     country?: string;
   }[];
@@ -561,7 +561,7 @@ export const tours: Tour[] = [
     price: 385.00,
     duration: "2 Días 1 Noche",
     tourType: "Paquete Turístico",
-    languages: ["Español", "Inglés"],
+    languages: ["Español", "Inglés", "Portugués"],
     location: "Cusco",
     region: "sierra",
     category: "cultural",
@@ -585,7 +585,7 @@ export const tours: Tour[] = [
     price: 20.00,
     duration: "5- 6 Horas",
     tourType: "Tour Cultural",
-    languages: ["Español"],
+    languages: ["Español", "Inglés", "Portugués"],
     location: "Maras",
     region: "sierra",
     category: "cultural",
@@ -606,15 +606,21 @@ export const tours: Tour[] = [
     price: 103.00,
     duration: "1 Día",
     tourType: "Aventura ATV",
-    languages: ["Español", "Inglés"],
+    languages: ["Español", "Inglés", "Portugués"],
     location: "Cusco",
     region: "sierra",
     category: "aventura",
     image: "https://images.unsplash.com/photo-1549557404-0c2d3080e227?auto=format&fit=crop&q=80&w=1600",
     gallery: [
+<<<<<<< HEAD
+      "/images/categories/cuatri0.jpeg",
+      "/images/categories/montañacolores2.jpeg",
+      "/images/categories/cuatri2.jpeg"
+=======
       `${import.meta.env.BASE_URL}images/categories/cuatri1.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/montañacolores2.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/cuatri2.jpeg`
+>>>>>>> 4db4de51f2f1c87876ca500d16daa635f1327ad7
     ],
     startTime: "4:00 AM",
     included: [

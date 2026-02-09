@@ -24,7 +24,7 @@ const certifications = [
   {
     name: "DIRCETUR",
     description: "Dirección Regional de Comercio Exterior y Turismo",
-    logo: "/images/categories/logom-removebg-preview.png",
+    logo: `${import.meta.env.BASE_URL}images/categories/logom-removebg-preview.png`,
     fallback: "DIRCETUR",
     row: 1
   },

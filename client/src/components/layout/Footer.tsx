@@ -112,7 +112,7 @@ export function Footer() {
           <div className="lg:col-span-1 space-y-6">
             <div className="flex items-center gap-3">
               <img
-                src="/images/categories/logom-removebg-preview.png"
+                src={`${import.meta.env.BASE_URL}images/categories/logom-removebg-preview.png`}
                 alt="Mukis Travel Logo"
                 className="w-14 h-14 object-contain"
               />

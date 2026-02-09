@@ -21,21 +21,21 @@ const destinosBase = [
   {
     key: "arequipa" as const,
     name: "Arequipa",
-    image: "/images/categories/arequipa.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/arequipa.jpg`,
     tours: 10,
     href: "/tours/sierra"
   },
   {
     key: "ica" as const,
     name: "Ica",
-    image: "/images/categories/ica.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/ica.jpg`,
     tours: 8,
     href: "/tours/costa"
   },
   {
     key: "puno" as const,
     name: "Puno",
-    image: "/images/categories/lago-titicaca.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/lago-titicaca.jpg`,
     tours: 10,
     href: "/tours/sierra"
   },

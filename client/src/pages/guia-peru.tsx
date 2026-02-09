@@ -11,7 +11,7 @@ const regions = [
     id: "costa",
     name: "Costa",
     title: "Clima en la Costa del Perú",
-    image: "/images/categories/huacachina.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/huacachina.jpg`,
     description: "La costa peruana presenta la forma de un extenso desierto recostado en las montañas. Es precisamente la presencia de los Andes al este, junto con la corriente fría de Humboldt que llega hasta sus playas, lo que le da a la zona ese clima árido y subtropical.",
     details: {
       clima: "Casi nunca llueve. Se caracteriza por densas neblinas y ligeras lloviznas entre mayo y noviembre que producen sensación de frío, aunque la temperatura promedio anual fluctúa entre 14 °C y 18 °C. En verano (diciembre a abril), la humedad disminuye y el sol brilla con intensidad.",
@@ -30,7 +30,7 @@ const regions = [
     id: "sierra",
     name: "Sierra",
     title: "Clima en la Sierra del Perú",
-    image: "/images/categories/montana-de-colores.jpg",
+    image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
     description: "Zona montañosa dominada por la Cordillera de los Andes. Alcanza los 6,768 m.s.n.m. en la cumbre del Huascarán. El clima es seco y fresco casi todo el año, con variaciones marcadas entre el día y la noche.",
     details: {
       clima: "Tiene un clima seco y fresco casi todo el año, con una temperatura promedio anual entre 9 °C y 18 °C. Los días suelen ser soleados con cielo azul despejado, mientras que las noches pueden ser muy frías, especialmente en invierno.",
@@ -49,7 +49,7 @@ const regions = [
     id: "selva",
     name: "Selva",
     title: "Clima en la Selva del Perú",
-    image: "/images/categories/laguna-humantay.jpeg", // Replacing placeholder with something lush if available, but I'll use what's in assets
+    image: `${import.meta.env.BASE_URL}images/categories/laguna-humantay.jpeg`, // Replacing placeholder with something lush if available, but I'll use what's in assets
     description: "Zona de vegetación tropical de la cuenca del río Amazonas, donde se ubican las más grandes reservas de naturaleza. El clima es tropical, caluroso y con lluvias frecuentes.",
     details: {
       clima: "Tiene un clima tropical con temperaturas entre 26 °C y 40 °C. Es caluroso y húmedo todo el año. Las lluvias son frecuentes, siendo más intensas entre los meses de diciembre y marzo, pero suelen ser ráfagas rápidas seguidas de sol.",

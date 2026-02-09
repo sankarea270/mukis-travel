@@ -152,7 +152,7 @@ export function Navbar() {
               whileTap={{ scale: 0.98 }}
             >
               <img
-                src="/images/categories/logom-removebg-preview.png"
+                src={`${import.meta.env.BASE_URL}images/categories/logom-removebg-preview.png`}
                 alt="Mukis Travel Logo"
                 className="w-14 h-14 object-contain"
               />

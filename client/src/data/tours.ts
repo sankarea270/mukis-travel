@@ -27,12 +27,12 @@ export interface Tour {
   maxGroup?: number;
   startTime?: string;
   faqs?: { question: string; answer: string }[]; // Preguntas frecuentes específicas del tour
-  reviews?: { 
+  reviews?: {
     id: string;
-    name: string; 
+    name: string;
     avatar?: string;
-    rating: number; 
-    comment: string; 
+    rating: number;
+    comment: string;
     date: string;
     country?: string;
   }[];

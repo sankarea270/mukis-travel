@@ -199,10 +199,11 @@ export const tours: Tour[] = [
     tourType: "Tour de naturaleza",
     languages: ["Español", "Inglés"],
     location: "Cusco",
-    locationCoords: { lat: -13.4747, lng: -72.5753 },
+    locationCoords: { lat: -13.34240, lng: -72.56913 },
     region: "sierra",
     category: "naturaleza",
     image: `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapahumantay.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/laguna2.jpeg`,
@@ -612,15 +613,9 @@ export const tours: Tour[] = [
     category: "aventura",
     image: "https://images.unsplash.com/photo-1549557404-0c2d3080e227?auto=format&fit=crop&q=80&w=1600",
     gallery: [
-<<<<<<< HEAD
-      "/images/categories/cuatri0.jpeg",
-      "/images/categories/montañacolores2.jpeg",
-      "/images/categories/cuatri2.jpeg"
-=======
-      `${import.meta.env.BASE_URL}images/categories/cuatri1.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatri0.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/montañacolores2.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/cuatri2.jpeg`
->>>>>>> 4db4de51f2f1c87876ca500d16daa635f1327ad7
     ],
     startTime: "4:00 AM",
     included: [

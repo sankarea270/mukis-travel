@@ -27,12 +27,12 @@ export interface Tour {
   maxGroup?: number;
   startTime?: string;
   faqs?: { question: string; answer: string }[]; // Preguntas frecuentes específicas del tour
-  reviews?: { 
+  reviews?: {
     id: string;
-    name: string; 
+    name: string;
     avatar?: string;
-    rating: number; 
-    comment: string; 
+    rating: number;
+    comment: string;
     date: string;
     country?: string;
   }[];
@@ -614,7 +614,7 @@ export const tours: Tour[] = [
     gallery: [
       "/images/categories/cuatri1.jpeg",
       "/images/categories/montañacolores2.jpeg",
-      "/images/categories/montañacolores3.jpeg"
+      "/images/categories/cuatri2.jpeg"
     ],
     startTime: "4:00 AM",
     included: [

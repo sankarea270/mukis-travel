@@ -612,10 +612,11 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "aventura",
     image: "https://images.unsplash.com/photo-1549557404-0c2d3080e227?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapacuatris.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/cuatri0.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/montañacolores2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/cuatri2.jpeg`
+      `${import.meta.env.BASE_URL}images/categories/cuatri03.jpeg`
     ],
     startTime: "4:00 AM",
     included: [

@@ -199,14 +199,15 @@ export const tours: Tour[] = [
     tourType: "Tour de naturaleza",
     languages: ["Español", "Inglés"],
     location: "Cusco",
-    locationCoords: { lat: -13.4747, lng: -72.5753 },
+    locationCoords: { lat: -13.34240, lng: -72.56913 },
     region: "sierra",
     category: "naturaleza",
     image: `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapahumantay.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/laguna2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/humantay11.jpeg`
+      `${import.meta.env.BASE_URL}images/categories/laguna3.jpeg`
     ],
     featured: true,
     difficulty: "moderado",

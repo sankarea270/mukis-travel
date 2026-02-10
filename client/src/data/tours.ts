@@ -61,11 +61,11 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapii.jpeg`,
     gallery: [
       "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
       "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1548820579-0fad72e0e7fc?auto=format&fit=crop&q=80&w=1600"
+      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600"
     ],
     featured: true,
     isOffer: true,
@@ -1060,6 +1060,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1544918877-460635b6d13e?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapacitymira.jpeg`,
     included: ["Transporte en Mirabus", "Guía", "Paradas fotográficas"],
     notIncluded: ["Ingresos", "Snacks"],
     itinerary: [
@@ -1080,6 +1081,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/vallesurhume.jpeg`,
     included: ["Transporte", "Guía", "Ingresos (algunos)"],
     notIncluded: ["Almuerzo"],
     itinerary: [
@@ -1100,7 +1102,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
-    mapImage: `${import.meta.env.BASE_URL}images/categories/vallesurhume.jpeg`,
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapavalletradicional.jpeg`,
     included: ["Transporte", "Guía", "Almuerzo Buffet"],
     notIncluded: ["Boleto Turístico"],
     itinerary: [

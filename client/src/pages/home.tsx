@@ -14,6 +14,7 @@ import { FAQ } from "@/components/home/FAQ";
 import { Certificaciones } from "@/components/home/Certificaciones";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { ScrollRevealSection } from "@/components/ui/scroll-reveal-section";
+import { AirplaneTrail } from "@/components/home/AirplaneTrail";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n";
 
@@ -26,86 +27,120 @@ export default function Home() {
       <main>
         <Hero />
         
-        {/* Value Proposition Strip */}
+        {/* Mukis Travel Agency Strip */}
         <ScrollRevealSection className="py-0 px-0 overflow-hidden">
-          <div className="bg-primary py-12 text-white relative overflow-hidden">
+          <div className="bg-linear-to-r from-emerald-700 via-emerald-600 to-teal-600 py-10 text-white relative overflow-hidden">
+            {/* Decorative background */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-1/4 w-32 h-32 bg-white rounded-full blur-3xl" />
               <div className="absolute bottom-0 right-1/4 w-24 h-24 bg-white rounded-full blur-2xl" />
             </div>
-            <div className="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 text-center relative z-10">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">✨</span>
-                <p className="text-sm md:text-base font-medium">{t.homePage.valueStrip1}</p>
-              </div>
-              <div className="hidden md:block h-8 w-px bg-white/30" />
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">🇵🇪</span>
-                <p className="text-sm md:text-base font-medium">{t.homePage.valueStrip2}</p>
-              </div>
-              <div className="hidden md:block h-8 w-px bg-white/30" />
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">⭐</span>
-                <p className="text-sm md:text-base font-medium">{t.homePage.valueStrip3}</p>
-              </div>
+            {/* Animated shine effect */}
+            <motion.div
+              className="absolute inset-0 w-1/3 bg-linear-to-r from-transparent via-white/10 to-transparent skew-x-12"
+              animate={{ left: ["-100%", "200%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", repeatDelay: 3 }}
+            />
+            <div className="container mx-auto px-4 text-center relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="flex flex-col items-center gap-3"
+              >
+                <div className="flex items-center gap-3">
+                  <motion.span
+                    className="text-3xl md:text-4xl"
+                    animate={{ 
+                      x: [0, 8, 0],
+                      y: [0, -4, 0],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    ✈️
+                  </motion.span>
+                  <h2 className="font-heading font-black text-xl md:text-3xl uppercase tracking-wider">
+                    Mukis Travel Agency
+                  </h2>
+                  <motion.span
+                    className="text-3xl md:text-4xl"
+                    animate={{ 
+                      x: [0, -8, 0],
+                      y: [0, -4, 0],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                  >
+                    ✈️
+                  </motion.span>
+                </div>
+                <p className="text-white/90 text-sm md:text-lg font-light tracking-wide">
+                  Tu próxima aventura comienza aquí
+                </p>
+              </motion.div>
             </div>
           </div>
         </ScrollRevealSection>
 
-        {/* Ofertas del Mes */}
-        <ScrollRevealSection>
-          <Ofertas />
-        </ScrollRevealSection>
+        {/* Airplane trail container — wraps all tour sections */}
+        <div className="relative">
+          <AirplaneTrail />
 
-        {/* Tours Más Solicitados */}
-        <ScrollRevealSection className="bg-gray-50/50">
-          <ToursMasSolicitados />
-        </ScrollRevealSection>
+          {/* Ofertas del Mes */}
+          <ScrollRevealSection>
+            <Ofertas />
+          </ScrollRevealSection>
 
-        {/* Tours Machu Picchu */}
-        <ScrollRevealSection>
-          <ToursMachuPicchu />
-        </ScrollRevealSection>
+          {/* Tours Más Solicitados */}
+          <ScrollRevealSection className="bg-gray-50/50">
+            <ToursMasSolicitados />
+          </ScrollRevealSection>
 
-        {/* Programas Vivenciales */}
-        <ScrollRevealSection className="bg-white">
-          <ProgramasVivenciales />
-        </ScrollRevealSection>
+          {/* Tours Machu Picchu */}
+          <ScrollRevealSection>
+            <ToursMachuPicchu />
+          </ScrollRevealSection>
 
-        {/* Where to Go */}
-        <ScrollRevealSection>
-          <WhereToGo />
-        </ScrollRevealSection>
+          {/* Programas Vivenciales */}
+          <ScrollRevealSection className="bg-white">
+            <ProgramasVivenciales />
+          </ScrollRevealSection>
 
-        {/* Destinos Grid */}
-        <ScrollRevealSection className="bg-gray-50/30">
-          <DestinosGrid />
-        </ScrollRevealSection>
+          {/* Where to Go */}
+          <ScrollRevealSection>
+            <WhereToGo />
+          </ScrollRevealSection>
 
-        {/* Categorías de Tours */}
-        <ScrollRevealSection>
-          <Categorias />
-        </ScrollRevealSection>
+          {/* Destinos Grid */}
+          <ScrollRevealSection className="bg-gray-50/30">
+            <DestinosGrid />
+          </ScrollRevealSection>
 
-        {/* Why Choose Us */}
-        <ScrollRevealSection className="bg-primary/5">
-          <WhyChooseUs />
-        </ScrollRevealSection>
+          {/* Categorías de Tours */}
+          <ScrollRevealSection>
+            <Categorias />
+          </ScrollRevealSection>
 
-        {/* Testimonials */}
-        <ScrollRevealSection>
-          <Testimonials />
-        </ScrollRevealSection>
+          {/* Why Choose Us */}
+          <ScrollRevealSection className="bg-primary/5">
+            <WhyChooseUs />
+          </ScrollRevealSection>
 
-        {/* FAQ */}
-        <ScrollRevealSection className="bg-white">
-          <FAQ />
-        </ScrollRevealSection>
+          {/* Testimonials */}
+          <ScrollRevealSection>
+            <Testimonials />
+          </ScrollRevealSection>
 
-        {/* Certificaciones */}
-        <ScrollRevealSection>
-          <Certificaciones />
-        </ScrollRevealSection>
+          {/* FAQ */}
+          <ScrollRevealSection className="bg-white">
+            <FAQ />
+          </ScrollRevealSection>
+
+          {/* Certificaciones */}
+          <ScrollRevealSection>
+            <Certificaciones />
+          </ScrollRevealSection>
+        </div>
 
         {/* Final CTA Section */}
         <ScrollRevealSection className="bg-primary px-0 py-0!">

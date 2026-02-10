@@ -1120,6 +1120,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "aventura",
     image: "https://images.unsplash.com/photo-1596706037004-97217596043d?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapavalletradicional.jpeg`,
     included: ["Cuatrimoto", "Guía", "Equipo de seguridad"],
     notIncluded: ["Ingresos"],
     itinerary: [
@@ -1140,6 +1141,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1627582234551-34446c592965?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapamoradadi.jpeg`,
     included: ["Transporte", "Guía"],
     notIncluded: ["Ingreso"],
     itinerary: [
@@ -1160,6 +1162,7 @@ export const tours: Tour[] = [
     region: "selva",
     category: "aventura",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapibycar.jpeg`,
     included: ["Transporte Cusco-Hidroeléctrica-Cusco", "1 Noche Hostal", "Guía", "Entrada Machu Picchu"],
     notIncluded: ["Alimentación no mencionada", "Tren Hidroeléctrica (opcional)"],
     itinerary: [
@@ -1181,6 +1184,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1544918877-460635b6d13e?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapacitytourzoo.jpeg`,
     included: ["Transporte", "Guía", "Entrada a Cochahuasi"],
     notIncluded: ["Boleto Turístico"],
     itinerary: [
@@ -1201,6 +1205,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "trekking",
     image: "https://images.unsplash.com/photo-1549557404-0c2d3080e227?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/maparainbowmountain.png`,
     included: ["Camping", "Guía", "Cocinero", "Arrieros"],
     notIncluded: ["Saco de dormir"],
     itinerary: [

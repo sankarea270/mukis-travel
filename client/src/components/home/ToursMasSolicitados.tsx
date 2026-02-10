@@ -8,7 +8,7 @@ export function ToursMasSolicitados() {
   const { t } = useLanguage();
   // Obtener tours más populares (featured o con reviews)
   const popularTours = tours
-    .filter((tour) => tour.featured || (tour.reviews && tour.reviews.length > 0))
+    .filter((tour) => !tour.isPaquete && (tour.featured || (tour.reviews && tour.reviews.length > 0)))
     .slice(0, 6);
 
   return (

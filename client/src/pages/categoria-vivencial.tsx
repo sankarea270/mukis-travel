@@ -9,7 +9,7 @@ import { Clock, MapPin, ChevronRight, Users, Home, Palette } from "lucide-react"
 
 export default function CategoriaVivencial() {
   const { t } = useLanguage();
-  const vivencialTours = tours.filter((tour) => tour.category === "vivencial");
+  const vivencialTours = tours.filter((tour) => tour.category === "vivencial" && !tour.isPaquete);
 
   const categoryInfo = {
     title: t.categoryPage.vivencial.title,

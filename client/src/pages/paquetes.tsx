@@ -1,104 +1,34 @@
-import { useState, useMemo, useEffect } from "react";
-import { Link, useSearch } from "wouter";
+import { useMemo } from "react";
+import { Link } from "wouter";
 import { useLanguage } from "@/i18n";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, MapPin, Users, ChevronRight, Star, Percent, Filter, ArrowUpDown } from "lucide-react";
+import { Calendar, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
-import { tours, categories } from "@/data/tours";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } }
-};
+import { tours } from "@/data/tours";
 
 export default function Paquetes() {
   const { t } = useLanguage();
-  const search = useSearch();
-  const [activeCategory, setActiveCategory] = useState("todos");
-  const [sortBy, setSortBy] = useState("recommended");
 
-  // Efecto para sincronizar con URL params al cargar
-  useEffect(() => {
-    const params = new URLSearchParams(search);
-    const categoryParam = params.get("categoria");
-    if (categoryParam) {
-      setActiveCategory(categoryParam);
-    }
-  }, [search]);
-
-  const filteredAndSortedTours = useMemo(() => {
-    let result = [...tours];
-
-    // Filtrar por categoría
-    if (activeCategory !== "todos") {
-      result = result.filter(tour => tour.category === activeCategory);
-    }
-
-    // Ordenar
-    switch (sortBy) {
-      case "price_asc":
-        result.sort((a, b) => a.price - b.price);
-        break;
-      case "price_desc":
-        result.sort((a, b) => b.price - a.price);
-        break;
-      case "duration":
-        result.sort((a, b) => {
-          const getDurationValue = (d: string) => {
-            const lower = d.toLowerCase();
-            if (lower.includes("hora")) return 0.5;
-            if (lower.includes("día") || lower.includes("dia")) {
-              const match = lower.match(/(\d+)/);
-              return match ? parseInt(match[0]) : 1;
-            }
-            return 999;
-          };
-          return getDurationValue(a.duration) - getDurationValue(b.duration);
-        });
-        break;
-      case "recommended":
-      default:
-        // Priorizar ofertas y destacados
-        result.sort((a, b) => {
-          if (a.isOffer && !b.isOffer) return -1;
-          if (!a.isOffer && b.isOffer) return 1;
-          if (a.featured && !b.featured) return -1;
-          if (!a.featured && b.featured) return 1;
-          return 0;
-        });
-        break;
-    }
-
-    return result;
-  }, [activeCategory, sortBy]);
+  // Solo mostrar paquetes (tours con isPaquete: true)
+  const paquetes = useMemo(() => {
+    return tours.filter(tour => tour.isPaquete === true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-linear-to-br from-primary to-primary/80 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-white rounded-full translate-x-1/2 translate-y-1/2" />
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1920" 
+            alt="Paquetes Exclusivos" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -124,185 +54,100 @@ export default function Paquetes() {
         </div>
       </section>
 
-      {/* Filter & Sort Bar */}
-      <section className="sticky top-16 z-30 bg-white/90 backdrop-blur-md border-b shadow-sm transition-all">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-            
-            {/* Categories Buttons */}
-            <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide mask-linear-fade">
-              <button 
-                onClick={() => setActiveCategory("todos")}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
-                  activeCategory === "todos" 
-                    ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105" 
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
-              >
-                {t.packagesPage.filterAll}
-              </button>
-              {categories.map((cat) => (
-                <button 
-                  key={cat.slug}
-                  onClick={() => setActiveCategory(cat.slug)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
-                    activeCategory === cat.slug
-                      ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  <span>{cat.icon}</span>
-                  <span>{cat.name}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Sort Dropdown */}
-            <div className="flex items-center gap-3 w-full md:w-auto min-w-50">
-              <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
-                <ArrowUpDown size={16} />
-                <span className="hidden sm:inline">{t.packagesPage.sortBy}</span>
-              </div>
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-full md:w-45 bg-white border-gray-200 rounded-xl focus:ring-primary/20">
-                  <SelectValue placeholder={t.packagesPage.sortBy} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="recommended">{t.packagesPage.sortRecommended}</SelectItem>
-                  <SelectItem value="price_asc">{t.packagesPage.sortPriceLow}</SelectItem>
-                  <SelectItem value="price_desc">{t.packagesPage.sortPriceHigh}</SelectItem>
-                  <SelectItem value="duration">{t.packagesPage.sortDuration}</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tours Grid */}
-      <section className="py-12 min-h-150">
+      {/* Paquetes Grid */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="mb-6 text-gray-500 text-sm">
-            {t.packagesPage.showing} {filteredAndSortedTours.length} {t.packagesPage.toursLabel}
-          </div>
+          <AnimatePresence mode="popLayout">
+            {paquetes.map((paquete, index) => (
+              <motion.div 
+                key={paquete.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="mb-12 last:mb-0"
+              >
+                <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+                  <div className="flex flex-col lg:flex-row">
+                    {/* Image */}
+                    <div className="lg:w-1/2 relative h-80 lg:h-auto overflow-hidden">
+                      <img 
+                        src={paquete.image} 
+                        alt={paquete.title}
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                      />
+                      {/* Badge */}
+                      <div className="absolute top-6 left-6">
+                        <span className="bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg">
+                          Más Vendido
+                        </span>
+                      </div>
+                    </div>
 
-          <motion.div
-            layout
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredAndSortedTours.map((tour) => (
-                <motion.div 
-                  key={tour.id} 
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Link href={`/paquetes/${tour.slug}`}>
-                    <div className="group h-full flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-gray-100 hover:border-primary/20 hover:-translate-y-1">
-                      {/* Image */}
-                      <div className="relative h-64 overflow-hidden">
-                        <img 
-                          src={tour.image} 
-                          alt={tour.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                        
-                        {/* Badges */}
-                        <div className="absolute top-4 left-4 flex flex-col gap-2 items-start">
-                          {tour.isOffer && (
-                            <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
-                              <Percent size={12} /> {t.packagesPage.offer}
-                            </span>
-                          )}
-                          {tour.featured && !tour.isOffer && (
-                            <span className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
-                              <Star size={12} /> {t.packagesPage.featured}
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Location Badge */}
-                        <div className="absolute bottom-4 left-4">
-                          <span className="bg-white/95 backdrop-blur-sm text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-sm">
-                            <MapPin size={12} className="text-primary" />
-                            {tour.location}
-                          </span>
-                        </div>
+                    {/* Content */}
+                    <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                      {/* Duration */}
+                      <div className="flex items-center gap-2 text-blue-600 mb-4">
+                        <Calendar size={20} />
+                        <span className="font-semibold">{paquete.duration}</span>
                       </div>
 
-                      {/* Content */}
-                      <div className="p-6 flex flex-col grow">
-                        <div className="mb-auto">
-                          <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                            {tour.title}
-                          </h3>
-                          
-                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                            {tour.shortDescription}
-                          </p>
+                      {/* Title */}
+                      <h2 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-4">
+                        {paquete.title}
+                      </h2>
 
-                          {/* Meta Info */}
-                          <div className="flex items-center gap-4 text-sm text-gray-500 mb-4 bg-gray-50 p-3 rounded-xl">
-                            <span className="flex items-center gap-1.5 font-medium">
-                              <Clock size={16} className="text-primary" />
-                              {tour.duration}
+                      {/* Description */}
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        {paquete.shortDescription}
+                      </p>
+
+                      {/* Included Items */}
+                      <div className="grid grid-cols-2 gap-3 mb-8">
+                        {paquete.included.slice(0, 4).map((item, i) => (
+                          <div key={i} className="flex items-center gap-2 text-gray-700">
+                            <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
+                            <span className="text-sm">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Price and CTA */}
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-gray-100">
+                        <div>
+                          <span className="text-sm text-gray-500 block">Desde</span>
+                          <div className="flex items-baseline gap-2">
+                            <span className="font-heading font-bold text-3xl md:text-4xl text-primary">
+                              ${paquete.price}
                             </span>
-                            {tour.maxGroup && (
-                              <span className="flex items-center gap-1.5 border-l border-gray-200 pl-4">
-                                <Users size={16} className="text-primary" />
-                                Max. {tour.maxGroup}
+                            {paquete.originalPrice && (
+                              <span className="text-lg text-gray-400 line-through">
+                                ${paquete.originalPrice}
                               </span>
                             )}
                           </div>
                         </div>
-
-                        {/* Price */}
-                        <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-2">
-                          <div>
-                            <span className="text-xs text-gray-500 block">{t.packagesPage.from}</span>
-                            <div className="flex items-baseline gap-2">
-                              <span className="font-heading font-bold text-2xl text-primary">
-                                ${tour.price}
-                              </span>
-                              {tour.originalPrice && (
-                                <span className="text-sm text-gray-400 line-through">
-                                  ${tour.originalPrice}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          <span className="bg-primary/10 text-primary font-bold px-4 py-2 rounded-xl text-sm group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                            {t.packagesPage.viewDetails}
+                        
+                        <Link href={`/paquetes/${paquete.slug}`}>
+                          <span className="group inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-4 rounded-xl hover:bg-primary/90 hover:shadow-lg transition-all cursor-pointer">
+                            Ver Detalles
+                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                           </span>
-                        </div>
+                        </Link>
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-          
-          {filteredAndSortedTours.length === 0 && (
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {paquetes.length === 0 && (
             <div className="text-center py-20">
               <div className="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Filter size={32} className="text-gray-400" />
+                <Calendar size={32} className="text-gray-400" />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">{t.packagesPage.noTours}</h3>
-              <p className="text-gray-500">{t.packagesPage.noToursDesc}</p>
-              <button 
-                onClick={() => { setActiveCategory("todos"); setSortBy("recommended"); }}
-                className="mt-4 text-primary font-medium hover:underline"
-              >
-                {t.packagesPage.clearFilters}
-              </button>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">No hay paquetes disponibles</h3>
+              <p className="text-gray-500">Pronto agregaremos nuevos paquetes exclusivos.</p>
             </div>
           )}
         </div>

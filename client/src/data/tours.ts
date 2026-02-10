@@ -41,9 +41,79 @@ export interface Tour {
     embedUrl: string;
     thumbnail?: string;
   }[];
+  isPaquete?: boolean; // true si es un paquete de varios días, false o undefined si es tour de 1 día
 }
 
 export const tours: Tour[] = [
+  {
+    id: "paquete-cusco-8d",
+    slug: "vacaciones-cusco-8-dias",
+    title: "Vacaciones en Cusco 8 Días 7 Noches",
+    shortDescription: "Una inmersión total en la cultura Inca. Desde el Valle Sagrado hasta la ciudadela perdida, vive la experiencia completa con todo incluido.",
+    description: "Descubre lo mejor de Cusco en 8 días inolvidables. Este paquete completo incluye visitas a Machu Picchu, Valle Sagrado, Montaña de 7 Colores, Laguna Humantay y mucho más. Con hospedaje, transporte, guías y entradas incluidas.",
+    aboutTour: "Vive la experiencia más completa en Cusco con nuestro paquete de 8 días y 7 noches. Desde el momento en que llegues al aeropuerto, nos encargamos de todo: traslados, hospedaje en hoteles 3 estrellas, tours guiados y todas las entradas. Visitarás los lugares más icónicos como Machu Picchu, el Valle Sagrado de los Incas, la Montaña de 7 Colores (Vinicunca), la Laguna Humantay, Maras, Moray, Chinchero y el City Tour de Cusco. Cada día está diseñado para que disfrutes al máximo sin preocuparte por nada.",
+    price: 350,
+    originalPrice: 450,
+    duration: "8 Días / 7 Noches",
+    tourType: "Paquete completo",
+    languages: ["Español", "Inglés"],
+    location: "Cusco",
+    locationCoords: { lat: -13.5319, lng: -71.9675 },
+    region: "sierra",
+    category: "cultural",
+    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    gallery: [
+      "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+      "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
+      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+      "https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?auto=format&fit=crop&q=80&w=1600"
+    ],
+    featured: true,
+    isOffer: true,
+    isPaquete: true,
+    difficulty: "moderado",
+    maxGroup: 12,
+    highlights: [
+      "Machu Picchu con entrada y tren incluido",
+      "Valle Sagrado: Pisac, Ollantaytambo, Chinchero",
+      "Montaña de 7 Colores (Vinicunca)",
+      "Laguna Humantay",
+      "City Tour Cusco + Sacsayhuamán",
+      "Maras y Moray"
+    ],
+    included: [
+      "Todo el transporte",
+      "Guía privado",
+      "Hoteles 3 estrellas",
+      "Ingresos incluidos",
+      "Desayunos diarios",
+      "Tren a Machu Picchu",
+      "Bus de subida y bajada",
+      "Traslados aeropuerto"
+    ],
+    notIncluded: [
+      "Vuelos internacionales",
+      "Almuerzos y cenas",
+      "Seguro de viaje",
+      "Propinas",
+      "Gastos personales"
+    ],
+    itinerary: [
+      { time: "Día 1", activity: "Llegada a Cusco", description: "Recepción en el aeropuerto y traslado al hotel. Tarde libre para aclimatación." },
+      { time: "Día 2", activity: "City Tour Cusco", description: "Visita a la Plaza de Armas, Catedral, Qoricancha, Sacsayhuamán, Qenqo, Puca Pucara y Tambomachay." },
+      { time: "Día 3", activity: "Valle Sagrado", description: "Tour completo por Pisac, almuerzo en Urubamba y visita a Ollantaytambo. Noche en Aguas Calientes." },
+      { time: "Día 4", activity: "Machu Picchu", description: "Visita guiada a la maravilla del mundo. Tarde libre para explorar. Retorno a Cusco." },
+      { time: "Día 5", activity: "Maras, Moray y Chinchero", description: "Descubre los laboratorios agrícolas incas, las salineras de Maras y el pueblo de Chinchero." },
+      { time: "Día 6", activity: "Laguna Humantay", description: "Trekking hacia la impresionante laguna turquesa al pie del nevado Humantay." },
+      { time: "Día 7", activity: "Montaña de 7 Colores", description: "Aventura hacia Vinicunca, la famosa montaña arcoíris. Experiencia única e inolvidable." },
+      { time: "Día 8", activity: "Despedida", description: "Desayuno y traslado al aeropuerto según horario de vuelo." }
+    ],
+    faqs: [
+      { question: "¿Qué nivel físico necesito?", answer: "Se recomienda condición física moderada, especialmente para los días de trekking (Humantay y 7 Colores)." },
+      { question: "¿Puedo personalizar el itinerario?", answer: "¡Sí! Podemos adaptar el paquete según tus preferencias y disponibilidad." },
+      { question: "¿Está incluido el boleto a Machu Picchu?", answer: "Sí, todas las entradas están incluidas en el precio del paquete." }
+    ]
+  },
   {
     id: "1",
     slug: "machu-picchu-full-day",

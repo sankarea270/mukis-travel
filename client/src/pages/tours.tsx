@@ -67,7 +67,7 @@ export default function Tours() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {categories.map((category, idx) => {
-              const categoryTours = tours.filter(tour => tour.category === category.slug);
+              const categoryTours = tours.filter(tour => tour.category === category.slug && !tour.isPaquete);
               const bgColors = [
                 "from-emerald-500 to-teal-600",
                 "from-orange-500 to-red-600",
@@ -134,7 +134,7 @@ export default function Tours() {
           </div>
 
           {categories.slice(0, 3).map((category) => {
-            const categoryTours = tours.filter(tour => tour.category === category.slug).slice(0, 3);
+            const categoryTours = tours.filter(tour => tour.category === category.slug && !tour.isPaquete).slice(0, 3);
             if (categoryTours.length === 0) return null;
 
             return (

@@ -9,7 +9,7 @@ import { Clock, MapPin, ChevronRight, Heart, Leaf, Bird } from "lucide-react";
 
 export default function CategoriaNaturaleza() {
   const { t } = useLanguage();
-  const naturaTours = tours.filter((tour) => tour.category === "naturaleza");
+  const naturaTours = tours.filter((tour) => tour.category === "naturaleza" && !tour.isPaquete);
 
   const categoryInfo = {
     title: t.categoryPage.naturaleza.title,

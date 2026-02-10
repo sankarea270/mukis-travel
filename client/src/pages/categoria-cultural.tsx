@@ -9,7 +9,7 @@ import { Clock, MapPin, ChevronRight, Sparkles, Landmark, BookOpen } from "lucid
 
 export default function CategoriaCultural() {
   const { t } = useLanguage();
-  const culturalTours = tours.filter((tour) => tour.category === "cultural");
+  const culturalTours = tours.filter((tour) => tour.category === "cultural" && !tour.isPaquete);
 
   const categoryInfo = {
     title: t.categoryPage.cultural.title,

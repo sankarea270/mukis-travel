@@ -34,7 +34,7 @@ export default function ToursSierra() {
   const [sortBy, setSortBy] = useState("recommended");
 
   const filteredAndSortedTours = useMemo(() => {
-    let result = tours.filter((tour) => tour.region === "sierra");
+    let result = tours.filter((tour) => tour.region === "sierra" && !tour.isPaquete);
 
     // Filtrar por categoría
     if (activeCategory !== "todos") {

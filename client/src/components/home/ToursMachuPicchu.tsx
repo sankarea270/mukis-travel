@@ -10,10 +10,12 @@ export function ToursMachuPicchu() {
   // Filtrar tours relacionados con Machu Picchu o Cusco
   const machuPicchuTours = tours
     .filter((tour) => 
-      tour.title.toLowerCase().includes("machu picchu") || 
-      tour.title.toLowerCase().includes("cusco") ||
-      tour.slug.includes("machu-picchu") ||
-      (tour.location === "Cusco" && tour.category === "cultural")
+      !tour.isPaquete && (
+        tour.title.toLowerCase().includes("machu picchu") || 
+        tour.title.toLowerCase().includes("cusco") ||
+        tour.slug.includes("machu-picchu") ||
+        (tour.location === "Cusco" && tour.category === "cultural")
+      )
     )
     .slice(0, 4);
 

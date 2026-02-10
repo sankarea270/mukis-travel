@@ -34,7 +34,7 @@ export default function ToursSelva() {
   const [sortBy, setSortBy] = useState("recommended");
 
   const filteredAndSortedTours = useMemo(() => {
-    let result = tours.filter((tour) => tour.region === "selva");
+    let result = tours.filter((tour) => tour.region === "selva" && !tour.isPaquete);
 
     // Filtrar por categoría
     if (activeCategory !== "todos") {

@@ -9,7 +9,7 @@ import { Clock, MapPin, ChevronRight, Mountain, Footprints, Tent, Compass } from
 
 export default function CategoriaTrekking() {
   const { t } = useLanguage();
-  const trekkingTours = tours.filter((tour) => tour.category === "trekking");
+  const trekkingTours = tours.filter((tour) => tour.category === "trekking" && !tour.isPaquete);
 
   const categoryInfo = {
     title: t.categoryPage.trekking.title,

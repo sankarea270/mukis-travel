@@ -6,7 +6,7 @@ import { useLanguage } from "@/i18n";
 
 export function Ofertas() {
   const { t } = useLanguage();
-  const offerTours = tours.filter((tour) => tour.isOffer);
+  const offerTours = tours.filter((tour) => tour.isOffer && !tour.isPaquete);
 
   return (
     <section className="py-20 bg-linear-to-br from-red-50 to-orange-50 relative overflow-hidden">

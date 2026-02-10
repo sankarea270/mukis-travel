@@ -9,7 +9,7 @@ import { Clock, MapPin, ChevronRight, Moon, Sparkles, Zap, Heart } from "lucide-
 
 export default function CategoriaMistico() {
   const { t } = useLanguage();
-  const misticoTours = tours.filter((tour) => tour.category === "mistico");
+  const misticoTours = tours.filter((tour) => tour.category === "mistico" && !tour.isPaquete);
 
   const categoryInfo = {
     title: t.categoryPage.mistico.title,

@@ -9,7 +9,7 @@ import { Clock, MapPin, ChevronRight, Compass, Mountain, Zap } from "lucide-reac
 
 export default function CategoriaAventura() {
   const { t } = useLanguage();
-  const aventuraTours = tours.filter((tour) => tour.category === "aventura" || tour.category === "trekking");
+  const aventuraTours = tours.filter((tour) => (tour.category === "aventura" || tour.category === "trekking") && !tour.isPaquete);
 
   const categoryInfo = {
     title: t.categoryPage.aventura.title,

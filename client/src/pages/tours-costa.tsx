@@ -34,7 +34,7 @@ export default function ToursCosta() {
   const [sortBy, setSortBy] = useState("recommended");
 
   const filteredAndSortedTours = useMemo(() => {
-    let result = tours.filter((tour) => tour.region === "costa");
+    let result = tours.filter((tour) => tour.region === "costa" && !tour.isPaquete);
 
     // Filtrar por categoría
     if (activeCategory !== "todos") {

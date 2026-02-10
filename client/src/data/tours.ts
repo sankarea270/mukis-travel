@@ -1100,6 +1100,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/vallesurhume.jpeg`,
     included: ["Transporte", "Guía", "Almuerzo Buffet"],
     notIncluded: ["Boleto Turístico"],
     itinerary: [
@@ -1120,7 +1121,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "aventura",
     image: "https://images.unsplash.com/photo-1596706037004-97217596043d?auto=format&fit=crop&q=80&w=1600",
-    mapImage: `${import.meta.env.BASE_URL}images/categories/mapavalletradicional.jpeg`,
+    mapImage: `${import.meta.env.BASE_URL}images/categories/puente2.jpeg`,
     included: ["Cuatrimoto", "Guía", "Equipo de seguridad"],
     notIncluded: ["Ingresos"],
     itinerary: [

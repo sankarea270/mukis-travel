@@ -1222,6 +1222,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "trekking",
     image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapasalkantay.jpeg`,
     included: ["Equipo de camping", "Cocinero", "Entradas", "Tren de retorno"],
     notIncluded: ["Saco de dormir", "Primer desayuno"],
     itinerary: [
@@ -1242,6 +1243,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "trekking",
     image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapacaminoinca.jpeg`,
     included: ["Permisos", "Guía especializado", "Equipo completo", "Tren"],
     notIncluded: ["Propinas"],
     itinerary: [
@@ -1262,6 +1264,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "trekking",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapachoqueq.jpeg`,
     included: ["Todo el equipo de camping", "Alimentación", "Guía"],
     notIncluded: ["Gastos personales", "Primer desayuno"],
     itinerary: [
@@ -1282,6 +1285,7 @@ export const tours: Tour[] = [
     region: "selva",
     category: "aventura",
     image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapaincajungle.jpeg`,
     included: ["Bicicletas", "Equipo de seguridad", "Alojamiento", "Entradas"],
     notIncluded: ["Canotaje/Zipline (opcional)"],
     itinerary: [
@@ -1322,6 +1326,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "cultural",
     image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/maparutadelsol.jpeg`,
     included: ["Bus turístico", "Almuerzo buffet", "Guía profesional"],
     notIncluded: ["Tickets de ingreso"],
     itinerary: [

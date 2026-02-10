@@ -157,7 +157,7 @@ export function ToursMasSolicitados() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Link href="/paquetes">
+          <Link href="/tours">
             <motion.span 
               className="inline-flex items-center gap-3 bg-primary/10 text-primary font-bold text-lg px-8 py-4 rounded-full hover:bg-primary hover:text-white transition-all cursor-pointer"
               whileHover={{ scale: 1.05 }}

@@ -180,7 +180,7 @@ export function ToursMachuPicchu() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Link href="/paquetes?region=sierra">
+          <Link href="/tours/sierra">
             <motion.span 
               className="inline-flex items-center gap-3 bg-primary text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 transition-all cursor-pointer"
               whileHover={{ scale: 1.05 }}

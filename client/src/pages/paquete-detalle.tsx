@@ -196,11 +196,6 @@ export default function PaqueteDetalle() {
                     {t.tourDetail.offer}
                   </span>
                 )}
-                {tour.featured && (
-                  <span className="bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">
-                    {t.tourDetail.featured}
-                  </span>
-                )}
               </div>
             </div>
 
@@ -697,15 +692,15 @@ export default function PaqueteDetalle() {
                 {/* Price */}
                 <div className="text-center pb-6 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">{t.tourDetail.pricePerPerson}</span>
-                  <div className="flex items-center justify-center gap-3 mt-2">
-                    <span className="font-heading font-bold text-4xl text-primary">
-                      ${tour.price}
-                    </span>
+                  <div className="flex flex-col items-center justify-center mt-1">
                     {tour.originalPrice && (
-                      <span className="text-xl text-gray-400 line-through">
+                      <span className="text-xl text-gray-400 line-through leading-none mb-1">
                         ${tour.originalPrice}
                       </span>
                     )}
+                    <span className="font-heading font-bold text-4xl text-primary leading-none">
+                      ${tour.price}
+                    </span>
                   </div>
                   {tour.originalPrice && (
                     <span className="inline-block mt-2 bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded-full">

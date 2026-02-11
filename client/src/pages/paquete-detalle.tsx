@@ -196,11 +196,6 @@ export default function PaqueteDetalle() {
                     {t.tourDetail.offer}
                   </span>
                 )}
-                {tour.featured && (
-                  <span className="bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">
-                    {t.tourDetail.featured}
-                  </span>
-                )}
               </div>
             </div>
 
@@ -314,6 +309,78 @@ export default function PaqueteDetalle() {
                 </div>
               </motion.div>
 
+              {/* Itinerary */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-white rounded-2xl p-8 shadow-sm"
+              >
+                <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900 flex items-center gap-3">
+                  <Calendar className="text-primary" />
+                  {t.tourDetail.itinerary}
+                </h2>
+                <div className="relative">
+                  <div className="absolute left-9.75 top-0 bottom-0 w-0.5 bg-primary/20" />
+                  <div className="space-y-6">
+                    {tour.itinerary.map((item, idx) => (
+                      <div key={idx} className="flex gap-4 relative">
+                        <div className="shrink-0 w-20 text-right">
+                          <span className="text-primary font-bold text-sm">{item.time}</span>
+                        </div>
+                        <div className="relative">
+                          <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-white shadow" />
+                        </div>
+                        <div className="grow pl-4 pb-2">
+                          <h4 className="font-bold text-gray-900">{item.activity}</h4>
+                          {item.description && (
+                            <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Includes / Not Includes */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                {/* Included */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-green-500">
+                  <h3 className="font-heading font-bold text-xl mb-4 text-gray-900 flex items-center gap-2">
+                    <Check className="text-green-500" /> {t.tourDetail.includes}
+                  </h3>
+                  <ul className="space-y-3">
+                    {tour.included.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-gray-600">
+                        <Check size={18} className="text-green-500 mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Not Included */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="font-heading font-bold text-xl mb-4 text-gray-900 flex items-center gap-2">
+                    <X className="text-red-500" /> {t.tourDetail.notIncludes}
+                  </h3>
+                  <ul className="space-y-3">
+                    {tour.notIncluded.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-gray-600">
+                        <X size={18} className="text-red-500 mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+
               {/* Tour Map Placeholder */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -387,44 +454,6 @@ export default function PaqueteDetalle() {
                 </motion.div>
               )}
 
-              {/* Includes / Not Includes */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              >
-                {/* Included */}
-                <div className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-green-500">
-                  <h3 className="font-heading font-bold text-xl mb-4 text-gray-900 flex items-center gap-2">
-                    <Check className="text-green-500" /> {t.tourDetail.includes}
-                  </h3>
-                  <ul className="space-y-3">
-                    {tour.included.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-gray-600">
-                        <Check size={18} className="text-green-500 mt-0.5 shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Not Included */}
-                <div className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-red-500">
-                  <h3 className="font-heading font-bold text-xl mb-4 text-gray-900 flex items-center gap-2">
-                    <X className="text-red-500" /> {t.tourDetail.notIncludes}
-                  </h3>
-                  <ul className="space-y-3">
-                    {tour.notIncluded.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-gray-600">
-                        <X size={18} className="text-red-500 mt-0.5 shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-
               {/* Política de cancelación */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -440,71 +469,6 @@ export default function PaqueteDetalle() {
                   {t.tourDetail.cancelPolicyFull}
                 </p>
               </motion.div>
-
-              {/* Itinerary */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="bg-white rounded-2xl p-8 shadow-sm"
-              >
-                <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900 flex items-center gap-3">
-                  <Calendar className="text-primary" />
-                  {t.tourDetail.itinerary}
-                </h2>
-                <div className="relative">
-                  <div className="absolute left-9.75 top-0 bottom-0 w-0.5 bg-primary/20" />
-                  <div className="space-y-6">
-                    {tour.itinerary.map((item, idx) => (
-                      <div key={idx} className="flex gap-4 relative">
-                        <div className="shrink-0 w-20 text-right">
-                          <span className="text-primary font-bold text-sm">{item.time}</span>
-                        </div>
-                        <div className="relative">
-                          <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-white shadow" />
-                        </div>
-                        <div className="grow pl-4 pb-2">
-                          <h4 className="font-bold text-gray-900">{item.activity}</h4>
-                          {item.description && (
-                            <p className="text-gray-600 text-sm mt-1">{item.description}</p>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* FAQs */}
-              {tour.faqs && tour.faqs.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="bg-white rounded-2xl p-8 shadow-sm"
-                >
-                  <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900 flex items-center gap-3">
-                    <MessageCircle className="text-primary" />
-                    {t.tourDetail.faq}
-                  </h2>
-                  <Accordion type="single" collapsible className="space-y-3">
-                    {tour.faqs.map((faq, idx) => (
-                      <AccordionItem 
-                        key={idx} 
-                        value={`faq-${idx}`}
-                        className="border rounded-xl px-4 data-[state=open]:bg-primary/5"
-                      >
-                        <AccordionTrigger className="text-left font-medium text-gray-900 hover:no-underline">
-                          {faq.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-gray-600">
-                          {faq.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </motion.div>
-              )}
 
               {/* Location Map */}
               <motion.div
@@ -572,6 +536,37 @@ export default function PaqueteDetalle() {
                   )}
                 </div>
               </motion.div>
+
+              {/* FAQs */}
+              {tour.faqs && tour.faqs.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-white rounded-2xl p-8 shadow-sm"
+                >
+                  <h2 className="font-heading font-bold text-2xl mb-6 text-gray-900 flex items-center gap-3">
+                    <MessageCircle className="text-primary" />
+                    {t.tourDetail.faq}
+                  </h2>
+                  <Accordion type="single" collapsible className="space-y-3">
+                    {tour.faqs.map((faq, idx) => (
+                      <AccordionItem 
+                        key={idx} 
+                        value={`faq-${idx}`}
+                        className="border rounded-xl px-4 data-[state=open]:bg-primary/5"
+                      >
+                        <AccordionTrigger className="text-left font-medium text-gray-900 hover:no-underline">
+                          {faq.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-gray-600">
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </motion.div>
+              )}
 
               {/* Reviews Section */}
               <motion.div
@@ -697,15 +692,15 @@ export default function PaqueteDetalle() {
                 {/* Price */}
                 <div className="text-center pb-6 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">{t.tourDetail.pricePerPerson}</span>
-                  <div className="flex items-center justify-center gap-3 mt-2">
-                    <span className="font-heading font-bold text-4xl text-primary">
-                      ${tour.price}
-                    </span>
+                  <div className="flex flex-col items-center justify-center mt-1">
                     {tour.originalPrice && (
-                      <span className="text-xl text-gray-400 line-through">
+                      <span className="text-xl text-gray-400 line-through leading-none mb-1">
                         ${tour.originalPrice}
                       </span>
                     )}
+                    <span className="font-heading font-bold text-4xl text-primary leading-none">
+                      ${tour.price}
+                    </span>
                   </div>
                   {tour.originalPrice && (
                     <span className="inline-block mt-2 bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded-full">

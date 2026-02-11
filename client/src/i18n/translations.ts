@@ -333,7 +333,7 @@ export const translations = {
       viewOnFacebook: "Ver en Facebook",
       followUs: "Síguenos para más contenido",
       whatTravelersSay: "Lo que Dicen Nuestros Viajeros",
-      cancelPolicyFull: "Cancelaciones sin penalidad hasta 48 horas antes de la salida. Cambios de fecha sujetos a disponibilidad. Para grupos y paquetes especiales pueden aplicar condiciones particulares.",
+      cancelPolicyFull: "Cancelaciones sin penalidad hasta 15 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 72 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares.",
       viewAllTours: "Ver todos los tours",
     },
     // Tours main page

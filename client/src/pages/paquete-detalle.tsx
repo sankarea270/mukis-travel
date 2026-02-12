@@ -291,14 +291,14 @@ export default function PaqueteDetalle() {
                   {t.tourDetail.preparation}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
+                  {(tour.preparation || [
                     t.tourDetail.prepWarmClothes,
                     t.tourDetail.prepSunscreen,
                     t.tourDetail.prepComfortShoes,
                     t.tourDetail.prepWater,
                     t.tourDetail.prepDocs,
                     t.tourDetail.prepCamera
-                  ].map((item, idx) => (
+                  ]).map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
                       <div className="bg-primary/10 rounded-full p-2">
                         <Check className="text-primary w-5 h-5" />
@@ -466,7 +466,7 @@ export default function PaqueteDetalle() {
                   {t.tourDetail.cancellation}
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
-                  {t.tourDetail.cancelPolicyFull}
+                  {tour.cancellationPolicy || t.tourDetail.cancelPolicyFull}
                 </p>
               </motion.div>
 

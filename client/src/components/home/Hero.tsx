@@ -13,11 +13,12 @@ const slidesData = [
     link: "/paquetes/machu-picchu-full-day"
   },
   {
-    image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
+    image: `${import.meta.env.BASE_URL}images/categories/montañafondo.jpeg`,
     name: "MONTAÑA ARCOIRIS",
     subtitleKey: "rainbow" as const,
     location: "CUSCO",
-    link: "/paquetes/montana-de-colores"
+    link: "/paquetes/montana-de-colores",
+    backgroundPosition: "center 35%"
   },
   {
     image: `${import.meta.env.BASE_URL}images/categories/laguna-humantay.jpeg`,
@@ -280,7 +281,10 @@ export function Hero() {
             >
               <motion.div 
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
-                style={{ backgroundImage: `url(${slides[current].image})` }}
+                style={{ 
+                  backgroundImage: `url(${slides[current].image})`,
+                  backgroundPosition: (slides[current] as any).backgroundPosition || "center"
+                }}
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
               

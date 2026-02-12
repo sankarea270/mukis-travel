@@ -55,12 +55,6 @@ const categorySubmenuData = [
     href: "/categorias/trekking",
   },
   {
-    id: "vivencial",
-    icon: Users,
-    color: "from-teal-400 to-emerald-500",
-    href: "/categorias/vivencial",
-  },
-  {
     id: "mistico",
     icon: Moon,
     color: "from-emerald-600 to-teal-700",

@@ -4,7 +4,6 @@ import { Hero } from "@/components/home/Hero";
 import { Ofertas } from "@/components/home/Ofertas";
 import { ToursMasSolicitados } from "@/components/home/ToursMasSolicitados";
 import { ToursMachuPicchu } from "@/components/home/ToursMachuPicchu";
-import { ProgramasVivenciales } from "@/components/home/ProgramasVivenciales";
 import { WhereToGo } from "@/components/home/WhereToGo";
 import { DestinosGrid } from "@/components/home/DestinosGrid";
 import { Categorias } from "@/components/home/Categorias";
@@ -99,11 +98,6 @@ export default function Home() {
           {/* Tours Machu Picchu */}
           <ScrollRevealSection>
             <ToursMachuPicchu />
-          </ScrollRevealSection>
-
-          {/* Programas Vivenciales */}
-          <ScrollRevealSection className="bg-white">
-            <ProgramasVivenciales />
           </ScrollRevealSection>
 
           {/* Where to Go */}

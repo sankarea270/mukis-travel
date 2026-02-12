@@ -42,6 +42,8 @@ export interface Tour {
     thumbnail?: string;
   }[];
   isPaquete?: boolean; // true si es un paquete de varios días, false o undefined si es tour de 1 día
+  preparation?: string[]; // Lista personalizada de preparación del viaje
+  cancellationPolicy?: string; // Política de cancelación personalizada
 }
 
 export const tours: Tour[] = [
@@ -120,7 +122,7 @@ export const tours: Tour[] = [
     title: "Tour Machu Picchu Full Day",
     shortDescription: "Vive la experiencia de estar en Machu Picchu con guías especializados.",
     description: "Descubre la maravilla del mundo Machu Picchu en un tour completo de un día. Saldremos desde Cusco muy temprano para tomar el tren hacia Aguas Calientes, y luego el bus hasta la ciudadela. Recorrerás cada rincón de este santuario histórico con nuestros guías expertos.",
-    aboutTour: "Comenzamos muy temprano con el recojo desde tu hotel en Cusco, para trasladarnos hasta la estación de tren en Ollantaytambo. El viaje en tren es una experiencia en sí misma, atravesando el Valle Sagrado y siguiendo el curso del río Urubamba hasta llegar a Aguas Calientes. Desde allí, un bus te llevará por una carretera serpenteante hasta la entrada de Machu Picchu, donde nuestro guía experto te revelará los misterios de este santuario histórico durante un recorrido de aproximadamente 2.5 horas. Tendrás tiempo libre para explorar por tu cuenta y capturar las mejores fotografías antes de descender para almorzar en el pueblo de Aguas Calientes.",
+    aboutTour: "Prepárate para vivir  una experiencia única  e inolvidable en una  de las  7 maravillas del mundo Moderno . Nuestro Tour Machu Picchu  Full Day  te llevará a descubrir  los secretos  de la ciudadela  inca más famosa  del planeta",
     price: 350,
     originalPrice: 420,
     duration: "1 Día",
@@ -255,7 +257,16 @@ export const tours: Tour[] = [
     reviews: [
       { id: "r4", name: "Pedro Sánchez", avatar: "https://randomuser.me/api/portraits/men/45.jpg", rating: 5, comment: "Una experiencia que te cambia la vida. Los colores son increíbles en persona.", date: "2025-12-01", country: "México" },
       { id: "r5", name: "Emma Wilson", avatar: "https://randomuser.me/api/portraits/women/33.jpg", rating: 5, comment: "Challenging but absolutely worth it! The views are unreal.", date: "2025-11-15", country: "UK" }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "3",
@@ -280,6 +291,7 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/humantay11.jpeg`
     ],
     featured: true,
+    isOffer: true,
     difficulty: "moderado",
     maxGroup: 19,
     startTime: "4:00 AM",
@@ -858,6 +870,7 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/valle3.jpeg`
     ],
     featured: true,
+    isOffer: true,
     difficulty: "fácil",
     maxGroup: 15,
     startTime: "6:30 AM",
@@ -1236,6 +1249,7 @@ export const tours: Tour[] = [
     category: "aventura",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapibycar.jpeg`,
+    isOffer: true,
     included: ["Transporte Cusco-Hidroeléctrica-Cusco", "1 Noche Hostal", "Guía", "Entrada Machu Picchu"],
     notIncluded: ["Alimentación no mencionada", "Tren Hidroeléctrica (opcional)"],
     itinerary: [

@@ -208,9 +208,9 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamontañacolores.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
-      `${import.meta.env.BASE_URL}images/categories/montañacolores2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/montañacolores3.jpeg`
+      `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
+      `${import.meta.env.BASE_URL}images/categories/montañadecolores3.png`,
+      `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`
     ],
     featured: true,
     isOffer: true,
@@ -275,8 +275,8 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapahumantay.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/laguna1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/laguna2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/lagunahumantay1.png`,
+      `${import.meta.env.BASE_URL}images/categories/lagunahumantay2.png`,
       `${import.meta.env.BASE_URL}images/categories/humantay11.jpeg`
     ],
     featured: true,

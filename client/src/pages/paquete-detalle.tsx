@@ -5,7 +5,8 @@ import {
   Clock, MapPin, Users, ChevronRight, Star, Check, X, 
   Calendar, Mountain, Share2, Heart, Phone, Globe, 
   ChevronLeft, Play, MessageCircle, ThumbsUp,
-  Camera, Navigation, Compass, Flag, Shield
+  Camera, Navigation, Compass, Flag, Shield,
+  Moon, Leaf, Eye, Sparkles
 } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -264,20 +265,151 @@ export default function PaqueteDetalle() {
               </motion.div>
 
               {/* About This Tour */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-sm"
-              >
-                <h2 className="font-heading font-bold text-2xl mb-4 text-gray-900 flex items-center gap-3">
-                  <Navigation className="text-primary" />
-                  {t.tourDetail.about}
-                </h2>
-                <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
-                  {tour.aboutTour || tour.description}
-                </p>
-              </motion.div>
+              {tour.category === "mistico" && tour.aboutTour ? (() => {
+                // Parse mystic aboutTour into intro + 2 packages
+                const fullText = tour.aboutTour;
+                const pagoIdx = fullText.indexOf("\n\n🌿");
+                const ayaIdx = fullText.indexOf("\n\n🍃");
+                const introText = pagoIdx > -1 ? fullText.substring(0, pagoIdx).trim() : fullText;
+                const pagoSection = pagoIdx > -1 && ayaIdx > -1
+                  ? fullText.substring(pagoIdx, ayaIdx).replace(/^\n+/, "").replace(/^🌿\s*El Pago a la Tierra\n+/, "").trim()
+                  : "";
+                const ayaSection = ayaIdx > -1
+                  ? fullText.substring(ayaIdx).replace(/^\n+/, "").replace(/^🍃\s*El Ritual de la Ayahuasca\n+/, "").trim()
+                  : "";
+
+                const paquetesMisticos = [
+                  {
+                    emoji: "🌿",
+                    title: "El Pago a la Tierra",
+                    subtitle: "Ceremonia ancestral de gratitud a la Pachamama",
+                    text: pagoSection,
+                    image: `${import.meta.env.BASE_URL}images/categories/pago.jpeg`,
+                    color: "from-emerald-500 to-teal-600",
+                    borderColor: "border-emerald-500/30",
+                    iconColor: "text-emerald-400",
+                    bgAccent: "bg-emerald-500/10",
+                    Icon: Leaf,
+                  },
+                  {
+                    emoji: "🍃",
+                    title: "El Ritual de la Ayahuasca",
+                    subtitle: "Sanación, autoconocimiento y transformación personal",
+                    text: ayaSection,
+                    image: tour.gallery?.[1] || tour.image,
+                    color: "from-purple-500 to-indigo-600",
+                    borderColor: "border-purple-500/30",
+                    iconColor: "text-purple-400",
+                    bgAccent: "bg-purple-500/10",
+                    Icon: Eye,
+                  },
+                ];
+
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="rounded-3xl overflow-hidden shadow-lg"
+                  >
+                    {/* Mystic header */}
+                    <div className="bg-[#0c0a1d] px-8 pt-8 pb-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-linear-to-br from-violet-500 to-purple-700 flex items-center justify-center">
+                          <Moon className="w-5 h-5 text-white" />
+                        </div>
+                        <h2 className="font-heading font-bold text-2xl text-white">
+                          {t.tourDetail.about}
+                        </h2>
+                      </div>
+                      <p className="text-violet-200/80 leading-relaxed text-lg">
+                        {introText}
+                      </p>
+                    </div>
+
+                    {/* Two packages */}
+                    <div className="bg-[#110e26]">
+                      {paquetesMisticos.map((paq, idx) => {
+                        const isReversed = idx % 2 !== 0;
+                        return (
+                          <div key={paq.title}>
+                            {/* Separator between packages */}
+                            {idx > 0 && (
+                              <div className="flex items-center justify-center gap-3 py-6">
+                                <div className="h-px flex-1 max-w-24 bg-linear-to-r from-transparent to-violet-500/30" />
+                                <Sparkles className="w-4 h-4 text-violet-500/40" />
+                                <div className="h-px flex-1 max-w-24 bg-linear-to-l from-transparent to-violet-500/30" />
+                              </div>
+                            )}
+
+                            <div className={`grid grid-cols-1 md:grid-cols-2 gap-0 ${isReversed ? "" : ""}`}>
+                              {/* Image */}
+                              <div className={`relative overflow-hidden ${isReversed ? "md:order-2" : ""}`}>
+                                <img
+                                  src={paq.image}
+                                  alt={paq.title}
+                                  className="w-full h-64 md:h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-linear-to-t from-[#110e26]/80 via-transparent to-transparent md:bg-linear-to-r md:from-transparent md:to-[#110e26]/40" />
+                                <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                                  <span className="text-base">{paq.emoji}</span>
+                                  <span className="text-white/90 text-xs font-semibold tracking-wide uppercase">
+                                    Experiencia {idx + 1}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Content */}
+                              <div className={`p-8 flex flex-col justify-center ${isReversed ? "md:order-1" : ""}`}>
+                                <div className="flex items-center gap-3 mb-3">
+                                  <div className={`w-10 h-10 rounded-xl bg-linear-to-br ${paq.color} flex items-center justify-center`}>
+                                    <paq.Icon className="w-5 h-5 text-white" />
+                                  </div>
+                                  <span className={`text-xs font-bold tracking-widest uppercase ${paq.iconColor}`}>
+                                    Experiencia {idx + 1}
+                                  </span>
+                                </div>
+
+                                <h3 className="font-heading font-bold text-2xl text-white mb-1">
+                                  {paq.title}
+                                </h3>
+                                <p className={`text-sm font-medium mb-4 ${paq.iconColor}`}>
+                                  {paq.subtitle}
+                                </p>
+                                <p className="text-violet-200/70 leading-relaxed text-sm">
+                                  {paq.text}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Mystic footer */}
+                    <div className="bg-[#0c0a1d] px-8 py-5">
+                      <p className="text-violet-300/60 text-sm text-center italic">
+                        ✦ Estas experiencias invitan a reconectar con la esencia y honrar la sabiduría ancestral ✦
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })() : (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="bg-white rounded-2xl p-8 shadow-sm"
+                >
+                  <h2 className="font-heading font-bold text-2xl mb-4 text-gray-900 flex items-center gap-3">
+                    <Navigation className="text-primary" />
+                    {t.tourDetail.about}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
+                    {tour.aboutTour || tour.description}
+                  </p>
+                </motion.div>
+              )}
 
               {/* Preparación del viaje */}
               <motion.div
@@ -323,22 +455,48 @@ export default function PaqueteDetalle() {
                 <div className="relative">
                   <div className="absolute left-9.75 top-0 bottom-0 w-0.5 bg-primary/20" />
                   <div className="space-y-6">
-                    {tour.itinerary.map((item, idx) => (
-                      <div key={idx} className="flex gap-4 relative">
-                        <div className="shrink-0 w-20 text-right">
-                          <span className="text-primary font-bold text-sm">{item.time}</span>
-                        </div>
-                        <div className="relative">
-                          <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-white shadow" />
-                        </div>
-                        <div className="grow pl-4 pb-2">
-                          <h4 className="font-bold text-gray-900">{item.activity}</h4>
-                          {item.description && (
-                            <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+                    {tour.itinerary.map((item, idx) => {
+                      // Detectar cambio de día (formato "Día X - HH:MM" o similar)
+                      const dayMatch = item.time.match(/^(Día \d+|Day \d+)(?: - (.*))?$/i);
+                      const currentDay = dayMatch ? dayMatch[1] : null;
+                      // Si hay día, mostramos solo la hora en la columna de tiempo, si no, mostramos todo
+                      const timeDisplay = dayMatch && dayMatch[2] ? dayMatch[2] : (!dayMatch && currentDay ? "" : item.time);
+                      
+                      const prevItem = idx > 0 ? tour.itinerary[idx - 1] : null;
+                      const prevDayMatch = prevItem?.time.match(/^(Día \d+|Day \d+)/i);
+                      const prevDay = prevDayMatch ? prevDayMatch[1] : null;
+                      
+                      const isNewDay = currentDay && (currentDay !== prevDay);
+
+                      return (
+                        <div key={idx}>
+                          {isNewDay && (
+                            <div className="flex items-center gap-4 mb-4 mt-2">
+                              {/* Espaciador para alinear con la columna de hora */}
+                              <div className="shrink-0 w-20"></div>
+                              {/* Contenido del separador de día */}
+                              <div className="grow pl-4 border-b-2 border-primary/20 pb-1 mb-2">
+                                <span className="font-heading font-bold text-primary text-lg">{currentDay}</span>
+                              </div>
+                            </div>
                           )}
+                          <div className="flex gap-4 relative">
+                            <div className="shrink-0 w-20 text-right">
+                              <span className="text-primary font-bold text-sm">{timeDisplay}</span>
+                            </div>
+                            <div className="relative">
+                              <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-white shadow z-10" />
+                            </div>
+                            <div className="grow pl-4 pb-2">
+                              <h4 className="font-bold text-gray-900">{item.activity}</h4>
+                              {item.description && (
+                                <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </motion.div>

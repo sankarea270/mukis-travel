@@ -207,7 +207,7 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.8700, lng: -71.3033 },
     region: "sierra",
     category: "aventura",
-    image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
+    image: `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamontañacolores.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
@@ -331,7 +331,16 @@ export const tours: Tour[] = [
     ],
     reviews: [
       { id: "r6", name: "María García", avatar: "https://randomuser.me/api/portraits/women/68.jpg", rating: 5, comment: "La laguna es más hermosa de lo que muestran las fotos. ¡Increíble experiencia!", date: "2025-11-10", country: "Chile" }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Documentos de identidad",
+      "Cámara fotográfica"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "4",
@@ -635,51 +644,6 @@ export const tours: Tour[] = [
     ]
   },
   {
-    id: "10",
-    slug: "valle-sagrado-machu-picchu-2d1n",
-    title: "Tour Valle Sagrado con Conexión a Machu Picchu 2 Dias 1 Noche",
-    shortDescription: "Valle Sagrado, Machu Picchu, Cusco, Perú",
-    description: "Un recorrido completo visitando el Valle Sagrado y conectando con la maravilla de Machu Picchu en 2 días inolvidables.",
-    aboutTour: "Este programa de 2 días y 1 noche te permite explorar lo mejor del Valle Sagrado de los Incas, visitando sitios arqueológicos y mercados tradicionales, para luego conectar en tren hacia Aguas Calientes. Al día siguiente, disfrutarás de la majestuosidad de Machu Picchu con una visita guiada. Es la combinación perfecta de cultura, historia y paisajes impresionantes.",
-    price: 385.00,
-    duration: "2 Días 1 Noche",
-    tourType: "Paquete Turístico",
-    languages: ["Español", "Inglés", "Portugués"],
-    location: "Cusco",
-    region: "sierra",
-    category: "cultural",
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
-    gallery: [
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600"
-    ],
-    included: ["Transporte", "Hotel", "Tren", "Ingresos", "Guía"],
-    notIncluded: ["Alimentación no mencionada"],
-    itinerary: [
-      { time: "Day 1", activity: "Valle Sagrado", description: "Visita a Pisaq y Ollantaytambo. Viaje en tren a Aguas Calientes." },
-      { time: "Day 2", activity: "Machu Picchu", description: "Tour guiado en Machu Picchu y retorno a Cusco." }
-    ]
-  },
-  {
-    id: "12",
-    slug: "maras-moray-tradicional-full-day",
-    title: "Tour Maras Moray Tradicional Full Day",
-    shortDescription: "Moray, Maras, Perú",
-    description: "Visita los andenes de Moray y las salineras de Maras en un recorrido tradicional.",
-    price: 20.00,
-    duration: "5- 6 Horas",
-    tourType: "Tour Cultural",
-    languages: ["Español", "Inglés", "Portugués"],
-    location: "Maras",
-    region: "sierra",
-    category: "cultural",
-    image: "https://images.unsplash.com/photo-1629947935402-27354b732554?auto=format&fit=crop&q=80&w=1600",
-    included: ["Transporte", "Guía"],
-    notIncluded: ["Ingresos"],
-    itinerary: [
-      { time: "AM", activity: "Maras y Moray", description: "Recorrido por los centros arqueológicos y salineras." }
-    ]
-  },
-  {
     id: "17",
     slug: "montana-7-colores-cuatrimotos",
     title: "Montaña de Colores con Cuatrimotos",
@@ -872,7 +836,7 @@ export const tours: Tour[] = [
     featured: true,
     isOffer: true,
     difficulty: "fácil",
-    maxGroup: 15,
+    maxGroup: 19,
     startTime: "6:30 AM",
     highlights: [
       "Visita completa a Chinchero y sus textiles",
@@ -899,8 +863,8 @@ export const tours: Tour[] = [
       { time: "11:00 AM", activity: "Salineras de Maras", description: "Visita a las minas de sal natural usadas desde tiempos antiguos y variedad de productos de sal." },
       { time: "12:30 PM", activity: "Almuerzo Buffet en Urubamba", description: "Disfrutaremos de un variado almuerzo buffet con platos locales." },
       { time: "2:00 PM", activity: "Ollantaytambo", description: "Visita a la fortaleza y centro ceremonial, destacando sus construcciones de piedra finamente tallada." },
-      { time: "4:00 PM", activity: "Parque Arqueológico de Pisac", description: "Exploración del centro agrícola y administrativo inca de gran importancia." },
-      { time: "6:30 PM", activity: "Retorno a Cusco", description: "El servicio concluye aproximadamente a las 18:30 – 19:00 horas en la ciudad de Cusco." }
+      { time: "4:30 PM", activity: "Parque Arqueológico de Pisac", description: "Exploración del centro agrícola y administrativo inca de gran importancia." },
+      { time: "7:00 PM", activity: "Retorno a Cusco", description: "El servicio concluye aproximadamente a las 18:30 – 19:00 horas en la ciudad de Cusco." }
     ]
   },
   {
@@ -1240,6 +1204,7 @@ export const tours: Tour[] = [
     title: "Machu Picchu by Car 2 Días 1 Noche",
     shortDescription: "La ruta más económica hacia Machu Picchu vía Santa Teresa.",
     description: "Aventura por carretera y caminata por la selva alta para llegar a Machu Picchu de la forma más económica.",
+    aboutTour: "Es una ruta alterna que se ingresa mediante un viaje en Bus hasta hidroeléctrica es una opción para todos los visitantes que no cuentan con recursos para obtener un tickets de tren turístico ó que les encanta la aventura y la naturaleza. \n\nAunque la ruta es un poco larga, durante el viaje usted podrá disfrutar de hermosos paisajes y nevados de la cordillera de los andes.",
     price: 150,
     duration: "2 Días 1 Noche",
     tourType: "Aventura / Económico",
@@ -1253,8 +1218,30 @@ export const tours: Tour[] = [
     included: ["Transporte Cusco-Hidroeléctrica-Cusco", "1 Noche Hostal", "Guía", "Entrada Machu Picchu"],
     notIncluded: ["Alimentación no mencionada", "Tren Hidroeléctrica (opcional)"],
     itinerary: [
-      { time: "Día 1", activity: "Viaje a Hidroeléctrica", description: "Viaje en bus y caminata de 3 horas a Aguas Calientes." },
-      { time: "Día 2", activity: "Machu Picchu", description: "Visita a la ciudadela y retorno a Cusco." }
+      { time: "Día 1 - 06:30 AM", activity: "Recojo del hotel", description: "Recojo en los respectivos hoteles entre 06:30 a.m. y 07:00 a.m." },
+      { time: "Día 1 - 07:00 AM", activity: "Rumbo al Valle Sagrado", description: "Nos dirigiremos hacia el Valle Sagrado pasando por Urubamba hasta llegar a Ollantaytambo." },
+      { time: "Día 1 - 09:00 AM", activity: "Parada en Ollantaytambo", description: "Descanso de 20 minutos donde podrás desayunar." },
+      { time: "Día 1 - 09:30 AM", activity: "Abra Málaga", description: "Viaje por un sinuoso ascenso rumbo al Abra Málaga (4316 m.s.n.m.)." },
+      { time: "Día 1 - 11:00 AM", activity: "Paisajes Andinos", description: "Podremos observar maravillosos paisajes de la geografía peruana." },
+      { time: "Día 1 - 12:00 PM", activity: "Almuerzo en Santa Teresa", description: "Llegada a Santa Teresa y disfrute del almuerzo." },
+      { time: "Día 1 - 02:00 PM", activity: "Hidroeléctrica", description: "Llegada a Hidroeléctrica, encuentro con el guía quien nos indicará el camino hacia Aguas Calientes." },
+      { time: "Día 1 - 05:30 PM", activity: "Llegada a Aguas Calientes", description: "Llegada al pueblo y acomodación en el hotel (pernocte)." },
+      { time: "Día 1 - 08:00 PM", activity: "Cena", description: "Disfrutaremos de una deliciosa cena." },
+      { time: "Día 2 - 05:00 AM", activity: "Desayuno", description: "Desayuno box lunch para llevar." },
+      { time: "Día 2 - 07:00 AM", activity: "Guiado en Machu Picchu", description: "Inicio del guiado en Machu Picchu con una duración promedio de 2 horas." },
+      { time: "Día 2 - 11:30 AM", activity: "Tiempo libre", description: "Tiempo libre para disfrutar del paisaje antes del retorno." },
+      { time: "Día 2 - 12:00 PM", activity: "Caminata a Hidroeléctrica", description: "Descenso para iniciar la caminata de retorno hacia Hidroeléctrica." },
+      { time: "Día 2 - 02:00 PM", activity: "Almuerzo y salida", description: "Almuerzo en Hidroeléctrica y abordaje de vehículos para el retorno a Cusco." },
+      { time: "Día 2 - 03:00 PM", activity: "Viaje a Cusco", description: "Continuación del viaje de retorno a la ciudad de Cusco." },
+      { time: "Día 2 - 08:00 PM", activity: "Llegada a Cusco", description: "Llegada a la ciudad de Cusco. Fin del tour." }
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Documentos de identidad",
+      "Cámara fotográfica"
     ]
   },
   {
@@ -1424,6 +1411,73 @@ export const tours: Tour[] = [
     itinerary: [
       { time: "7:00 AM", activity: "Salida", description: "Viaje con paradas turísticas hasta Puno." }
     ]
+  },
+  {
+    id: "48",
+    slug: "experiencias-misticas-cusco",
+    title: "Tours Experiencias Místicas",
+    shortDescription: "Rituales ancestrales, ceremonias de pago a la tierra y conexión espiritual en el corazón de los Andes.",
+    description: "Cusco, antiguo corazón del Imperio Inca, es un destino donde la espiritualidad andina y la naturaleza se unen para ofrecer vivencias profundas y transformadoras. Entre montañas sagradas y paisajes energéticos, los visitantes pueden participar en rituales ancestrales que buscan conectar al ser humano con la tierra, el cosmos y su mundo interior.",
+    aboutTour: "Cusco, antiguo corazón del Imperio Inca, es un destino donde la espiritualidad andina y la naturaleza se unen para ofrecer vivencias profundas y transformadoras. Entre montañas sagradas y paisajes energéticos, los visitantes pueden participar en rituales ancestrales que buscan conectar al ser humano con la tierra, el cosmos y su mundo interior. En conjunto, estas experiencias místicas en Cusco invitan a reconectar con la esencia, honrar la sabiduría ancestral y vivir un viaje interior en uno de los lugares más energéticos de los Andes.\n\n🌿 El Pago a la Tierra\n\nEl pago a la tierra es una ceremonia tradicional dedicada a la Pachamama (Madre Tierra). En este ritual, guiado por un chamán o curandero, se realizan ofrendas como hojas de coca, flores, semillas y bebidas como chicha o vino, en señal de gratitud por la abundancia recibida. Generalmente se lleva a cabo en lugares considerados sagrados —montañas, ríos o sitios arqueológicos— y tiene como propósito agradecer, armonizar energías y pedir nuevas bendiciones. Es una experiencia espiritual que fortalece la conexión con la naturaleza y la cosmovisión andina.\n\n🍃 El Ritual de la Ayahuasca\n\nLa ceremonia de la ayahuasca es un ritual de sanación y autoconocimiento originario de la Amazonía peruana. Dirigida por un guía espiritual experimentado, esta práctica busca expandir la conciencia y promover procesos de reflexión profunda y transformación personal. Requiere preparación previa y acompañamiento adecuado para garantizar una experiencia segura. Muchas personas viajan a Perú específicamente para vivir este ritual, considerado por algunos como un camino hacia la introspección y el crecimiento espiritual.",
+    price: 120,
+    duration: "Medio Día - 1 Día",
+    tourType: "Experiencia mística",
+    languages: ["Español", "Inglés"],
+    location: "Cusco",
+    locationCoords: { lat: -13.5319, lng: -71.9675 },
+    region: "sierra",
+    category: "mistico",
+    image: "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1600",
+    gallery: [
+      "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1600",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1600",
+      "https://images.unsplash.com/photo-1470115636492-6d2b56f9b754?auto=format&fit=crop&q=80&w=1600"
+    ],
+    featured: true,
+    difficulty: "fácil",
+    maxGroup: 8,
+    highlights: [
+      "Ceremonia de Pago a la Tierra (Pachamama)",
+      "Ritual guiado por chamán andino certificado",
+      "Conexión espiritual en lugares sagrados",
+      "Lectura de hojas de coca",
+      "Información sobre la ceremonia de Ayahuasca",
+      "Paisajes energéticos de los Andes"
+    ],
+    included: [
+      "Recojo del hotel",
+      "Transporte al lugar sagrado",
+      "Chamán o curandero andino",
+      "Materiales para la ofrenda (hojas de coca, flores, semillas)",
+      "Guía bilingüe",
+      "Infusión de hierbas andinas"
+    ],
+    notIncluded: [
+      "Alimentación",
+      "Propinas",
+      "Gastos personales"
+    ],
+    itinerary: [
+      { time: "Mañana", activity: "Recojo y traslado", description: "Recojo del hotel y traslado hacia el lugar sagrado seleccionado para la ceremonia." },
+      { time: "Media mañana", activity: "Ceremonia de Pago a la Tierra", description: "El chamán guía la ceremonia de ofrendas a la Pachamama con hojas de coca, flores y semillas. Momento de gratitud y conexión." },
+      { time: "Mediodía", activity: "Lectura de coca y meditación", description: "Lectura de hojas de coca para interpretar mensajes espirituales. Espacio de meditación y reflexión personal." },
+      { time: "Tarde", activity: "Charla sobre rituales andinos", description: "Conversación sobre la cosmovisión andina, el ritual de la Ayahuasca y otras prácticas ancestrales. Retorno al hotel." }
+    ],
+    faqs: [
+      { question: "¿Es necesario creer en alguna religión?", answer: "No, las experiencias místicas están abiertas a todas las personas sin importar su creencia. Se trata de una vivencia cultural y espiritual respetuosa." },
+      { question: "¿Se realiza la ceremonia de Ayahuasca en este tour?", answer: "Este tour es informativo sobre la Ayahuasca. Si deseas participar en una ceremonia de Ayahuasca, podemos coordinar con centros especializados y certificados." },
+      { question: "¿Es seguro?", answer: "Completamente. Trabajamos con chamanes y guías espirituales certificados con años de experiencia en prácticas ancestrales." },
+      { question: "¿Qué debo llevar?", answer: "Ropa cómoda, mente abierta y disposición para vivir una experiencia diferente. Se recomienda no consumir alcohol el día previo." }
+    ],
+    preparation: [
+      "Ropa cómoda y abrigadora",
+      "Mente abierta",
+      "Botella de agua",
+      "Protector solar",
+      "Documentos de identidad",
+      "Cámara fotográfica"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   }
 ];
 

@@ -262,7 +262,11 @@ export function Hero() {
         </div>
 
         {/* Right Side: The Floating Cinematic Frame */}
-        <div className="hidden md:block md:flex-[1.55] lg:flex-[1.85] relative aspect-video w-full max-w-4xl xl:max-w-5xl perspective-2000">
+        {/* Mobile: absolute full-screen background | Desktop: flex panel with 3D effects */}
+        <div className="absolute inset-0 md:relative md:flex-[1.55] lg:flex-[1.85] md:aspect-video w-full md:max-w-4xl xl:max-w-5xl perspective-2000">
+          {/* Mobile dark overlay for text readability */}
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-black/60 md:hidden z-1" />
+          
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`frame-${current}`}
@@ -277,7 +281,7 @@ export function Hero() {
                 rotateY: mousePos.x * 0.08,
                 rotateX: -mousePos.y * 0.08,
               }}
-              className="w-full h-full relative z-20 shadow-[0_80px_120px_-30px_rgba(0,0,0,0.9)] border border-white/10 group overflow-hidden"
+              className="w-full h-full relative z-0 md:z-20 shadow-[0_80px_120px_-30px_rgba(0,0,0,0.9)] md:border md:border-white/10 group overflow-hidden"
             >
               <motion.div 
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"

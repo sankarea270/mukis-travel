@@ -95,7 +95,7 @@ export function Hero() {
       opacity: 1,
       scale: 1,
       filter: "brightness(0.7) blur(10px)",
-      transition: { duration: 1.5, ease: [0.19, 1, 0.22, 1] }
+      transition: { duration: 1.5, ease: [0.19, 1, 0.22, 1] as const }
     },
     exit: {
       opacity: 0,
@@ -113,13 +113,13 @@ export function Hero() {
       clipPath: "inset(0 0% 0 0)",
       scale: 1,
       transition: { 
-        clipPath: { duration: 1.4, ease: [0.77, 0, 0.175, 1], delay: 0.2 },
-        scale: { duration: 2, ease: "easeOut" }
+        clipPath: { duration: 1.4, ease: [0.77, 0, 0.175, 1] as const, delay: 0.2 },
+        scale: { duration: 2, ease: [0.16, 1, 0.3, 1] as const }
       }
     },
     exit: (direction: number) => ({
       clipPath: direction > 0 ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)",
-      transition: { duration: 0.8, ease: "easeInOut" }
+      transition: { duration: 0.8, ease: [0.42, 0, 0.58, 1] as const }
     })
   };
 
@@ -128,7 +128,7 @@ export function Hero() {
     animate: { 
       x: 0, 
       opacity: 1,
-      transition: { duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.6 }
+      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const, delay: 0.6 }
     },
     exit: { 
       x: 50, 
@@ -150,7 +150,7 @@ export function Hero() {
   }, []);
 
   return (
-    <div ref={heroRef} className="relative h-screen min-h-187.5 w-full overflow-hidden bg-[#050505]">
+    <div ref={heroRef} className="relative h-svh min-h-dvh w-full overflow-hidden bg-[#050505]">
       {/* Background Layers (The Blurred Atmosphere) */}
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
@@ -170,8 +170,8 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-20 h-full container-fluid px-6 md:px-12 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-24">
-        <div className="flex-1 text-center md:text-left z-30 pointer-events-none">
+      <div className="relative z-20 h-full container-fluid px-4 sm:px-6 md:px-10 lg:px-12 pt-22 sm:pt-28 md:pt-32 pb-14 sm:pb-16 md:pb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 lg:gap-12">
+        <div className="flex-1 lg:flex-[0.95] text-center md:text-left z-30 pointer-events-none">
           <AnimatePresence mode="wait">
             <motion.div
               key={`text-${current}`}
@@ -188,7 +188,7 @@ export function Hero() {
                 </span>
               </div>
               
-              <h1 className="text-4xl sm:text-6xl lg:text-[clamp(3.5rem,7vw,7.5rem)] font-heading font-black text-white leading-[0.9] md:leading-[0.85] mb-4 md:mb-6 drop-shadow-2xl uppercase tracking-tighter">
+              <h1 className="text-[clamp(2.2rem,10vw,3.6rem)] md:text-[clamp(3.2rem,6.2vw,7rem)] font-heading font-black text-white leading-[0.9] md:leading-[0.85] mb-4 md:mb-6 drop-shadow-2xl uppercase tracking-tighter">
                 {slides[current].name.split(' ').map((word, i) => (
                   <span key={i} className="block last:text-primary transition-colors duration-500">
                     {word}
@@ -196,13 +196,13 @@ export function Hero() {
                 ))}
               </h1>
               
-              <p className="text-white/80 text-sm md:text-base lg:text-lg font-bold tracking-[0.15em] md:tracking-[0.2em] max-w-lg border-l-2 md:border-l-4 border-primary pl-4 md:pl-8 mb-8 md:mb-10 uppercase mx-auto md:mx-0">
+              <p className="text-white/80 text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-widest sm:tracking-[0.15em] md:tracking-[0.2em] max-w-lg border-l-2 md:border-l-4 border-primary pl-3 sm:pl-4 md:pl-8 mb-8 md:mb-10 uppercase mx-auto md:mx-0">
                 {slides[current].subtitle}
               </p>
 
               <div className="flex items-center justify-center md:justify-start gap-6 md:gap-10 pointer-events-auto">
                 <Link href={slides[current].link}>
-                  <button className="group relative px-6 md:px-10 py-3 md:py-5 bg-white text-black font-black rounded-none overflow-hidden transition-all hover:bg-primary hover:text-white">
+                  <button className="group relative px-5 sm:px-6 md:px-10 py-2.5 sm:py-3 md:py-5 bg-white text-black font-black rounded-none overflow-hidden transition-all hover:bg-primary hover:text-white">
                     <span className="relative z-10 uppercase tracking-tighter text-xs md:text-sm">{t.hero.bookExperience}</span>
                   </button>
                 </Link>
@@ -262,7 +262,7 @@ export function Hero() {
         </div>
 
         {/* Right Side: The Floating Cinematic Frame */}
-        <div className="flex-[1.5] relative aspect-video w-full perspective-2000">
+        <div className="hidden md:block md:flex-[1.55] lg:flex-[1.85] relative aspect-video w-full max-w-4xl xl:max-w-5xl perspective-2000">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`frame-${current}`}
@@ -289,8 +289,8 @@ export function Hero() {
               <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
               
               {/* Corner Accents - More prominent */}
-              <div className="absolute top-10 left-10 w-16 h-16 border-t-4 border-l-4 border-primary" />
-              <div className="absolute bottom-10 right-10 w-16 h-16 border-b-4 border-r-4 border-primary" />
+              <div className="absolute top-6 lg:top-10 left-6 lg:left-10 w-12 h-12 lg:w-16 lg:h-16 border-t-4 border-l-4 border-primary" />
+              <div className="absolute bottom-6 lg:bottom-10 right-6 lg:right-10 w-12 h-12 lg:w-16 lg:h-16 border-b-4 border-r-4 border-primary" />
             </motion.div>
           </AnimatePresence>
 
@@ -301,19 +301,19 @@ export function Hero() {
       </div>
 
       {/* Navigation & Controls */}
-      <div className="absolute bottom-16 left-6 md:left-12 right-6 md:right-12 z-50 flex flex-row justify-center items-end">
+      <div className="absolute bottom-6 sm:bottom-10 md:bottom-14 left-4 md:left-10 right-4 md:right-10 z-50 hidden sm:flex flex-row justify-center items-end">
         <div className="flex gap-4">
           <button 
             onClick={() => paginate(-1)}
-            className="w-16 h-16 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black hover:border-white transition-all rounded-full group"
+            className="w-12 h-12 md:w-16 md:h-16 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black hover:border-white transition-all rounded-full group"
           >
-            <ArrowLeft className="transition-transform group-hover:-translate-x-1" size={24} />
+            <ArrowLeft className="transition-transform group-hover:-translate-x-1" size={20} />
           </button>
           <button 
             onClick={() => paginate(1)}
-            className="w-16 h-16 bg-primary flex items-center justify-center text-white hover:bg-white hover:text-black transition-all rounded-full group shadow-2xl"
+            className="w-12 h-12 md:w-16 md:h-16 bg-primary flex items-center justify-center text-white hover:bg-white hover:text-black transition-all rounded-full group shadow-2xl"
           >
-            <ArrowRight className="transition-transform group-hover:translate-x-1" size={24} />
+            <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
           </button>
         </div>
       </div>

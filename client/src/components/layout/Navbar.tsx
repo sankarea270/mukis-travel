@@ -114,10 +114,10 @@ export function Navbar() {
   return (
     <header className={cn(
       "fixed top-0 w-full z-50 transition-all duration-500",
-      scrolled ? "bg-white/95 backdrop-blur-lg shadow-xl py-2" : "bg-transparent py-4"
+      scrolled ? "bg-white/95 backdrop-blur-lg shadow-xl py-2" : "bg-transparent py-3 md:py-4"
     )}>
       {/* Top Bar */}
-      <div className="hidden lg:block container mx-auto px-4 mb-2">
+      <div className="hidden xl:block container mx-auto px-4 mb-2">
         <div className={cn(
           "flex justify-end items-center text-xs gap-6 transition-colors",
           scrolled ? "text-gray-600" : "text-white/90"
@@ -136,29 +136,29 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
             <motion.div 
-              className="flex items-center gap-3 cursor-pointer"
+              className="flex items-center gap-2.5 sm:gap-3 cursor-pointer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <img
                 src={`${import.meta.env.BASE_URL}images/categories/logom-removebg-preview.png`}
                 alt="Mukis Travel Logo"
-                className="w-14 h-14 object-contain"
+                className="w-11 h-11 sm:w-14 sm:h-14 object-contain"
               />
               <div className="flex flex-col">
                 <span className={cn(
-                  "font-heading font-bold text-xl uppercase tracking-wider leading-none transition-colors",
+                  "font-heading font-bold text-lg sm:text-xl uppercase tracking-wider leading-none transition-colors",
                   scrolled ? "text-primary" : "text-white"
                 )}>
                   Mukis Travel
                 </span>
                 <span className={cn(
-                  "text-[10px] uppercase tracking-[0.2em] transition-colors",
+                  "hidden sm:block text-[10px] uppercase tracking-[0.2em] transition-colors",
                   scrolled ? "text-gray-500" : "text-white/70"
                 )}>
                   {t.nav.agencyLabel}
@@ -168,7 +168,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1">
             {/* Inicio */}
             <Link href="/">
               <span className={cn(
@@ -336,25 +336,14 @@ export function Navbar() {
               </span>
             </Link>
 
-            {/* Soporte */}
-            <Link href="/soporte">
+            {/* Contacto y Soporte */}
+            <Link href="/contacto">
               <span className={cn(
                 "font-medium text-sm transition-all px-4 py-2 rounded-full cursor-pointer flex items-center gap-1",
                 scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
-                location === "/soporte" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
-              )}>
-                <Headphones className="w-4 h-4" />
-                {t.nav.support}
-              </span>
-            </Link>
-
-            {/* Contacto */}
-            <Link href="/contacto">
-              <span className={cn(
-                "font-medium text-sm transition-all px-4 py-2 rounded-full cursor-pointer",
-                scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10",
                 location === "/contacto" && (scrolled ? "bg-primary/10 text-primary" : "bg-white/20")
               )}>
+                <Headphones className="w-4 h-4" />
                 {t.nav.contact}
               </span>
             </Link>
@@ -377,7 +366,7 @@ export function Navbar() {
           <motion.button 
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
-              "lg:hidden p-2.5 rounded-xl transition-colors",
+              "xl:hidden p-2.5 rounded-xl transition-colors",
               scrolled ? "text-gray-800 bg-gray-100" : "text-white bg-white/10"
             )}
             whileTap={{ scale: 0.9 }}
@@ -417,9 +406,9 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden fixed inset-x-0 top-17 bg-white shadow-2xl border-t overflow-hidden"
+            className="xl:hidden fixed inset-x-0 top-18 sm:top-20 bg-white shadow-2xl border-t overflow-hidden"
           >
-            <div className="max-h-[calc(100vh-68px)] overflow-y-auto">
+            <div className="max-h-[calc(100svh-80px)] overflow-y-auto">
               <div className="flex flex-col p-4 gap-1">
                 {/* Inicio */}
                 <Link href="/">
@@ -562,29 +551,16 @@ export function Navbar() {
                   </motion.span>
                 </Link>
 
-                {/* Soporte */}
-                <Link href="/soporte">
-                  <motion.span 
-                    className={cn(
-                      "flex items-center gap-2 font-medium text-gray-800 py-3 px-4 rounded-xl transition-colors cursor-pointer",
-                      location === "/soporte" ? "bg-primary/10 text-primary" : "hover:bg-gray-50"
-                    )}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Headphones className="w-4 h-4" />
-                    {t.nav.support}
-                  </motion.span>
-                </Link>
-
-                {/* Contacto */}
+                {/* Contacto y Soporte */}
                 <Link href="/contacto">
                   <motion.span 
                     className={cn(
-                      "block font-medium text-gray-800 py-3 px-4 rounded-xl transition-colors cursor-pointer",
+                      "flex items-center gap-2 font-medium text-gray-800 py-3 px-4 rounded-xl transition-colors cursor-pointer",
                       location === "/contacto" ? "bg-primary/10 text-primary" : "hover:bg-gray-50"
                     )}
                     whileTap={{ scale: 0.98 }}
                   >
+                    <Headphones className="w-4 h-4" />
                     {t.nav.contact}
                   </motion.span>
                 </Link>
@@ -604,7 +580,7 @@ export function Navbar() {
                     {t.nav.quote}
                   </motion.a>
 
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-sm text-gray-500">
                     <a href="tel:+51960470892" className="flex items-center gap-1">
                       <Phone size={14} />
                       +51 960 470 892

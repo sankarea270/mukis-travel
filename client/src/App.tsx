@@ -1,4 +1,4 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, Redirect } from "wouter";
 import { useSyncExternalStore } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -22,7 +22,7 @@ import CategoriaNaturaleza from "@/pages/categoria-naturaleza";
 import CategoriaTrekking from "@/pages/categoria-trekking";
 import CategoriaVivencial from "@/pages/categoria-vivencial";
 import CategoriaMistico from "@/pages/categoria-mistico";
-import Soporte from "@/pages/soporte";
+
 import TerminosCondiciones from "@/pages/terminos-condiciones";
 import PoliticaPrivacidad from "@/pages/politica-privacidad";
 import TrabajaConNosotros from "@/pages/trabaja-con-nosotros";
@@ -94,7 +94,7 @@ function Router() {
       <Route path="/categorias/vivencial" component={CategoriaVivencial} />
       <Route path="/categorias/mistico" component={CategoriaMistico} />
       <Route path="/sobre-nosotros" component={SobreNosotros} />
-      <Route path="/soporte" component={Soporte} />
+      <Route path="/soporte">{() => <Redirect to="/contacto" />}</Route>
       <Route path="/terminos-condiciones" component={TerminosCondiciones} />
       <Route path="/politica-privacidad" component={PoliticaPrivacidad} />
       <Route path="/trabaja-con-nosotros" component={TrabajaConNosotros} />

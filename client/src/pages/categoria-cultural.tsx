@@ -16,7 +16,7 @@ export default function CategoriaCultural() {
     "valle-sagrado-vip",
     "valle-sagrado-tradicional",
     "maras-moray-salineras",
-    "valle-sur-humedal-huasao",
+    "tour-valle-sur-cusco",
     "puente-qeswachaka",
     "ruta-del-sol",
   ];

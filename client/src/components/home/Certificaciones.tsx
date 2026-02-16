@@ -6,32 +6,36 @@ const certifications = [
   {
     name: "MINCETUR",
     description: "Ministerio de Comercio Exterior y Turismo",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Logotipo_del_MINCETUR.svg/200px-Logotipo_del_MINCETUR.svg.png",
+    logo: `${import.meta.env.BASE_URL}images/categories/ministerio.jpg`,
+    zoom: "scale-150", 
     row: 1
   },
   {
     name: "PromPerú",
     description: "Comisión de Promoción del Perú",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Logo_PROMPER%C3%9A.svg/200px-Logo_PROMPER%C3%9A.svg.png",
+    logo: `${import.meta.env.BASE_URL}images/categories/logodecomision.jpg`,
+    zoom: "scale-140",
     row: 1
   },
   {
-    name: "Y tú qué planes",
-    description: "Campaña Nacional de Turismo",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Y_t%C3%BA_qu%C3%A9_planes.png/220px-Y_t%C3%BA_qu%C3%A9_planes.png",
+    name: "Marca Perú",
+    description: "Marca País",
+    logo: `${import.meta.env.BASE_URL}images/categories/logoperu.png`,
+    zoom: "scale-125",
     row: 1
   },
   {
-    name: "DIRCETUR",
-    description: "Dirección Regional de Comercio Exterior y Turismo",
-    logo: `${import.meta.env.BASE_URL}images/categories/logom-removebg-preview.png`,
-    fallback: "DIRCETUR",
+    name: "GERCETUR",
+    description: "Gerencia Regional de Comercio Exterior, Turismo y Artesanía",
+    logo: `${import.meta.env.BASE_URL}images/categories/logoger.png`,
+    zoom: "scale-90",
     row: 1
   },
   {
-    name: "CALTUR",
-    description: "Plan Nacional de Calidad Turística",
-    logo: "https://www.mincetur.gob.pe/wp-content/uploads/documentos/turismo/CALTUR/Logo-CALTUR.png",
+    name: "Registro",
+    description: "Agencia de Viajes y Turismo Registrada",
+    logo: `${import.meta.env.BASE_URL}images/categories/viajes.jpg`,
+    zoom: "scale-110",
     row: 2
   }
 ];
@@ -42,11 +46,6 @@ const awards = [
   { year: "2022", name: "TripAdvisor", badge: "Travelers' Choice" },
   { year: "2021", name: "TripAdvisor", badge: "Travelers' Choice" },
   { year: "2020", name: "TripAdvisor", badge: "Travelers' Choice" },
-];
-
-const isoLogos = [
-  { name: "ISO 9001", description: "Sistema de Gestión de Calidad" },
-  { name: "ISO 14001", description: "Gestión Ambiental" },
 ];
 
 export function Certificaciones() {
@@ -82,16 +81,16 @@ export function Certificaciones() {
               className="group"
             >
               <div className="bg-white rounded-2xl p-6 h-full flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300">
-                <div className="h-16 flex items-center justify-center mb-3 grayscale group-hover:grayscale-0 transition-all duration-300">
-                  {cert.fallback ? (
+                <div className="h-24 w-full flex items-center justify-center mb-4 grayscale group-hover:grayscale-0 transition-all duration-300 overflow-hidden">
+                  {(cert as any).fallback ? (
                     <span className="font-heading font-bold text-gray-400 group-hover:text-primary text-lg transition-colors">
-                      {cert.fallback}
+                      {(cert as any).fallback}
                     </span>
                   ) : (
                     <img
                       src={cert.logo}
                       alt={cert.name}
-                      className="max-h-full max-w-full object-contain opacity-60 group-hover:opacity-100 transition-opacity"
+                      className={`max-h-full max-w-full object-contain opacity-60 group-hover:opacity-100 transition-opacity ${(cert as any).zoom || ''}`}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
@@ -116,24 +115,27 @@ export function Certificaciones() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-white rounded-3xl p-8 shadow-sm"
+          className="bg-white rounded-3xl p-8 shadow-sm max-w-5xl mx-auto"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16">
             {/* TripAdvisor Logo */}
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-[#00AA6C] rounded-full flex items-center justify-center">
-                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="w-16 h-16 bg-[#00AA6C] rounded-full flex items-center justify-center shadow-md">
+                <svg className="w-9 h-9 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </div>
-              <div>
-                <h3 className="font-heading font-bold text-xl text-gray-900">TripAdvisor</h3>
-                <p className="text-gray-600 text-sm">Travelers' Choice Awards</p>
+              <div className="text-left">
+                <h3 className="font-heading font-bold text-2xl text-gray-900 leading-tight">TripAdvisor</h3>
+                <p className="text-[#00AA6C] font-medium text-sm">Travelers' Choice Awards</p>
               </div>
             </div>
 
+            {/* Separator for desktop */}
+            <div className="hidden md:block w-px h-16 bg-gray-200"></div>
+
             {/* Awards Grid */}
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               {awards.map((award, idx) => (
                 <motion.div
                   key={award.year}
@@ -148,21 +150,6 @@ export function Certificaciones() {
                     <span className="text-xs opacity-80">{award.badge}</span>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-
-            {/* ISO Badges */}
-            <div className="flex gap-4">
-              {isoLogos.map((iso, idx) => (
-                <div
-                  key={iso.name}
-                  className="text-center"
-                >
-                  <div className="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="font-heading font-bold text-xs text-gray-600">{iso.name}</span>
-                  </div>
-                  <p className="text-gray-500 text-xs">{iso.description}</p>
-                </div>
               ))}
             </div>
           </div>

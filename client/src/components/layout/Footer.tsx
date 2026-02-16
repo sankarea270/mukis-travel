@@ -9,7 +9,7 @@ export function Footer() {
   const companyLinks = [
     { name: t.footer.aboutUs, href: "/sobre-nosotros" },
     { name: t.footer.workWithUs, href: "/trabaja-con-nosotros" },
-    { name: t.footer.paymentMethods, href: "/soporte" },
+    { name: t.footer.paymentMethods, href: "/contacto" },
     { name: t.footer.knowPeru, href: "/guia-peru" },
   ];
 
@@ -32,16 +32,16 @@ export function Footer() {
   ];
 
   const supportLinks = [
-    { name: t.footer.faq, href: "/soporte" },
+    { name: t.footer.faq, href: "/contacto" },
     { name: t.footer.contact, href: "/contacto" },
-    { name: t.footer.claimsBook, href: "/soporte" },
+    { name: t.footer.claimsBook, href: "/contacto" },
     { name: t.footer.privacy, href: "/politica-privacidad" },
     { name: t.footer.terms, href: "/terminos-condiciones" },
   ];
   return (
     <footer className="relative bg-gray-950 text-gray-300 overflow-hidden">
       {/* Franja con diseño incaico Dinámica */}
-      <div className="h-12 w-full bg-[#064e3b] relative flex items-center overflow-hidden border-y-2 border-[#D4AF37]/60 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+      <div className="h-12 sm:h-14 w-full bg-[#064e3b] relative flex items-center overflow-hidden border-y-2 border-[#D4AF37]/60 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
         {/* Patrón Animado Infinito */}
         <motion.div 
           className="absolute inset-0 opacity-50"
@@ -74,11 +74,11 @@ export function Footer() {
           }}
         />
 
-        <div className="container mx-auto px-4 relative flex justify-center items-center">
+        <div className="container mx-auto px-3 sm:px-4 relative flex justify-center items-center">
           <div className="h-px bg-linear-to-r from-transparent via-[#D4AF37] to-transparent grow mx-4 hidden md:block opacity-30" />
-          <div className="bg-[#064e3b]/90 backdrop-blur-md px-10 py-1.5 rounded-full border border-[#D4AF37]/40 shadow-[0_0_20px_rgba(212,175,55,0.1)] flex items-center gap-5">
+          <div className="bg-[#064e3b]/90 backdrop-blur-md px-4 sm:px-6 md:px-10 py-1.5 rounded-full border border-[#D4AF37]/40 shadow-[0_0_20px_rgba(212,175,55,0.1)] flex items-center gap-3 sm:gap-5 max-w-full">
             <motion.span 
-              className="text-[#D4AF37] font-heading font-black text-xs uppercase tracking-[0.4em] hidden sm:inline"
+              className="text-[#D4AF37] font-heading font-black text-xs uppercase tracking-[0.3em] hidden md:inline"
               animate={{ opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -88,7 +88,7 @@ export function Footer() {
               <div className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] shadow-[0_0_12px_#D4AF37] animate-pulse" />
               <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-[#D4AF37] animate-ping opacity-40" />
             </div>
-            <span className="text-[#D4AF37] font-heading font-bold text-xs uppercase tracking-[0.3em]">{t.footer.authenticExperiences}</span>
+            <span className="text-[#D4AF37] font-heading font-bold text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.3em] text-center">{t.footer.authenticExperiences}</span>
           </div>
           <div className="h-px bg-linear-to-r from-transparent via-[#D4AF37] to-transparent grow mx-4 hidden md:block opacity-30" />
         </div>
@@ -105,12 +105,12 @@ export function Footer() {
         />
       </div>
 
-      <div className="container mx-auto px-4 pt-16 pb-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+      <div className="container mx-auto px-4 pt-12 md:pt-16 pb-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10 mb-12">
           
           {/* Brand */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="flex items-center gap-3">
+          <div className="lg:col-span-1 space-y-6 text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start gap-3">
               <img
                 src={`${import.meta.env.BASE_URL}images/categories/logom-removebg-preview.png`}
                 alt="Mukis Travel Logo"
@@ -126,7 +126,7 @@ export function Footer() {
             <p className="text-sm leading-relaxed text-gray-400">
               {t.footer.tagline}
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center md:justify-start">
               <a 
                 href="https://facebook.com/mukistravel" 
                 target="_blank" 
@@ -246,7 +246,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="text-primary shrink-0" size={14} />
-                <a href="mailto:reservasmukistravel@gmail.com" className="hover:text-primary transition-colors text-xs">
+                <a href="mailto:reservasmukistravel@gmail.com" className="hover:text-primary transition-colors text-xs break-all">
                   reservasmukistravel@gmail.com
                 </a>
               </div>
@@ -271,7 +271,7 @@ export function Footer() {
             href="https://wa.me/51960470892?text=Hola,%20me%20gustaría%20información%20sobre%20tours"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-2.5 rounded-full hover:shadow-lg hover:scale-105 transition-all text-sm"
+            className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold px-5 py-2.5 rounded-full hover:shadow-lg hover:scale-105 transition-all text-sm w-full md:w-auto"
           >
             {t.footer.whatsappBtn}
           </a>
@@ -305,12 +305,12 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 text-center md:text-left">
           <p>© {new Date().getFullYear()} Mukis Travel Agency. {t.footer.allRights}</p>
-          <div className="flex gap-6">
-            <Link href="/soporte" className="hover:text-primary transition-colors">{t.footer.terms}</Link>
-            <Link href="/soporte" className="hover:text-primary transition-colors">{t.footer.privacy}</Link>
-            <Link href="/soporte" className="hover:text-primary transition-colors">{t.footer.claimsBook}</Link>
+          <div className="flex gap-4 sm:gap-6 flex-wrap justify-center">
+            <Link href="/terminos-condiciones" className="hover:text-primary transition-colors">{t.footer.terms}</Link>
+            <Link href="/politica-privacidad" className="hover:text-primary transition-colors">{t.footer.privacy}</Link>
+            <Link href="/contacto" className="hover:text-primary transition-colors">{t.footer.claimsBook}</Link>
           </div>
         </div>
       </div>

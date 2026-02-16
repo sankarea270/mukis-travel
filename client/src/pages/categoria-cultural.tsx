@@ -9,7 +9,20 @@ import { Clock, MapPin, ChevronRight, Sparkles, Landmark, BookOpen } from "lucid
 
 export default function CategoriaCultural() {
   const { t } = useLanguage();
-  const culturalTours = tours.filter((tour) => tour.category === "cultural" && !tour.isPaquete);
+  
+  // Tours específicos para la categoría cultural
+  const culturalSlugs = [
+    "city-tour-cusco",
+    "valle-sagrado-vip",
+    "valle-sagrado-tradicional",
+    "maras-moray-salineras",
+    "tour-valle-sur-cusco",
+    "puente-qeswachaka",
+    "ruta-del-sol",
+  ];
+  const culturalTours = culturalSlugs
+    .map(slug => tours.find(t => t.slug === slug))
+    .filter(Boolean) as typeof tours;
 
   const categoryInfo = {
     title: t.categoryPage.cultural.title,

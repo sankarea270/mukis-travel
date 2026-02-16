@@ -42,7 +42,12 @@ export interface Tour {
     thumbnail?: string;
   }[];
   isPaquete?: boolean; // true si es un paquete de varios días, false o undefined si es tour de 1 día
+<<<<<<< HEAD
   galleryStyles?: Record<number, { objectPosition?: string }>;
+=======
+  preparation?: string[]; // Lista personalizada de preparación del viaje
+  cancellationPolicy?: string; // Política de cancelación personalizada
+>>>>>>> origin/main
 }
 
 export const tours: Tour[] = [
@@ -121,9 +126,9 @@ export const tours: Tour[] = [
     title: "Tour Machu Picchu Full Day",
     shortDescription: "Vive la experiencia de estar en Machu Picchu con guías especializados.",
     description: "Descubre la maravilla del mundo Machu Picchu en un tour completo de un día. Saldremos desde Cusco muy temprano para tomar el tren hacia Aguas Calientes, y luego el bus hasta la ciudadela. Recorrerás cada rincón de este santuario histórico con nuestros guías expertos.",
-    aboutTour: "Comenzamos muy temprano con el recojo desde tu hotel en Cusco, para trasladarnos hasta la estación de tren en Ollantaytambo. El viaje en tren es una experiencia en sí misma, atravesando el Valle Sagrado y siguiendo el curso del río Urubamba hasta llegar a Aguas Calientes. Desde allí, un bus te llevará por una carretera serpenteante hasta la entrada de Machu Picchu, donde nuestro guía experto te revelará los misterios de este santuario histórico durante un recorrido de aproximadamente 2.5 horas. Tendrás tiempo libre para explorar por tu cuenta y capturar las mejores fotografías antes de descender para almorzar en el pueblo de Aguas Calientes.",
-    price: 350,
-    originalPrice: 420,
+    aboutTour: "Prepárate para vivir  una experiencia única  e inolvidable en una  de las  7 maravillas del mundo Moderno . Nuestro Tour Machu Picchu  Full Day  te llevará a descubrir  los secretos  de la ciudadela  inca más famosa  del planeta",
+    price: 200,
+    originalPrice: 250,
     duration: "1 Día",
     tourType: "Grupal",
     languages: ["Español", "Inglés", "Portugués"],
@@ -197,8 +202,8 @@ export const tours: Tour[] = [
     shortDescription: "Descubre la magia de la montaña más colorida del Perú a más de 5,000 m.s.n.m.",
     description: "Vinicunca, conocida como la Montaña de los 7 Colores, es una formación natural única que parece pintada por los Andes. Sus franjas de colores se deben a la composición mineral del suelo. Una experiencia que te dejará sin aliento.",
     aboutTour: "Embárcate en una aventura épica hacia uno de los destinos más impresionantes de los Andes peruanos: la famosa Montaña de 7 Colores o Vinicunca. Este fenómeno geológico único en el mundo debe sus vibrantes colores a la composición mineralógica del suelo, creando un espectáculo visual que parece sacado de otro planeta. La caminata de aproximadamente 5 kilómetros te llevará a través de paisajes andinos espectaculares, con vistas de nevados imponentes y encuentros con alpacas y llamas en su hábitat natural. Al llegar a la cima a más de 5,000 metros sobre el nivel del mar, serás recompensado con una de las vistas más impresionantes que puedas imaginar. No olvides tu cámara, ¡este es un lugar que merece ser capturado!",
-    price: 80,
-    originalPrice: 100,
+    price: 35,
+    originalPrice: 50,
     duration: "1 Día",
     tourType: "Tour de aventura",
     languages: ["Español", "Inglés", "Portugués"],
@@ -206,7 +211,11 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.8700, lng: -71.3033 },
     region: "sierra",
     category: "aventura",
+<<<<<<< HEAD
     image: `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
+=======
+    image: `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`,
+>>>>>>> origin/main
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamontañacolores.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
@@ -260,7 +269,16 @@ export const tours: Tour[] = [
     reviews: [
       { id: "r4", name: "Pedro Sánchez", avatar: "https://randomuser.me/api/portraits/men/45.jpg", rating: 5, comment: "Una experiencia que te cambia la vida. Los colores son increíbles en persona.", date: "2025-12-01", country: "México" },
       { id: "r5", name: "Emma Wilson", avatar: "https://randomuser.me/api/portraits/women/33.jpg", rating: 5, comment: "Challenging but absolutely worth it! The views are unreal.", date: "2025-11-15", country: "UK" }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "3",
@@ -285,6 +303,7 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/humantay11.jpeg`
     ],
     featured: true,
+    isOffer: true,
     difficulty: "moderado",
     maxGroup: 19,
     startTime: "4:00 AM",
@@ -324,7 +343,16 @@ export const tours: Tour[] = [
     ],
     reviews: [
       { id: "r6", name: "María García", avatar: "https://randomuser.me/api/portraits/women/68.jpg", rating: 5, comment: "La laguna es más hermosa de lo que muestran las fotos. ¡Increíble experiencia!", date: "2025-11-10", country: "Chile" }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Documentos de identidad",
+      "Cámara fotográfica"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "4",
@@ -333,7 +361,7 @@ export const tours: Tour[] = [
     shortDescription: "El último puente inca de fibra vegetal que se renueva cada año.",
     description: "Visita el último puente inca de cuerda que aún se mantiene vivo gracias a la tradición de las comunidades locales. Este puente colgante de fibra vegetal es reconstruido anualmente en junio, preservando una tradición ancestral milenaria.",
     aboutTour: "El Puente Inca de Q’eswachaka es una maravilla de ingeniería y tradición que ha sobrevivido desde la época del Tahuantinsuyo. Construido íntegramente a base de fibra vegetal (ichu), este puente colgante es reconstruido cada año en el mes de junio por los pobladores de cuatro comunidades locales (Huinchiri, Chaupibanda, Ccollana Quehue y Choccayhua), quienes se reúnen para renovarlo siguiendo técnicas ancestrales heredadas de sus antepasados. Durante esta excursión, cruzarás este impresionante monumento, visitarás el volcán de Pabellones en Yanaoca y disfrutarás de la belleza escénica de las lagunas de la zona como Pomacanchi. Una inmersión cultural profunda en el corazón de los Andes.",
-    price: 90,
+    price: 45,
     duration: "1 Día",
     tourType: "Tour cultural",
     languages: ["Español", "Inglés", "Portugués"],
@@ -398,7 +426,7 @@ export const tours: Tour[] = [
     shortDescription: "Laboratorios agrícolas incas y las famosas Salineras de Maras.",
     description: "Descubre el ingenio inca en los andenes circulares de Moray, usados como laboratorio agrícola, y maravíllate con las más de 3,000 pozas de sal en las Salineras de Maras, explotadas desde tiempos preincaicos.",
     aboutTour: "Este tour te llevará a conocer dos de los sitios más impresionantes del Valle Sagrado de los Incas. En Moray, descubrirás los misteriosos andenes circulares que los incas utilizaron como un sofisticado laboratorio agrícola para experimentar con diferentes cultivos a distintas temperaturas. Luego, visitarás las espectaculares Salineras de Maras, un complejo de más de 3,000 pozas de sal que han sido explotadas desde tiempos preincaicos. El paisaje blanco de las salineras contrastando con el verde del valle es simplemente mágico. Tendrás oportunidad de comprar sal artesanal y productos derivados directamente de los productores locales.",
-    price: 60,
+    price: 25,
     duration: "Medio Día",
     tourType: "Tour cultural",
     languages: ["Español", "Inglés", "Portugués"],
@@ -631,51 +659,6 @@ export const tours: Tour[] = [
     ]
   },
   {
-    id: "10",
-    slug: "valle-sagrado-machu-picchu-2d1n",
-    title: "Tour Valle Sagrado con Conexión a Machu Picchu 2 Dias 1 Noche",
-    shortDescription: "Valle Sagrado, Machu Picchu, Cusco, Perú",
-    description: "Un recorrido completo visitando el Valle Sagrado y conectando con la maravilla de Machu Picchu en 2 días inolvidables.",
-    aboutTour: "Este programa de 2 días y 1 noche te permite explorar lo mejor del Valle Sagrado de los Incas, visitando sitios arqueológicos y mercados tradicionales, para luego conectar en tren hacia Aguas Calientes. Al día siguiente, disfrutarás de la majestuosidad de Machu Picchu con una visita guiada. Es la combinación perfecta de cultura, historia y paisajes impresionantes.",
-    price: 385.00,
-    duration: "2 Días 1 Noche",
-    tourType: "Paquete Turístico",
-    languages: ["Español", "Inglés", "Portugués"],
-    location: "Cusco",
-    region: "sierra",
-    category: "cultural",
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
-    gallery: [
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600"
-    ],
-    included: ["Transporte", "Hotel", "Tren", "Ingresos", "Guía"],
-    notIncluded: ["Alimentación no mencionada"],
-    itinerary: [
-      { time: "Day 1", activity: "Valle Sagrado", description: "Visita a Pisaq y Ollantaytambo. Viaje en tren a Aguas Calientes." },
-      { time: "Day 2", activity: "Machu Picchu", description: "Tour guiado en Machu Picchu y retorno a Cusco." }
-    ]
-  },
-  {
-    id: "12",
-    slug: "maras-moray-tradicional-full-day",
-    title: "Tour Maras Moray Tradicional Full Day",
-    shortDescription: "Moray, Maras, Perú",
-    description: "Visita los andenes de Moray y las salineras de Maras en un recorrido tradicional.",
-    price: 20.00,
-    duration: "5- 6 Horas",
-    tourType: "Tour Cultural",
-    languages: ["Español", "Inglés", "Portugués"],
-    location: "Maras",
-    region: "sierra",
-    category: "cultural",
-    image: "https://images.unsplash.com/photo-1629947935402-27354b732554?auto=format&fit=crop&q=80&w=1600",
-    included: ["Transporte", "Guía"],
-    notIncluded: ["Ingresos"],
-    itinerary: [
-      { time: "AM", activity: "Maras y Moray", description: "Recorrido por los centros arqueológicos y salineras." }
-    ]
-  },
-  {
     id: "17",
     slug: "montana-7-colores-cuatrimotos",
     title: "Montaña de Colores con Cuatrimotos",
@@ -790,26 +773,6 @@ export const tours: Tour[] = [
     ]
   },
   {
-    id: "26",
-    slug: "cuatrimotos-doble-maras-moray",
-    title: "Tour en Cuatrimotos Doble Maras y Moray",
-    shortDescription: "Maras Moray, Cusco, Perú",
-    description: "Comparte la aventura en una cuatrimoto doble por Maras y Moray.",
-    price: 40.00,
-    duration: "5 a 6 horas",
-    tourType: "Aventura ATV",
-    languages: ["Español", "Inglés", "Portugués"],
-    location: "Maras",
-    region: "sierra",
-    category: "aventura",
-    image: "https://images.unsplash.com/photo-1596706037004-97217596043d?auto=format&fit=crop&q=80&w=1600",
-    included: ["Cuatrimoto Doble", "Guía", "Equipo"],
-    notIncluded: ["Ingresos"],
-    itinerary: [
-      { time: "Medio Día", activity: "ATV Doble", description: "Paseo compartido en cuatrimoto." }
-    ]
-  },
-  {
     id: "27",
     slug: "tour-valle-sur-cusco",
     title: "Tour al Valle Sur de Cusco",
@@ -836,10 +799,10 @@ export const tours: Tour[] = [
   },
   {
     id: "28",
-    slug: "morada-dioses-cuatrimoto-doble",
-    title: "Tour Morada de Los Dioses en Cuatrimotos Doble",
+    slug: "morada-dioses-cuatrimoto",
+    title: "Tour Morada de Los Dioses en Cuatrimotos ",
     shortDescription: "Morada De Los Dioses, Cusco, Perú",
-    description: "Disfruta en pareja o amigos del tour a la Morada de los Dioses en cuatrimoto doble.",
+    description: "Disfruta en pareja o amigos del tour a la Morada de los Dioses en cuatrimoto .",
     price: 31.00,
     duration: "2 - 3 Horas",
     tourType: "Aventura ATV",
@@ -861,7 +824,7 @@ export const tours: Tour[] = [
     shortDescription: "Chinchero, Moray, Salineras, Ollantaytambo y Pisac en un solo día.",
     description: "El tour más completo por el Valle Sagrado de los Incas. Visita los sitios arqueológicos más importantes, experimenta la cultura local en Chinchero y maravíllate con la ingeniería inca en Moray y las Salineras de Maras.",
     aboutTour: "Vive una experiencia cultural completa por el Valle Sagrado de los Incas con nuestro servicio VIP. Este recorrido está diseñado para aquellos que desean aprovechar al máximo su tiempo en Cusco, visitando en un solo día los destinos más emblemáticos del valle. Comenzaremos explorando la herencia textil y arqueológica de Chinchero, para luego asombrarnos con los andenes circulares de Moray y las milenarias Salineras de Maras. Tras un reconfortante almuerzo buffet en Urubamba, continuaremos hacia la imponente fortaleza de Ollantaytambo y finalizaremos en el impresionante Parque arqueológico de Pisac. Un viaje inolvidable lleno de historia, paisajes y mística andina.",
-    price: 95,
+    price: 38,
     duration: "1 Día",
     tourType: "Tour Cultural VIP",
     languages: ["Español", "Inglés", "Portugués"],
@@ -877,8 +840,9 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/valle3.jpeg`
     ],
     featured: true,
+    isOffer: true,
     difficulty: "fácil",
-    maxGroup: 15,
+    maxGroup: 19,
     startTime: "6:30 AM",
     highlights: [
       "Visita completa a Chinchero y sus textiles",
@@ -905,8 +869,8 @@ export const tours: Tour[] = [
       { time: "11:00 AM", activity: "Salineras de Maras", description: "Visita a las minas de sal natural usadas desde tiempos antiguos y variedad de productos de sal." },
       { time: "12:30 PM", activity: "Almuerzo Buffet en Urubamba", description: "Disfrutaremos de un variado almuerzo buffet con platos locales." },
       { time: "2:00 PM", activity: "Ollantaytambo", description: "Visita a la fortaleza y centro ceremonial, destacando sus construcciones de piedra finamente tallada." },
-      { time: "4:00 PM", activity: "Parque Arqueológico de Pisac", description: "Exploración del centro agrícola y administrativo inca de gran importancia." },
-      { time: "6:30 PM", activity: "Retorno a Cusco", description: "El servicio concluye aproximadamente a las 18:30 – 19:00 horas en la ciudad de Cusco." }
+      { time: "4:30 PM", activity: "Parque Arqueológico de Pisac", description: "Exploración del centro agrícola y administrativo inca de gran importancia." },
+      { time: "7:00 PM", activity: "Retorno a Cusco", description: "El servicio concluye aproximadamente a las 18:30 – 19:00 horas en la ciudad de Cusco." }
     ]
   },
   {
@@ -916,7 +880,7 @@ export const tours: Tour[] = [
     shortDescription: "La alternativa perfecta de caminata corta para ver montañas de colores.",
     description: "Descubre la Cordillera Colorida de Palccoyo, una opción increíble para quienes buscan disfrutar de paisajes altoandinos y montañas de colores con una caminata de baja dificultad. Visita tres montañas coloridas, el Bosque de Piedras y el puente colonial de Checacupe.",
     aboutTour: "La Cordillera de Colores Palccoyo es la alternativa ideal a Vinicunca para aquellos que prefieren un recorrido más tranquilo y accesible. Ubicada a 4,100 m s. n. m., esta zona ofrece no solo una, sino tres montañas de colores en un entorno natural impresionante. El tour incluye una visita al histórico puente colonial de Checacupe y un recorrido por el margen del río Salcca, donde se pueden avistar alpacas y el famoso Puka Mayu o Río Rojo. Con una caminata corta y de baja dificultad que llega hasta el Bosque de Piedras a 4,500 m s. n. m., Palccoyo garantiza vistas privilegiadas y una experiencia inolvidable en los Andes.",
-    price: 90,
+    price: 49,
     duration: "1 Día",
     tourType: "Tour de Naturaleza / Aventura",
     languages: ["Español", "Inglés", "Portugués"],
@@ -1028,7 +992,7 @@ export const tours: Tour[] = [
     shortDescription: "Descubre la montaña con forma de poncho andino y visita el Templo de Raqchi.",
     description: "Una de las nuevas joyas geológicas de Cusco. Pallay Punchu te sorprenderá con sus formaciones rocosas que asemejan el tejido de un poncho andino, sumado a una visita cultural al impresionante Templo de Wiracocha en Raqchi.",
     aboutTour: "Pallay Punchu de Apu Ccunurana es un destino emergente que destaca por sus impresionantes pigmentaciones y formas geográficas que recuerdan a los tejidos tradicionales o 'Pallay' de los ponchos andinos. Ubicada cerca del pueblo de Layo, esta montaña ofrece una vista espectacular de la laguna de Langui-Layo. El programa combina esta maravilla natural con una visita al Complejo Arqueológico de Raqchi, uno de los templos más grandes del Imperio Inca dedicado al dios Wiracocha, y una parada en los puentes históricos de Checacupe.",
-    price: 95,
+    price: 115,
     duration: "1 Día",
     tourType: "Tour de Naturaleza / Aventura",
     languages: ["Español", "Inglés", "Portugués"],
@@ -1271,12 +1235,14 @@ export const tours: Tour[] = [
     title: "Machu Picchu by Car 2 Días 1 Noche",
     shortDescription: "La ruta más económica hacia Machu Picchu vía Santa Teresa.",
     description: "Aventura por carretera y caminata por la selva alta para llegar a Machu Picchu de la forma más económica.",
+    aboutTour: "Es una ruta alterna que se ingresa mediante un viaje en Bus hasta hidroeléctrica es una opción para todos los visitantes que no cuentan con recursos para obtener un tickets de tren turístico ó que les encanta la aventura y la naturaleza. \n\nAunque la ruta es un poco larga, durante el viaje usted podrá disfrutar de hermosos paisajes y nevados de la cordillera de los andes.",
     price: 150,
     duration: "2 Días 1 Noche",
     tourType: "Aventura / Económico",
     languages: ["Español", "Inglés", "Portugués"],
     location: "Machu Picchu",
     region: "selva",
+<<<<<<< HEAD
     category: "aventura",
     image: `${import.meta.env.BASE_URL}images/categories/mapibycar03.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapibycar.jpeg`,
@@ -1285,11 +1251,39 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/mapibycar02.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/mapibycar03.jpeg`
     ],
+=======
+    category: "trekking",
+    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapibycar.jpeg`,
+    isOffer: true,
+>>>>>>> origin/main
     included: ["Transporte Cusco-Hidroeléctrica-Cusco", "1 Noche Hostal", "Guía", "Entrada Machu Picchu"],
     notIncluded: ["Alimentación no mencionada", "Tren Hidroeléctrica (opcional)"],
     itinerary: [
-      { time: "Día 1", activity: "Viaje a Hidroeléctrica", description: "Viaje en bus y caminata de 3 horas a Aguas Calientes." },
-      { time: "Día 2", activity: "Machu Picchu", description: "Visita a la ciudadela y retorno a Cusco." }
+      { time: "Día 1 - 06:30 AM", activity: "Recojo del hotel", description: "Recojo en los respectivos hoteles entre 06:30 a.m. y 07:00 a.m." },
+      { time: "Día 1 - 07:00 AM", activity: "Rumbo al Valle Sagrado", description: "Nos dirigiremos hacia el Valle Sagrado pasando por Urubamba hasta llegar a Ollantaytambo." },
+      { time: "Día 1 - 09:00 AM", activity: "Parada en Ollantaytambo", description: "Descanso de 20 minutos donde podrás desayunar." },
+      { time: "Día 1 - 09:30 AM", activity: "Abra Málaga", description: "Viaje por un sinuoso ascenso rumbo al Abra Málaga (4316 m.s.n.m.)." },
+      { time: "Día 1 - 11:00 AM", activity: "Paisajes Andinos", description: "Podremos observar maravillosos paisajes de la geografía peruana." },
+      { time: "Día 1 - 12:00 PM", activity: "Almuerzo en Santa Teresa", description: "Llegada a Santa Teresa y disfrute del almuerzo." },
+      { time: "Día 1 - 02:00 PM", activity: "Hidroeléctrica", description: "Llegada a Hidroeléctrica, encuentro con el guía quien nos indicará el camino hacia Aguas Calientes." },
+      { time: "Día 1 - 05:30 PM", activity: "Llegada a Aguas Calientes", description: "Llegada al pueblo y acomodación en el hotel (pernocte)." },
+      { time: "Día 1 - 08:00 PM", activity: "Cena", description: "Disfrutaremos de una deliciosa cena." },
+      { time: "Día 2 - 05:00 AM", activity: "Desayuno", description: "Desayuno box lunch para llevar." },
+      { time: "Día 2 - 07:00 AM", activity: "Guiado en Machu Picchu", description: "Inicio del guiado en Machu Picchu con una duración promedio de 2 horas." },
+      { time: "Día 2 - 11:30 AM", activity: "Tiempo libre", description: "Tiempo libre para disfrutar del paisaje antes del retorno." },
+      { time: "Día 2 - 12:00 PM", activity: "Caminata a Hidroeléctrica", description: "Descenso para iniciar la caminata de retorno hacia Hidroeléctrica." },
+      { time: "Día 2 - 02:00 PM", activity: "Almuerzo y salida", description: "Almuerzo en Hidroeléctrica y abordaje de vehículos para el retorno a Cusco." },
+      { time: "Día 2 - 03:00 PM", activity: "Viaje a Cusco", description: "Continuación del viaje de retorno a la ciudad de Cusco." },
+      { time: "Día 2 - 08:00 PM", activity: "Llegada a Cusco", description: "Llegada a la ciudad de Cusco. Fin del tour." }
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Documentos de identidad",
+      "Cámara fotográfica"
     ]
   },
   {
@@ -1435,8 +1429,13 @@ export const tours: Tour[] = [
     languages: ["Español", "Inglés", "Portugués"],
     location: "Santa Teresa",
     region: "selva",
+<<<<<<< HEAD
     category: "aventura",
     image: `${import.meta.env.BASE_URL}images/categories/incajungle04.jpeg`,
+=======
+    category: "trekking",
+    image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
+>>>>>>> origin/main
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapaincajungle.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/incajungle01.jpeg`,
@@ -1499,6 +1498,73 @@ export const tours: Tour[] = [
     itinerary: [
       { time: "7:00 AM", activity: "Salida", description: "Viaje con paradas turísticas hasta Puno." }
     ]
+  },
+  {
+    id: "48",
+    slug: "experiencias-misticas-cusco",
+    title: "Tours Experiencias Místicas",
+    shortDescription: "Rituales ancestrales, ceremonias de pago a la tierra y conexión espiritual en el corazón de los Andes.",
+    description: "Cusco, antiguo corazón del Imperio Inca, es un destino donde la espiritualidad andina y la naturaleza se unen para ofrecer vivencias profundas y transformadoras. Entre montañas sagradas y paisajes energéticos, los visitantes pueden participar en rituales ancestrales que buscan conectar al ser humano con la tierra, el cosmos y su mundo interior.",
+    aboutTour: "Cusco, antiguo corazón del Imperio Inca, es un destino donde la espiritualidad andina y la naturaleza se unen para ofrecer vivencias profundas y transformadoras. Entre montañas sagradas y paisajes energéticos, los visitantes pueden participar en rituales ancestrales que buscan conectar al ser humano con la tierra, el cosmos y su mundo interior. En conjunto, estas experiencias místicas en Cusco invitan a reconectar con la esencia, honrar la sabiduría ancestral y vivir un viaje interior en uno de los lugares más energéticos de los Andes.\n\n🌿 El Pago a la Tierra\n\nEl pago a la tierra es una ceremonia tradicional dedicada a la Pachamama (Madre Tierra). En este ritual, guiado por un chamán o curandero, se realizan ofrendas como hojas de coca, flores, semillas y bebidas como chicha o vino, en señal de gratitud por la abundancia recibida. Generalmente se lleva a cabo en lugares considerados sagrados —montañas, ríos o sitios arqueológicos— y tiene como propósito agradecer, armonizar energías y pedir nuevas bendiciones. Es una experiencia espiritual que fortalece la conexión con la naturaleza y la cosmovisión andina.\n\n🍃 El Ritual de la Ayahuasca\n\nLa ceremonia de la ayahuasca es un ritual de sanación y autoconocimiento originario de la Amazonía peruana. Dirigida por un guía espiritual experimentado, esta práctica busca expandir la conciencia y promover procesos de reflexión profunda y transformación personal. Requiere preparación previa y acompañamiento adecuado para garantizar una experiencia segura. Muchas personas viajan a Perú específicamente para vivir este ritual, considerado por algunos como un camino hacia la introspección y el crecimiento espiritual.",
+    price: 120,
+    duration: "Medio Día - 1 Día",
+    tourType: "Experiencia mística",
+    languages: ["Español", "Inglés"],
+    location: "Cusco",
+    locationCoords: { lat: -13.5319, lng: -71.9675 },
+    region: "sierra",
+    category: "mistico",
+    image: "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1600",
+    gallery: [
+      "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1600",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1600",
+      "https://images.unsplash.com/photo-1470115636492-6d2b56f9b754?auto=format&fit=crop&q=80&w=1600"
+    ],
+    featured: true,
+    difficulty: "fácil",
+    maxGroup: 8,
+    highlights: [
+      "Ceremonia de Pago a la Tierra (Pachamama)",
+      "Ritual guiado por chamán andino certificado",
+      "Conexión espiritual en lugares sagrados",
+      "Lectura de hojas de coca",
+      "Información sobre la ceremonia de Ayahuasca",
+      "Paisajes energéticos de los Andes"
+    ],
+    included: [
+      "Recojo del hotel",
+      "Transporte al lugar sagrado",
+      "Chamán o curandero andino",
+      "Materiales para la ofrenda (hojas de coca, flores, semillas)",
+      "Guía bilingüe",
+      "Infusión de hierbas andinas"
+    ],
+    notIncluded: [
+      "Alimentación",
+      "Propinas",
+      "Gastos personales"
+    ],
+    itinerary: [
+      { time: "Mañana", activity: "Recojo y traslado", description: "Recojo del hotel y traslado hacia el lugar sagrado seleccionado para la ceremonia." },
+      { time: "Media mañana", activity: "Ceremonia de Pago a la Tierra", description: "El chamán guía la ceremonia de ofrendas a la Pachamama con hojas de coca, flores y semillas. Momento de gratitud y conexión." },
+      { time: "Mediodía", activity: "Lectura de coca y meditación", description: "Lectura de hojas de coca para interpretar mensajes espirituales. Espacio de meditación y reflexión personal." },
+      { time: "Tarde", activity: "Charla sobre rituales andinos", description: "Conversación sobre la cosmovisión andina, el ritual de la Ayahuasca y otras prácticas ancestrales. Retorno al hotel." }
+    ],
+    faqs: [
+      { question: "¿Es necesario creer en alguna religión?", answer: "No, las experiencias místicas están abiertas a todas las personas sin importar su creencia. Se trata de una vivencia cultural y espiritual respetuosa." },
+      { question: "¿Se realiza la ceremonia de Ayahuasca en este tour?", answer: "Este tour es informativo sobre la Ayahuasca. Si deseas participar en una ceremonia de Ayahuasca, podemos coordinar con centros especializados y certificados." },
+      { question: "¿Es seguro?", answer: "Completamente. Trabajamos con chamanes y guías espirituales certificados con años de experiencia en prácticas ancestrales." },
+      { question: "¿Qué debo llevar?", answer: "Ropa cómoda, mente abierta y disposición para vivir una experiencia diferente. Se recomienda no consumir alcohol el día previo." }
+    ],
+    preparation: [
+      "Ropa cómoda y abrigadora",
+      "Mente abierta",
+      "Botella de agua",
+      "Protector solar",
+      "Documentos de identidad",
+      "Cámara fotográfica"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   }
 ];
 

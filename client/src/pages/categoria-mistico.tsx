@@ -17,7 +17,7 @@ export default function CategoriaMistico() {
     description: t.categoryPage.mistico.subtitle,
     icon: Moon,
     color: "from-violet-500 to-purple-600",
-    bgImage: "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1920", // Mistico image
+    bgImage: "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1920",
     highlights: [
       { icon: Sparkles, title: t.categoryPage.mistico.highlight1Title, description: t.categoryPage.mistico.highlight1Desc },
       { icon: Zap, title: t.categoryPage.mistico.highlight2Title, description: t.categoryPage.mistico.highlight2Desc },
@@ -37,7 +37,7 @@ export default function CategoriaMistico() {
             alt={categoryInfo.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-violet-900/60 via-purple-900/40 to-black/70" />
+          <div className="absolute inset-0 bg-linear-to-b from-violet-900/60 via-purple-900/40 to-black/70" />
         </div>
 
         <div className="relative h-full container mx-auto px-4 flex flex-col justify-center">
@@ -48,7 +48,7 @@ export default function CategoriaMistico() {
             className="max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${categoryInfo.color} flex items-center justify-center shadow-xl`}>
+              <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${categoryInfo.color} flex items-center justify-center shadow-xl`}>
                 <categoryInfo.icon className="w-7 h-7 text-white" />
               </div>
               <span className="text-violet-300 font-bold text-lg tracking-wide uppercase">{t.categoryPage.categoryLabel}</span>
@@ -122,7 +122,7 @@ export default function CategoriaMistico() {
                           alt={tour.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="absolute top-4 left-4 bg-violet-500 text-white text-xs font-bold px-3 py-1 rounded-full">
                           {t.categoryPage.mistico.badge}
                         </div>
@@ -175,7 +175,7 @@ export default function CategoriaMistico() {
       </section>
 
       {/* CTA */}
-      <section className={`py-20 bg-gradient-to-r ${categoryInfo.color} relative overflow-hidden`}>
+      <section className={`py-20 bg-linear-to-r ${categoryInfo.color} relative overflow-hidden`}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
         </div>

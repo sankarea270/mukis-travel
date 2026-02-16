@@ -42,6 +42,7 @@ export interface Tour {
     thumbnail?: string;
   }[];
   isPaquete?: boolean; // true si es un paquete de varios días, false o undefined si es tour de 1 día
+  galleryStyles?: Record<number, { objectPosition?: string }>;
 }
 
 export const tours: Tour[] = [
@@ -134,8 +135,8 @@ export const tours: Tour[] = [
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapii.jpeg`,
     gallery: [
       "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/mapi02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/perurail.jpeg`,
     ],
     featured: true,
     isOffer: true,
@@ -205,13 +206,17 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.8700, lng: -71.3033 },
     region: "sierra",
     category: "aventura",
-    image: `${import.meta.env.BASE_URL}images/categories/montana-de-colores.jpg`,
+    image: `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamontañacolores.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
-      `${import.meta.env.BASE_URL}images/categories/montañadecolores3.png`,
+      `${import.meta.env.BASE_URL}images/categories/mntñdcolores.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`
     ],
+    galleryStyles: {
+      0: { objectPosition: "50% 0%" },
+      1: { objectPosition: "50% 0%" }
+    },
     featured: true,
     isOffer: true,
     difficulty: "difícil",
@@ -276,7 +281,7 @@ export const tours: Tour[] = [
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapahumantay.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/lagunahumantay1.png`,
-      `${import.meta.env.BASE_URL}images/categories/lagunahumantay2.png`,
+      `${import.meta.env.BASE_URL}images/categories/lagunahumantay3.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/humantay11.jpeg`
     ],
     featured: true,
@@ -339,9 +344,9 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/puente1.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapapuente.jpeg`,
     gallery: [
+      `${import.meta.env.BASE_URL}images/categories/qeswachaka01.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/puente1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/puente2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/puente3.jpeg`
+      `${import.meta.env.BASE_URL}images/categories/qeswachaka02.jpeg`
     ],
     featured: true,
     difficulty: "fácil",
@@ -403,8 +408,9 @@ export const tours: Tour[] = [
     category: "cultural",
     image: `${import.meta.env.BASE_URL}images/categories/maras.jpg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/maras.jpg`,
-      `${import.meta.env.BASE_URL}images/categories/moray1.jpg`
+      `${import.meta.env.BASE_URL}images/categories/marasmo01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/marasmo02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/marasmo03.jpeg`
     ],
     difficulty: "fácil",
     maxGroup: 20,
@@ -458,7 +464,7 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/citytour1.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/citytour1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/citytour2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/city-tour0.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/citytour3.jpg`
     ],
     mapImage: `${import.meta.env.BASE_URL}images/categories/citytour0.jpeg`,
@@ -515,7 +521,9 @@ export const tours: Tour[] = [
     category: "naturaleza",
     image: `${import.meta.env.BASE_URL}images/categories/ica-paracas.jpg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/ica-paracas.jpg`
+      `${import.meta.env.BASE_URL}images/categories/icap01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/icap02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/icap03.jpeg`
     ],
     isOffer: true,
     originalPrice: 150,
@@ -577,8 +585,8 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/waqrapukara1.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapafortaleza.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/waqrapukara1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/waqrapukara2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/waqrap02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/waqrap01.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/waqra01.jpeg`
     ],
     featured: true,
@@ -681,11 +689,11 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "aventura",
-    image: "https://images.unsplash.com/photo-1549557404-0c2d3080e227?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/cuatri0.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapacuatris.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/cuatri0.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/montañacolores2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatri04.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/cuatri03.jpeg`
     ],
     startTime: "4:00 AM",
@@ -748,6 +756,7 @@ export const tours: Tour[] = [
     region: "sierra",
     category: "vivencial",
     image: "https://images.unsplash.com/photo-1548820579-0fad72e0e7fc?auto=format&fit=crop&q=80&w=1600",
+
     included: ["Todo incluido", "Hotel", "Tren", "Ingresos"],
     notIncluded: ["Gastos personales"],
     itinerary: [
@@ -768,7 +777,12 @@ export const tours: Tour[] = [
     location: "Maras",
     region: "sierra",
     category: "aventura",
-    image: "https://images.unsplash.com/photo-1596706037004-97217596043d?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/cuatrimaras01.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/cuatrimaras01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatrimaras02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatrimaras03.jpeg`
+    ],
     included: ["Cuatrimoto", "Guía", "Equipo"],
     notIncluded: ["Ingresos"],
     itinerary: [
@@ -808,7 +822,12 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/vallesur02.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/vallesur01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/vallesur02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/vallesur03.jpeg`
+    ],
     included: ["Transporte", "Guía"],
     notIncluded: ["Ingresos", "Alimentación"],
     itinerary: [
@@ -853,8 +872,8 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/valle1.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapavallesagrado.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/valle1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/valle2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/vallesgrdvip01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/vallesgrdvip02.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/valle3.jpeg`
     ],
     featured: true,
@@ -904,11 +923,11 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "naturaleza",
-    image: `${import.meta.env.BASE_URL}images/categories/palccoyo1.jpeg`,
+    image: `${import.meta.env.BASE_URL}images/categories/palccoyo01.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/palccoyo1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/palccoyo2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/palccoyo3.jpeg`
+      `${import.meta.env.BASE_URL}images/categories/palccoyo01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/palccoyo02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/palccoyo03.jpeg`
     ],
     featured: true,
     difficulty: "fácil",
@@ -961,8 +980,8 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/7lagunas1.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapa7lagunas.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/7lagunas1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/7lagunas2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/7lagunas02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/7lagunas01.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/7lagunas3.jpeg`
     ],
     featured: true,
@@ -1020,8 +1039,8 @@ export const tours: Tour[] = [
     image: `${import.meta.env.BASE_URL}images/categories/pallay1.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapapallay.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/pallay1.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/pallay2.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/pallaypunchu02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/pallaypunchu03.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/pallay3.jpeg`
     ],
     featured: true,
@@ -1074,12 +1093,12 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.9333, lng: -70.8167 },
     region: "sierra",
     category: "naturaleza",
-    image: `${import.meta.env.BASE_URL}images/categories/hielo1.jpeg`,
+    image: `${import.meta.env.BASE_URL}images/categories/glaciarq01.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapaglaciar.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}images/categories/hielo1.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/glaciarq01.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/hielo2.jpeg`,
-      `${import.meta.env.BASE_URL}images/categories/hielo3.jpeg`
+      `${import.meta.env.BASE_URL}images/categories/glaciarq02.jpeg`
     ],
     featured: true,
     difficulty: "fácil",
@@ -1129,8 +1148,13 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1544918877-460635b6d13e?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/mirabus01.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapacitymira.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/mirabus01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/mirabus02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/mirabus03.png`
+    ],
     included: ["Transporte en Mirabus", "Guía", "Paradas fotográficas"],
     notIncluded: ["Ingresos", "Snacks"],
     itinerary: [
@@ -1150,8 +1174,13 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/vallesurhume03.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/vallesurhume.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/vallesurhume01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/vallesurhume02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/vallesurhume03.jpeg`
+    ],
     included: ["Transporte", "Guía", "Ingresos (algunos)"],
     notIncluded: ["Almuerzo"],
     itinerary: [
@@ -1171,8 +1200,13 @@ export const tours: Tour[] = [
     location: "Valle Sagrado",
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/valletradi01.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapavalletradicional.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/valletradi01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/valletradi02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/valletradi03.jpeg`
+    ],
     included: ["Transporte", "Guía", "Almuerzo Buffet"],
     notIncluded: ["Boleto Turístico"],
     itinerary: [
@@ -1192,8 +1226,13 @@ export const tours: Tour[] = [
     location: "Maras",
     region: "sierra",
     category: "aventura",
-    image: "https://images.unsplash.com/photo-1596706037004-97217596043d?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/cuatrihuaypo01.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/puente2.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/cuatrihuaypo01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatrihuaypo02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatrihuaypo03.jpeg`
+    ],
     included: ["Cuatrimoto", "Guía", "Equipo de seguridad"],
     notIncluded: ["Ingresos"],
     itinerary: [
@@ -1213,8 +1252,13 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1627582234551-34446c592965?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/moradad01.jpg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamoradadi.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/moradad02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/moradad03.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/moradad04.jpeg`
+    ],
     included: ["Transporte", "Guía"],
     notIncluded: ["Ingreso"],
     itinerary: [
@@ -1234,8 +1278,13 @@ export const tours: Tour[] = [
     location: "Machu Picchu",
     region: "selva",
     category: "aventura",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/mapibycar03.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapibycar.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/mapibycar01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/mapibycar02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/mapibycar03.jpeg`
+    ],
     included: ["Transporte Cusco-Hidroeléctrica-Cusco", "1 Noche Hostal", "Guía", "Entrada Machu Picchu"],
     notIncluded: ["Alimentación no mencionada", "Tren Hidroeléctrica (opcional)"],
     itinerary: [
@@ -1256,8 +1305,13 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1544918877-460635b6d13e?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/citytcocha01.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapacitytourzoo.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/citytcocha02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/citytcocha04.jpg`,
+      `${import.meta.env.BASE_URL}images/categories/citytcocha03.jpeg`
+    ],
     included: ["Transporte", "Guía", "Entrada a Cochahuasi"],
     notIncluded: ["Boleto Turístico"],
     itinerary: [
@@ -1277,9 +1331,14 @@ export const tours: Tour[] = [
     location: "Ausangate",
     region: "sierra",
     category: "trekking",
-    image: "https://images.unsplash.com/photo-1549557404-0c2d3080e227?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/rainbow02.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/maparainbowmountain.png`,
     included: ["Camping", "Guía", "Cocinero", "Arrieros"],
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/rainbow01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/rainbow02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/rainbow03.jpeg`
+    ],
     notIncluded: ["Saco de dormir"],
     itinerary: [
       { time: "Día 1", activity: "Trekking", description: "Caminata hacia el campamento Ausangate." },
@@ -1299,8 +1358,13 @@ export const tours: Tour[] = [
     location: "Salkantay",
     region: "sierra",
     category: "trekking",
-    image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/salkantay01.jpg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapasalkantay.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/salkantay02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/salkantay03.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/salkantay04.jpeg`
+    ],
     included: ["Equipo de camping", "Cocinero", "Entradas", "Tren de retorno"],
     notIncluded: ["Saco de dormir", "Primer desayuno"],
     itinerary: [
@@ -1320,8 +1384,13 @@ export const tours: Tour[] = [
     location: "Machu Picchu",
     region: "sierra",
     category: "trekking",
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/caminoinca03.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapacaminoinca.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/caminoinca01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/caminoinca02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/caminoinca03.jpeg`
+    ],
     included: ["Permisos", "Guía especializado", "Equipo completo", "Tren"],
     notIncluded: ["Propinas"],
     itinerary: [
@@ -1341,8 +1410,13 @@ export const tours: Tour[] = [
     location: "Choquequirao",
     region: "sierra",
     category: "trekking",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/choqueq04.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapachoqueq.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/choqueq01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/choqueq02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/choqueq03.jpeg`
+    ],
     included: ["Todo el equipo de camping", "Alimentación", "Guía"],
     notIncluded: ["Gastos personales", "Primer desayuno"],
     itinerary: [
@@ -1362,8 +1436,13 @@ export const tours: Tour[] = [
     location: "Santa Teresa",
     region: "selva",
     category: "aventura",
-    image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/incajungle04.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapaincajungle.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/incajungle01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/incajungle02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/incajungle03.jpeg`
+    ],
     included: ["Bicicletas", "Equipo de seguridad", "Alojamiento", "Entradas"],
     notIncluded: ["Canotaje/Zipline (opcional)"],
     itinerary: [
@@ -1383,7 +1462,12 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "aventura",
-    image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/juegos02.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/juegos01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/juegos02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/juegos03.jpeg`
+    ],
     included: ["Equipo certificado", "Instructores", "Transporte"],
     notIncluded: ["Video (opcional)"],
     itinerary: [
@@ -1403,8 +1487,13 @@ export const tours: Tour[] = [
     location: "Cusco - Puno",
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/rutasol04.webp`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/maparutadelsol.jpeg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/rutasol01.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/rutasol02.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/rutasol03.jpeg`
+    ],
     included: ["Bus turístico", "Almuerzo buffet", "Guía profesional"],
     notIncluded: ["Tickets de ingreso"],
     itinerary: [

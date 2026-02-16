@@ -1,9 +1,9 @@
 import { useState, useMemo } from "react";
 import { Link, useParams } from "wouter";
 import { motion } from "framer-motion";
-import { 
-  Clock, MapPin, Users, ChevronRight, Star, Check, X, 
-  Calendar, Mountain, Share2, Heart, Phone, Globe, 
+import {
+  Clock, MapPin, Users, ChevronRight, Star, Check, X,
+  Calendar, Mountain, Share2, Heart, Phone, Globe,
   ChevronLeft, Play, MessageCircle, ThumbsUp,
   Camera, Navigation, Compass, Flag, Shield
 } from "lucide-react";
@@ -12,11 +12,11 @@ import { Footer } from "@/components/layout/Footer";
 import { useLanguage } from "@/i18n";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { tours, testimonials } from "@/data/tours";
-import { 
-  Accordion, 
-  AccordionContent, 
-  AccordionItem, 
-  AccordionTrigger 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
 } from "@/components/ui/accordion";
 import {
   Dialog,
@@ -44,7 +44,7 @@ export default function PaqueteDetalle() {
     "7419346957447204102",
     "7494054658424589573"
   ], []);
-  
+
   const randomTikTokId = useMemo(() => {
     return tiktokVideos[Math.floor(Math.random() * tiktokVideos.length)];
   }, [tiktokVideos]);
@@ -76,21 +76,21 @@ export default function PaqueteDetalle() {
 
   const gallery = tour.gallery || [tour.image];
   const whatsappMessage = `Hola, me interesa reservar el tour "${tour.title}" para el ${selectedDate ? format(selectedDate, "dd 'de' MMMM, yyyy", { locale: es }) : "[seleccionar fecha]"}. Precio: $${tour.price}. ¿Podrían confirmar disponibilidad?`;
-  
+
   // Get related tours (same category or location)
   const relatedTours = tours
     .filter((item) => item.id !== tour.id && (item.category === tour.category || item.location === tour.location))
     .slice(0, 4);
 
   // Calculate average rating
-  const avgRating = tour.reviews?.length 
+  const avgRating = tour.reviews?.length
     ? (tour.reviews.reduce((acc, r) => acc + r.rating, 0) / tour.reviews.length).toFixed(1)
     : "5.0";
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       {/* ============ HERO SECTION WITH GALLERY ============ */}
       <section className="pt-20">
         {/* Breadcrumb */}
@@ -127,18 +127,17 @@ export default function PaqueteDetalle() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <button 
+                <button
                   onClick={() => navigator.share?.({ title: tour.title, url: window.location.href })}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
                 >
                   <Share2 size={18} />
                   <span className="hidden sm:inline">{t.tourDetail.share}</span>
                 </button>
-                <button 
+                <button
                   onClick={() => setIsLiked(!isLiked)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
-                    isLiked ? 'bg-red-50 border-red-200 text-red-500' : 'border-gray-300 hover:bg-gray-50'
-                  }`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${isLiked ? 'bg-red-50 border-red-200 text-red-500' : 'border-gray-300 hover:bg-gray-50'
+                    }`}
                 >
                   <Heart size={18} fill={isLiked ? "currentColor" : "none"} />
                   <span className="hidden sm:inline">{t.tourDetail.save}</span>
@@ -161,17 +160,18 @@ export default function PaqueteDetalle() {
                 src={gallery[selectedImage]}
                 alt={tour.title}
                 className="w-full h-full object-cover"
+                style={tour.galleryStyles?.[selectedImage]}
               />
               {/* Gallery Navigation */}
               {gallery.length > 1 && (
                 <>
-                  <button 
+                  <button
                     onClick={() => setSelectedImage(prev => prev === 0 ? gallery.length - 1 : prev - 1)}
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
                   >
                     <ChevronLeft size={24} />
                   </button>
-                  <button 
+                  <button
                     onClick={() => setSelectedImage(prev => prev === gallery.length - 1 ? 0 : prev + 1)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
                   >
@@ -182,9 +182,8 @@ export default function PaqueteDetalle() {
                       <button
                         key={idx}
                         onClick={() => setSelectedImage(idx)}
-                        className={`w-2.5 h-2.5 rounded-full transition-all ${
-                          idx === selectedImage ? 'bg-white w-6' : 'bg-white/60'
-                        }`}
+                        className={`w-2.5 h-2.5 rounded-full transition-all ${idx === selectedImage ? 'bg-white w-6' : 'bg-white/60'
+                          }`}
                       />
                     ))}
                   </div>
@@ -205,12 +204,11 @@ export default function PaqueteDetalle() {
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`relative rounded-xl overflow-hidden h-30 transition-all ${
-                    idx === selectedImage ? 'ring-3 ring-primary' : 'opacity-70 hover:opacity-100'
-                  }`}
+                  className={`relative rounded-xl overflow-hidden h-30 transition-all ${idx === selectedImage ? 'ring-3 ring-primary' : 'opacity-70 hover:opacity-100'
+                    }`}
                 >
-                  <img 
-                    src={img} 
+                  <img
+                    src={img}
                     alt={`${tour.title} - ${idx + 1}`}
                     className="w-full h-full object-cover"
                   />
@@ -231,10 +229,10 @@ export default function PaqueteDetalle() {
       <section className="py-8">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
+
             {/* ============ LEFT COLUMN - TOUR INFO ============ */}
             <div className="lg:col-span-2 space-y-8">
-              
+
               {/* Quick Info Bar */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -397,10 +395,10 @@ export default function PaqueteDetalle() {
                     <Dialog>
                       <DialogTrigger asChild>
                         <div className="w-full h-80 md:h-96 bg-gray-50 cursor-zoom-in group relative overflow-hidden rounded-xl">
-                          <img 
-                            src={tour.mapImage} 
-                            alt={t.tourDetail.routeMap} 
-                            className="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" 
+                          <img
+                            src={tour.mapImage}
+                            alt={t.tourDetail.routeMap}
+                            className="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <div className="bg-white/90 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
@@ -411,13 +409,13 @@ export default function PaqueteDetalle() {
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl w-full p-0 overflow-hidden bg-transparent border-none shadow-none">
                         <DialogTitle className="sr-only">{t.tourDetail.detailedMap} {tour.title}</DialogTitle>
-                         <div className="relative w-full h-[80vh] bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
-                           <img 
-                             src={tour.mapImage} 
-                             alt={`${t.tourDetail.detailedMap} ${tour.title}`}
-                             className="w-full h-full object-contain"
-                           />
-                         </div>
+                        <div className="relative w-full h-[80vh] bg-white rounded-lg overflow-hidden flex items-center justify-center p-2">
+                          <img
+                            src={tour.mapImage}
+                            alt={`${t.tourDetail.detailedMap} ${tour.title}`}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
                       </DialogContent>
                     </Dialog>
                   ) : (
@@ -551,8 +549,8 @@ export default function PaqueteDetalle() {
                   </h2>
                   <Accordion type="single" collapsible className="space-y-3">
                     {tour.faqs.map((faq, idx) => (
-                      <AccordionItem 
-                        key={idx} 
+                      <AccordionItem
+                        key={idx}
                         value={`faq-${idx}`}
                         className="border rounded-xl px-4 data-[state=open]:bg-primary/5"
                       >
@@ -585,10 +583,10 @@ export default function PaqueteDetalle() {
                     <div>
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={i} 
-                            size={16} 
-                            className="text-yellow-500" 
+                          <Star
+                            key={i}
+                            size={16}
+                            className="text-yellow-500"
                             fill={i < Math.floor(Number(avgRating)) ? "currentColor" : "none"}
                           />
                         ))}
@@ -610,7 +608,7 @@ export default function PaqueteDetalle() {
                             {rating === 5 ? t.tourDetail.ratExcellent : rating === 4 ? t.tourDetail.ratVeryGood : rating === 3 ? t.tourDetail.ratAverage : rating === 2 ? t.tourDetail.ratPoor : t.tourDetail.ratTerrible}
                           </span>
                           <div className="grow bg-gray-200 rounded-full h-2">
-                            <div 
+                            <div
                               className="bg-yellow-500 h-2 rounded-full transition-all"
                               style={{ width: `${percentage}%` }}
                             />
@@ -628,7 +626,7 @@ export default function PaqueteDetalle() {
                     {tour.reviews.map((review) => (
                       <div key={review.id} className="border-b border-gray-100 pb-6 last:border-0">
                         <div className="flex items-start gap-4">
-                          <img 
+                          <img
                             src={review.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=random`}
                             alt={review.name}
                             className="w-12 h-12 rounded-full object-cover"
@@ -641,10 +639,10 @@ export default function PaqueteDetalle() {
                               </div>
                               <div className="flex gap-0.5">
                                 {[...Array(5)].map((_, i) => (
-                                  <Star 
-                                    key={i} 
-                                    size={14} 
-                                    className="text-yellow-500" 
+                                  <Star
+                                    key={i}
+                                    size={14}
+                                    className="text-yellow-500"
                                     fill={i < review.rating ? "currentColor" : "none"}
                                   />
                                 ))}
@@ -660,7 +658,7 @@ export default function PaqueteDetalle() {
                 ) : (
                   <div className="text-center py-8 text-gray-500">
                     <MessageCircle size={48} className="mx-auto mb-3 text-gray-300" />
-                    <p>{ t.tourDetail.noReviewsYet}</p>
+                    <p>{t.tourDetail.noReviewsYet}</p>
                     <p className="text-sm">{t.tourDetail.beFirstReview}</p>
                   </div>
                 )}
@@ -780,11 +778,11 @@ export default function PaqueteDetalle() {
                     className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white font-bold py-4 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all"
                   >
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                     </svg>
                     {t.tourDetail.bookNow}
                   </a>
-                  
+
                   <a
                     href="tel:+51960470892"
                     className="w-full flex items-center justify-center gap-3 bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary/90 transition-all"
@@ -838,13 +836,13 @@ export default function PaqueteDetalle() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedTours.map((relatedTour) => (
               <Link key={relatedTour.id} href={`/paquetes/${relatedTour.slug}`}>
-                <motion.div 
+                <motion.div
                   whileHover={{ y: -5 }}
                   className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer h-full"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={relatedTour.image} 
+                    <img
+                      src={relatedTour.image}
                       alt={relatedTour.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -900,7 +898,7 @@ export default function PaqueteDetalle() {
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
             {t.tourDetail.testimonialDesc}
           </p>
-          
+
           {/* Video Embeds from Social Media */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {/* Instagram Video - Randomized */}
@@ -923,7 +921,7 @@ export default function PaqueteDetalle() {
             </div>
 
             {/* Facebook Video */}
-            <a 
+            <a
               href="https://web.facebook.com/MukisTravelAgency"
               target="_blank"
               rel="noopener noreferrer"
@@ -933,7 +931,7 @@ export default function PaqueteDetalle() {
               <div className="text-center relative z-10">
                 <div className="w-20 h-20 bg-[#1877F2] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
                   <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 </div>
                 <p className="text-gray-800 font-bold text-lg">{t.tourDetail.viewOnFacebook}</p>
@@ -947,36 +945,36 @@ export default function PaqueteDetalle() {
           <div className="text-center">
             <p className="text-gray-600 mb-4">{t.tourDetail.followUs}</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <a 
-                href="https://www.instagram.com/mukis_travel_agency/" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/mukis_travel_agency/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-linear-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                 </svg>
                 Instagram
               </a>
-              <a 
-                href="https://www.tiktok.com/@mukistravel" 
-                target="_blank" 
+              <a
+                href="https://www.tiktok.com/@mukistravel"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
                 </svg>
                 TikTok
               </a>
-              <a 
-                href="https://web.facebook.com/MukisTravelAgency" 
-                target="_blank" 
+              <a
+                href="https://web.facebook.com/MukisTravelAgency"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-[#1877F2] text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
                 Facebook
               </a>
@@ -1007,8 +1005,8 @@ export default function PaqueteDetalle() {
                 </div>
                 <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
                 <div className="flex items-center gap-3">
-                  <img 
-                    src={testimonial.avatar} 
+                  <img
+                    src={testimonial.avatar}
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full object-cover"
                   />

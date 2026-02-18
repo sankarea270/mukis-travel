@@ -17,7 +17,7 @@ export default function CategoriaTrekking() {
     description: t.categoryPage.trekking.subtitle,
     icon: Footprints,
     color: "from-emerald-500 to-green-600",
-    bgImage: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&q=80&w=1920",
+    bgImage: `${import.meta.env.BASE_URL}images/categories/fondotrekking1.jpg`,
     highlights: [
       { icon: Footprints, title: t.categoryPage.trekking.highlight1Title, description: t.categoryPage.trekking.highlight1Desc },
       { icon: Mountain, title: t.categoryPage.trekking.highlight2Title, description: t.categoryPage.trekking.highlight2Desc },
@@ -28,11 +28,11 @@ export default function CategoriaTrekking() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <img
             src={categoryInfo.bgImage}
             alt={categoryInfo.title}
             className="w-full h-full object-cover"
@@ -53,12 +53,12 @@ export default function CategoriaTrekking() {
               </div>
               <span className="text-emerald-300 font-bold text-lg tracking-wide uppercase">{t.categoryPage.categoryLabel}</span>
             </div>
-            
+
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-4 leading-tight">
               {categoryInfo.title}
             </h1>
             <p className="text-emerald-200 text-xl mb-6">{categoryInfo.subtitle}</p>
-            
+
             <p className="text-white/90 text-lg max-w-2xl mb-8 leading-relaxed">
               {categoryInfo.description}
             </p>
@@ -82,7 +82,7 @@ export default function CategoriaTrekking() {
 
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="#f9fafb"/>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="#f9fafb" />
           </svg>
         </div>
       </section>
@@ -117,8 +117,8 @@ export default function CategoriaTrekking() {
                   <Link href={`/paquetes/${tour.slug}`}>
                     <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer h-full">
                       <div className="relative h-56 overflow-hidden">
-                        <img 
-                          src={tour.image} 
+                        <img
+                          src={tour.image}
                           alt={tour.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
@@ -132,7 +132,7 @@ export default function CategoriaTrekking() {
                           </div>
                         )}
                       </div>
-                      
+
                       <div className="p-6">
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
                           <MapPin size={14} />
@@ -141,13 +141,13 @@ export default function CategoriaTrekking() {
                           <Clock size={14} />
                           <span>{tour.duration}</span>
                         </div>
-                        
+
                         <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
                           {tour.title}
                         </h3>
-                        
+
                         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{tour.shortDescription}</p>
-                        
+
                         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                           <div>
                             {tour.originalPrice && (
@@ -191,7 +191,7 @@ export default function CategoriaTrekking() {
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
               {t.categoryPage.trekking.ctaSubtitle}
             </p>
-            <a 
+            <a
               href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20de%20trekking"
               target="_blank"
               rel="noopener noreferrer"

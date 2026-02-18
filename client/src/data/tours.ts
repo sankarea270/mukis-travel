@@ -42,12 +42,9 @@ export interface Tour {
     thumbnail?: string;
   }[];
   isPaquete?: boolean; // true si es un paquete de varios días, false o undefined si es tour de 1 día
-<<<<<<< HEAD
   galleryStyles?: Record<number, { objectPosition?: string }>;
-=======
   preparation?: string[]; // Lista personalizada de preparación del viaje
   cancellationPolicy?: string; // Política de cancelación personalizada
->>>>>>> origin/main
 }
 
 export const tours: Tour[] = [
@@ -211,11 +208,7 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.8700, lng: -71.3033 },
     region: "sierra",
     category: "aventura",
-<<<<<<< HEAD
     image: `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
-=======
-    image: `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`,
->>>>>>> origin/main
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamontañacolores.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/montañadecolores2.png`,
@@ -1242,7 +1235,6 @@ export const tours: Tour[] = [
     languages: ["Español", "Inglés", "Portugués"],
     location: "Machu Picchu",
     region: "selva",
-<<<<<<< HEAD
     category: "aventura",
     image: `${import.meta.env.BASE_URL}images/categories/mapibycar03.jpeg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapibycar.jpeg`,
@@ -1251,12 +1243,7 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/mapibycar02.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/mapibycar03.jpeg`
     ],
-=======
-    category: "trekking",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
-    mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapibycar.jpeg`,
     isOffer: true,
->>>>>>> origin/main
     included: ["Transporte Cusco-Hidroeléctrica-Cusco", "1 Noche Hostal", "Guía", "Entrada Machu Picchu"],
     notIncluded: ["Alimentación no mencionada", "Tren Hidroeléctrica (opcional)"],
     itinerary: [
@@ -1429,13 +1416,8 @@ export const tours: Tour[] = [
     languages: ["Español", "Inglés", "Portugués"],
     location: "Santa Teresa",
     region: "selva",
-<<<<<<< HEAD
     category: "aventura",
     image: `${import.meta.env.BASE_URL}images/categories/incajungle04.jpeg`,
-=======
-    category: "trekking",
-    image: "https://images.unsplash.com/photo-1534234509748-18e4c76a9116?auto=format&fit=crop&q=80&w=1600",
->>>>>>> origin/main
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapaincajungle.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}images/categories/incajungle01.jpeg`,

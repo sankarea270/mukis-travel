@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -25,8 +26,8 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-heading: "Outfit", system-ui, sans-serif;
+  --font-sans: "Manrope", "Inter", system-ui, sans-serif;
+  --font-heading: "Cormorant Garamond", "Playfair Display", "Outfit", system-ui, serif;
   --font-accent: "Cinzel", serif;
   
   --radius-sm: 0.5rem;
@@ -36,7 +37,8 @@
 
 :root {
   /* Andean Brand Theme - Warm Earth & Emerald */
-  --background: 32 33% 98%;
+  /* Soft green backdrop (more intense) */
+  --background: 158 45% 90%;
   --foreground: 158 30% 12%;
 
   --card: 32 33% 100%;

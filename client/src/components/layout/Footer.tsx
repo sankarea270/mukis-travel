@@ -32,7 +32,7 @@ export function Footer() {
   ];
 
   const supportLinks = [
-    { name: t.footer.faq, href: "/contacto" },
+    // { name: t.footer.faq, href: "/contacto" }, // Eliminado Preguntas Frecuentes
     { name: t.footer.contact, href: "/contacto" },
     { name: t.footer.claimsBook, href: "/contacto" },
     { name: t.footer.privacy, href: "/politica-privacidad" },

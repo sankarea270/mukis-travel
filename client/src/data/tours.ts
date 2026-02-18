@@ -42,11 +42,13 @@ export interface Tour {
     thumbnail?: string;
   }[];
   isPaquete?: boolean; // true si es un paquete de varios días, false o undefined si es tour de 1 día
-  galleryStyles?: Record<number, { objectPosition?: string }>;
+  galleryStyles?: Record<number, {
+    objectPosition?: string;
+    objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down"
+  }>;
   preparation?: string[]; // Lista personalizada de preparación del viaje
   cancellationPolicy?: string; // Política de cancelación personalizada
 }
-
 export const tours: Tour[] = [
   {
     id: "paquete-cusco-8d",
@@ -66,10 +68,10 @@ export const tours: Tour[] = [
     category: "cultural",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
     gallery: [
+      `${import.meta.env.BASE_URL}images/categories/mirabus03.png`,
       "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/lagunahumantay3.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`
     ],
     featured: true,
     isOffer: true,
@@ -110,6 +112,14 @@ export const tours: Tour[] = [
       { time: "Día 6", activity: "Laguna Humantay", description: "Trekking hacia la impresionante laguna turquesa al pie del nevado Humantay." },
       { time: "Día 7", activity: "Montaña de 7 Colores", description: "Aventura hacia Vinicunca, la famosa montaña arcoíris. Experiencia única e inolvidable." },
       { time: "Día 8", activity: "Despedida", description: "Desayuno y traslado al aeropuerto según horario de vuelo." }
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
     ],
     faqs: [
       { question: "¿Qué nivel físico necesito?", answer: "Se recomienda condición física moderada, especialmente para los días de trekking (Humantay y 7 Colores)." },
@@ -295,6 +305,9 @@ export const tours: Tour[] = [
       `${import.meta.env.BASE_URL}images/categories/lagunahumantay3.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/humantay11.jpeg`
     ],
+    galleryStyles: {
+      1: { objectFit: "contain" }
+    },
     featured: true,
     isOffer: true,
     difficulty: "moderado",
@@ -386,8 +399,7 @@ export const tours: Tour[] = [
       "Almuerzo buffet en Combapata",
       "Guía profesional especializado",
       "Oxígeno de emergencia",
-      "Botiquín de primeros auxilios",
-      "Bastones de trekking"
+      "Botiquín de primeros auxilios"
     ],
     notIncluded: [
       "Ticket de ingreso al puente (Nacionales: S/ 10.00, Extranjeros: S/ 20.00)",
@@ -410,7 +422,8 @@ export const tours: Tour[] = [
     ],
     reviews: [
       { id: "r7", name: "Jean Pierre Dubois", avatar: "https://randomuser.me/api/portraits/men/52.jpg", rating: 5, comment: "Une expérience culturelle unique! Le pont est incroyable.", date: "2025-10-25", country: "Francia" }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "5",
@@ -465,7 +478,8 @@ export const tours: Tour[] = [
     ],
     reviews: [
       { id: "r8", name: "Ana Torres", avatar: "https://randomuser.me/api/portraits/women/26.jpg", rating: 5, comment: "Las salineras son impresionantes. Las fotos no les hacen justicia.", date: "2025-12-05", country: "Colombia" }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "6",
@@ -491,7 +505,7 @@ export const tours: Tour[] = [
     mapImage: `${import.meta.env.BASE_URL}images/categories/citytour0.jpeg`,
     difficulty: "fácil",
     maxGroup: 25,
-    startTime: "1:00 PM",
+    startTime: "8:45 AM",
     highlights: [
       "Plaza de Armas y Catedral de Cusco",
       "Qorikancha - Templo del Sol",
@@ -509,12 +523,11 @@ export const tours: Tour[] = [
       "Alimentación"
     ],
     itinerary: [
-      { time: "1:00 PM", activity: "Recojo del hotel", description: "Iniciamos el recorrido desde tu hotel." },
-      { time: "1:30 PM", activity: "Visita a Qorikancha", description: "El templo más importante del Imperio Inca." },
-      { time: "2:30 PM", activity: "Plaza de Armas y Catedral", description: "Corazón de la ciudad colonial." },
-      { time: "3:30 PM", activity: "Sacsayhuamán", description: "Impresionante fortaleza con muros megalíticos." },
-      { time: "4:30 PM", activity: "Q'enqo, Puca Pucara y Tambomachay", description: "Sitios arqueológicos ceremoniales." },
-      { time: "6:00 PM", activity: "Retorno al hotel", description: "Fin del tour." }
+      { time: "8:45 AM", activity: "Recojo del hotel", description: "Iniciamos el recorrido desde tu hotel." },
+      { time: "9:00 AM", activity: "Visita a Qorikancha", description: "El templo más importante del Imperio Inca." },
+      { time: "10:15 AM", activity: "Sacsayhuamán", description: "Impresionante fortaleza con muros megalíticos." },
+      { time: "12:00 PM", activity: "Q'enqo, Puca Pucara y Tambomachay", description: "Sitios arqueológicos ceremoniales." },
+      { time: "14:00 PM", activity: "Retorno al hotel", description: "Fin del tour." }
     ],
     faqs: [
       { question: "¿Es recomendable para el primer día en Cusco?", answer: "¡Sí! Es ideal porque es de poca exigencia física y te ayuda a conocer la ciudad mientras te aclimatas." },
@@ -523,7 +536,8 @@ export const tours: Tour[] = [
     ],
     reviews: [
       { id: "r9", name: "Luis Herrera", avatar: "https://randomuser.me/api/portraits/men/22.jpg", rating: 5, comment: "Excelente tour para conocer la historia de Cusco. Muy recomendado.", date: "2025-11-28", country: "Perú" }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "8",
@@ -586,7 +600,8 @@ export const tours: Tour[] = [
     ],
     reviews: [
       { id: "r11", name: "Roberto Silva", avatar: "https://randomuser.me/api/portraits/men/36.jpg", rating: 5, comment: "Un día increíble. Las Islas Ballestas son espectaculares y los tubulares en Huacachina son súper emocionantes.", date: "2025-12-18", country: "Brasil" }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "9",
@@ -644,12 +659,21 @@ export const tours: Tour[] = [
       { time: "2:30 PM", activity: "Almuerzo Box Lunch", description: "Almuerzo al aire libre con vista panorámica del entorno natural." },
       { time: "6:30 PM", activity: "Llegada a Cusco", description: "Retorno a la ciudad con llegada aproximada entre las 18:00 y 19:00 horas." }
     ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
     faqs: [
       {
         question: "¿Qué época del año es mejor para visitar Waqrapukara?",
         answer: "La mejor época para visitar es durante la estación seca, entre mayo y septiembre, cuando hay menos probabilidades de lluvia y los caminos están en mejores condiciones. Durante la temporada de lluvias (de noviembre a marzo), los senderos pueden volverse resbaladizos y difíciles de transitar."
       }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "17",
@@ -695,50 +719,8 @@ export const tours: Tour[] = [
       { time: "11:30 AM", activity: "Retorno a la Base", description: "Regreso por la misma ruta en cuatrimotos hacia el punto central." },
       { time: "1:00 PM", activity: "Almuerzo Buffet", description: "Degustación de nuestro almuerzo buffet reconfortante." },
       { time: "5:00 PM", activity: "Llegada a Cusco", description: "Traslado final hacia la ciudad de Cusco (arribo entre las 5:00 y 5:30 PM)." }
-    ]
-  },
-  {
-    id: "20",
-    slug: "machu-picchu-vip-2d1n",
-    title: "Tour Machu Picchu vip en 2 Días 1 Noche",
-    shortDescription: "Servicio VIP a Machu Picchu",
-    description: "Experiencia exclusiva en Machu Picchu con mejores hoteles y servicios.",
-    price: 395.00,
-    duration: "2 Días 1 Noche",
-    tourType: "VIP",
-    languages: ["Español", "Inglés", "Portugués"],
-    location: "Cusco",
-    region: "sierra",
-    category: "cultural",
-    image: "https://images.unsplash.com/photo-1506450682236-fa1ec963d339?auto=format&fit=crop&q=80&w=1600",
-    included: ["Transporte VIP", "Hotel Superior", "Tren Vistadome", "Guía Privado"],
-    notIncluded: ["Cena"],
-    itinerary: [
-      { time: "Day 1", activity: "Viaje VIP", description: "Traslado confortable a Aguas Calientes." },
-      { time: "Day 2", activity: "Machu Picchu", description: "Visita privada a la ciudadela." }
-    ]
-  },
-  {
-    id: "23",
-    slug: "machu-picchu-valle-vivencial",
-    title: "Tour Machu Picchu con Valle Vivencial en 2 Días 1 Noche",
-    shortDescription: "Comunidad de Ccaccacollo , Valle Sagrado , Machu Picchu",
-    description: "Combina el turismo vivencial en Ccaccaccollo, el Valle Sagrado y Machu Picchu.",
-    price: 500.00,
-    duration: "2 DÍas 1 Noche",
-    tourType: "Paquete Completo",
-    languages: ["Español", "Inglés", "Portugués"],
-    location: "Cusco",
-    region: "sierra",
-    category: "vivencial",
-    image: "https://images.unsplash.com/photo-1548820579-0fad72e0e7fc?auto=format&fit=crop&q=80&w=1600",
-
-    included: ["Todo incluido", "Hotel", "Tren", "Ingresos"],
-    notIncluded: ["Gastos personales"],
-    itinerary: [
-      { time: "Day 1", activity: "Vivencial", description: "Comunidad y Valle Sagrado." },
-      { time: "Day 2", activity: "Machu Picchu", description: "Tour en la ciudadela." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "25",
@@ -763,7 +745,8 @@ export const tours: Tour[] = [
     notIncluded: ["Ingresos"],
     itinerary: [
       { time: "Medio Día", activity: "ATV", description: "Ruta de cuatrimotos por paisajes andinos." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "27",
@@ -788,7 +771,8 @@ export const tours: Tour[] = [
     notIncluded: ["Ingresos", "Alimentación"],
     itinerary: [
       { time: "Medio Día", activity: "Valle Sur", description: "Visita a Tipón, Pikillacta y Andahuaylillas." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "28",
@@ -803,12 +787,18 @@ export const tours: Tour[] = [
     location: "Cusco",
     region: "sierra",
     category: "aventura",
-    image: "https://images.unsplash.com/photo-1627582234551-34446c592965?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/cuatrimorada02.jpg`,
+    gallery: [
+      `${import.meta.env.BASE_URL}images/categories/cuatrimorada01.jpg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatrimorada02.jpg`,
+      `${import.meta.env.BASE_URL}images/categories/cuatrimorada03.jpg`
+    ],
     included: ["Cuatrimoto Doble", "Guía", "Casco"],
     notIncluded: ["Ingreso"],
     itinerary: [
       { time: "2-3 Horas", activity: "ATV Doble", description: "Aventura compartida hacia el Apukunaq Tianan." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "29",
@@ -864,7 +854,8 @@ export const tours: Tour[] = [
       { time: "2:00 PM", activity: "Ollantaytambo", description: "Visita a la fortaleza y centro ceremonial, destacando sus construcciones de piedra finamente tallada." },
       { time: "4:30 PM", activity: "Parque Arqueológico de Pisac", description: "Exploración del centro agrícola y administrativo inca de gran importancia." },
       { time: "7:00 PM", activity: "Retorno a Cusco", description: "El servicio concluye aproximadamente a las 18:30 – 19:00 horas en la ciudad de Cusco." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "30",
@@ -918,7 +909,16 @@ export const tours: Tour[] = [
       { time: "12:30 PM", activity: "Tiempo de Exploración", description: "Dispondrá de 1.5 a 2 horas para visita y toma de fotografías." },
       { time: "2:30 PM", activity: "Almuerzo Buffet", description: "Retorno al restaurante para disfrutar del almuerzo incluido." },
       { time: "5:30 PM", activity: "Retorno a Cusco", description: "Llegada aproximada a la ciudad de Cusco." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "31",
@@ -976,7 +976,16 @@ export const tours: Tour[] = [
       { time: "1:00 PM", activity: "Almuerzo Buffet", description: "Almuerzo en el poblado de Pacchanta antes del retorno." },
       { time: "2:30 PM", activity: "Regreso a Cusco", description: "Abordaje del transporte para iniciar el viaje de vuelta." },
       { time: "5:00 PM", activity: "Llegada a Cusco", description: "Fin del servicio en la ciudad de Cusco." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "32",
@@ -1033,7 +1042,16 @@ export const tours: Tour[] = [
       { time: "1:30 PM", activity: "Visita a Raqchi", description: "Exploración del Templo de Wiracocha, colcas y edificaciones de piedra y adobe." },
       { time: "3:30 PM", activity: "Puentes de Checacupe", description: "Parada panorámica en los tres puentes históricos de Checacupe." },
       { time: "6:00 PM", activity: "Llegada a Cusco", description: "Finalización del servicio cerca de la Plaza de Armas." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "33",
@@ -1090,7 +1108,16 @@ export const tours: Tour[] = [
       { time: "1:00 PM", activity: "Almuerzo en Phinaya", description: "Almuerzo típico de la región preparado con ingredientes locales." },
       { time: "3:00 PM", activity: "Laguna Sibinacocha", description: "Parada especial en la escénica Laguna Sibinacocha." },
       { time: "8:30 PM", activity: "Llegada a Cusco", description: "Arribo final cerca de la Plaza Regocijo." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos especiales para la nieve",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "34",
@@ -1116,7 +1143,8 @@ export const tours: Tour[] = [
     notIncluded: ["Ingresos", "Snacks"],
     itinerary: [
       { time: "AM/PM", activity: "Recorrido", description: "Vistas de la Plaza de Armas, Sacsayhuamán y miradores." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "35",
@@ -1142,7 +1170,8 @@ export const tours: Tour[] = [
     notIncluded: ["Almuerzo"],
     itinerary: [
       { time: "Full Day", activity: "Visita completa", description: "Recorrido por Tipón, Pikillacta y el Humedal de Huasao." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "36",
@@ -1168,7 +1197,8 @@ export const tours: Tour[] = [
     notIncluded: ["Boleto Turístico"],
     itinerary: [
       { time: "8:00 AM", activity: "Salida", description: "Visita a los principales sitios del Valle." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "37",
@@ -1194,7 +1224,8 @@ export const tours: Tour[] = [
     notIncluded: ["Ingresos"],
     itinerary: [
       { time: "A acordar", activity: "Aventura ATV", description: "Ruta por Maras, Moray y Huaypo." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "38",
@@ -1220,7 +1251,8 @@ export const tours: Tour[] = [
     notIncluded: ["Ingreso"],
     itinerary: [
       { time: "AM/PM", activity: "Visita", description: "Recorrido por las esculturas gigantes." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "39",
@@ -1297,7 +1329,8 @@ export const tours: Tour[] = [
     notIncluded: ["Boleto Turístico"],
     itinerary: [
       { time: "PM", activity: "Recorrido", description: "Centros arqueológicos y santuario animal." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "41",
@@ -1324,7 +1357,15 @@ export const tours: Tour[] = [
     itinerary: [
       { time: "Día 1", activity: "Trekking", description: "Caminata hacia el campamento Ausangate." },
       { time: "Día 2", activity: "Montaña de Colores", description: "Visita a la montaña y retorno." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "42",
@@ -1350,7 +1391,15 @@ export const tours: Tour[] = [
     notIncluded: ["Saco de dormir", "Primer desayuno"],
     itinerary: [
       { time: "Diario", activity: "Trekking", description: "Paso Salkantay, selva alta, Machu Picchu." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "43",
@@ -1376,7 +1425,15 @@ export const tours: Tour[] = [
     notIncluded: ["Propinas"],
     itinerary: [
       { time: "Día 1-4", activity: "Trekking", description: "Caminata por sitios arqueológicos originales." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "44",
@@ -1402,7 +1459,15 @@ export const tours: Tour[] = [
     notIncluded: ["Gastos personales", "Primer desayuno"],
     itinerary: [
       { time: "Diario", activity: "Caminata extrema", description: "Descenso y ascenso al cañón del Apurímac." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "45",
@@ -1428,7 +1493,15 @@ export const tours: Tour[] = [
     notIncluded: ["Canotaje/Zipline (opcional)"],
     itinerary: [
       { time: "Día 1", activity: "Biking", description: "Descenso en bicicleta desde el Abra Málaga." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "46",
@@ -1453,7 +1526,8 @@ export const tours: Tour[] = [
     notIncluded: ["Video (opcional)"],
     itinerary: [
       { time: "A acordar", activity: "Salto", description: "Experiencia de adrenalina en el parque de aventuras." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "47",
@@ -1479,7 +1553,8 @@ export const tours: Tour[] = [
     notIncluded: ["Tickets de ingreso"],
     itinerary: [
       { time: "7:00 AM", activity: "Salida", description: "Viaje con paradas turísticas hasta Puno." }
-    ]
+    ],
+    cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
     id: "48",
@@ -1496,11 +1571,11 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.5319, lng: -71.9675 },
     region: "sierra",
     category: "mistico",
-    image: "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/mistico03.jpg`,
     gallery: [
-      "https://images.unsplash.com/photo-1518182170546-0766ba6f6a56?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1470115636492-6d2b56f9b754?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/mistico03.jpg`,
+      `${import.meta.env.BASE_URL}images/categories/mistico01.jpg`,
+      `${import.meta.env.BASE_URL}images/categories/mistico02.jpg`
     ],
     featured: true,
     difficulty: "fácil",

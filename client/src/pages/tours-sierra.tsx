@@ -22,7 +22,7 @@ const sierraHighlights = [
 ];
 
 const sierraDestinations = [
-  { name: "Cusco", image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=600" },
+  { name: "Cusco", image: `${import.meta.env.BASE_URL}images/categories/plazacusco.jpg` },
   { name: "Machu Picchu", image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=600" },
   { name: "Puno", image: `${import.meta.env.BASE_URL}images/categories/lago-titicaca.jpg` },
   { name: "Arequipa", image: `${import.meta.env.BASE_URL}images/categories/arequipa.jpg` },
@@ -94,11 +94,11 @@ export default function ToursSierra() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       {/* Hero */}
       <section className="relative h-[70vh] min-h-125 overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <img
             src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1920"
             alt="Sierra Peruana"
             className="w-full h-full object-cover"
@@ -119,12 +119,12 @@ export default function ToursSierra() {
               </div>
               <span className="text-emerald-300 font-bold text-lg tracking-wide uppercase">Región Sierra</span>
             </div>
-            
+
             <h1 className="font-heading font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
               {t.regionPage.sierra.title.split(' ').slice(0, -1).join(' ')} <br />
               <span className="text-emerald-300">{t.regionPage.sierra.title.split(' ').slice(-1)}</span>
             </h1>
-            
+
             <p className="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
               {t.regionPage.sierra.subtitle}
             </p>
@@ -149,7 +149,7 @@ export default function ToursSierra() {
         {/* Wave decoration */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="#f9fafb"/>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="#f9fafb" />
           </svg>
         </div>
       </section>
@@ -190,7 +190,7 @@ export default function ToursSierra() {
       <section className="sticky top-16 z-30 bg-white/90 backdrop-blur-md border-b shadow-sm transition-all mb-8">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-            
+
             {/* Search Bar */}
             <div className="relative w-full md:w-96">
               <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -267,7 +267,7 @@ export default function ToursSierra() {
           {filteredAndSortedTours.length > 0 ? (
             <motion.div
               layout
-              className={viewMode === "grid" 
+              className={viewMode === "grid"
                 ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 : "flex flex-col gap-6"
               }
@@ -286,8 +286,8 @@ export default function ToursSierra() {
                       {viewMode === "grid" ? (
                         <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer h-full">
                           <div className="relative h-56 overflow-hidden">
-                            <img 
-                              src={tour.image} 
+                            <img
+                              src={tour.image}
                               alt={tour.title}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             />
@@ -303,7 +303,7 @@ export default function ToursSierra() {
                               </div>
                             )}
                           </div>
-                          
+
                           <div className="p-6">
                             <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
                               <MapPin size={14} />
@@ -312,13 +312,13 @@ export default function ToursSierra() {
                               <Clock size={14} />
                               <span>{tour.duration}</span>
                             </div>
-                            
+
                             <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors">
                               {tour.title}
                             </h3>
-                            
+
                             <p className="text-gray-600 text-sm mb-4 line-clamp-2">{tour.shortDescription}</p>
-                            
+
                             <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                               <div>
                                 {tour.originalPrice && (
@@ -336,8 +336,8 @@ export default function ToursSierra() {
                         /* Vista Lista (Horizontal) */
                         <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col md:flex-row">
                           <div className="relative w-full md:w-72 h-48 md:h-auto shrink-0 overflow-hidden">
-                            <img 
-                              src={tour.image} 
+                            <img
+                              src={tour.image}
                               alt={tour.title}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             />
@@ -352,7 +352,7 @@ export default function ToursSierra() {
                               </div>
                             )}
                           </div>
-                          
+
                           <div className="p-6 flex flex-col justify-between grow">
                             <div>
                               <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
@@ -369,14 +369,14 @@ export default function ToursSierra() {
                                   </>
                                 )}
                               </div>
-                              
+
                               <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors">
                                 {tour.title}
                               </h3>
-                              
+
                               <p className="text-gray-600 text-sm mb-4">{tour.shortDescription}</p>
                             </div>
-                            
+
                             <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                               <div>
                                 {tour.originalPrice && (
@@ -401,7 +401,7 @@ export default function ToursSierra() {
               <Mountain className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
               <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{t.regionPage.noTours}</h3>
               <p className="text-gray-600 mb-6">Prueba con otros filtros o categorías</p>
-              <button 
+              <button
                 onClick={() => { setActiveCategory("todos"); setSearchQuery(""); }}
                 className="inline-block bg-emerald-600 text-white font-bold px-8 py-3 rounded-full hover:shadow-lg transition-all cursor-pointer"
               >
@@ -429,7 +429,7 @@ export default function ToursSierra() {
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
               Nuestros expertos te ayudarán a crear la aventura andina de tus sueños
             </p>
-            <a 
+            <a
               href="https://wa.me/51930476116?text=Hola,%20me%20interesan%20los%20tours%20de%20la%20Sierra%20peruana"
               target="_blank"
               rel="noopener noreferrer"

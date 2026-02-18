@@ -66,10 +66,10 @@ export const tours: Tour[] = [
     category: "cultural",
     image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
     gallery: [
+      `${import.meta.env.BASE_URL}images/categories/mirabus03.png`,
       "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1600",
-      "https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?auto=format&fit=crop&q=80&w=1600"
+      `${import.meta.env.BASE_URL}images/categories/lagunahumantay3.jpeg`,
+      `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`
     ],
     featured: true,
     isOffer: true,
@@ -110,6 +110,14 @@ export const tours: Tour[] = [
       { time: "Día 6", activity: "Laguna Humantay", description: "Trekking hacia la impresionante laguna turquesa al pie del nevado Humantay." },
       { time: "Día 7", activity: "Montaña de 7 Colores", description: "Aventura hacia Vinicunca, la famosa montaña arcoíris. Experiencia única e inolvidable." },
       { time: "Día 8", activity: "Despedida", description: "Desayuno y traslado al aeropuerto según horario de vuelo." }
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
     ],
     faqs: [
       { question: "¿Qué nivel físico necesito?", answer: "Se recomienda condición física moderada, especialmente para los días de trekking (Humantay y 7 Colores)." },
@@ -389,8 +397,7 @@ export const tours: Tour[] = [
       "Almuerzo buffet en Combapata",
       "Guía profesional especializado",
       "Oxígeno de emergencia",
-      "Botiquín de primeros auxilios",
-      "Bastones de trekking"
+      "Botiquín de primeros auxilios"
     ],
     notIncluded: [
       "Ticket de ingreso al puente (Nacionales: S/ 10.00, Extranjeros: S/ 20.00)",
@@ -496,7 +503,7 @@ export const tours: Tour[] = [
     mapImage: `${import.meta.env.BASE_URL}images/categories/citytour0.jpeg`,
     difficulty: "fácil",
     maxGroup: 25,
-    startTime: "1:00 PM",
+    startTime: "8:45 AM",
     highlights: [
       "Plaza de Armas y Catedral de Cusco",
       "Qorikancha - Templo del Sol",
@@ -514,12 +521,11 @@ export const tours: Tour[] = [
       "Alimentación"
     ],
     itinerary: [
-      { time: "1:00 PM", activity: "Recojo del hotel", description: "Iniciamos el recorrido desde tu hotel." },
-      { time: "1:30 PM", activity: "Visita a Qorikancha", description: "El templo más importante del Imperio Inca." },
-      { time: "2:30 PM", activity: "Plaza de Armas y Catedral", description: "Corazón de la ciudad colonial." },
-      { time: "3:30 PM", activity: "Sacsayhuamán", description: "Impresionante fortaleza con muros megalíticos." },
-      { time: "4:30 PM", activity: "Q'enqo, Puca Pucara y Tambomachay", description: "Sitios arqueológicos ceremoniales." },
-      { time: "6:00 PM", activity: "Retorno al hotel", description: "Fin del tour." }
+      { time: "8:45 AM", activity: "Recojo del hotel", description: "Iniciamos el recorrido desde tu hotel." },
+      { time: "9:00 AM", activity: "Visita a Qorikancha", description: "El templo más importante del Imperio Inca." },
+      { time: "10:15 AM", activity: "Sacsayhuamán", description: "Impresionante fortaleza con muros megalíticos." },
+      { time: "12:00 PM", activity: "Q'enqo, Puca Pucara y Tambomachay", description: "Sitios arqueológicos ceremoniales." },
+      { time: "14:00 PM", activity: "Retorno al hotel", description: "Fin del tour." }
     ],
     faqs: [
       { question: "¿Es recomendable para el primer día en Cusco?", answer: "¡Sí! Es ideal porque es de poca exigencia física y te ayuda a conocer la ciudad mientras te aclimatas." },
@@ -650,6 +656,14 @@ export const tours: Tour[] = [
       { time: "1:30 PM", activity: "Retorno a Santa Lucía", description: "Caminata de regreso hacia el transporte turístico." },
       { time: "2:30 PM", activity: "Almuerzo Box Lunch", description: "Almuerzo al aire libre con vista panorámica del entorno natural." },
       { time: "6:30 PM", activity: "Llegada a Cusco", description: "Retorno a la ciudad con llegada aproximada entre las 18:00 y 19:00 horas." }
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
     ],
     faqs: [
       {
@@ -894,6 +908,14 @@ export const tours: Tour[] = [
       { time: "2:30 PM", activity: "Almuerzo Buffet", description: "Retorno al restaurante para disfrutar del almuerzo incluido." },
       { time: "5:30 PM", activity: "Retorno a Cusco", description: "Llegada aproximada a la ciudad de Cusco." }
     ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
     cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
@@ -953,6 +975,14 @@ export const tours: Tour[] = [
       { time: "2:30 PM", activity: "Regreso a Cusco", description: "Abordaje del transporte para iniciar el viaje de vuelta." },
       { time: "5:00 PM", activity: "Llegada a Cusco", description: "Fin del servicio en la ciudad de Cusco." }
     ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
     cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
@@ -1011,6 +1041,14 @@ export const tours: Tour[] = [
       { time: "3:30 PM", activity: "Puentes de Checacupe", description: "Parada panorámica en los tres puentes históricos de Checacupe." },
       { time: "6:00 PM", activity: "Llegada a Cusco", description: "Finalización del servicio cerca de la Plaza de Armas." }
     ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
     cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
   {
@@ -1068,6 +1106,14 @@ export const tours: Tour[] = [
       { time: "1:00 PM", activity: "Almuerzo en Phinaya", description: "Almuerzo típico de la región preparado con ingredientes locales." },
       { time: "3:00 PM", activity: "Laguna Sibinacocha", description: "Parada especial en la escénica Laguna Sibinacocha." },
       { time: "8:30 PM", activity: "Llegada a Cusco", description: "Arribo final cerca de la Plaza Regocijo." }
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos especiales para la nieve",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
     ],
     cancellationPolicy: "Cancelaciones sin penalidad hasta 3 días antes de la salida y cambio de fecha sujetos a disponibilidad antes de 48 horas. Para grupos y paquetes especiales pueden aplicar condiciones particulares."
   },
@@ -1309,7 +1355,15 @@ export const tours: Tour[] = [
     itinerary: [
       { time: "Día 1", activity: "Trekking", description: "Caminata hacia el campamento Ausangate." },
       { time: "Día 2", activity: "Montaña de Colores", description: "Visita a la montaña y retorno." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "42",
@@ -1335,7 +1389,15 @@ export const tours: Tour[] = [
     notIncluded: ["Saco de dormir", "Primer desayuno"],
     itinerary: [
       { time: "Diario", activity: "Trekking", description: "Paso Salkantay, selva alta, Machu Picchu." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "43",
@@ -1361,7 +1423,15 @@ export const tours: Tour[] = [
     notIncluded: ["Propinas"],
     itinerary: [
       { time: "Día 1-4", activity: "Trekking", description: "Caminata por sitios arqueológicos originales." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "44",
@@ -1387,7 +1457,15 @@ export const tours: Tour[] = [
     notIncluded: ["Gastos personales", "Primer desayuno"],
     itinerary: [
       { time: "Diario", activity: "Caminata extrema", description: "Descenso y ascenso al cañón del Apurímac." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "45",
@@ -1413,7 +1491,15 @@ export const tours: Tour[] = [
     notIncluded: ["Canotaje/Zipline (opcional)"],
     itinerary: [
       { time: "Día 1", activity: "Biking", description: "Descenso en bicicleta desde el Abra Málaga." }
-    ]
+    ],
+    preparation: [
+      "Ropa abrigadora",
+      "Bloqueador solar",
+      "Zapatos de trekking",
+      "Agua y snacks",
+      "Cámara fotográfica",
+      "Documentos de identidad"
+    ],
   },
   {
     id: "46",

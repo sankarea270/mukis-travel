@@ -141,6 +141,41 @@ function FloatingParticles() {
   );
 }
 
+function FlightPaths({ progress }:{ progress?: any }){
+  // small decorative flight paths with subtle loop and parallax based on scroll progress
+  const y = progress ? useTransform(progress, [0,1], [0, 40]) : 0;
+  return (
+    <motion.div className="absolute inset-0 pointer-events-none z-0 opacity-20" style={{y}}>
+      <svg viewBox="0 0 1200 400" className="w-full h-full">
+        <defs>
+          <linearGradient id="routeGrad" x1="0" x2="1">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0.05" />
+          </linearGradient>
+        </defs>
+        <path d="M40 300 C200 180, 400 220, 560 140 C720 60, 920 120, 1160 40" stroke="url(#routeGrad)" strokeWidth="2" fill="none" strokeDasharray="6 8" />
+        <path d="M60 20 C220 100, 420 60, 580 160 C740 260, 940 200, 1140 320" stroke="url(#routeGrad)" strokeWidth="2" fill="none" strokeDasharray="6 8" transform="translate(0,20)" />
+
+        {/* Animated plane following a simple path (approximate) */}
+        <motion.g
+          initial={{ x: -20, y: 260, rotate: -10, opacity: 0.8 }}
+          animate={{ x: [ -20, 180, 420, 600, 880, 1180 ], y: [260,200,220,160,120,80], rotate: [-10, 6, -4, 12, -6, 8] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        >
+          <path d="M0 0 L10 4 L0 8 L2 4 Z" fill="#fff" />
+        </motion.g>
+        <motion.g
+          initial={{ x: 1200, y: 40, rotate: 8, opacity: 0.6 }}
+          animate={{ x: [1200, 980, 760, 540, 320, 40], y: [40,80,60,140,200,280], rotate: [8, -6, 10, -4, 6, -10] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "linear", delay: 2 }}
+        >
+          <path d="M0 0 L10 4 L0 8 L2 4 Z" fill="#fff" />
+        </motion.g>
+      </svg>
+    </motion.div>
+  );
+}
+
 export default function Contacto() {
   const { t } = useLanguage();
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -215,6 +250,7 @@ export default function Contacto() {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <FloatingParticles />
+        <FlightPaths progress={scrollYProgress} />
 
         {/* Decorative circles */}
         <motion.div
@@ -728,6 +764,48 @@ export default function Contacto() {
                         <Shield size={12} className="inline mr-1 -mt-0.5" />
                         Tu información está protegida y nunca será compartida con terceros
                       </motion.p>
+                      {/* Inline decorative flight animation under buttons */}
+                      <div className="mt-6 flex justify-center">
+                        <motion.div className="w-full max-w-xl h-16 relative overflow-hidden" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.55 }}>
+                          <svg viewBox="0 0 600 60" className="w-full h-full opacity-60">
+                            <defs>
+                              <linearGradient id="routeGradSmall" x1="0" x2="1">
+                                <stop offset="0%" stopColor="#fff" stopOpacity="0.14" />
+                                <stop offset="100%" stopColor="#fff" stopOpacity="0.05" />
+                              </linearGradient>
+                            </defs>
+                            <path d="M10 40 C150 10, 300 10, 590 40" stroke="url(#routeGradSmall)" strokeWidth="2" fill="none" strokeDasharray="6 6" />
+                          </svg>
+                          <motion.div
+                            className="absolute top-0 left-0 w-10 h-10 flex items-center justify-center"
+                            initial={{ x: -60, y: 6, rotate: -10, opacity: 0.9 }}
+                            animate={{ x: [ -60, 540 ], y: [6, 12], rotate: [-10, 10], opacity: [0.9, 1, 0.9] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                          >
+                            <svg viewBox="0 0 10 10" className="w-8 h-8 text-white">
+                              <path d="M0 5 L8 2 L6 5 L8 8 Z" fill="currentColor" />
+                            </svg>
+                          </motion.div>
+                        </motion.div>
+                      </div>
+                      {/* Company logo + name below form with entrance animation */}
+                      <motion.div
+                        className="mt-6 flex items-center gap-4 justify-center"
+                        initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.65 }}
+                      >
+                        <img
+                          src={`${import.meta.env.BASE_URL}images/categories/logom-removebg-preview.png`}
+                          alt="Mukis Travel Logo"
+                          className="w-14 h-14 object-contain drop-shadow-md"
+                        />
+                        <div className="text-center">
+                          <div className="font-heading font-bold text-lg text-gray-900">Mukis Travel</div>
+                          <div className="text-sm text-gray-500">Agencia de Viajes - Atención personalizada</div>
+                        </div>
+                      </motion.div>
                     </form>
                   )}
                 </div>
@@ -745,7 +823,7 @@ export default function Contacto() {
                   >
                     <div className="flex items-center gap-3 mb-6">
                       <motion.div
-                        className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md"
+                        className="w-12 h-12 bg-linear-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md"
                         whileHover={{ rotate: -10, scale: 1.1 }}
                       >
                         <HelpCircle className="w-6 h-6 text-white" />

@@ -30,14 +30,14 @@ export default function CategoriaTrekking() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-125 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={categoryInfo.bgImage}
             alt={categoryInfo.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/60 via-green-900/40 to-black/70" />
+          <div className="absolute inset-0 bg-linear-to-b from-emerald-900/60 via-green-900/40 to-black/70" />
         </div>
 
         <div className="relative h-full container mx-auto px-4 flex flex-col justify-center">
@@ -48,7 +48,7 @@ export default function CategoriaTrekking() {
             className="max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${categoryInfo.color} flex items-center justify-center shadow-xl`}>
+              <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${categoryInfo.color} flex items-center justify-center shadow-xl`}>
                 <categoryInfo.icon className="w-7 h-7 text-white" />
               </div>
               <span className="text-emerald-300 font-bold text-lg tracking-wide uppercase">{t.categoryPage.categoryLabel}</span>
@@ -114,7 +114,7 @@ export default function CategoriaTrekking() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
                 >
-                  <Link href={`/paquetes/${tour.slug}`}>
+                  <Link href={`/${tour.isPaquete ? 'paquetes' : 'tours'}/${tour.slug}`}>
                     <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer h-full">
                       <div className="relative h-56 overflow-hidden">
                         <img
@@ -122,7 +122,7 @@ export default function CategoriaTrekking() {
                           alt={tour.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">
                           {t.categoryPage.trekking.badge}
                         </div>
@@ -175,7 +175,7 @@ export default function CategoriaTrekking() {
       </section>
 
       {/* CTA */}
-      <section className={`py-20 bg-gradient-to-r ${categoryInfo.color} relative overflow-hidden`}>
+      <section className={`py-20 bg-linear-to-r ${categoryInfo.color} relative overflow-hidden`}>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
         </div>

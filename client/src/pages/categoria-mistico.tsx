@@ -30,7 +30,7 @@ export default function CategoriaMistico() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-125 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={categoryInfo.bgImage}
@@ -114,7 +114,7 @@ export default function CategoriaMistico() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
                 >
-                  <Link href={`/paquetes/${tour.slug}`}>
+                  <Link href={`/${tour.isPaquete ? 'paquetes' : 'tours'}/${tour.slug}`}>
                     <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer h-full">
                       <div className="relative h-56 overflow-hidden">
                         <img

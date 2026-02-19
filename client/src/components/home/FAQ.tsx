@@ -29,51 +29,70 @@ export function FAQ() {
           </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, idx) => (
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {/* Left: decorative image only on md+ */}
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="mb-4"
+              className="hidden md:block rounded-xl overflow-hidden shadow-md"
+              initial={{ scale: 0.98, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6 }}
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className={`w-full flex items-center justify-between p-6 rounded-2xl text-left transition-all duration-300 ${
-                  openIndex === idx
-                    ? "bg-primary text-white shadow-lg"
-                    : "bg-gray-50 hover:bg-gray-100 text-gray-900"
-                }`}
-              >
-                <span className="font-heading font-bold text-lg pr-4">
-                  {faq.question}
-                </span>
-                <motion.div
-                  animate={{ rotate: openIndex === idx ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="shrink-0"
-                >
-                  <ChevronDown size={24} />
-                </motion.div>
-              </button>
-              
-              <motion.div
-                initial={false}
-                animate={{
-                  height: openIndex === idx ? "auto" : 0,
-                  opacity: openIndex === idx ? 1 : 0
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden"
-              >
-                <div className="p-6 bg-gray-50 rounded-b-2xl -mt-2 pt-8 text-gray-600 leading-relaxed">
-                  {faq.answer}
-                </div>
-              </motion.div>
+              <img
+                src={`${import.meta.env.BASE_URL}images/categories/pregunta.jpg`}
+                alt="FAQ image"
+                className="w-full h-full object-cover object-center min-h-full"
+              />
             </motion.div>
-          ))}
+
+            {/* Right: FAQ list */}
+            <div>
+              {faqs.map((faq, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.08 }}
+                  className="mb-4"
+                >
+                  <button
+                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                    className={`w-full flex items-center justify-between p-6 rounded-2xl text-left transition-all duration-300 ${
+                      openIndex === idx
+                        ? "bg-primary text-white shadow-lg"
+                        : "bg-gray-50 hover:bg-gray-100 text-gray-900"
+                    }`}
+                  >
+                    <span className="font-heading font-bold text-lg pr-4">
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: openIndex === idx ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="shrink-0"
+                    >
+                      <ChevronDown size={24} />
+                    </motion.div>
+                  </button>
+
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      height: openIndex === idx ? "auto" : 0,
+                      opacity: openIndex === idx ? 1 : 0
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-6 bg-gray-50 rounded-b-2xl -mt-2 pt-8 text-gray-600 leading-relaxed">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <motion.div

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "wouter";
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { useLanguage } from "@/i18n";
 
 const destinosBase = [
@@ -91,16 +90,18 @@ export function DestinosGrid() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {destinosPopulares.map((destino, idx) => (
+          {destinosPopulares.map((destino, idx) => {
+            // alternate entrance from left/right so cards "join" in the center
+            const fromRight = idx % 2 === 0;
+            return (
             <motion.div
               key={destino.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60, x: fromRight ? 40 : -40, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.6, delay: idx * 0.08 }}
             >
-              <Link href={destino.href}>
-                <div className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all">
+                <div className="group relative h-72 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
                   {/* Image */}
                   <img
                     src={destino.image}
@@ -124,46 +125,39 @@ export function DestinosGrid() {
                     </span>
                   </div>
 
+                  {/* Decorative animated plane behind image */}
+                  <motion.svg
+                    viewBox="0 0 64 64"
+                    className="absolute -right-12 -top-12 w-40 h-40 z-0 opacity-20 pointer-events-none"
+                    initial={{ x: 20, y: -10, rotate: -10 }}
+                    animate={{ x: [20, -10, 10], y: [-10, 6, -4], rotate: [-10, 6, -6] }}
+                    transition={{ duration: 6, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M2 32 C20 12, 44 12, 62 32" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" fill="none" />
+                    <g transform="translate(44,16)">
+                      <path d="M0 0 L6 3 L0 6 L2 3 Z" fill="currentColor" />
+                    </g>
+                  </motion.svg>
+
                   {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
                     <h3 className="font-heading font-bold text-2xl text-white mb-1 group-hover:text-primary transition-colors">
                       {destino.name}
                     </h3>
                     <p className="text-white/80 text-sm mb-3">{destino.description}</p>
                     
-                    <span className="inline-flex items-center gap-2 text-white/80 text-sm group-hover:text-primary transition-colors">
-                      {t.destinations.explore}
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
+                    {/* removed explore link/text per request */}
                   </div>
 
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-              </Link>
             </motion.div>
-          ))}
+          );
+          })}
         </div>
-
-        {/* View All Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <Link href="/tours">
-            <motion.span 
-              className="inline-flex items-center gap-3 bg-primary text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-primary/90 hover:shadow-lg transition-all cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {t.destinations.viewAll}
-              <ArrowRight size={20} />
-            </motion.span>
-          </Link>
-        </motion.div>
+        {/* View All Link removed as requested */}
       </div>
     </section>
   );

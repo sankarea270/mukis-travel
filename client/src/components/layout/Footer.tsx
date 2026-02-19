@@ -22,13 +22,10 @@ export function Footer() {
     { name: t.categorias.names.trekking, href: "/categorias/trekking" },
   ];
 
-  const cityLinks = [
-    { name: "Lima", href: "/tours/costa" },
-    { name: "Ica", href: "/tours/costa" },
-    { name: "Arequipa", href: "/tours/sierra" },
-    { name: "Cusco", href: "/tours/sierra" },
-    { name: "Puno", href: "/tours/sierra" },
-    { name: "Puerto Maldonado", href: "/tours/selva" },
+  const regionLinks = [
+    { name: t.regions.costa.name, href: "/tours/costa" },
+    { name: t.regions.sierra.name, href: "/tours/sierra" },
+    { name: t.regions.selva.name, href: "/tours/selva" },
   ];
 
   const supportLinks = [
@@ -198,14 +195,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Tours por Ciudades */}
+          {/* Tours por Región (mejorado) */}
           <div className="group">
             <h3 className="text-[#D4AF37] font-heading font-bold text-lg mb-6 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              {t.footer.toursByCity}
+              {t.nav.toursByRegion}
             </h3>
             <ul className="space-y-3 text-sm">
-              {cityLinks.map((link) => (
+              {regionLinks.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="hover:text-primary hover:translate-x-1 inline-block transition-all">
                     {link.name}
@@ -229,26 +226,37 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a href="mailto:reservasmukistravel@gmail.com" className="hover:text-primary transition-colors">
-                  {t.footer.workWithUs}
-                </a>
-              </li>
             </ul>
-            
-            {/* Contact Info */}
-            <div className="mt-6 pt-4 border-t border-gray-800 space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <Phone className="text-primary shrink-0" size={14} />
-                <a href="tel:+51960470892" className="hover:text-primary transition-colors">
-                  +51 960 470 892
-                </a>
+
+            {/* Enhanced Contact Info: two phones, email, address */}
+            <div className="mt-6 pt-4 border-t border-gray-800 space-y-3 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="pt-1">
+                  <Phone className="text-primary" size={16} />
+                </div>
+                <div>
+                  <a href="tel:+51960470892" className="block hover:text-primary transition-colors">+51 960 470 892</a>
+                  <a href="tel:+51930476116" className="block hover:text-primary transition-colors">+51 930 476 116</a>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="text-primary shrink-0" size={14} />
-                <a href="mailto:reservasmukistravel@gmail.com" className="hover:text-primary transition-colors text-xs break-all">
-                  reservasmukistravel@gmail.com
-                </a>
+
+              <div className="flex items-start gap-3">
+                <div className="pt-1">
+                  <Mail className="text-primary" size={16} />
+                </div>
+                <div>
+                  <a href="mailto:reservasmukistravel@gmail.com" className="hover:text-primary transition-colors break-all">reservasmukistravel@gmail.com</a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="pt-1">
+                  <MapPin className="text-primary" size={16} />
+                </div>
+                <div>
+                  <div className="text-sm">Centro Comercial San Andres n° 318</div>
+                  <div className="text-xs text-gray-400">Cusco, Perú</div>
+                </div>
               </div>
             </div>
           </div>

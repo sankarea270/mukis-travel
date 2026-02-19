@@ -67,7 +67,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
   const { t } = useLanguage();
 
@@ -226,11 +226,15 @@ export function Navbar() {
                       
                       <div className="grid grid-cols-3 gap-4">
                         {regionSubmenu.map((region) => (
-                          <Link key={region.id} href={region.href}>
+                          <div key={region.id}>
                             <motion.div 
                               className="group cursor-pointer"
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
+                              onClick={() => navigate(region.href)}
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => { if (e.key === 'Enter') navigate(region.href); }}
                             >
                               <div className={cn(
                                 "relative rounded-xl p-4 bg-linear-to-br transition-all duration-300 overflow-hidden",
@@ -242,7 +246,7 @@ export function Navbar() {
                                 <p className="text-white/80 text-xs mt-1 relative z-10">{region.description}</p>
                               </div>
                             </motion.div>
-                          </Link>
+                          </div>
                         ))}
                       </div>
 

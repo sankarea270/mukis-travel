@@ -105,11 +105,11 @@ export function WhyChooseUs() {
           >
             {/* Main Image */}
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?auto=format&fit=crop&q=80&w=1000"
-                alt="Experiencia Mukis Travel"
-                className="w-full h-125 object-cover"
-              />
+                <img
+                  src={`${import.meta.env.BASE_URL}images/categories/qwe.jpeg`}
+                  alt="Experiencia Mukis Travel"
+                  className="w-full h-125 object-cover"
+                />
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
             </div>
 

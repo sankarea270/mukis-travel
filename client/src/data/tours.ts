@@ -66,10 +66,10 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.5319, lng: -71.9675 },
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/mukito.jpg`,
     gallery: [
+      `${import.meta.env.BASE_URL}images/categories/mukito.jpg`,
       `${import.meta.env.BASE_URL}images/categories/mirabus03.png`,
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
       `${import.meta.env.BASE_URL}images/categories/lagunahumantay3.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/montañadecolores.png`
     ],
@@ -143,10 +143,10 @@ export const tours: Tour[] = [
     locationCoords: { lat: -13.1631, lng: -72.5450 },
     region: "sierra",
     category: "cultural",
-    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+    image: `${import.meta.env.BASE_URL}images/categories/mukito.jpg`,
     mapImage: `${import.meta.env.BASE_URL}images/categories/mapamapii.jpeg`,
     gallery: [
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&q=80&w=1600",
+      `${import.meta.env.BASE_URL}images/categories/mukito.jpg`,
       `${import.meta.env.BASE_URL}images/categories/mapi02.jpeg`,
       `${import.meta.env.BASE_URL}images/categories/perurail.jpeg`,
     ],

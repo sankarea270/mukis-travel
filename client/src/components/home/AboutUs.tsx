@@ -9,19 +9,19 @@ export function AboutUs() {
     {
       name: "Gerente General",
       role: "Liderazgo y Estrategia",
-      image: "/images/categories/jefa.jpeg",
+      image: "images/categories/jefa.jpeg",
       description: "Nuestra gerente general cuenta con más de 15 años de experiencia en el sector turístico, liderando con pasión y compromiso para ofrecer experiencias inolvidables a nuestros clientes.",
     },
     {
       name: "Equipo de Marketing",
       role: "Estrategias de Publicidad",
-      image: "/images/categories/marketing.jpeg",
+      image: "images/categories/marketing.jpeg",
       size: "h-96",
     },
     {
       name: "Equipo de Reservas",
       role: "Gestión de Reservas",
-      image: "/images/categories/reservas.jpeg",
+      image: "images/categories/reservas.jpeg",
       size: "h-20",
     },
   ];
@@ -324,10 +324,16 @@ export function AboutUs() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              {/* Espacio para imágenes de licencias */}
-            <div className="bg-gray-50 p-4 rounded-xl shadow-md border border-gray-100 h-64 flex items-center justify-center">
-               <div className="text-center text-gray-400">
-                  <FileCheck className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <span className="text-sm">Licencia Municipal / DIRCETUR</span>
+            <div className="bg-gray-50 p-4 rounded-xl shadow-md border border-gray-100 h-64 flex flex-col items-center justify-center gap-4">
+               <FileCheck className="w-12 h-12 mx-auto mb-2 opacity-50" />
+               <span className="text-sm text-gray-700">Licencia Municipal / DIRCETUR</span>
+               <div className="flex items-center gap-3 mt-2">
+                 <a href="docs/licencia-municipal.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-md shadow hover:bg-emerald-700 transition">
+                   Ver PDF
+                 </a>
+                 <a href="docs/licencia-municipal.pdf" download className="inline-flex items-center px-4 py-2 border border-gray-200 rounded-md hover:bg-gray-100 transition">
+                   Descargar
+                 </a>
                </div>
             </div>
             <div className="bg-gray-50 p-4 rounded-xl shadow-md border border-gray-100 h-64 flex items-center justify-center">

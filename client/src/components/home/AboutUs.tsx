@@ -5,23 +5,25 @@ import { Award, Eye, Heart, Shield, Target, UserCheck, Users, MapPin, FileCheck,
 export function AboutUs() {
   const { t } = useLanguage();
 
+  const base = (import.meta as any).env?.BASE_URL ?? "/";
+
   const team = [
     {
       name: "Gerente General",
       role: "Liderazgo y Estrategia",
-      image: "images/categories/jefa.jpeg",
+      image: `${base}images/categories/jefa.jpeg`,
       description: "Nuestra gerente general cuenta con más de 15 años de experiencia en el sector turístico, liderando con pasión y compromiso para ofrecer experiencias inolvidables a nuestros clientes.",
     },
     {
       name: "Equipo de Marketing",
       role: "Estrategias de Publicidad",
-      image: "images/categories/marketing.jpeg",
+      image: `${base}images/categories/marketing.jpeg`,
       size: "h-96",
     },
     {
       name: "Equipo de Reservas",
       role: "Gestión de Reservas",
-      image: "images/categories/reservas.jpeg",
+      image: `${base}images/categories/reservas.jpeg`,
       size: "h-20",
     },
   ];

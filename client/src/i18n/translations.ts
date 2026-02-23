@@ -87,7 +87,7 @@ export const translations = {
       bestChoice: "MEJOR ELECCIÓN",
       reviews: "reseñas",
       maxGroup: "Máx. {n} personas",
-      from: "desde",
+      //from: "desde",
       viewDetails: "Ver detalles",
       viewAll: "Ver todos los tours",
     },
@@ -165,7 +165,7 @@ export const translations = {
       title: "Tours Machu Picchu",
       subtitle: "Descubre la maravilla del mundo de diferentes maneras. Tenemos la experiencia perfecta para cada tipo de viajero.",
       vipBadge: "Tour VIP Destacado",
-      from: "desde",
+      //from: "desde",
       exploreAll: "Explorar todos los tours de Cusco",
     },
     vivencial: {

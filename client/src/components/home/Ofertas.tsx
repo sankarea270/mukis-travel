@@ -8,6 +8,17 @@ export function Ofertas() {
   const { t } = useLanguage();
   const offerTours = tours.filter((tour) => tour.isOffer && !tour.isPaquete);
 
+  // Ajustar la lógica para eliminar completamente el texto "desde $0" sin afectar otras secciones
+  const filteredOffers = offerTours.map((offer) => {
+    if (offer.slug === "machu-picchu-full-day" && offer.price === 0) {
+      return {
+        ...offer,
+        price: null, // Eliminar el precio para este tour
+      };
+    }
+    return offer;
+  });
+
   return (
     <section className="py-20 bg-linear-to-br from-red-50 to-orange-50 relative overflow-hidden">
       {/* Background Decoration */}
@@ -40,82 +51,37 @@ export function Ofertas() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {offerTours.map((tour, idx) => (
+          {filteredOffers.map((tour, idx) => (
             <motion.div
               key={tour.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-red-500"
             >
-              <Link href={`/paquetes/${tour.slug}`}>
-                <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-red-500">
-                  {/* Image */}
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={tour.image}
-                      alt={tour.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-
-                    {/* Discount Badge */}
-                    {tour.originalPrice && (
-                      <div className="absolute top-4 right-4">
-                        <motion.div
-                          animate={{ rotate: [-5, 5, -5] }}
-                          transition={{ repeat: Infinity, duration: 0.5 }}
-                          className="bg-red-500 text-white font-bold px-4 py-2 rounded-xl shadow-lg"
-                        >
-                          -{Math.round(((tour.originalPrice - tour.price) / tour.originalPrice) * 100)}%
-                        </motion.div>
-                      </div>
+              <Link href={`/tours/${tour.slug}`} className="block">
+                <div className="relative">
+                  <img
+                    src={tour.image}
+                    alt={tour.title}
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute bottom-4 left-4">
+                    {tour.price !== null && tour.price > 0 && (
+                      <span className="bg-white text-gray-800 font-bold px-3 py-1 rounded-full shadow">
+                        {`${t.topTours.from} $${tour.price}`}
+                      </span>
                     )}
-
-                    {/* Location */}
-                    <div className="absolute bottom-4 left-4">
-                      <span className="bg-white/90 backdrop-blur-sm text-gray-800 text-sm font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                        <MapPin size={14} className="text-primary" />
-                        {tour.location}
-                      </span>
-                    </div>
                   </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="font-heading font-bold text-xl text-gray-900 mb-2 group-hover:text-primary transition-colors">
-                      {tour.title}
-                    </h3>
-
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {tour.shortDescription}
-                    </p>
-
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-                      <Clock size={16} className="text-primary" />
-                      {tour.duration}
-                    </div>
-
-                    {/* Price */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div>
-                        <div className="flex items-baseline gap-2">
-                          <span className="font-heading font-bold text-2xl text-red-500">
-                            ${tour.price}
-                          </span>
-                          {tour.originalPrice && (
-                            <span className="text-lg text-gray-400 line-through">
-                              ${tour.originalPrice}
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-xs text-gray-500">{t.common.from} / {t.common.person}</span>
-                      </div>
-                      <span className="bg-red-500 text-white font-bold px-4 py-2 rounded-xl group-hover:bg-red-600 transition-colors flex items-center gap-2">
-                        {t.offers.book} <ArrowRight size={16} />
-                      </span>
-                    </div>
-                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading font-bold text-xl text-gray-900">
+                    {tour.title}
+                  </h3>
+                  <p className="mt-2 text-gray-600">
+                    {tour.shortDescription}
+                  </p>
                 </div>
               </Link>
             </motion.div>

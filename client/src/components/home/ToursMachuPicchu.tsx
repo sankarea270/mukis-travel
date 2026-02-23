@@ -17,6 +17,15 @@ export function ToursMachuPicchu() {
         (tour.location === "Cusco" && tour.category === "cultural")
       )
     )
+    .map((tour) => {
+      if (tour.slug === "machu-picchu-full-day" && tour.price === 0) {
+        return {
+          ...tour,
+          price: null, // Eliminar el precio para este tour
+        };
+      }
+      return tour;
+    })
     .slice(0, 4);
 
   return (
@@ -111,10 +120,14 @@ export function ToursMachuPicchu() {
                         </span>
                       </div>
                       <div className="text-right">
-                        <span className="text-gray-400 text-sm">{t.common.from}</span>
-                        <p className="font-heading font-bold text-3xl text-white">
-                          ${machuPicchuTours[0].price}
-                        </p>
+                        {machuPicchuTours[0].price !== null ? (
+                          <>
+                            <span className="text-gray-400 text-sm">{t.common.from}</span>
+                            <p className="font-heading font-bold text-3xl text-white">
+                              ${machuPicchuTours[0].price}
+                            </p>
+                          </>
+                        ) : null}
                       </div>
                     </div>
                   </div>

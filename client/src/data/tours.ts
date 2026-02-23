@@ -134,8 +134,9 @@ export const tours: Tour[] = [
     shortDescription: "Vive la experiencia de estar en Machu Picchu con guías especializados.",
     description: "Descubre la maravilla del mundo Machu Picchu en un tour completo de un día. Saldremos desde Cusco muy temprano para tomar el tren hacia Aguas Calientes, y luego el bus hasta la ciudadela. Recorrerás cada rincón de este santuario histórico con nuestros guías expertos.",
     aboutTour: "Prepárate para vivir  una experiencia única  e inolvidable en una  de las  7 maravillas del mundo Moderno . Nuestro Tour Machu Picchu  Full Day  te llevará a descubrir  los secretos  de la ciudadela  inca más famosa  del planeta",
-    price: 200,
-    originalPrice: 250,
+    // price: 200,
+    // originalPrice: 250,
+    price: 0, // placeholder required by Tour interface
     duration: "1 Día",
     tourType: "Grupal",
     languages: ["Español", "Inglés", "Portugués"],

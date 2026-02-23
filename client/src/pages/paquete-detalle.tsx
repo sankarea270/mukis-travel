@@ -76,7 +76,20 @@ export default function PaqueteDetalle() {
   }
 
   const gallery = tour.gallery || [tour.image];
-  const whatsappMessage = `Hola, me interesa reservar el tour "${tour.title}" para el ${selectedDate ? format(selectedDate, "dd 'de' MMMM, yyyy", { locale: es }) : "[seleccionar fecha]"}. Precio: $${tour.price}. ¿Podrían confirmar disponibilidad?`;
+  // tours where we replace the price block with a chat prompt only
+  const specialSlugs = new Set([
+    "machu-picchu-full-day",
+    "montana-de-colores",
+    "laguna-humantay",
+    "ica-paracas-full-day",
+    "valle-sagrado-vip",
+    "machu-picchu-by-car-2d1n",
+  ]);
+  const isSpecialTour = tour ? specialSlugs.has(tour.slug) : false;
+
+  const whatsappMessage = isSpecialTour
+    ? `Hola, me interesa reservar el tour "${tour.title}" para el ${selectedDate ? format(selectedDate, "dd 'de' MMMM, yyyy", { locale: es }) : "[seleccionar fecha]"}. ¿Podrían indicarme el precio y disponibilidad?`
+    : `Hola, me interesa reservar el tour "${tour.title}" para el ${selectedDate ? format(selectedDate, "dd 'de' MMMM, yyyy", { locale: es }) : "[seleccionar fecha]"}. Precio: $${tour.price}. ¿Podrían confirmar disponibilidad?`;
 
   // Get related tours (same category or location)
   const relatedTours = tours
@@ -845,25 +858,31 @@ export default function PaqueteDetalle() {
                 transition={{ delay: 0.3 }}
                 className="bg-white rounded-2xl p-6 shadow-lg sticky top-24 border-2 border-primary/20"
               >
-                {/* Price */}
-                <div className="text-center pb-6 border-b border-gray-100">
-                  <span className="text-gray-500 text-sm">{t.tourDetail.pricePerPerson}</span>
-                  <div className="flex flex-col items-center justify-center mt-1">
+                {/* Price or custom text for special tours */}
+                {isSpecialTour ? (
+                  <div className="text-center pb-6 border-b border-gray-100">
+                    <span className="text-gray-500 text-sm">¡Aventúrate con nosotros! Chatea aquí abajo.</span>
+                  </div>
+                ) : (
+                  <div className="text-center pb-6 border-b border-gray-100">
+                    <span className="text-gray-500 text-sm">{t.tourDetail.pricePerPerson}</span>
+                    <div className="flex flex-col items-center justify-center mt-1">
+                      {tour.originalPrice && (
+                        <span className="text-xl text-gray-400 line-through leading-none mb-1">
+                          ${tour.originalPrice}
+                        </span>
+                      )}
+                      <span className="font-heading font-bold text-4xl text-primary leading-none">
+                        ${tour.price}
+                      </span>
+                    </div>
                     {tour.originalPrice && (
-                      <span className="text-xl text-gray-400 line-through leading-none mb-1">
-                        ${tour.originalPrice}
+                      <span className="inline-block mt-2 bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded-full">
+                        {t.tourDetail.youSave} ${tour.originalPrice - tour.price}
                       </span>
                     )}
-                    <span className="font-heading font-bold text-4xl text-primary leading-none">
-                      ${tour.price}
-                    </span>
                   </div>
-                  {tour.originalPrice && (
-                    <span className="inline-block mt-2 bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded-full">
-                      {t.tourDetail.youSave} ${tour.originalPrice - tour.price}
-                    </span>
-                  )}
-                </div>
+                )}
 
                 {/* Date Selector */}
                 <div className="py-6 border-b border-gray-100">

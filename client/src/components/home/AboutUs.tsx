@@ -9,19 +9,19 @@ export function AboutUs() {
     {
       name: "Gerente General",
       role: "Liderazgo y Estrategia",
-      image: "images/categories/jefa.jpeg",
+      image: `${import.meta.env.BASE_URL}images/categories/jefa.jpeg`,
       description: "Nuestra gerente general cuenta con más de 15 años de experiencia en el sector turístico, liderando con pasión y compromiso para ofrecer experiencias inolvidables a nuestros clientes.",
     },
     {
       name: "Equipo de Marketing",
       role: "Estrategias de Publicidad",
-      image: "images/categories/marketing.jpeg",
+      image: `${import.meta.env.BASE_URL}images/categories/marketing.jpeg`,
       size: "h-96",
     },
     {
       name: "Equipo de Reservas",
       role: "Gestión de Reservas",
-      image: "images/categories/reservas.jpeg",
+      image: `${import.meta.env.BASE_URL}images/categories/reservas.jpeg`,
       size: "h-20",
     },
   ];
@@ -63,7 +63,7 @@ export function AboutUs() {
       <div className="relative h-screen min-h-150 flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed z-0"
-          style={{ backgroundImage: "url('/images/categories/fondo11.jpeg')" }}
+          style={{ backgroundImage: `url("${import.meta.env.BASE_URL}images/categories/fondo11.jpeg")` }}
         />
         <div className="absolute inset-0 bg-black/50 z-10" /> {/* Overlay oscuro */}
         

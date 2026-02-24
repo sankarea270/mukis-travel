@@ -330,10 +330,10 @@ export function AboutUs() {
                <FileCheck className="w-12 h-12 mx-auto mb-2 opacity-50" />
                <span className="text-sm text-gray-700">Licencia Municipal / DIRCETUR</span>
                <div className="flex items-center gap-3 mt-2">
-                 <a href="docs/licencia-municipal.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-md shadow hover:bg-emerald-700 transition">
+                 <a href="/mukis-travel/assets/dircetur.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-md shadow hover:bg-emerald-700 transition">
                    Ver PDF
                  </a>
-                 <a href="docs/licencia-municipal.pdf" download className="inline-flex items-center px-4 py-2 border border-gray-200 rounded-md hover:bg-gray-100 transition">
+                 <a href="/mukis-travel/assets/dircetur.pdf" download className="inline-flex items-center px-4 py-2 border border-gray-200 rounded-md hover:bg-gray-100 transition">
                    Descargar
                  </a>
                </div>

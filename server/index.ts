@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
+import path from "path";
 import { createServer } from "http";
 
 const app = express();
@@ -20,7 +21,12 @@ app.use(
   }),
 );
 
-app.use(express.urlencoded({ extended: false }));
+
+// Ruta directa para el PDF
+app.get("/assets/dircetur.pdf", (req, res) => {
+  const pdfPath = path.resolve(__dirname, "public", "assets", "dircetur.pdf");
+  res.sendFile(pdfPath);
+});
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {

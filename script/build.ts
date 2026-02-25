@@ -37,6 +37,21 @@ async function buildAll() {
 
   console.log("building client...");
   await viteBuild();
+  
+    // Copiar PDF automáticamente antes del build
+    import fs from "fs";
+    import path from "path";
+  
+    const sourcePdf = path.resolve(__dirname, "../docs/assets/dircetur.pdf");
+    const destPdf = path.resolve(__dirname, "../client/public/assets/dircetur.pdf");
+  
+    if (fs.existsSync(sourcePdf)) {
+      fs.mkdirSync(path.dirname(destPdf), { recursive: true });
+      fs.copyFileSync(sourcePdf, destPdf);
+      console.log("PDF copiado a carpeta pública.");
+    } else {
+      console.warn("No se encontró el PDF en docs/assets.");
+    }
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));

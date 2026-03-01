@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development tsx server/index.ts",
     "build": "tsx script/build.ts",
     "build:gh-pages": "vite build --base /mukis-travel/",
-    "build:docs": "vite build --base /mukis-travel/ --outDir docs",
+    "build:docs": "vite build --base /mukis-travel/ --outDir ../docs",
     "deploy": "npm run build:docs",
     "start": "cross-env NODE_ENV=production node dist/index.cjs",
     "check": "tsc",

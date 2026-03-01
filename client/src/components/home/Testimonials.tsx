@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useCallback, useState } from "react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 export function Testimonials() {
   const { t } = useLanguage();
@@ -72,8 +73,13 @@ export function Testimonials() {
           <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
             {t.testimonials.badge}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">{t.testimonials.title}</h2>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">{t.testimonials.subtitle}</p>
+          <DynamicTitle
+            text={t.testimonials.title}
+            highlight="viajeros"
+            className="text-3xl md:text-5xl"
+            light
+          />
+          <p className="mt-3 text-white/80 text-lg max-w-2xl mx-auto">{t.testimonials.subtitle}</p>
         </motion.div>
 
         <div className="relative">

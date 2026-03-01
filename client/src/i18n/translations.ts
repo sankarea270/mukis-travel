@@ -27,7 +27,7 @@ export const translations = {
       contact: "Contacto y Soporte",
       quote: "Cotizar",
       toursByRegion: "Tours por Región",
-      viewAllTours: "Ver todos los tours",
+      
       tourTypes: "Tipos de Tours",
       agencyLabel: "Agencia de Viajes",
     },

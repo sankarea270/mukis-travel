@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Compass, MapPin, Calendar, HelpCircle, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 
 
@@ -29,7 +30,7 @@ export function WhereToGo() {
       icon: Calendar,
       title: t.whereToGo.cards.shortTime.title,
       description: t.whereToGo.cards.shortTime.desc,
-      link: "/paquetes",
+      link: "/paquetes/city-tour-mirabus",
       color: "from-indigo-800 to-indigo-950 border-indigo-500/20",
       accent: "text-indigo-400"
     },
@@ -44,7 +45,7 @@ export function WhereToGo() {
   ];
 
   return (
-    <section className="py-24 bg-gray-50 relative overflow-hidden">
+    <section className="py-20 bg-gray-50 relative overflow-hidden">
       {/* Patrón de fondo sutil */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div 
@@ -62,7 +63,7 @@ export function WhereToGo() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center max-w-3xl mx-auto mb-14"
         >
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
@@ -72,10 +73,12 @@ export function WhereToGo() {
           >
             {t.whereToGo.badge}
           </motion.span>
-          <h2 className="font-heading font-black text-4xl md:text-5xl text-gray-900 uppercase tracking-tight mb-6">
-            {t.whereToGo.title}
-          </h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <DynamicTitle
+            text={t.whereToGo.title}
+            highlight="destino?"
+            className="text-3xl md:text-5xl text-gray-900"
+          />
+          <p className="mt-3 text-gray-600 text-lg leading-relaxed">
             {t.whereToGo.subtitle}
           </p>
         </motion.div>

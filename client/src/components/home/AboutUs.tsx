@@ -4,26 +4,26 @@ import { Award, Eye, Heart, Shield, Target, UserCheck, Users, MapPin, FileCheck,
 
 export function AboutUs() {
   const { t } = useLanguage();
-
-  const base = (import.meta as any).env?.BASE_URL ?? "/";
+  const dirceturPdfUrl = `${import.meta.env.BASE_URL}assets/dircetur.pdf`;
+  const minsaPdfUrl = `${import.meta.env.BASE_URL}assets/minsa.pdf`;
 
   const team = [
     {
       name: "Gerente General",
       role: "Liderazgo y Estrategia",
-    image: `${base}images/categories/jefa.jpeg`,
-      description: "Nuestra gerente general cuenta con más de 15 años de experiencia en el sector turístico, liderando con pasión y compromiso para ofrecer experiencias inolvidables a nuestros clientes.",
+      image: "/images/categories/jefa.jpeg",
+      description: "Con más de 12 años de trayectoria en el sector turístico, dirijo Mukis Travel bajo principios de profesionalismo, transparencia y responsabilidad ética. Nos especializamos en ofrecer paquetes turísticos innovadores y accesibles, promoviendo un turismo sostenible que valore y fortalezca a las comunidades locales, proteja nuestro patrimonio natural y cultural, y garantice experiencias de calidad y confianza para cada cliente.",
     },
     {
       name: "Equipo de Marketing",
       role: "Estrategias de Publicidad",
-    image: `${base}images/categories/marketing.jpeg`,
+      image: "/images/categories/marketing.jpeg",
       size: "h-96",
     },
     {
       name: "Equipo de Reservas",
       role: "Gestión de Reservas",
-    image: `${base}images/categories/reservas.jpeg`,
+      image: "/images/categories/reservas.jpeg",
       size: "h-20",
     },
   ];
@@ -65,7 +65,7 @@ export function AboutUs() {
       <div className="relative h-screen min-h-150 flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed z-0"
-          style={{ backgroundImage: `url("${import.meta.env.BASE_URL}images/categories/fondo11.jpeg")` }}
+          style={{ backgroundImage: "url('/images/categories/fondo11.jpeg')" }}
         />
         <div className="absolute inset-0 bg-black/50 z-10" /> {/* Overlay oscuro */}
         
@@ -82,8 +82,8 @@ export function AboutUs() {
             </span>
           </motion.div>
           
-          <motion.h2 variants={itemVariants} className="font-heading font-bold text-5xl md:text-7xl mb-8 tracking-tight text-shadow-lg">
-            Quiénes <span className="text-emerald-400">Somos</span>
+          <motion.h2 variants={itemVariants} className="title-dynamic font-heading font-bold text-5xl md:text-7xl mb-8 tracking-tight text-shadow-lg">
+            Quiénes <span className="title-dynamic-accent text-emerald-400">Somos</span>
           </motion.h2>
           
           <motion.p variants={itemVariants} className="text-gray-100 text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed font-light text-shadow-sm">
@@ -133,7 +133,7 @@ export function AboutUs() {
               <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300">
                 <Target className="w-8 h-8" />
               </div>
-              <h3 className="font-heading font-bold text-3xl text-gray-900 mb-4 group-hover:text-green-700 transition-colors">
+              <h3 className="title-dynamic font-heading font-bold text-3xl text-gray-900 mb-4 group-hover:text-green-700 transition-colors">
                 Nuestra Misión
               </h3>
               <p className="text-gray-600 leading-relaxed text-lg">
@@ -153,7 +153,7 @@ export function AboutUs() {
               <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mb-6 text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300">
                 <Eye className="w-8 h-8" />
               </div>
-              <h3 className="font-heading font-bold text-3xl text-gray-900 mb-4 group-hover:text-teal-700 transition-colors">
+              <h3 className="title-dynamic font-heading font-bold text-3xl text-gray-900 mb-4 group-hover:text-teal-700 transition-colors">
                 Nuestra Visión
               </h3>
               <p className="text-gray-600 leading-relaxed text-lg">
@@ -216,7 +216,7 @@ export function AboutUs() {
             viewport={{ once: true }}
             className="mb-12 inline-block relative"
           >
-            <h3 className="font-heading font-bold text-4xl text-gray-900 relative z-10">
+            <h3 className="title-dynamic font-heading font-bold text-4xl text-gray-900 relative z-10">
               Nuestro Equipo Profesional
             </h3>
             <div className="absolute -bottom-2 left-0 w-full h-3 bg-emerald-200/50 z-0 rotate-1 rounded-full" />
@@ -266,7 +266,7 @@ export function AboutUs() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" />
           
           <div className="relative z-10 text-center mb-12">
-            <h3 className="font-heading font-bold text-3xl md:text-5xl mb-6">
+            <h3 className="title-dynamic font-heading font-bold text-3xl md:text-5xl mb-6">
               Nuestros Valores
             </h3>
             <div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full" />
@@ -317,7 +317,7 @@ export function AboutUs() {
             <BadgeCheck className="w-5 h-5" />
             <span>Garantía y Legalidad</span>
           </div>
-          <h3 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-6">
+          <h3 className="title-dynamic font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-6">
             Licencias y Autorizaciones
           </h3>
           <p className="text-gray-600 mb-10 text-lg">
@@ -326,22 +326,54 @@ export function AboutUs() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              {/* Espacio para imágenes de licencias */}
-            <div className="bg-gray-50 p-4 rounded-xl shadow-md border border-gray-100 h-64 flex flex-col items-center justify-center gap-4">
-               <FileCheck className="w-12 h-12 mx-auto mb-2 opacity-50" />
-               <span className="text-sm text-gray-700">Licencia Municipal / DIRCETUR</span>
-               <div className="flex items-center gap-3 mt-2">
-                 <a href="/mukis-travel/assets/dircetur.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-md shadow hover:bg-emerald-700 transition">
-                   Ver PDF
-                 </a>
-                 <a href="/mukis-travel/assets/dircetur.pdf" download className="inline-flex items-center px-4 py-2 border border-gray-200 rounded-md hover:bg-gray-100 transition">
-                   Descargar
-                 </a>
-               </div>
+            <div className="bg-gray-50 p-4 rounded-xl shadow-md border border-gray-100 h-64 flex flex-col items-center justify-center">
+                <div className="text-center text-gray-400 mb-4">
+                  <FileCheck className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <span className="text-sm">Licencia Municipal / DIRCETUR</span>
+                </div>
+                <div className="flex gap-4">
+                  <>
+                    <a
+                      href={dirceturPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-4 py-2 rounded shadow transition-colors"
+                    >
+                      Ver PDF
+                    </a>
+                    <a
+                      href={dirceturPdfUrl}
+                      download="dircetur.pdf"
+                      className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-4 py-2 rounded shadow transition-colors"
+                    >
+                      Descargar
+                    </a>
+                  </>
+                </div>
             </div>
-            <div className="bg-gray-50 p-4 rounded-xl shadow-md border border-gray-100 h-64 flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                   <FileCheck className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                   <span className="text-sm">Certificación Tour Operador</span>
+            <div className="bg-gray-50 p-4 rounded-xl shadow-md border border-gray-100 h-64 flex flex-col items-center justify-center">
+                <div className="text-center text-gray-400 mb-4">
+                    <FileCheck className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                    <span className="text-sm">Certificación MINSA</span>
+                </div>
+                <div className="flex gap-4">
+                  <>
+                    <a
+                      href={minsaPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-4 py-2 rounded shadow transition-colors"
+                    >
+                      Ver PDF
+                    </a>
+                    <a
+                      href={minsaPdfUrl}
+                      download="minsa.pdf"
+                      className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-4 py-2 rounded shadow transition-colors"
+                    >
+                      Descargar
+                    </a>
+                  </>
                 </div>
             </div>
           </div>

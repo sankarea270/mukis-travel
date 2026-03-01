@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 const destinosBase = [
   {
@@ -81,10 +82,12 @@ export function DestinosGrid() {
             <MapPin size={14} />
             {t.destinations.badge}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-5xl text-gray-900">
-            {t.destinations.title}
-          </h2>
-          <p className="mt-4 text-gray-600">
+          <DynamicTitle
+            text={t.destinations.title}
+            highlight="Viajar?"
+            className="text-3xl md:text-5xl text-gray-900"
+          />
+          <p className="mt-3 text-gray-600 text-lg">
             {t.destinations.subtitle}
           </p>
         </motion.div>

@@ -6,7 +6,6 @@ import { ToursMasSolicitados } from "@/components/home/ToursMasSolicitados";
 import { ToursMachuPicchu } from "@/components/home/ToursMachuPicchu";
 import { WhereToGo } from "@/components/home/WhereToGo";
 import { DestinosGrid } from "@/components/home/DestinosGrid";
-import { Categorias } from "@/components/home/Categorias";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQ } from "@/components/home/FAQ";
@@ -57,11 +56,6 @@ export default function Home() {
           {/* Destinos Grid */}
           <ScrollRevealSection className="bg-gray-50/30">
             <DestinosGrid />
-          </ScrollRevealSection>
-
-          {/* Categorías de Tours */}
-          <ScrollRevealSection>
-            <Categorias />
           </ScrollRevealSection>
 
           {/* Why Choose Us */}

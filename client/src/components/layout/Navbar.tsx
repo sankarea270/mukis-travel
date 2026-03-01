@@ -249,13 +249,6 @@ export function Navbar() {
                           </div>
                         ))}
                       </div>
-
-                      <Link href="/tours">
-                        <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-center gap-2 text-primary font-medium hover:underline cursor-pointer">
-                          {t.nav.viewAllTours}
-                          <ChevronDown className="w-4 h-4 -rotate-90" />
-                        </div>
-                      </Link>
                     </div>
                   </motion.div>
                 )}

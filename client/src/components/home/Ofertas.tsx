@@ -3,21 +3,11 @@ import { Link } from "wouter";
 import { Clock, MapPin, Percent, ArrowRight } from "lucide-react";
 import { tours } from "@/data/tours";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 export function Ofertas() {
   const { t } = useLanguage();
   const offerTours = tours.filter((tour) => tour.isOffer && !tour.isPaquete);
-
-  // Ajustar la lógica para eliminar completamente el texto "desde $0" sin afectar otras secciones
-  const filteredOffers = offerTours.map((offer) => {
-    if (offer.slug === "machu-picchu-full-day" && offer.price === 0) {
-      return {
-        ...offer,
-        price: null, // Eliminar el precio para este tour
-      };
-    }
-    return offer;
-  });
 
   return (
     <section className="py-20 bg-linear-to-br from-red-50 to-orange-50 relative overflow-hidden">
@@ -42,16 +32,18 @@ export function Ofertas() {
             {t.offers.badge}
           </motion.div>
           
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900">
-            {t.offers.title}
-          </h2>
-          <p className="mt-4 text-gray-600">
+          <DynamicTitle
+            text={t.offers.title}
+            highlight="ofertas!"
+            className="text-3xl md:text-5xl text-gray-900"
+          />
+          <p className="mt-3 text-gray-600 text-lg">
             {t.offers.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredOffers.map((tour, idx) => (
+          {offerTours.map((tour, idx) => (
             <motion.div
               key={tour.id}
               initial={{ opacity: 0, y: 30 }}
@@ -60,19 +52,17 @@ export function Ofertas() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer border-2 border-transparent hover:border-red-500"
             >
-              <Link href={`/tours/${tour.slug}`} className="block">
+              <Link href={`/paquetes/${tour.slug}`} className="block">
                 <div className="relative">
                   <img
                     src={tour.image}
                     alt={tour.title}
                     className="w-full h-64 object-cover"
                   />
-                  <div className="absolute bottom-4 left-4">
-                    {tour.price !== null && tour.price > 0 && (
-                      <span className="bg-white text-gray-800 font-bold px-3 py-1 rounded-full shadow">
-                        {`${t.topTours.from} $${tour.price}`}
-                      </span>
-                    )}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                      {t.tourDetail.offer}
+                    </span>
                   </div>
                 </div>
                 <div className="p-6">
@@ -82,6 +72,27 @@ export function Ofertas() {
                   <p className="mt-2 text-gray-600">
                     {tour.shortDescription}
                   </p>
+                  <div className="mt-4 inline-flex items-center gap-2 text-primary font-semibold text-sm">
+                    <span>Más detalles</span>
+                    <ArrowRight size={16} />
+                  </div>
+                  <div className="mt-4 space-y-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <Clock size={16} className="text-primary" />
+                      <span>{tour.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin size={16} className="text-primary" />
+                      <span>{tour.location}, Perú</span>
+                    </div>
+                    {tour.tourType && (
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                          {tour.tourType}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </Link>
             </motion.div>
@@ -95,11 +106,7 @@ export function Ofertas() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Link href="/paquetes">
-            <span className="inline-flex items-center gap-2 text-primary font-bold text-lg hover:gap-4 transition-all cursor-pointer">
-              {t.offers.viewAll} <ArrowRight size={20} />
-            </span>
-          </Link>
+          {/* Enlace "Ver todos los paquetes" eliminado por solicitud */}
         </motion.div>
       </div>
     </section>

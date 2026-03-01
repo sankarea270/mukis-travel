@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Clock, MapPin, Star, ArrowRight, Mountain, Sparkles } from "lucide-react";
 import { tours } from "@/data/tours";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 export function ToursMachuPicchu() {
   const { t } = useLanguage();
@@ -52,10 +53,13 @@ export function ToursMachuPicchu() {
             <Mountain size={16} />
             {t.machuPicchu.badge}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-5xl text-white mb-4">
-            {t.machuPicchu.title}
-          </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <DynamicTitle
+            text={t.machuPicchu.title}
+            highlight="Machu Picchu"
+            className="text-3xl md:text-5xl"
+            light
+          />
+          <p className="mt-3 text-gray-300 max-w-2xl mx-auto text-lg">
             {t.machuPicchu.subtitle}
           </p>
         </motion.div>

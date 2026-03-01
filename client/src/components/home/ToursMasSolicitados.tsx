@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Clock, MapPin, Star, ArrowRight, Award, Users } from "lucide-react";
 import { tours } from "@/data/tours";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 export function ToursMasSolicitados() {
   const { t } = useLanguage();
@@ -29,10 +30,12 @@ export function ToursMasSolicitados() {
             <Award size={16} />
             {t.topTours.badge}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-5xl text-gray-900">
-            {t.topTours.title}
-          </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <DynamicTitle
+            text={t.topTours.title}
+            highlight="Solicitados"
+            className="text-3xl md:text-5xl text-gray-900"
+          />
+          <p className="mt-3 text-gray-600 text-lg max-w-2xl mx-auto">
             {t.topTours.subtitle}
           </p>
         </motion.div>
@@ -149,25 +152,7 @@ export function ToursMasSolicitados() {
           ))}
         </div>
 
-        {/* Ver más */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <Link href="/tours">
-            <motion.span 
-              className="inline-flex items-center gap-3 bg-primary/10 text-primary font-bold text-lg px-8 py-4 rounded-full hover:bg-primary hover:text-white transition-all cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {t.topTours.viewAll}
-              <ArrowRight size={20} />
-            </motion.span>
-          </Link>
-        </motion.div>
+        {/* Enlace "Ver todos los tours" eliminado por solicitud */}
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { faqs } from "@/data/tours";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -21,10 +22,12 @@ export function FAQ() {
           <span className="text-primary font-bold tracking-wider uppercase text-sm">
             {t.faq.label}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl mt-2 text-gray-900">
-            {t.faq.title}
-          </h2>
-          <p className="mt-4 text-gray-600">
+          <DynamicTitle
+            text={t.faq.title}
+            highlight="Frecuentes"
+            className="text-3xl md:text-4xl mt-2 text-gray-900"
+          />
+          <p className="mt-3 text-gray-600 text-lg">
             {t.faq.subtitle}
           </p>
         </motion.div>

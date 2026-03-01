@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 // Certificaciones y logos oficiales
 const certifications = [
@@ -52,21 +53,23 @@ export function Certificaciones() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-20 bg-gray-100">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
           <span className="text-primary font-bold tracking-wider uppercase text-sm">
             {t.certifications.label}
           </span>
-          <h2 className="font-heading font-bold text-2xl md:text-3xl mt-2 text-gray-900">
-            {t.certifications.title}
-          </h2>
+          <DynamicTitle
+            text={t.certifications.title}
+            highlight="Reconocimientos"
+            className="text-3xl md:text-4xl mt-2 text-gray-900"
+          />
         </motion.div>
 
         {/* Main Certifications */}

@@ -398,6 +398,67 @@
   }
 }
 
+@keyframes title-underline {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* ── Dynamic Title System ── */
+.title-dynamic {
+  position: relative;
+  display: block;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.title-dynamic__text {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-style: normal;
+  color: currentColor;
+}
+
+.title-dynamic__accent {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  color: currentColor;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+
+.title-dynamic__line {
+  display: block;
+  margin-top: 0.45em;
+  height: 4px;
+  width: 100%;
+  background: currentColor;
+  opacity: 0.18;
+  border-radius: 999px;
+  transform-origin: left;
+  will-change: transform, opacity;
+}
+
+/* Light variant for dark backgrounds */
+.title-dynamic--light .title-dynamic__text {
+  color: white;
+}
+.title-dynamic--light .title-dynamic__accent {
+  color: white;
+}
+
+.title-dynamic--light .title-dynamic__line {
+  background: white;
+  opacity: 0.22;
+}
+
 @keyframes line-expand {
   0% {
     transform: scaleX(0);

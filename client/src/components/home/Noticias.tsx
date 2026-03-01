@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Calendar, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/tours";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 export function Noticias() {
   const { t, language } = useLanguage();
@@ -17,16 +18,18 @@ export function Noticias() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4"
+          className="flex flex-col md:flex-row justify-between items-end mb-14 gap-4"
         >
           <div>
             <span className="text-primary font-bold tracking-wider uppercase text-sm">
               {t.news.label}
             </span>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl mt-2 text-gray-900">
-              {t.news.title}
-            </h2>
-            <p className="mt-2 text-gray-600 max-w-lg">
+            <DynamicTitle
+              text={t.news.title}
+              highlight="Artículos"
+              className="text-3xl md:text-4xl mt-2 text-gray-900"
+            />
+            <p className="mt-3 text-gray-600 max-w-lg">
               {t.news.subtitle}
             </p>
           </div>
@@ -54,7 +57,7 @@ export function Noticias() {
                       alt={post.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4">
@@ -64,7 +67,7 @@ export function Noticias() {
                     </div>
                   </div>
 
-                  <div className="p-5 flex-grow flex flex-col">
+                  <div className="p-5 grow flex flex-col">
                     <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
                       <Calendar size={14} className="text-primary" />
                       {new Date(post.date).toLocaleDateString(dateLocale, {
@@ -74,7 +77,7 @@ export function Noticias() {
                       })}
                     </div>
 
-                    <h3 className="font-heading font-bold text-lg text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2 flex-grow">
+                    <h3 className="font-heading font-bold text-lg text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2 grow">
                       {post.title}
                     </h3>
 

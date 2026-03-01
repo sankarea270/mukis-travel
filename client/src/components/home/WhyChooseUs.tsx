@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Heart, Clock, Users, Award, Leaf } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 const reasonKeys = [
   { icon: ShieldCheck, key: "security" },
@@ -39,14 +40,13 @@ export function WhyChooseUs() {
             >
               {t.whyChooseUs.label}
             </motion.span>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="font-heading font-bold text-3xl md:text-4xl mt-2 mb-6 text-gray-900"
-            >
-              {t.whyChooseUs.title}
-            </motion.h2>
+            <div className="mt-2 mb-6">
+              <DynamicTitle
+                text={t.whyChooseUs.title}
+                highlight="Mukis Travel"
+                className="text-3xl md:text-5xl text-gray-900"
+              />
+            </div>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

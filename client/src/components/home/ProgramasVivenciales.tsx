@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Heart, Users, Leaf, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n";
+import { DynamicTitle } from "@/components/ui/DynamicTitle";
 
 export function ProgramasVivenciales() {
   const { t } = useLanguage();
@@ -74,11 +75,14 @@ export function ProgramasVivenciales() {
               </div>
             </motion.div>
 
-            <h2 className="font-heading font-bold text-3xl md:text-5xl text-white mb-6">
-              {t.vivencial.title} <span className="text-primary">{t.vivencial.titleHighlight}</span>
-            </h2>
+            <DynamicTitle
+              text={`${t.vivencial.title} ${t.vivencial.titleHighlight}`}
+              highlight={t.vivencial.titleHighlight}
+              className="text-3xl md:text-5xl"
+              light
+            />
             
-            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+            <p className="mt-3 text-gray-300 text-lg leading-relaxed mb-8">
               {t.vivencial.description}
             </p>
 

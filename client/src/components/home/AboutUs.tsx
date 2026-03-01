@@ -11,19 +11,19 @@ export function AboutUs() {
     {
       name: "Gerente General",
       role: "Liderazgo y Estrategia",
-      image: "/images/categories/jefa.jpeg",
+      image: `${import.meta.env.BASE_URL}images/categories/jefa.jpeg`,
       description: "Con más de 12 años de trayectoria en el sector turístico, dirijo Mukis Travel bajo principios de profesionalismo, transparencia y responsabilidad ética. Nos especializamos en ofrecer paquetes turísticos innovadores y accesibles, promoviendo un turismo sostenible que valore y fortalezca a las comunidades locales, proteja nuestro patrimonio natural y cultural, y garantice experiencias de calidad y confianza para cada cliente.",
     },
     {
       name: "Equipo de Marketing",
       role: "Estrategias de Publicidad",
-      image: "/images/categories/marketing.jpeg",
+      image: `${import.meta.env.BASE_URL}images/categories/marketing.jpeg`,
       size: "h-96",
     },
     {
       name: "Equipo de Reservas",
       role: "Gestión de Reservas",
-      image: "/images/categories/reservas.jpeg",
+      image: `${import.meta.env.BASE_URL}images/categories/reservas.jpeg`,
       size: "h-20",
     },
   ];
@@ -65,7 +65,7 @@ export function AboutUs() {
       <div className="relative h-screen min-h-150 flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed z-0"
-          style={{ backgroundImage: "url('/images/categories/fondo11.jpeg')" }}
+          style={{ backgroundImage: `url('${import.meta.env.BASE_URL}images/categories/fondo11.jpeg')` }}
         />
         <div className="absolute inset-0 bg-black/50 z-10" /> {/* Overlay oscuro */}
         
